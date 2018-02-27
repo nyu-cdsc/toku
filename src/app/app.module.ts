@@ -4,12 +4,18 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CorgiComponent } from './corgi.component';
+import { VideoGroupComponent } from './video-group/video-group.component';
+import { VideoComponent } from './video/video.component';
+import { AgeComponent } from './age/age.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CorgiComponent
+    CorgiComponent,
+    VideoGroupComponent,
+    VideoComponent,
+    AgeComponent
   ],
   imports: [
     BrowserModule
