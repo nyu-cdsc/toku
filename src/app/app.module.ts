@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { CorgiComponent } from './corgi.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CorgiComponent
   ],
   imports: [
     BrowserModule
