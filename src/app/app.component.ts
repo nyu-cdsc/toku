@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my first ng app';
+
+  vid = 0; 
+
+  videoEnded(event){
+  this.vid = 1;
+  console.log("videoEnded in Parent was called");
+  }
 }

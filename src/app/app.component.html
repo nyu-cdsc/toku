@@ -1,5 +1,12 @@
-<h2 align="center">How old are you?</h2>
-<age #grab></age>
+<h1 [hidden]="grab.year" align="center">Let's learn about animals!</h1>
 
-<movie *ngIf="grab.year"></movie>
 
+<h1 [hidden]="grab.year" align="center">How old are you?</h1>
+
+<div [hidden]="grab.year"><age #grab></age></div>
+
+<movie (videoEndedEvent)="videoEnded($event)" *ngIf="grab.year"></movie>
+
+<corgi *ngIf="this.vid"></corgi>
+
+{{this.vid}}

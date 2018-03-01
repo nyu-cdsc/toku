@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'movie',
@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./video.component.css']
 })
 export class VideoComponent implements OnInit {
-
+  @Output() videoEndedEvent = new EventEmitter<number>();
+  
   constructor() { }
 
-  ngOnInit() {
+  videoEnded() {
+  console.log("videoEnded was called");
+  this.videoEndedEvent.emit(1);
   }
-
 }
+

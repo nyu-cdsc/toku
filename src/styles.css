@@ -1,1 +1,76 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~font-awesome/css/font-awesome.css';
+@font-face { font-family: SourceSans; src: url('assets/fonts/SourceSansPro-Regular.ttf'); }
+
+
+/* Type */
+
+	html {
+		font-size: 16pt;
+	}
+
+		@media screen and (max-width: 1680px) {
+
+			html {
+				font-size: 12pt;
+			}
+
+		}
+
+		@media screen and (max-width: 736px) {
+
+			html {
+				font-size: 11pt;
+			}
+
+		}
+
+		@media screen and (max-width: 360px) {
+
+			html {
+				font-size: 10pt;
+			}
+
+		}
+
+	body, input, select, textarea {
+		color: #000000;
+		font-family: "Source Sans Pro", sans-serif;
+		font-weight: 300;
+		font-size: 1rem;
+		line-height: 1.65;
+	}
+
+/* Button */ 
+
+	button {
+		font-family : inherit;
+		font-size: 25px;
+		font-weight: 500;
+		width: 25%;
+		height: 75px;
+		background-color: #ABDFF2;
+		border: none;
+		border-radius: 15px;
+		margin: 3.34% 30px;
+		position: relative;
+	}
+
+	button:focus {
+		outline: 0;
+	}
+
+	.button-container {
+    	width: 80%;
+    	background: #fff;
+   		overflow-y: auto;
+   		margin: auto;
+   	}
+
+	.button-container > a {
+    	width: 25%;
+    	height: 100px;
+    	float: left;
+    	background: #fff;   
+    	margin: auto;
+	}
