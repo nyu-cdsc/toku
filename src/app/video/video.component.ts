@@ -10,6 +10,13 @@ export class VideoComponent implements OnInit {
   
   constructor() { }
 
+  ngOnInit() { 
+  }
+
+  // saveAndNext(){
+  //   alert("a thing happend");
+  // }
+
   videoEnded() {
   console.log("videoEnded was called");
   this.videoEndedEvent.emit(1);

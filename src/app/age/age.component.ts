@@ -5,16 +5,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './age.component.html',
   styleUrls: ['./age.component.css']
 })
-export class AgeComponent implements OnInit {
-  year: number;
+export class AgeComponent {
+  year = 0;
 
   constructor() { }
 
-  ngOnInit() { 
-  }
-
-  setAge(year: number) {
-  this.year = year
-  console.log("setAge was called", year, this.year)
+  setAge(number) {
+  this.year = number;
+  console.log("setAge was called", this.year)
     }
 }

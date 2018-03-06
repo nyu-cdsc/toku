@@ -1,12 +1,27 @@
-<h1 [hidden]="grab.year" align="center">Let's learn about animals!</h1>
+<h1 *ngIf="!grab.year" align="center">Let's learn about animals!</h1>
 
+<h1 *ngIf="!grab.year" align="center">How old are you?</h1>
 
-<h1 [hidden]="grab.year" align="center">How old are you?</h1>
+<div [hidden]="grab.year">
+    <age #grab></age>
+</div>
 
-<div [hidden]="grab.year"><age #grab></age></div>
+<button class=resetButton *ngIf="grab.year" (click)="startOver()">Start a new game!</button>
 
-<movie (videoEndedEvent)="videoEnded($event)" *ngIf="grab.year"></movie>
+<movie (videoEndedEvent)="videoEnded($event)" *ngIf="grab.year && !this.vid"></movie>
 
-<corgi *ngIf="this.vid"></corgi>
+<div class=corgiBox *ngIf="this.vid && !this.nextvid"> 
+    <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/corgis/one.jpg" height="200" (click)="saveAndNext()"/>
+    <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/corgis/two.jpg" height="200" (click)="saveAndNext()"/>
+    <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/corgis/three.jpg" height="200" (click)="saveAndNext()"/>
+</div>
 
-{{this.vid}}
+<movie (videoEndedEvent)="videoEnded($event)" *ngIf="this.nextvid && !showCorgi"></movie>
+
+<div class=corgiBox *ngIf="this.nextvid && showCorgi">
+    <img class=corgiButton *ngIf="this.nextvid && showCorgi" src="assets/corgis/one.jpg" height="200" (click)="startOver()"/> 
+    <img class=corgiButton *ngIf="this.nextvid && showCorgi" src="assets/corgis/two.jpg" height="200" (click)="startOver()"/>
+    <img class=corgiButton *ngIf="this.nextvid && showCorgi" src="assets/corgis/three.jpg" height="200" (click)="startOver()"/>
+</div>
+
+<!-- <corgi *ngIf="this.vid"></corgi> -->

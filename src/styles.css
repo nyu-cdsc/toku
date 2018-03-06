@@ -5,8 +5,13 @@
 
 /* Type */
 
+	body {
+	height: 90%;
+	}
+
 	html {
 		font-size: 16pt;
+		height: 100%;
 	}
 
 		@media screen and (max-width: 1680px) {
@@ -59,7 +64,7 @@
 	button:focus {
 		outline: 0;
 	}
-
+	
 	.button-container {
     	width: 80%;
     	background: #fff;
@@ -73,4 +78,31 @@
     	float: left;
     	background: #fff;   
     	margin: auto;
+	}
+
+	.resetButton {
+		background: #fff;
+		width: 200px;
+		font-size: 16px;
+		height: 50px;
+		position: fixed;
+   		bottom: 0;
+		right: 0;
+		margin: 10px; 
+		border: 1px dotted #bbb;  
+	}
+
+	.resetButton:hover {
+		opacity: .5;
+	}
+
+	.corgiBox {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+	}
+	
+	.corgiButton {
+		padding: 10px;
 	}
