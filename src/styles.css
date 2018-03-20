@@ -96,10 +96,18 @@
 		opacity: .5;
 	}
 
-	.corgiBox {
+	.corgiBoxRow {
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		height: 100%;
+	}
+
+	.corgiBoxColumn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column; 
 		height: 100%;
 	}
 	
