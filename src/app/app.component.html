@@ -17,8 +17,6 @@
 
 <button class=resetButton *ngIf="grab.year" (click)="startOver()">Start a new game!</button>
 
-<movie (videoEndedEvent)="videoEnded($event)" *ngIf="grab.year && !this.vid"></movie>
-
 <!-- first stimuli --> 
 <!-- movie -->
 <movie (videoEndedEvent)="videoEnded($event)" *ngIf="grab.year && !this.vid"></movie>
@@ -28,7 +26,7 @@
     <source src="assets/audio/ch_study1.m4a" type="audio/mp4"/> 
 </audio>
 
-<div class=corgiBoxRow *ngIf="this.vid && !this.nextvid"> 
+<div class=corgiBoxColumn *ngIf="this.vid && !this.nextvid"> 
     <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/image/cheetah 1.jpg" height="100" (click)="saveAndNext()">
     <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/image/cheetah 2.jpg" height="100" (click)="saveAndNext()"/>
     <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/image/cheetah 3.jpg" height="100" (click)="saveAndNext()"/>

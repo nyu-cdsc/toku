@@ -15,6 +15,11 @@ export class AppComponent {
   nextvid = false;
   showCorgi = false;
   aud = false; 
+
+  audioEnded(event){
+    this.aud = true;
+    console.log("audioEnded is now true!")
+  }
   
   videoEnded(event){
   this.vid = 1;
@@ -23,9 +28,12 @@ export class AppComponent {
   }
 
   saveAndNext(){
+    if (this.aud = false) return;
+    
     console.log("button to next movie worked (after first movie)");
     this.nextvid = true;
     this.showCorgi = false;
+    this.aud = false; 
   }
 
   startOver(){
