@@ -19,10 +19,21 @@
 
 <movie (videoEndedEvent)="videoEnded($event)" *ngIf="grab.year && !this.vid"></movie>
 
-<div class=corgiBox *ngIf="this.vid && !this.nextvid"> 
-    <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/corgis/one.jpg" height="200" (click)="saveAndNext()"/>
-    <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/corgis/two.jpg" height="200" (click)="saveAndNext()"/>
-    <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/corgis/three.jpg" height="200" (click)="saveAndNext()"/>
+<!-- first stimuli --> 
+<!-- movie -->
+<movie (videoEndedEvent)="videoEnded($event)" *ngIf="grab.year && !this.vid"></movie>
+
+<!-- button --> 
+<audio (ended)="audioEnded($event)" *ngIf="this.vid && !this.nextvid" autoplay>
+    <source src="assets/audio/ch_study1.m4a" type="audio/mp4"/> 
+</audio>
+
+<div class=corgiBoxRow *ngIf="this.vid && !this.nextvid"> 
+    <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/image/cheetah 1.jpg" height="100" (click)="saveAndNext()">
+    <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/image/cheetah 2.jpg" height="100" (click)="saveAndNext()"/>
+    <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/image/cheetah 3.jpg" height="100" (click)="saveAndNext()"/>
+    <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/image/cheetah 4.jpg" height="100" (click)="saveAndNext()"/>
+    <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/image/cheetah 5.jpg" height="100" (click)="saveAndNext()"/>
 </div>
 
 <movie (videoEndedEvent)="videoEnded($event)" *ngIf="this.nextvid && !showCorgi"></movie>

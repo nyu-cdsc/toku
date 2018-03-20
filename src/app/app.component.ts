@@ -14,6 +14,7 @@ export class AppComponent {
   vid = 0; 
   nextvid = false;
   showCorgi = false;
+  aud = false; 
   
   videoEnded(event){
   this.vid = 1;
