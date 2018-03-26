@@ -7,6 +7,7 @@ import { CorgiComponent } from './corgi.component';
 import { VideoComponent } from './video/video.component';
 import { AgeComponent } from './age/age.component';
 import { StartPageComponent } from './start-page/start-page.component';
+import { StimuliComponent } from './stimuli/stimuli.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { StartPageComponent } from './start-page/start-page.component';
     VideoComponent,
     AgeComponent,
     StartPageComponent,
+    StimuliComponent,
    ],
   imports: [
     BrowserModule
