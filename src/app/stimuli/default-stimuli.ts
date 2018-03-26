@@ -2,7 +2,7 @@ import { Stimuli } from './stimuli';
 
 export const STIMULI: Stimuli[] = [
     {id: "cheetah", 
-    movie: ["../assets/video/cheetah1_intro.mp4", "../assets/video/kangaroo1_intro.mp4"], 
+    movie: ["../assets/video/cheetah1_intro.mp4"], 
     picture: ["../assets/image/cheetahs.jpg"],
     sound: ["../assets/audio/cheetah1.m4a"]},
 
