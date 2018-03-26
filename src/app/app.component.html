@@ -6,31 +6,21 @@
 <!-- add real videos  -->
 <!-- add outro thanks for playing page -->
 <!-- add better transition for start over button to new game -->
-<app-stimuli></app-stimuli>
-
-<h1 *ngIf="!grab.year" align="center">Let's learn about animals!</h1>
-
-<h1 *ngIf="!grab.year" align="center">How old are you?</h1>
-
 <div [hidden]="grab.year">
     <age #grab></age>
 </div>
+
+<app-stimuli *ngIf="grab.year"></app-stimuli>
 
 <button class=resetButton *ngIf="grab.year" (click)="startOver()">Start over</button>
 
 <!-- first stimuli --> 
 <!-- movie -->
-<video (ended)="videoEnded($event)" *ngIf="grab.year && !this.vid" autoplay="autoplay" preload="auto">
-    <source src="assets/video/cheetah1_intro.mp4" type='video/mp4'/>
-</video>
 
 <!-- delete this eventually, button for development purposes --> 
-<button class=skip *ngIf="grab.year && !this.vid" (click)="nextSlide()">skip</button>
+<!-- <button class=skip *ngIf="grab.year && !this.vid" (click)="nextSlide()">skip</button> -->
 
 <!-- button --> 
-<audio (ended)="audioEnded($event)" *ngIf="this.vid && !this.nextvid" autoplay>
-    <source src="assets/audio/cheetah1.m4a" type="audio/mp4"/> 
-</audio>
 
 <div class=corgiBoxColumn *ngIf="this.vid && !this.nextvid"> 
     <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/image/cheetah5.jpg" height=20% (click)="saveAndNext()">
@@ -38,74 +28,5 @@
     <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/image/cheetah3.jpg" height=20% (click)="saveAndNext()"/>
     <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/image/cheetah2.jpg" height=20% (click)="saveAndNext()"/>
     <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/image/cheetah1.jpg" height=20% (click)="saveAndNext()"/>
-</div>
-
-<!-- second stimuli --> 
-<!-- movie -->
-<video (ended)="videoEnded($event)" *ngIf="this.counter == 1 && !showCorgi" autoplay="autoplay" preload="auto">
-    <source src="assets/video/kangaroo1_intro.mp4" type='video/mp4'/>
-</video>
-
-<button class=skip *ngIf="this.counter == 1 && !showCorgi" (click)="nextSlide()">skip</button>
-
-<!-- button --> 
-<audio (ended)="audioEnded($event)" *ngIf="this.counter == 1 && showCorgi" autoplay>
-    <source src="assets/audio/kangaroo1.m4a" type="audio/mp4"/> 
-</audio>
-
-<div class=corgiBoxColumnContainer *ngIf="this.counter == 1 && showCorgi">
-    <div class=corgiBoxRow *ngIf="this.counter == 1 && showCorgi">
-        <img class=corgiButton *ngIf="this.counter == 1 && showCorgi" src="assets/image/kangaroo1.jpg" width=20% (click)="saveAndNext()"/> 
-        <img class=corgiButton *ngIf="this.counter == 1 && showCorgi" src="assets/image/kangaroo2.jpg" width=20% (click)="saveAndNext()"/>
-        <img class=corgiButton *ngIf="this.counter == 1 && showCorgi" src="assets/image/kangaroo3.jpg" width=20% (click)="saveAndNext()"/>
-        <img class=corgiButton *ngIf="this.counter == 1 && showCorgi" src="assets/image/kangaroo4.jpg" width=20% (click)="saveAndNext()"/>
-        <img class=corgiButton *ngIf="this.counter == 1 && showCorgi" src="assets/image/kangaroo5.jpg" width=20% (click)="saveAndNext()"/>
-    </div>
-</div>
-
-<!-- third stimuli --> 
-<!-- movie -->
-<video (ended)="videoEnded($event)" *ngIf="this.counter == 2 && !showCorgi" autoplay="autoplay" preload="auto">
-    <source src="assets/video/porcupine1_intro.mp4" type='video/mp4'/>
-</video>
-
-<button class=skip *ngIf="this.counter == 2 && !showCorgi" (click)="nextSlide()">skip</button>
-
-<!-- button --> 
-<audio (ended)="audioEnded($event)" *ngIf="this.counter == 2 && showCorgi" autoplay>
-    <source src="assets/audio/porcupine1.m4a" type="audio/mp4"/> 
-</audio>
-
-<div class=corgiBoxColumnContainer *ngIf="this.counter == 2 && showCorgi">
-    <div class=corgiBoxRow *ngIf="this.counter == 2 && showCorgi">
-        <img class=corgiButton *ngIf="this.counter == 2 && showCorgi" src="assets/image/porcupine1.jpg" width=20% (click)="saveAndNext()"/> 
-        <img class=corgiButton *ngIf="this.counter == 2 && showCorgi" src="assets/image/porcupine2.jpg" width=20% (click)="saveAndNext()"/>
-        <img class=corgiButton *ngIf="this.counter == 2 && showCorgi" src="assets/image/porcupine3.jpg" width=20% (click)="saveAndNext()"/>
-        <img class=corgiButton *ngIf="this.counter == 2 && showCorgi" src="assets/image/porcupine4.jpg" width=20% (click)="saveAndNext()"/>
-        <img class=corgiButton *ngIf="this.counter == 2 && showCorgi" src="assets/image/porcupine5.jpg" width=20% (click)="saveAndNext()"/>
-    </div>
-</div>
-
-<!-- fourth stimuli --> 
-<!-- movie -->
-<video (ended)="videoEnded($event)" *ngIf="this.counter == 3 && !showCorgi" autoplay="autoplay" preload="auto">
-    <source src="assets/video/skunk1_intro.mp4" type='video/mp4'/>
-</video>
-
-<button class=skip *ngIf="this.counter == 3 && !showCorgi" (click)="nextSlide()">skip</button>
-
-<!-- button --> 
-<audio (ended)="audioEnded($event)" *ngIf="this.counter == 3 && showCorgi" autoplay>
-    <source src="assets/audio/skunk1.m4a" type="audio/mp4"/> 
-</audio>
-
-<div class=corgiBoxColumnContainer *ngIf="this.counter == 3 && showCorgi">
-    <div class=corgiBoxRow *ngIf="this.counter == 3 && showCorgi">
-        <img class=corgiButton *ngIf="this.counter == 3 && showCorgi" src="assets/image/skunk1.jpg" width=20% (click)="saveAndNext()"/> 
-        <img class=corgiButton *ngIf="this.counter == 3 && showCorgi" src="assets/image/skunk2.jpg" width=20% (click)="saveAndNext()"/>
-        <img class=corgiButton *ngIf="this.counter == 3 && showCorgi" src="assets/image/skunk3.jpg" width=20% (click)="saveAndNext()"/>
-        <img class=corgiButton *ngIf="this.counter == 3 && showCorgi" src="assets/image/skunk4.jpg" width=20% (click)="saveAndNext()"/>
-        <img class=corgiButton *ngIf="this.counter == 3 && showCorgi" src="assets/image/skunk5.jpg" width=20% (click)="saveAndNext()"/>
-    </div>
 </div>
 

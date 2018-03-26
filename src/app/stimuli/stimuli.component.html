@@ -1,5 +1,16 @@
 <!-- <div *ngFor="let stim of stimuli"> -->
-  <video (ended)="videoEnded()" autoplay="autoplay" preload="auto" controls [src]="currentVideo" type='video/mp4'>
+  <video (ended)="videoEnded()" *ngIf = "!this.showPicture" autoplay="autoplay" preload="auto" controls 
+         [src]="getCurrentVideo()" type='video/mp4'>
   </video>
   <!-- <img [src]="currentImage"> -->
 <!-- </div> -->
+
+  <audio (ended)="audioEnded()" *ngIf = "this.showPicture" autoplay controls
+         [src]="getCurrentAudio()" type="audio/mp4">
+  </audio> 
+
+  <img *ngIf = "this.showPicture" [src]="getCurrentImage()" usemap = "#testmap"/>
+
+  <map name = "testmap">
+    <area shape = "rect" coords="0,0,500,500" title = "Here!">
+  </map>

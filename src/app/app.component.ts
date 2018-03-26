@@ -14,23 +14,9 @@ export class AppComponent {
   showCorgi = false;
   aud = false; 
   counter = 0; 
-
-  audioEnded(event){
-    this.aud = true;
-    console.log("audioEnded is now true!")
-  }
-  
-  videoEnded(event){
-  this.vid = 1;
-  this.showCorgi = true;
-  console.log("videoEnded in Parent was called");
-  }
-  
+ 
   startOver(){
-    this.vid = 0;
-    this.nextvid = false;
     this.currentAgeComponent.year = 0;
-    this.counter = 0; 
     console.log(this.currentAgeComponent)
   }
 

@@ -10,33 +10,70 @@ export class StimuliComponent {
 
   stimuli = STIMULI; 
   vid = 0;
+  aud = 0;
+  pic = 0; 
   currentStimuli = 0;
   showPicture = false;
-  currentVideo = this.getCurrent();
 
-  // currentImage = this.stimuli[0].picture[0];
+  // for getCurrentVideo and getCurrentAudio's use
+  currentVideo: string;
+  currentAudio: string; 
+  currentImage: string;
 
   videoEnded(){
-    this.vid = this.vid + 1;
-    this.showPicture = true;
-    console.log("this.vid =", this.vid);
-    console.log(this.getCurrent());
-
-    this.currentVideo = this.getCurrent();
-    // this.currentImage = this.stimuli[1].picture[0]
-  }
-
-  getCurrent(){
-    console.log(this);
-    console.log(this.stimuli);
-    if(this.vid > this.stimuli[this.currentStimuli].movie.length - 1){
-      if(this.currentStimuli == this.stimuli.length - 1){
-        return this.currentVideo;
-      }
-      this.currentStimuli++;
-      this.vid = 0;
+    let result = this.nextVideo();
+    if (!result) {
+      this.showPicture = true;
     }
-    return this.stimuli[this.currentStimuli].movie[this.vid];
   }
 
-}
+  nextVideo(){
+     if (this.vid == this.stimuli[this.currentStimuli].movie.length - 1){
+      return false;
+    }
+
+    this.vid++;
+    return true;
+  }
+
+  getCurrentVideo(){
+    let video = this.stimuli[this.currentStimuli].movie[this.vid];
+    if (video != this.currentVideo) {
+      this.currentVideo = video;
+    }
+
+    return video;
+  }
+
+  audioEnded(){
+    // let result = this.nextVideo();
+    // if (!result) {
+    //   this.showPicture = true;
+    // }
+  }
+
+  getCurrentAudio(){
+    let audio = this.stimuli[this.currentStimuli].sound[this.aud];
+    if (audio != this.currentAudio) {
+      this.currentAudio = audio;
+    }
+
+    return audio;
+  }
+
+  getCurrentImage(){
+    let image = this.stimuli[this.currentStimuli].picture[this.pic];
+    if (image != this.currentImage) {
+      this.currentImage = image;
+    }
+
+    return image;
+  }
+
+  nextStimuli(){
+    this.currentStimuli++;
+    this.vid = 0;
+  }
+
+
+} 
