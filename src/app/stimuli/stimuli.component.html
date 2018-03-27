@@ -1,16 +1,31 @@
+<video (ended)="videoEnded(true)" *ngIf = "!this.introEnded && this.study.id == 3 && (this.trial.id == this.firstTrial.id)" 
+  autoplay="autoplay" preload="auto" controls 
+  src="assets/video/3_intro.mp4" type="video/mp4">
+</video> 
+
+<audio (ended)="audioEnded(true)" *ngIf = "this.introEnded && this.playAltAudio && this.study.id == 3" autoplay controls 
+  [src]="getCurrentAudio(true)" type="audio/mp4">
+</audio> 
+
 <!-- <div *ngFor="let stim of stimuli"> -->
-  <video (ended)="videoEnded()" *ngIf = "!this.showPicture" autoplay="autoplay" preload="auto"  
+  <video (ended)="videoEnded()" *ngIf = "this.introEnded && !this.showPicture && !this.playAltAudio" autoplay="autoplay" preload="auto" controls  
          [src]="getCurrentVideo()" type='video/mp4'>
   </video>
   <!-- <img [src]="currentImage"> -->
 <!-- </div> -->
 
-<img *ngIf = "this.showPicture" [src]="getCurrentImage()" usemap = "#testmap"/>
+<img *ngIf = "this.introEnded && this.showPicture && !this.playAltAudio" [src]="getCurrentImage()" usemap = "#testmap"/>
+<!-- need to make coordinates responsive using JS  -->
+<map name = "testmap">
+  <area (click)="nextTrial(1)" shape = "rect" coords="0,0,1023,150">
+  <area (click)="nextTrial(2)" shape = "rect" coords="0,151,1023,342">
+  <area (click)="nextTrial(3)" shape = "rect" coords="0,343,1023,429">
+  <area (click)="nextTrial(4)" shape = "rect" coords="0,430,1023,569">
+  <area (click)="nextTrial(5)" shape = "rect" coords="0,570,1023,766">
+</map>
 
-<audio (ended)="audioEnded()" *ngIf = "this.showPicture" autoplay 
+<audio (ended)="audioEnded()" *ngIf = "this.introEnded && this.showPicture && !this.playAltAudio" autoplay controls 
   [src]="getCurrentAudio()" type="audio/mp4">
 </audio> 
 
-  <map name = "testmap">
-    <area (click)="setAge(4)" shape = "rect" coords="0,0,500,500" title = "Here!">
-  </map>
+
