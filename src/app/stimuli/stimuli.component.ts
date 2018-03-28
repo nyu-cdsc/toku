@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { STUDIES } from './default-stimuli';
-import { Study, Condition, Trial } from './stimuli'; 
+import { STUDIES, ATTENTIONCHECK } from './default-stimuli';
+import { Study, Condition, Trial, AttnCheck } from './stimuli'; 
 
 @Component({
   selector: 'app-stimuli',
@@ -120,11 +120,6 @@ export class StimuliComponent {
     if (alt) {
       this.playAltAudio = false;
     }
-
-    // let result = this.nextVideo();
-    // if (!result) {
-    //   this.showPicture = true;
-    // }
   }
 
   getCurrentAudio(alt){
@@ -159,6 +154,10 @@ export class StimuliComponent {
     }
 
     return image;
+  }
+
+  getAttnAudio(){
+
   }
 
   // todo split into two functions - juggling too much

@@ -30,5 +30,16 @@
 </audio> 
 
 <!-- attention check -->
+<audio (ended)="audioEnded()" *ngIf = "" autoplay src="assets/audio/attention.m4a" type="audio/mp4"></audio>
+<audio (ended)="audioEnded()" *ngIf = "" autoplay [src]="getAttnAudio()" type="audio/mp3"></audio>
+
+<div class=attnCheckBox *ngIf=""> 
+  <img class=attnCheckButton *ngIf="" src="assets/image/DL1.jpg" height=20% (click)="nextTrial(1)">
+  <img class=attnCheckButton *ngIf="" src="assets/image/DL2.jpg" height=20% (click)="nextTrial(2)"/>
+  <img class=attnCheckButton *ngIf="" src="assets/image/DL3.jpg" height=20% (click)="nextTrial(3)"/>
+  <img class=attnCheckButton *ngIf="" src="assets/image/DL4.jpg" height=20% (click)="nextTrial(4)"/>
+  <img class=attnCheckButton *ngIf="" src="assets/image/DL5.jpg" height=20% (click)="nextTrial(5)"/>
+</div>
+
 <!-- <audio></audio>
 <img/>  -->

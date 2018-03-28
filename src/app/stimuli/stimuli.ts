@@ -16,3 +16,7 @@ export class Trial {
     sound: string[];
     picture: string[];
 }
+
+export class AttnCheck {
+    sound: string[];
+}
