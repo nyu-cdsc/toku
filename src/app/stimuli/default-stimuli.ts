@@ -58,15 +58,15 @@ export const STUDIES: Study[] = [
                         picture1: [""],
                         sound1: [""],
                         movie: ["../assets/video/tvintro1.mp4"], 
-                        picture: ["../assets/image/corgi.jpg"], //"../assets/image/tulvers.jpg"
+                        picture: ["../assets/image/tulvers.jpg"], 
                         sound: ["../assets/audio/tv_1.m4a"]
                     },
                     {
-                        id: "upo", //upos or upo?? 
+                        id: "upos", 
                         picture1: [""],
                         sound1: [""],
                         movie: ["../assets/video/upintro1.mp4"], 
-                        picture: ["../assets/image/corgi.jpg"], //"../assets/image/upos.jpg"
+                        picture: ["../assets/image/uposes.jpg"], 
                         sound: ["../assets/audio/up_1.m4a"]
                     },
                     {
@@ -139,15 +139,15 @@ export const STUDIES: Study[] = [
                         picture1: [""],
                         sound1: [""],
                         movie: ["../assets/video/tvintro1.mp4"], 
-                        picture: ["../assets/image/corgi.jpg"], //"../assets/image/tulvers.jpg"
+                        picture: ["../assets/image/child.jpg"], //"../assets/image/tulvers.jpg"
                         sound: ["../assets/audio/tv_2.m4a", "../assets/audio/tv_2_2.m4a"]
                     },
                     {
-                        id: "upo", //upos or upo?? 
+                        id: "upos", 
                         picture1: [""],
                         sound1: [""],
                         movie: ["../assets/video/upintro1.mp4"], 
-                        picture: ["../assets/image/corgi.jpg"], //"../assets/image/upos.jpg"
+                        picture: ["../assets/image/child.jpg"], //"../assets/image/upos.jpg"
                         sound: ["../assets/audio/up_2.m4a", "../assets/audio/up_2_2.m4a"]
                     },
                     {
@@ -171,7 +171,7 @@ export const STUDIES: Study[] = [
                 trials: [
                     {
                         id: "cheetah", 
-                        picture1: ["../assets/image/corgi.jpg"], 
+                        picture1: ["../assets/image/child.jpg"], 
                         sound1: ["../assets/audio/ch_3_1.m4a"],
                         movie: ["../assets/video/ch_3_1_Aff.mp4"], 
                         picture: ["../assets/image/cheetahs.jpg"],
@@ -179,7 +179,7 @@ export const STUDIES: Study[] = [
                     },
                     {
                         id: "porcupine", 
-                        picture1: ["../assets/image/corgi.jpg"],
+                        picture1: ["../assets/image/child.jpg"],
                         sound1: ["../assets/audio/po_3_1.m4a"],
                         movie: ["../assets/video/po_3_1_Aff.mp4"], 
                         picture: ["../assets/image/porcupines.jpg"],
@@ -187,7 +187,7 @@ export const STUDIES: Study[] = [
                     },
                     {
                         id: "kangaroo", 
-                        picture1: ["../assets/image/corgi.jpg"],
+                        picture1: ["../assets/image/child.jpg"],
                         sound1: ["../assets/audio/kg_3_1.m4a"],
                         movie: ["../assets/video/kg_3_1_Aff.mp4"], 
                         picture: ["../assets/image/kangaroos.jpg"],
@@ -195,7 +195,7 @@ export const STUDIES: Study[] = [
                     },
                     {
                         id: "skunk", 
-                        picture1: ["../assets/image/corgi.jpg"],
+                        picture1: ["../assets/image/child.jpg"],
                         sound1: ["../assets/audio/sk_3_1.m4a"],
                         movie: ["../assets/video/sk_3_1_Aff.mp4"], 
                         picture: ["../assets/image/skunks.jpg"],
@@ -209,7 +209,7 @@ export const STUDIES: Study[] = [
                 trials: [
                     {
                         id: "cheetah", 
-                        picture1: ["../assets/image/corgi.jpg"], 
+                        picture1: ["../assets/image/child.jpg"], 
                         sound1: ["../assets/audio/ch_3_2.m4a"],
                         movie: ["../assets/video/ch_3_2_Aff.mp4"], 
                         picture: ["../assets/image/cheetahs.jpg"],
@@ -217,7 +217,7 @@ export const STUDIES: Study[] = [
                     },
                     {
                         id: "porcupine", 
-                        picture1: ["../assets/image/corgi.jpg"],
+                        picture1: ["../assets/image/child.jpg"],
                         sound1: ["../assets/audio/po_3_2.m4a"],
                         movie: ["../assets/video/po_3_2_Aff.mp4"], 
                         picture: ["../assets/image/porcupines.jpg"],
@@ -225,7 +225,7 @@ export const STUDIES: Study[] = [
                     },
                     {
                         id: "kangaroo", 
-                        picture1: ["../assets/image/corgi.jpg"],
+                        picture1: ["../assets/image/child.jpg"],
                         sound1: ["../assets/audio/kg_3_2.m4a"],
                         movie: ["../assets/video/kg_3_2_Aff.mp4"], 
                         picture: ["../assets/image/kangaroos.jpg"],
@@ -233,7 +233,7 @@ export const STUDIES: Study[] = [
                     },
                     {
                         id: "skunk", 
-                        picture1: ["../assets/image/corgi.jpg"],
+                        picture1: ["../assets/image/child.jpg"],
                         sound1: ["../assets/audio/sk_3_2.m4a"],
                         movie: ["../assets/video/sk_3_2_Aff.mp4"], 
                         picture: ["../assets/image/skunks.jpg"],
@@ -247,7 +247,7 @@ export const STUDIES: Study[] = [
                 trials: [
                     {
                         id: "cheetah", 
-                        picture1: ["../assets/image/corgi.jpg"], 
+                        picture1: ["../assets/image/child.jpg"], 
                         sound1: ["../assets/audio/ch_3_1.m4a"],
                         movie: ["../assets/video/ch_3_1_Corr.mp4"], 
                         picture: ["../assets/image/cheetahs.jpg"],
@@ -255,7 +255,7 @@ export const STUDIES: Study[] = [
                     },
                     {
                         id: "porcupine", 
-                        picture1: ["../assets/image/corgi.jpg"],
+                        picture1: ["../assets/image/child.jpg"],
                         sound1: ["../assets/audio/po_3_1.m4a"],
                         movie: ["../assets/video/po_3_1_Corr.mp4"], 
                         picture: ["../assets/image/porcupines.jpg"],
@@ -263,7 +263,7 @@ export const STUDIES: Study[] = [
                     },
                     {
                         id: "kangaroo", 
-                        picture1: ["../assets/image/corgi.jpg"],
+                        picture1: ["../assets/image/child.jpg"],
                         sound1: ["../assets/audio/kg_3_1.m4a"],
                         movie: ["../assets/video/kg_3_1_Corr.mp4"], 
                         picture: ["../assets/image/kangaroos.jpg"],
@@ -271,7 +271,7 @@ export const STUDIES: Study[] = [
                     },
                     {
                         id: "skunk", 
-                        picture1: ["../assets/image/corgi.jpg"],
+                        picture1: ["../assets/image/child.jpg"],
                         sound1: ["../assets/audio/sk_3_1.m4a"],
                         movie: ["../assets/video/sk_3_1_Corr.mp4"], 
                         picture: ["../assets/image/skunks.jpg"],
@@ -285,7 +285,7 @@ export const STUDIES: Study[] = [
                 trials: [
                     {
                         id: "cheetah", 
-                        picture1: ["../assets/image/corgi.jpg"], 
+                        picture1: ["../assets/image/child.jpg"], 
                         sound1: ["../assets/audio/ch_3_2.m4a"],
                         movie: ["../assets/video/ch_3_2_Corr.mp4"], 
                         picture: ["../assets/image/cheetahs.jpg"],
@@ -293,7 +293,7 @@ export const STUDIES: Study[] = [
                     },
                     {
                         id: "porcupine", 
-                        picture1: ["../assets/image/corgi.jpg"],
+                        picture1: ["../assets/image/child.jpg"],
                         sound1: ["../assets/audio/po_3_2.m4a"],
                         movie: ["../assets/video/po_3_2_Corr.mp4"], 
                         picture: ["../assets/image/porcupines.jpg"],
@@ -301,7 +301,7 @@ export const STUDIES: Study[] = [
                     },
                     {
                         id: "kangaroo", 
-                        picture1: ["../assets/image/corgi.jpg"],
+                        picture1: ["../assets/image/child.jpg"],
                         sound1: ["../assets/audio/kg_3_2.m4a"],
                         movie: ["../assets/video/kg_3_2_Corr.mp4"], 
                         picture: ["../assets/image/kangaroos.jpg"],
@@ -309,7 +309,7 @@ export const STUDIES: Study[] = [
                     },
                     {
                         id: "skunk", 
-                        picture1: ["../assets/image/corgi.jpg"],
+                        picture1: ["../assets/image/child.jpg"],
                         sound1: ["../assets/audio/sk_3_2.m4a"],
                         movie: ["../assets/video/sk_3_2_Corr.mp4"], 
                         picture: ["../assets/image/skunks.jpg"],
