@@ -58,7 +58,7 @@ export const STUDIES: Study[] = [
                         picture1: [""],
                         sound1: [""],
                         movie: ["../assets/video/tvintro1.mp4"], 
-                        picture: ["../assets/image/tulvers.jpg"],
+                        picture: ["../assets/image/corgi.jpg"], //"../assets/image/tulvers.jpg"
                         sound: ["../assets/audio/tv_1.m4a"]
                     },
                     {
@@ -66,7 +66,7 @@ export const STUDIES: Study[] = [
                         picture1: [""],
                         sound1: [""],
                         movie: ["../assets/video/upintro1.mp4"], 
-                        picture: ["../assets/image/upos.jpg"],
+                        picture: ["../assets/image/corgi.jpg"], //"../assets/image/upos.jpg"
                         sound: ["../assets/audio/up_1.m4a"]
                     },
                     {
@@ -139,7 +139,7 @@ export const STUDIES: Study[] = [
                         picture1: [""],
                         sound1: [""],
                         movie: ["../assets/video/tvintro1.mp4"], 
-                        picture: ["../assets/image/tulvers.jpg"],
+                        picture: ["../assets/image/corgi.jpg"], //"../assets/image/tulvers.jpg"
                         sound: ["../assets/audio/tv_2.m4a", "../assets/audio/tv_2_2.m4a"]
                     },
                     {
@@ -147,7 +147,7 @@ export const STUDIES: Study[] = [
                         picture1: [""],
                         sound1: [""],
                         movie: ["../assets/video/upintro1.mp4"], 
-                        picture: ["../assets/image/upos.jpg"],
+                        picture: ["../assets/image/corgi.jpg"], //"../assets/image/upos.jpg"
                         sound: ["../assets/audio/up_2.m4a", "../assets/audio/up_2_2.m4a"]
                     },
                     {

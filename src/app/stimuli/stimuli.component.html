@@ -1,15 +1,16 @@
 <video (ended)="videoEnded(true)" *ngIf = "!this.introEnded && this.study.id == 3 && (this.trial.id == this.firstTrial.id)" 
-  autoplay="autoplay" preload="auto" controls 
+  autoplay="autoplay" preload="auto"  
   src="assets/video/3_intro.mp4" type="video/mp4">
 </video> 
 
-<audio (ended)="audioEnded(true)" *ngIf = "this.introEnded && this.playAltAudio && this.study.id == 3" autoplay controls 
+<audio (ended)="audioEnded(true)" *ngIf = "this.introEnded && this.playAltAudio && this.study.id == 3" autoplay  
   [src]="getCurrentAudio(true)" type="audio/mp4">
 </audio> 
 
 <!-- <div *ngFor="let stim of stimuli"> -->
-  <video (ended)="videoEnded()" *ngIf = "this.introEnded && !this.showPicture && !this.playAltAudio" autoplay="autoplay" preload="auto" controls  
-         [src]="getCurrentVideo()" type='video/mp4'>
+  <video (ended)="videoEnded()" *ngIf = "this.introEnded && !this.showPicture && !this.playAltAudio" 
+  autoplay="autoplay" preload="auto"   
+    [src]="getCurrentVideo()" type='video/mp4'>
   </video>
   <!-- <img [src]="currentImage"> -->
 <!-- </div> -->
@@ -24,8 +25,10 @@
   <area (click)="nextTrial(5)" shape = "rect" coords="0,570,1023,766">
 </map>
 
-<audio (ended)="audioEnded()" *ngIf = "this.introEnded && this.showPicture && !this.playAltAudio" autoplay controls 
+<audio (ended)="audioEnded()" *ngIf = "this.introEnded && this.showPicture && !this.playAltAudio" autoplay  
   [src]="getCurrentAudio()" type="audio/mp4">
 </audio> 
 
-
+<!-- attention check -->
+<!-- <audio></audio>
+<img/>  -->
