@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { STUDIES, ATTENTIONCHECK } from './default-stimuli';
 import { Study, Condition, Trial, AttnCheck } from './stimuli'; 
+import { ResponseService } from '../response/response.service';
+import { Response } from '../response/response';
 
 @Component({
   selector: 'app-stimuli',
@@ -15,6 +17,7 @@ export class StimuliComponent {
   condition: Condition;
   // the current trial - this will be updated throughout the session
   trial: Trial;
+  attnSound: string;
 
   vid = 0;
   aud = 0;
@@ -23,7 +26,10 @@ export class StimuliComponent {
   introEnded = false; 
   playAltAudio = false; 
   chosenValue = null; 
+  attnCheck = false; 
   firstTrial: Trial; 
+  responseService: ResponseService;
+  response: Response; 
 
   // for getCurrentVideo() and getCurrentAudio()
   currentVideo: string;
@@ -31,7 +37,8 @@ export class StimuliComponent {
   currentImage: string;
 
   // initialize: choose the study, condition, and first trial
-  constructor(){
+  constructor( responseService: ResponseService ){
+    this.responseService = responseService;
     this.setStudy();
     this.setCondition();
     this.setTrial();
@@ -157,7 +164,17 @@ export class StimuliComponent {
   }
 
   getAttnAudio(){
+    this.attnSound = ATTENTIONCHECK[Math.floor(Math.random() * ATTENTIONCHECK.sound.length)];
+  }
 
+  nextAttnCheck(value){
+    this.response.response = value;
+    this.response.study = this.study.id;
+    this.response.condition = this.condition.id;
+    this.response.trial = this.trial.id; 
+    //TODO need age, input from age component
+
+    this.attnCheck = true; 
   }
 
   // todo split into two functions - juggling too much
@@ -175,6 +192,7 @@ export class StimuliComponent {
     this.aud = 0;
     this.pic = 0; 
     this.showPicture = false;
+    this.attnCheck = false; 
   }
 
 } 
