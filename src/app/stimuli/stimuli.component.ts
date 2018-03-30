@@ -17,6 +17,7 @@ export class StimuliComponent {
   condition: Condition;
   // the current trial - this will be updated throughout the session
   trial: Trial;
+  attnCheck: AttnCheck;
   attnSound: string;
 
   vid = 0;
@@ -26,10 +27,11 @@ export class StimuliComponent {
   introEnded = false; 
   playAltAudio = false; 
   chosenValue = null; 
-  attnCheck = false; 
+  attnCheckTrial = false; 
   firstTrial: Trial; 
   responseService: ResponseService;
   response: Response; 
+  attnAnimalSound = false;
 
   // for getCurrentVideo() and getCurrentAudio()
   currentVideo: string;
@@ -164,17 +166,23 @@ export class StimuliComponent {
   }
 
   getAttnAudio(){
-    this.attnSound = ATTENTIONCHECK[Math.floor(Math.random() * ATTENTIONCHECK.sound.length)];
+    this.attnSound = ATTENTIONCHECK.sound[Math.floor(Math.random() * ATTENTIONCHECK.sound.length)];
   }
 
-  nextAttnCheck(value){
-    this.response.response = value;
-    this.response.study = this.study.id;
-    this.response.condition = this.condition.id;
-    this.response.trial = this.trial.id; 
-    //TODO need age, input from age component
+  attnAudioEnded(){
+    this.attnAnimalSound = true;
+  }
 
-    this.attnCheck = true; 
+
+  nextAttnCheck(value){
+    // this.response.response = value;
+    // this.response.study = this.study.id;
+    // this.response.condition = this.condition.id;
+    // this.response.trial = this.trial.id; 
+    // TODO need age, input from age component
+    // TODO add rfunctionality so that for only study 2, it logs data for first audio 
+
+    this.attnCheckTrial = true; 
   }
 
   // todo split into two functions - juggling too much
@@ -192,7 +200,17 @@ export class StimuliComponent {
     this.aud = 0;
     this.pic = 0; 
     this.showPicture = false;
-    this.attnCheck = false; 
+    this.attnCheckTrial = false; 
+    
+    if (this.study.id == 3){
+      this.playAltAudio = true;
+    }
+
+    console.log(this.introEnded, "what introEnded is set at ");
+    console.log("showPicture =", this.showPicture);
+    console.log("playAltAudio =", this.playAltAudio);
+    console.log("trial =", this.trial);
+
   }
 
 } 

@@ -12,3 +12,15 @@ img {
 	margin: 0 auto;
 }
 
+.attnCheckBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: auto; 
+}
+
+.attnCheckButton {
+    padding: 10px;
+    width: 20%;
+}
