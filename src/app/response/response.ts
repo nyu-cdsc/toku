@@ -1,11 +1,11 @@
 export class Response {
-    id: string; 
-    age: number; 
+    id: string;
+    age: number;
     study: number;
     condition: string;
-    trial: string; 
-    response: number; 
+    trial: string;
+    response: number;
     attnTrial: string;
-    attnResponse: number; 
+    attnResponse: number;
 }
 
