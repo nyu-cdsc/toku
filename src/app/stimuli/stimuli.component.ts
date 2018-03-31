@@ -32,11 +32,14 @@ export class StimuliComponent {
   responseService: ResponseService;
   response: Response; 
   attnAnimalSound = false;
+  attnSoundOver = false; 
+  playSecondAudio = false; 
 
   // for getCurrentVideo() and getCurrentAudio()
   currentVideo: string;
   currentAudio: string; 
   currentImage: string;
+  currentAttnSound: string; 
 
   // initialize: choose the study, condition, and first trial
   constructor( responseService: ResponseService ){
@@ -62,7 +65,7 @@ export class StimuliComponent {
       return; // study already set- one per session
     }
     this.study = this.allStudies[Math.floor(Math.random() * this.allStudies.length)];
-    // this.study = this.allStudies[3] //GET RID OF THIS
+    this.study = this.allStudies[1] //GET RID OF THIS
   }
 
   setCondition() {
@@ -131,13 +134,17 @@ export class StimuliComponent {
     }
   }
 
-  getCurrentAudio(alt){
+  getCurrentAudio(audioType){
 
     console.log(this.study.id);
     let audio = this.trial.sound[this.aud];
     
-    if (alt) {
+    if (audioType == 0) {
       audio = this.trial.sound1[this.aud];
+    }
+
+    if (audioType == 2){
+      audio = this.trial.sound[this.aud + 1];
     }
 
     if (audio != this.currentAudio) {
@@ -167,22 +174,32 @@ export class StimuliComponent {
 
   getAttnAudio(){
     this.attnSound = ATTENTIONCHECK.sound[Math.floor(Math.random() * ATTENTIONCHECK.sound.length)];
+
+    return this.attnSound;
   }
 
-  attnAudioEnded(){
+  attnAudioEnded(attnSoundDone){
     this.attnAnimalSound = true;
+
+    if (attnSoundDone){
+      this.attnSoundOver = true;
+    }
   }
 
 
-  nextAttnCheck(value){
+  nextAttnCheck(value, oneMoreAudio){
     // this.response.response = value;
     // this.response.study = this.study.id;
     // this.response.condition = this.condition.id;
     // this.response.trial = this.trial.id; 
     // TODO need age, input from age component
     // TODO add rfunctionality so that for only study 2, it logs data for first audio 
-
-    this.attnCheckTrial = true; 
+    if(oneMoreAudio == true && this.study.id == 2){
+      this.playSecondAudio = true; 
+      console.log(this.playSecondAudio, "playSecondAudio is set to this")
+    } else {
+      this.attnCheckTrial = true; 
+    }
   }
 
   // todo split into two functions - juggling too much
@@ -201,6 +218,9 @@ export class StimuliComponent {
     this.pic = 0; 
     this.showPicture = false;
     this.attnCheckTrial = false; 
+    this.attnAnimalSound = false;
+    this.attnSoundOver = false; 
+    this.playSecondAudio = false;
     
     if (this.study.id == 3){
       this.playAltAudio = true;
