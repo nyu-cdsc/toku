@@ -18,7 +18,7 @@ export class StimuliComponent {
   // the current trial - this will be updated throughout the session
   trial: Trial;
   attnCheck: AttnCheck;
-  attnSound: string;
+  attnSound: string = "";
 
   vid = 0;
   aud = 0;
@@ -184,8 +184,11 @@ export class StimuliComponent {
   }
 
   getAttnAudio(){
-    this.attnSound = ATTENTIONCHECK.sound[Math.floor(Math.random() * ATTENTIONCHECK.sound.length)];
+    if (this.attnSound != ""){
+      return this.attnSound;
+    } 
 
+    this.attnSound = ATTENTIONCHECK.sound[Math.floor(Math.random() * ATTENTIONCHECK.sound.length)];
     return this.attnSound;
   }
 
@@ -265,6 +268,7 @@ export class StimuliComponent {
     this.attnAnimalSound = false;
     this.attnSoundOver = false; 
     this.playSecondAudio = false;
+    this.attnSound = ""; 
     
     this.responseService.setResponse(this.response);
     this.response = null;
