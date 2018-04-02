@@ -21,39 +21,33 @@
   <!-- <img [src]="currentImage"> -->
 <!-- </div> -->
 
-  <!-- Image, buttons, and audio for each trial for all Studies -->
-  <img *ngIf = "this.introEnded && this.showPicture && !this.playAltAudio && !attnCheckTrial && !playSecondAudio" [src]="getCurrentImage()" usemap = "#testmap"/>
-  <!-- TODO need to make coordinates responsive using JS  -->
-  <map name = "testmap">
-    <area (click)="nextAttnCheck(1, true)" shape = "rect" coords="0,0,1023,150">
-    <area (click)="nextAttnCheck(2, true)" shape = "rect" coords="0,151,1023,342">
-    <area (click)="nextAttnCheck(3, true)" shape = "rect" coords="0,343,1023,429">
-    <area (click)="nextAttnCheck(4, true)" shape = "rect" coords="0,430,1023,569">
-    <area (click)="nextAttnCheck(5, true)" shape = "rect" coords="0,570,1023,766">
-  </map>
+  <div *ngIf = "this.introEnded && this.showPicture && !this.playAltAudio && !attnCheckTrial && !playSecondAudio">
+    <!-- Image, buttons, and audio for each trial for all Studies -->
+    <img [src]="getCurrentImage()" usemap = "#testmap"/>
+    <!-- TODO need to make coordinates responsive using JS  -->
+    <map name = "testmap">
+      <area *ngFor = "let c of getCurrentImageCoordinates(); index as i" (click)="nextAttnCheck(i, true)" shape = "rect" [coords]="c.coordinate">
+    </map>
+    <div *ngFor="let c of blockedCoordinates()" [ngStyle]="{'position': 'absolute', 'z-index': '10', 'width':'80px', 'height':'80px', 'left':getCssCoordinates(c.coordinate)[2], 'top':getCssCoordinates(c.coordinate)[3]} "></div>
+  </div>
+
 
   <audio (ended)="audioEnded()" *ngIf = "this.introEnded && this.showPicture && !this.playAltAudio && !attnCheckTrial && !playSecondAudio" autoplay  
     [src]="getCurrentAudio(1)" type="audio/mp4">
   </audio> 
 
   <!-- Study 2 only: second audio and button click -->
-  <img *ngIf = "this.introEnded && this.showPicture && !this.playAltAudio && !attnCheckTrial && this.study.id == 2 && playSecondAudio" 
-  [src]="getCurrentImage()" usemap = "#testmap1"/>
-  <!-- TODO need to make coordinates responsive using JS  -->
-  <map name = "testmap1">
-    <area (click)="nextAttnCheck(1, false)" shape = "rect" coords="0,0,1023,150">
-    <area (click)="nextAttnCheck(2, false)" shape = "rect" coords="0,151,1023,342">
-    <area (click)="nextAttnCheck(3, false)" shape = "rect" coords="0,343,1023,429">
-    <area (click)="nextAttnCheck(4, false)" shape = "rect" coords="0,430,1023,569">
-    <area (click)="nextAttnCheck(5, false)" shape = "rect" coords="0,570,1023,766">
-  </map>
+  <div *ngIf = "this.introEnded && this.showPicture && !this.playAltAudio && !attnCheckTrial && this.study.id == 2 && playSecondAudio">
+    <img [src]="getCurrentImage()" usemap = "#testmap1"/>
+    <!-- TODO need to make coordinates responsive using JS  -->
+    <map name = "testmap1" >
+      <area *ngFor = "let c of getCurrentImageCoordinates(); index as i" (click)="nextAttnCheck(i, false)" shape = "rect" [coords]="c.coordinate">
+    </map>
+    <div *ngFor="let c of blockedCoordinates()" [ngStyle]="{'position': 'absolute', 'z-index': '10', 'width':'80px', 'height':'80px', 'left':getCssCoordinates(c.coordinate)[2], 'top':getCssCoordinates(c.coordinate)[3]} "></div>
 
-  <audio (ended)="audioEnded()" 
-    *ngIf = "this.introEnded && this.showPicture && !this.playAltAudio && !attnCheckTrial && this.study.id == 2 && playSecondAudio" 
-    autoplay [src]="getCurrentAudio(2)" type="audio/mp4">
-  </audio> 
+    <audio (ended)="audioEnded()" autoplay [src]="getCurrentAudio(2)" type="audio/mp4"></audio> 
+  </div>
 
-  <!-- TODO need to add second sound and button click log for Study 2 only -->
 
 
 <!-- attention check at the end of each trial for all studies -->
