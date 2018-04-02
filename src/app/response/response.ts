@@ -4,7 +4,7 @@ export class Response {
     study: number;
     condition: string;
     trial: string;
-    response: number;
+    response: number[];
     attnTrial: string;
     attnResponse: number;
 }

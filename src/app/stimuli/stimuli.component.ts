@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { STUDIES, ATTENTIONCHECK } from './default-stimuli';
-import { Study, Condition, Trial, AttnCheck } from './stimuli'; 
+import { Study, Condition, Trial, AttnCheck, Coordinate } from './stimuli'; 
 import { ResponseService } from '../response/response.service';
 import { Response } from '../response/response';
 
@@ -39,6 +39,7 @@ export class StimuliComponent {
   currentVideo: string;
   currentAudio: string; 
   currentImage: string;
+  currentImageCoordinates: Coordinate[];
   currentAttnSound: string; 
 
   // initialize: choose the study, condition, and first trial
@@ -164,12 +165,22 @@ export class StimuliComponent {
  }
 
   getCurrentImage(){
-    let image = this.trial.picture[this.pic];
+    let image = this.trial.picture.picture[this.pic];
     if (image != this.currentImage) {
       this.currentImage = image;
     }
 
     return image;
+  }
+
+  getCurrentImageCoordinates(){
+    let coords = this.trial.picture.coordinate;
+
+    if(coords != this.currentImageCoordinates){
+      this.currentImageCoordinates = this.trial.picture.coordinate;
+    }
+
+    return coords;
   }
 
   getAttnAudio(){
@@ -186,12 +197,45 @@ export class StimuliComponent {
     }
   }
 
+  getCssCoordinates(coords) {
+    let res = coords.split(",");
+    res = res.map((val) => {
+      val = val - 80; // todo make the box size set somewhere and use that var
+      if(val < 0){
+        val = 0;
+      }
+      return val+"px";
+    })
+    return res;
+  }
+
+  blockedCoordinates() {
+    if(this.currentImageCoordinates){
+      return this.currentImageCoordinates.filter((value) => {
+        return value.disabled; // send back only the disabled coordinate areas
+      })
+    }
+
+    return null;
+  }
 
   nextAttnCheck(value, oneMoreAudio){
-    // this.response.response = value;
-    // this.response.study = this.study.id;
-    // this.response.condition = this.condition.id;
-    // this.response.trial = this.trial.id; 
+    console.log('nextAttn, received as value: ', value);
+
+    if(this.response) {
+      this.response.response.push(value+1);
+    }
+    this.response = {
+      response: [value + 1], // ngfor indexes by 0
+      age: -1, //todo fill in
+      id: "", // todo generate
+      study: this.study.id,
+      condition: this.condition.id,
+      trial: this.trial.id,
+      attnTrial: this.attnSound,
+      attnResponse: -1,
+    };
+    this.currentImageCoordinates[value].disabled = true;
     // TODO need age, input from age component
     // TODO add rfunctionality so that for only study 2, it logs data for first audio 
     if(oneMoreAudio == true && this.study.id == 2){
@@ -206,8 +250,8 @@ export class StimuliComponent {
   // stores value sent to it by image (click)
   // removes finished trial from list, for next selection
   nextTrial(value){
-    this.chosenValue = value;
-
+    this.response.attnResponse = value + 1; // ngfor indexes by 0
+    
     // need to get index of the current trial within the conditions' list
     let index = this.getTrialIndexById(this.trial.id)
     this.condition.trials.splice(index, 1);
@@ -222,6 +266,9 @@ export class StimuliComponent {
     this.attnSoundOver = false; 
     this.playSecondAudio = false;
     
+    this.responseService.setResponse(this.response);
+    this.response = null;
+
     if (this.study.id == 3){
       this.playAltAudio = true;
     }

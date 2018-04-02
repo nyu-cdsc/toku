@@ -14,9 +14,20 @@ export class Trial {
     sound1: string[];
     movie: string[]; 
     sound: string[];
+    picture: Picture;
+}
+
+export class Picture {
     picture: string[];
+    coordinate: Coordinate[];
+}
+
+export class Coordinate {
+    coordinate: string;
+    disabled: boolean;
 }
 
 export class AttnCheck {
     sound: string[];
 }
+
