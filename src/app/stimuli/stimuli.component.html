@@ -1,32 +1,25 @@
 <!-- Study 3 only  -->
-  <!-- only play for first trial in Study 3 -->
- <div class = "videoContainer" *ngIf = "!this.introEnded && this.study.id == 3 && (this.trial.id == this.firstTrial.id)">
-  <video (ended)="videoEnded(true)" *ngIf = "!this.introEnded && this.study.id == 3 && (this.trial.id == this.firstTrial.id)" 
-    autoplay="autoplay" preload="auto"  
-    src="assets/video/3_intro.mp4" type="video/mp4">
-  </video> 
+<!-- only play for first trial in Study 3 -->
+<div class = "videoContainer" *ngIf = "!this.introEnded && this.study.id == 3 && (this.trial.id == this.firstTrial.id)">
+  <video (ended)="videoEnded(true)" autoplay="autoplay" preload="auto" src="assets/video/3_intro.mp4" type="video/mp4"></video> 
 </div>
 
-  <!-- Study 3 specific audio and image; needs to play every trial -->
-  <audio (ended)="audioEnded(true)" *ngIf = "this.introEnded && this.playAltAudio && this.study.id == 3" autoplay  
-    [src]="getCurrentAudio(0)" type="audio/mp4">
-  </audio> 
-
+<!-- play every trial -->
 <div class = "imgContainer" *ngIf = "this.introEnded && this.playAltAudio && this.study.id == 3">
-  <img *ngIf = "this.introEnded && this.playAltAudio && this.study.id == 3" src="assets/image/child.jpg"/>
+  <audio (ended)="audioEnded(true)" autoplay [src]="getCurrentAudio(0)" type="audio/mp4"></audio> 
+  <img src="assets/image/child.jpg"/>
 </div>
 
-<!-- Trial structure for all studies -->
+<!-- All studies -->
+<!-- First play video -->
 <!-- <div *ngFor="let stim of stimuli"> -->
 <div class="videoContainer" *ngIf = "this.introEnded && !this.showPicture && !this.playAltAudio">
-  <video (ended)="videoEnded()" *ngIf = "this.introEnded && !this.showPicture && !this.playAltAudio" 
-  autoplay="autoplay" preload="auto"   
-    [src]="getCurrentVideo()" type='video/mp4'>
-  </video>
+  <video (ended)="videoEnded()" autoplay="autoplay" preload="auto" [src]="getCurrentVideo()" type='video/mp4'></video>
 </div>
   <!-- <img [src]="currentImage"> -->
 <!-- </div> -->
 
+<!-- Then play audio and image -->
 <div class="imgContainer" *ngIf = "this.introEnded && this.showPicture && !this.playAltAudio && !attnCheckTrial && !playSecondAudio">
   <!-- Image, buttons, and audio for each trial for all Studies -->
   <img [src]="getCurrentImage()" usemap = "#testmap"/>
@@ -35,38 +28,33 @@
     <area *ngFor = "let c of getCurrentImageCoordinates(); index as i" (click)="nextAttnCheck(i, true)" shape = "rect" [coords]="c.coordinate">
   </map>
   <div *ngFor="let c of blockedCoordinates()" [ngStyle]="{'position': 'absolute', 'z-index': '10', 'width':'80px', 'height':'80px', 'left':getCssCoordinates(c.coordinate)[2], 'top':getCssCoordinates(c.coordinate)[3]} "></div>
+
+  <audio (ended)="audioEnded()" autoplay [src]="getCurrentAudio(1)" type="audio/mp4"></audio> 
 </div>
 
+<!-- Study 2 only: second audio and image -->
+<div class="imgContainer" *ngIf = "this.introEnded && this.showPicture && !this.playAltAudio && !attnCheckTrial && this.study.id == 2 && playSecondAudio">
+  <img [src]="getCurrentImage()" usemap = "#testmap1"/>
+  <!-- TODO need to make coordinates responsive using JS  -->
+  <map name = "testmap1" >
+    <area *ngFor = "let c of getCurrentImageCoordinates(); index as i" (click)="nextAttnCheck(i, false)" shape = "rect" [coords]="c.coordinate">
+  </map>
+  <div *ngFor="let c of blockedCoordinates()" [ngStyle]="{'position': 'absolute', 'z-index': '10', 'width':'80px', 'height':'80px', 'left':getCssCoordinates(c.coordinate)[2], 'top':getCssCoordinates(c.coordinate)[3]} "></div>
 
-  <audio (ended)="audioEnded()" *ngIf = "this.introEnded && this.showPicture && !this.playAltAudio && !attnCheckTrial && !playSecondAudio" autoplay  
-    [src]="getCurrentAudio(1)" type="audio/mp4">
-  </audio> 
-
-  <!-- Study 2 only: second audio and button click -->
-  <div class="imgContainer" *ngIf = "this.introEnded && this.showPicture && !this.playAltAudio && !attnCheckTrial && this.study.id == 2 && playSecondAudio">
-    <img [src]="getCurrentImage()" usemap = "#testmap1"/>
-    <!-- TODO need to make coordinates responsive using JS  -->
-    <map name = "testmap1" >
-      <area *ngFor = "let c of getCurrentImageCoordinates(); index as i" (click)="nextAttnCheck(i, false)" shape = "rect" [coords]="c.coordinate">
-    </map>
-    <div *ngFor="let c of blockedCoordinates()" [ngStyle]="{'position': 'absolute', 'z-index': '10', 'width':'80px', 'height':'80px', 'left':getCssCoordinates(c.coordinate)[2], 'top':getCssCoordinates(c.coordinate)[3]} "></div>
-
-    <audio (ended)="audioEnded()" autoplay [src]="getCurrentAudio(2)" type="audio/mp4"></audio> 
-  </div>
-
-
+  <audio (ended)="audioEnded()" autoplay [src]="getCurrentAudio(2)" type="audio/mp4"></audio> 
+</div>
 
 <!-- attention check at the end of each trial for all studies -->
-  <audio (ended)="attnAudioEnded()" *ngIf = "attnCheckTrial" autoplay src="assets/audio/attention.m4a" type="audio/mp4"></audio>
-  <audio (ended)="attnAudioEnded(true)" *ngIf = "attnCheckTrial && attnAnimalSound && !attnSoundOver" autoplay [src]="getAttnAudio()" type="audio/mp3"></audio>
+<audio (ended)="attnAudioEnded()" *ngIf = "attnCheckTrial" autoplay src="assets/audio/attention.m4a" type="audio/mp4"></audio>
+<audio (ended)="attnAudioEnded(true)" *ngIf = "attnCheckTrial && attnAnimalSound && !attnSoundOver" autoplay [src]="getAttnAudio()" type="audio/mp3"></audio>
 
 
-  <div class=attnCheckBox *ngIf="attnCheckTrial"> 
-    <img class=attnCheckButton *ngIf="attnCheckTrial" src="assets/image/DL1.jpg" (click)="nextTrial(1)">
-    <img class=attnCheckButton *ngIf="attnCheckTrial" src="assets/image/DL2.jpg" (click)="nextTrial(2)"/>
-    <img class=attnCheckButton *ngIf="attnCheckTrial" src="assets/image/DL3.jpg" (click)="nextTrial(3)"/>
-    <img class=attnCheckButton *ngIf="attnCheckTrial" src="assets/image/DL4.jpg" (click)="nextTrial(4)"/>
-    <img class=attnCheckButton *ngIf="attnCheckTrial" src="assets/image/DL5.jpg" (click)="nextTrial(5)"/>
-  </div>
+<div class=attnCheckBox *ngIf="attnCheckTrial"> 
+  <img class=attnCheckButton src="assets/image/DL1.jpg" (click)="nextTrial(1)">
+  <img class=attnCheckButton src="assets/image/DL2.jpg" (click)="nextTrial(2)"/>
+  <img class=attnCheckButton src="assets/image/DL3.jpg" (click)="nextTrial(3)"/>
+  <img class=attnCheckButton src="assets/image/DL4.jpg" (click)="nextTrial(4)"/>
+  <img class=attnCheckButton src="assets/image/DL5.jpg" (click)="nextTrial(5)"/>
+</div>
 
 
