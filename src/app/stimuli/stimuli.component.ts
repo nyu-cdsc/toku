@@ -189,6 +189,7 @@ export class StimuliComponent {
     } 
 
     this.attnSound = ATTENTIONCHECK.sound[Math.floor(Math.random() * ATTENTIONCHECK.sound.length)];
+    console.log(this.attnSound, "this is the animal sound")
     return this.attnSound;
   }
 

@@ -11,7 +11,7 @@ export class AgeComponent {
   constructor() { }
 
   setAge(number) {
-  this.year = number;
-  console.log("setAge was called", this.year)
-    }
+    this.year = number;
+    console.log("setAge was called", this.year)
+  }
 }
