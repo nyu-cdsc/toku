@@ -16,20 +16,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/cheetahs.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,155",
+                                    coordinate: "0,576,1023,767",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,156,1023,350",
-                                    disabled: false
-                                },                                {
-                                    coordinate: "0,351,1023,440",
-                                    disabled: false
-                                },                                {
                                     coordinate: "0,441,1023,575",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,576,1023,767",
+                                },                                
+                                {
+                                    coordinate: "0,351,1023,440",
+                                    disabled: false
+                                },                                
+                                {
+                                    coordinate: "0,156,1023,350",
+                                    disabled: false
+                                },                                
+                                {
+                                    coordinate: "0,0,1023,155",
                                     disabled: false
                                 }
                             ]
@@ -45,20 +48,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/porcupines.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,578,224,767",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "236,490,440,640",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "450,550,640,535",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "650,735,830,390",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "840,930,1023,270",
                                     disabled: false
                                 }
                             ]
@@ -74,20 +80,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/kangaroos.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,0,211,766",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "212,0,405,766",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "406,0,600,766",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "601,0,795,766",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "796,0,1023,766",
                                     disabled: false
                                 }
                             ]
@@ -103,20 +112,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/skunks.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,385,215,660",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "216,385,410,660",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "411,385,605,660",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "606,385,800,660",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "801,385,1023,660",
                                     disabled: false
                                 }
                             ]
@@ -137,20 +149,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/virdexes.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,0,264,145",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "190,155,445,295",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "374,305,660,440",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "560,450,820,580",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "725,590,1013,740",
                                     disabled: false
                                 }
                             ]
@@ -166,20 +181,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/tulvers.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,0,264,145",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "190,155,445,295",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "374,305,660,440",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "560,450,820,580",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "725,590,1013,740",
                                     disabled: false
                                 }
                             ]
@@ -195,20 +213,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/uposes.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,0,191,210",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "210,175,380,350",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "400,306,565,480",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "580,435,750,615",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "770,550,1020,750",
                                     disabled: false
                                 }
                             ]
@@ -224,20 +245,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/sibus.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,0,210,200",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "220,150,410,338",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "425,508,600,460",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "620,430,805,600",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "820,560,1023,74",
                                     disabled: false
                                 }
                             ]
@@ -263,20 +287,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/cheetahs.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,576,1023,767",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,441,1023,575",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "0,351,1023,440",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "0,156,1023,350",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "0,0,1023,155",
                                     disabled: false
                                 }
                             ]
@@ -292,20 +319,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/porcupines.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,578,224,767",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "236,490,440,640",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "450,550,640,535",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "650,735,830,390",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "840,930,1023,270",
                                     disabled: false
                                 }
                             ]
@@ -321,20 +351,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/kangaroos.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,0,211,766",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "212,0,405,766",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "406,0,600,766",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "601,0,795,766",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "796,0,1023,766",
                                     disabled: false
                                 }
                             ]
@@ -350,20 +383,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/skunks.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,385,215,660",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "216,385,410,660",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "411,385,605,660",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "606,385,800,660",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "801,385,1023,660",
                                     disabled: false
                                 }
                             ]
@@ -385,20 +421,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/virdexes.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,0,264,145",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "190,155,445,295",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "374,305,660,440",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "560,450,820,580",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "725,590,1013,740",
                                     disabled: false
                                 }
                             ]
@@ -414,20 +453,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/tulvers.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "740,585,1023,766",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "560,445,840,584",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "380,305,658,444",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "200,260,480,304",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "0,0,305,259",
                                     disabled: false
                                 }
                             ]
@@ -443,20 +485,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/uposes.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,0,191,210",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "210,175,380,350",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "400,306,565,480",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "580,435,750,615",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "770,550,1020,750",
                                     disabled: false
                                 }
                             ]
@@ -472,20 +517,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/sibus.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,0,210,200",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "220,150,410,338",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "425,508,600,460",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "620,430,805,600",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "820,560,1023,74",
                                     disabled: false
                                 }
                             ]
@@ -511,20 +559,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/cheetahs.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,576,1023,767",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,441,1023,575",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "0,351,1023,440",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "0,156,1023,350",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "0,0,1023,155",
                                     disabled: false
                                 }
                             ]
@@ -540,20 +591,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/porcupines.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,578,224,767",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "236,490,440,640",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "450,550,640,535",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "650,735,830,390",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "840,930,1023,270",
                                     disabled: false
                                 }
                             ]
@@ -569,20 +623,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/kangaroos.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,0,211,766",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "212,0,405,766",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "406,0,600,766",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "601,0,795,766",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "796,0,1023,766",
                                     disabled: false
                                 }
                             ]
@@ -598,20 +655,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/skunks.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,385,215,660",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "216,385,410,660",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "411,385,605,660",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "606,385,800,660",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "801,385,1023,660",
                                     disabled: false
                                 }
                             ]
@@ -633,20 +693,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/cheetahs.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,576,1023,767",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,441,1023,575",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "0,351,1023,440",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "0,156,1023,350",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "0,0,1023,155",
                                     disabled: false
                                 }
                             ]
@@ -662,20 +725,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/porcupines.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,578,224,767",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "236,490,440,640",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "450,550,640,535",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "650,735,830,390",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "840,930,1023,270",
                                     disabled: false
                                 }
                             ]
@@ -691,20 +757,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/kangaroos.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,0,211,766",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "212,0,405,766",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "406,0,600,766",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "601,0,795,766",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "796,0,1023,766",
                                     disabled: false
                                 }
                             ]
@@ -720,20 +789,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/skunks.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,385,215,660",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "216,385,410,660",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "411,385,605,660",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "606,385,800,660",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "801,385,1023,660",
                                     disabled: false
                                 }
                             ]
@@ -755,20 +827,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/cheetahs.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,576,1023,767",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,441,1023,575",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "0,351,1023,440",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "0,156,1023,350",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "0,0,1023,155",
                                     disabled: false
                                 }
                             ]
@@ -784,20 +859,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/porcupines.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,578,224,767",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "236,490,440,640",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "450,550,640,535",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "650,735,830,390",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "840,930,1023,270",
                                     disabled: false
                                 }
                             ]
@@ -813,20 +891,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/kangaroos.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,0,211,766",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "212,0,405,766",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "406,0,600,766",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "601,0,795,766",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "796,0,1023,766",
                                     disabled: false
                                 }
                             ]
@@ -842,20 +923,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/skunks.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,385,215,660",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "216,385,410,660",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "411,385,605,660",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "606,385,800,660",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "801,385,1023,660",
                                     disabled: false
                                 }
                             ]
@@ -877,20 +961,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/cheetahs.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,576,1023,767",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,441,1023,575",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "0,351,1023,440",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "0,156,1023,350",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "0,0,1023,155",
                                     disabled: false
                                 }
                             ]
@@ -906,20 +993,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/porcupines.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,578,224,767",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "236,490,440,640",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "450,550,640,535",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "650,735,830,390",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "840,930,1023,270",
                                     disabled: false
                                 }
                             ]
@@ -935,20 +1025,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/kangaroos.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,0,211,766",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "212,0,405,766",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "406,0,600,766",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "601,0,795,766",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "796,0,1023,766",
                                     disabled: false
                                 }
                             ]
@@ -964,20 +1057,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/skunks.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "0,385,215,660",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "0,0,1023,150",
+                                    coordinate: "216,385,410,660",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "411,385,605,660",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "606,385,800,660",
                                     disabled: false
-                                },                                {
-                                    coordinate: "0,0,1023,150",
+                                },                                
+                                {
+                                    coordinate: "801,385,1023,660",
                                     disabled: false
                                 }
                             ]
