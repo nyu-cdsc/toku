@@ -22,4 +22,17 @@ export class ResponseService {
   setResponse(response: Response) {
     this.responses.push(response);
   }
+
+  // todo response prototype should have a 'toString' or 'toCSV' function and handle this itself --
+  // this should just be looping
+  getCSV() {
+    let output = this.responses[0].getCSVHeader();
+
+    output += this.responses.map((cur, idx) => {
+      return cur.getCSV() + '\n';
+    });
+
+    return output;
+  }
+
 }

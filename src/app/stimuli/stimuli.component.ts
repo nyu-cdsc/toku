@@ -232,16 +232,14 @@ export class StimuliComponent {
     if(this.response) {
       this.response.response.push(value+1);
     }
-    this.response = {
-      response: [value + 1], // ngfor indexes by 0
-      age: -1, //todo fill in
-      id: "", // todo generate
-      study: this.study.id,
-      condition: this.condition.id,
-      trial: this.trial.id,
-      attnTrial: this.attnSound,
-      attnResponse: -1,
-    };
+    this.response = new Response();
+
+    this.response.response = [value + 1]; // ngfor indexes by 0
+    this.response.age = -1; // todo fill in TODO
+    this.response.study = this.study.id;
+    this.response.condition = this.condition.id;
+    this.response.trial = this.trial.id;
+
     this.currentImageCoordinates[value].disabled = true;
     // TODO need age, input from age component
     // TODO add rfunctionality so that for only study 2, it logs data for first audio 
@@ -249,7 +247,7 @@ export class StimuliComponent {
       this.playSecondAudio = true; 
       console.log(this.playSecondAudio, "playSecondAudio is set to this")
     } else {
-      this.attnCheckTrial = true; 
+      this.attnCheckTrial = true;
     }
   }
 
@@ -264,6 +262,7 @@ export class StimuliComponent {
   nextTrial(value){
     this.trialsCompleted()
     console.log("at beginning of next trial()")
+    this.response.attnTrial = this.attnSound;
     this.response.attnResponse = value + 1; // ngfor indexes by 0
     
     // need to get index of the current trial within the conditions' list
