@@ -46,10 +46,10 @@
 
 	button {
 		font-family : inherit;
-		font-size: 25px;
-		font-weight: 500;
+		font-size: 40pt;
+		font-weight: 700;
 		width: 25%;
-		height: 75px;
+		height: 120px;
 		background-color: #ABDFF2;
 		border: none;
 		border-radius: 15px;
@@ -80,6 +80,7 @@
 		background: #fff;
 		width: 200px;
 		font-size: 16px;
+		font-weight: 500;
 		height: 50px;
 		position: fixed;
    		bottom: 0;
