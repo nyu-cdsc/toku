@@ -24,5 +24,9 @@
 
 <button class=resetButton *ngIf="stuff.gameStarted" (click)="startOver()">Start over</button>
 
+<video (ended)="startOver()" *ngIf = "itsOver" autoplay="autoplay" preload="auto"  
+    src="assets/video/endvideo.mp4" type="video/mp4">
+</video> 
+
 
 
