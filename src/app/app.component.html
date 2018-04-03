@@ -11,28 +11,18 @@
 <!-- why is the audio for study 3 of the kid audio and not a video??? that would delete a lot of logic -->
 <!-- Need to make "other age" button functional -->
 <!--  -->
+<div [hidden] = "stuff.gameStarted">
+    <app-startpage #stuff></app-startpage>
+</div>
 
-<div [hidden]="grab.year">
+
+<div [hidden] = "!stuff.gameStarted || grab.year">
     <age #grab></age>
 </div>
 
 <app-stimuli *ngIf="grab.year"></app-stimuli>
 
-<button class=resetButton *ngIf="grab.year" (click)="startOver()">Start over</button>
+<button class=resetButton *ngIf="stuff.gameStarted" (click)="startOver()">Start over</button>
 
-<!-- first stimuli --> 
-<!-- movie -->
 
-<!-- delete this eventually, button for development purposes --> 
-<!-- <button class=skip *ngIf="grab.year && !this.vid" (click)="nextSlide()">skip</button> -->
-
-<!-- button --> 
-
-<div class=corgiBoxColumn *ngIf="this.vid && !this.nextvid"> 
-    <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/image/cheetah5.jpg" height=20% (click)="saveAndNext()">
-    <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/image/cheetah4.jpg" height=20% (click)="saveAndNext()"/>
-    <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/image/cheetah3.jpg" height=20% (click)="saveAndNext()"/>
-    <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/image/cheetah2.jpg" height=20% (click)="saveAndNext()"/>
-    <img class=corgiButton *ngIf="this.vid && !this.nextvid" src="assets/image/cheetah1.jpg" height=20% (click)="saveAndNext()"/>
-</div>
 
