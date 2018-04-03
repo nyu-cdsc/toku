@@ -1,0 +1,18 @@
+.currentButton {
+    animation: grow 2s;
+  }
+  
+  @keyframes grow {
+    0%, 100% {
+      transform: scale(1);
+      background-color: rgb(174, 233, 255);
+    }
+    50% {
+      transform: scale(1.2);
+      background-color: rgb(167, 255, 214);
+    }
+  }
+
+h1 {
+    font-size: 50pt;
+}
