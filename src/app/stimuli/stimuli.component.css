@@ -1,8 +1,22 @@
+.videoContainer {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    height: 90vh; 
+}
+
 video {
     width: 65%;
     height: auto;
     display: block;
 	margin: 0 auto;
+}
+
+.imgContainer {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    height: 90vh; 
 }
 
 img {
@@ -17,6 +31,7 @@ img {
     align-items: center;
     justify-content: center;
     width: 80%;
+    height: 90vh; 
     margin: auto; 
 }
 
