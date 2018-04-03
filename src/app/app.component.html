@@ -13,7 +13,7 @@
         <age (year) ="setAge($event)" *ngIf = "this.gameStarted && !this.age" #grab></age>
 
         <app-stimuli *ngIf="this.age" (numberOfTrialsEvent) = "trialsCompleted($event)"></app-stimuli> 
-        <button class=resetButton *ngIf="this.gameStarted" (click)="onReset()">Start over</button>
+        <button class=resetButton *ngIf="this.gameStarted" (click)="startOver()">Start over</button>
     </div>
 
 

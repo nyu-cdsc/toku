@@ -56,15 +56,15 @@ export const STUDIES: Study[] = [
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "450,550,640,535",
+                                    coordinate: "450,360,640,512",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "650,735,830,390",
+                                    coordinate: "650,230,830,390",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "840,930,1023,270",
+                                    coordinate: "840,0,1023,270",
                                     disabled: false
                                 }
                             ]
@@ -327,15 +327,15 @@ export const STUDIES: Study[] = [
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "450,550,640,535",
+                                    coordinate: "450,360,640,512",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "650,735,830,390",
+                                    coordinate: "650,230,830,390",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "840,930,1023,270",
+                                    coordinate: "840,0,1023,270",
                                     disabled: false
                                 }
                             ]
@@ -599,15 +599,15 @@ export const STUDIES: Study[] = [
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "450,550,640,535",
+                                    coordinate: "450,360,640,512",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "650,735,830,390",
+                                    coordinate: "650,230,830,390",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "840,930,1023,270",
+                                    coordinate: "840,0,1023,270",
                                     disabled: false
                                 }
                             ]
@@ -733,15 +733,15 @@ export const STUDIES: Study[] = [
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "450,550,640,535",
+                                    coordinate: "450,360,640,512",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "650,735,830,390",
+                                    coordinate: "650,230,830,390",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "840,930,1023,270",
+                                    coordinate: "840,0,1023,270",
                                     disabled: false
                                 }
                             ]
@@ -867,15 +867,15 @@ export const STUDIES: Study[] = [
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "450,550,640,535",
+                                    coordinate: "450,360,640,512",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "650,735,830,390",
+                                    coordinate: "650,230,830,390",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "840,930,1023,270",
+                                    coordinate: "840,0,1023,270",
                                     disabled: false
                                 }
                             ]
@@ -1001,15 +1001,15 @@ export const STUDIES: Study[] = [
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "450,550,640,535",
+                                    coordinate: "450,360,640,512",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "650,735,830,390",
+                                    coordinate: "650,230,830,390",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "840,930,1023,270",
+                                    coordinate: "840,0,1023,270",
                                     disabled: false
                                 }
                             ]
