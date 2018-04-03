@@ -24,6 +24,7 @@
   <!-- Image, buttons, and audio for each trial for all Studies -->
   <img [src]="getCurrentImage()" usemap = "#testmap"/>
   <!-- TODO need to make coordinates responsive using JS  -->
+  <!-- TODO coordinates aren't correctly populating from template -->
   <map name = "testmap">
     <area *ngFor = "let c of getCurrentImageCoordinates(); index as i" (click)="nextAttnCheck(i, true)" shape = "rect" [coords]="c.coordinate">
   </map>
