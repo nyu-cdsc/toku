@@ -1,4 +1,4 @@
-import { ViewChild, Component } from '@angular/core';
+import { ViewChild, Component, Input } from '@angular/core';
 import { StimuliComponent } from './stimuli/stimuli.component';
 
 @Component({
@@ -7,7 +7,9 @@ import { StimuliComponent } from './stimuli/stimuli.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-//  @ViewChild(StimuliComponent) currentStimuliComponent: StimuliComponent
+  @ViewChild(StimuliComponent) currentStimuliComponent: StimuliComponent
+  // @Input() isResetting = false; 
+  
 
   gameStarted = false; 
   age = 0; 
@@ -24,8 +26,26 @@ export class AppComponent {
     console.log(this.age, "is the age of the kid")
   }
 
+  trialsCompleted(number){
+    if (number == 4){
+      this.itsOver = true;
+    }
+  }
+
+  // onReset() {
+  //   this.isResetting = true;
+  //   this.age = 0;
+  //   this.gameStarted = false; 
+  //   this.itsOver = false; 
+  //   this.currentStimuliComponent
+  //   setTimeout(() => this.isResetting = false, 0);
+  //   return false;
+  // }
+  
   startOver(){
     this.age = 0;
     this.gameStarted = false; 
+    this.itsOver = false; 
   }
+
 }

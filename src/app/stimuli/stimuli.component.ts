@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { STUDIES, ATTENTIONCHECK } from './default-stimuli';
 import { Study, Condition, Trial, AttnCheck, Coordinate } from './stimuli'; 
 import { ResponseService } from '../response/response.service';
@@ -10,16 +10,18 @@ import { Response } from '../response/response';
   styleUrls: ['./stimuli.component.css']
 })
 export class StimuliComponent {
+  @Output() numberOfTrialsEvent = new EventEmitter<number>();
+
   allStudies: Study[] = STUDIES;
   // the single study to be run
   study: Study;
   // the single condition to be run
   condition: Condition;
   // the current trial - this will be updated throughout the session
-  trial: Trial;
+  trial: Trial; 
   attnCheck: AttnCheck;
   attnSound: string = "";
-
+ 
   vid = 0;
   aud = 0;
   pic = 0; 
@@ -34,6 +36,7 @@ export class StimuliComponent {
   attnAnimalSound = false;
   attnSoundOver = false; 
   playSecondAudio = false; 
+  numberOfTrials = 0; 
 
   // for getCurrentVideo() and getCurrentAudio()
   currentVideo: string;
@@ -250,17 +253,28 @@ export class StimuliComponent {
     }
   }
 
+  trialsCompleted(){
+    this.numberOfTrials++;
+    this.numberOfTrialsEvent.emit(this.numberOfTrials);
+  }
+
   // todo split into two functions - juggling too much
   // stores value sent to it by image (click)
   // removes finished trial from list, for next selection
   nextTrial(value){
+    this.trialsCompleted()
+    console.log("at beginning of next trial()")
     this.response.attnResponse = value + 1; // ngfor indexes by 0
     
     // need to get index of the current trial within the conditions' list
     let index = this.getTrialIndexById(this.trial.id)
     this.condition.trials.splice(index, 1);
 
+    console.log("after getTrialIndexbyID in next trial()")
+
     this.setTrial();
+
+    console.log("after setTrial() of next trial()")
     this.vid = 0;
     this.aud = 0;
     this.pic = 0; 
@@ -271,13 +285,16 @@ export class StimuliComponent {
     this.playSecondAudio = false;
     this.attnSound = ""; 
     
+    console.log("after resetting lots of things in next trial()")
+    
     this.responseService.setResponse(this.response);
     this.response = null;
 
     if (this.study.id == 3){
       this.playAltAudio = true;
     }
-
+    
+    console.log("at end of next trial()")
     console.log(this.introEnded, "what introEnded is set at ");
     console.log("showPicture =", this.showPicture);
     console.log("playAltAudio =", this.playAltAudio);

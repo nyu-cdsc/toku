@@ -1,29 +1,26 @@
 <!-- TODO LIST -->
-<!-- add intro page that has fun image about learning about animals! maybe make this image on illustrator real quick? -->
 <!-- add ability to log data and export that data to a csv --> 
 <!-- add a time out component: no response on button page within a minute, time out, log data, and restart --> 
-<!-- add attention check trials --> 
-<!-- add outro thanks for playing page -->
 <!-- add better transition for start over button to new game -->
-<!-- add image of kid to study 3 -->
-<!-- add audio to read out ages -->
-<!-- audio for outro page?? -->
-<!-- why is the audio for study 3 of the kid audio and not a video??? that would delete a lot of logic -->
 <!-- Need to make "other age" button functional -->
 <!--  -->
-<div *ngIf = "!gameStarted">
-    <app-startpage (gameStarted) = "startGame($event)"></app-startpage>
-</div>
+<!-- <div *ngIf = "!this.isResetting"> -->
+    <div *ngIf = "!this.itsOver">
+        <div *ngIf = "!gameStarted">
+            <app-startpage (gameStarted) = "startGame($event)"></app-startpage>
+        </div>
 
-<age (year) ="setAge($event)" *ngIf = "this.gameStarted && !this.age" #grab></age>
+        <age (year) ="setAge($event)" *ngIf = "this.gameStarted && !this.age" #grab></age>
 
-<app-stimuli *ngIf="this.age"></app-stimuli>
+        <app-stimuli *ngIf="this.age" (numberOfTrialsEvent) = "trialsCompleted($event)"></app-stimuli> 
+        <button class=resetButton *ngIf="this.gameStarted" (click)="onReset()">Start over</button>
+    </div>
 
-<button class=resetButton *ngIf="this.gameStarted" (click)="startOver()">Start over</button>
 
-<video (ended)="startOver()" *ngIf = "itsOver" autoplay="autoplay" preload="auto"  
-    src="assets/video/endvideo.mp4" type="video/mp4">
-</video> 
+    <video (ended)="startOver()" *ngIf = "this.itsOver" autoplay="autoplay" preload="auto"  
+        src="assets/video/endvideo.mp4" type="video/mp4">
+    </video> 
+<!-- </div> -->
 
 
 
