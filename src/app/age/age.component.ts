@@ -9,6 +9,7 @@ export class AgeComponent {
   @Output() year = new EventEmitter<number>();
 
   audio = 0; 
+  olderThan10 = false; 
 
   constructor() { }
 
@@ -20,5 +21,9 @@ export class AgeComponent {
   audioEnded(value){
     this.audio = value
 
+  }
+
+  showOtherAge(){
+    this.olderThan10 = true;
   }
 }

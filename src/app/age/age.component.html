@@ -1,42 +1,36 @@
 <h1 align="center">How old are you?</h1>
 
-<div class="button-container">
-	<button [class.currentButton] = "this.audio == 4" (click)="setAge(4)">4</button>
-	<button [class.currentButton] = "this.audio == 5" (click)="setAge(5)">5</button>
-	<button [class.currentButton] = "this.audio == 6" (click)="setAge(6)">6</button>
-	<button [class.currentButton] = "this.audio == 7" (click)="setAge(7)">7</button>
-	<button [class.currentButton] = "this.audio == 8" (click)="setAge(8)">8</button>
-	<button [class.currentButton] = "this.audio == 9" (click)="setAge(9)">9</button>
-	<button [class.currentButton] = "this.audio == 10" (click)="setAge(10)">10</button>
-	<button [class.currentButton] = "this.audio == 11" (click)="showOtherAge()">Other age</button>
+<div *ngIf = "this.olderThan10 == false">
+	<div class="button-container">
+		<button [class.currentButton] = "this.audio == 4" (click)="setAge(4)">4</button>
+		<button [class.currentButton] = "this.audio == 5" (click)="setAge(5)">5</button>
+		<button [class.currentButton] = "this.audio == 6" (click)="setAge(6)">6</button>
+		<button [class.currentButton] = "this.audio == 7" (click)="setAge(7)">7</button>
+		<button [class.currentButton] = "this.audio == 8" (click)="setAge(8)">8</button>
+		<button [class.currentButton] = "this.audio == 9" (click)="setAge(9)">9</button>
+		<button [class.currentButton] = "this.audio == 10" (click)="setAge(10)">10</button>
+		<button [class.currentButton] = "this.audio == 11" (click)="showOtherAge()">Other age</button>
+	</div> 
+
+	<audio (ended)="audioEnded(4)" autoplay src="assets/audio/age.m4a" type="audio/mp4"></audio>
+	<audio (ended)="audioEnded(5)" *ngIf = "this.audio == 4" autoplay src="assets/audio/4.m4a" type="audio/mp4"></audio>
+	<audio (ended)="audioEnded(6)" *ngIf = "this.audio == 5" autoplay src="assets/audio/5.m4a" type="audio/mp4"></audio>
+	<audio (ended)="audioEnded(7)" *ngIf = "this.audio == 6" autoplay src="assets/audio/6.m4a" type="audio/mp4"></audio>
+	<audio (ended)="audioEnded(8)" *ngIf = "this.audio == 7" autoplay src="assets/audio/7.m4a" type="audio/mp4"></audio>
+	<audio (ended)="audioEnded(9)" *ngIf = "this.audio == 8" autoplay src="assets/audio/8.m4a" type="audio/mp4"></audio>
+	<audio (ended)="audioEnded(10)" *ngIf = "this.audio == 9" autoplay src="assets/audio/9.m4a" type="audio/mp4"></audio>
+	<audio (ended)="audioEnded(11)" *ngIf = "this.audio == 10" autoplay src="assets/audio/10.m4a" type="audio/mp4"></audio>
+	<audio *ngIf = "this.audio == 11" autoplay src="assets/audio/10older.m4a" type="audio/mp4"></audio>
+</div>
+
+<div *ngIf = "this.olderThan10 == true" class="button-container">
+		<button (click)="setAge(11)">11</button>
+		<button (click)="setAge(12)">12</button>
+		<button (click)="setAge(13)">13</button>
+		<button (click)="setAge(14)">14</button>
+		<button (click)="setAge(15)">15</button>
+		<button (click)="setAge(16)">16</button>
+		<button (click)="setAge(17)">17</button>
+		<button (click)="setAge(18)">18</button>
+		<button (click)="setAge(99)">Other age</button>
 </div> 
-
-<audio (ended)="audioEnded(4)" autoplay src="assets/audio/age.m4a" type="audio/mp4"></audio>
-<audio (ended)="audioEnded(5)" *ngIf = "this.audio == 4" autoplay src="assets/audio/4.m4a" type="audio/mp4"></audio>
-<audio (ended)="audioEnded(6)" *ngIf = "this.audio == 5" autoplay src="assets/audio/5.m4a" type="audio/mp4"></audio>
-<audio (ended)="audioEnded(7)" *ngIf = "this.audio == 6" autoplay src="assets/audio/6.m4a" type="audio/mp4"></audio>
-<audio (ended)="audioEnded(8)" *ngIf = "this.audio == 7" autoplay src="assets/audio/7.m4a" type="audio/mp4"></audio>
-<audio (ended)="audioEnded(9)" *ngIf = "this.audio == 8" autoplay src="assets/audio/8.m4a" type="audio/mp4"></audio>
-<audio (ended)="audioEnded(10)" *ngIf = "this.audio == 9" autoplay src="assets/audio/9.m4a" type="audio/mp4"></audio>
-<audio (ended)="audioEnded(11)" *ngIf = "this.audio == 10" autoplay src="assets/audio/10.m4a" type="audio/mp4"></audio>
-<audio *ngIf = "this.audio == 11" autoplay src="assets/audio/10older.m4a" type="audio/mp4"></audio>
-
-
-
-
-
-<!-- need to define showOtherAge() -->
-<!-- define ngIf for below -->
-<!-- need to add ngIf for functions above  -->
-
-<!-- <div class="button-container" *ngIf = ""> 
-	<button (click)="setAge(11)">11</button>
-	<button (click)="setAge(12)">12</button>
-	<button (click)="setAge(13)">13</button>
-	<button (click)="setAge(14)">14</button>
-	<button (click)="setAge(15)">15</button>
-	<button (click)="setAge(16)">16</button>
-	<button (click)="setAge(17)">17</button>
-	<button (click)="setAge(18)">18</button>
-	<button (click)="showOtherAge">Other age</button>
-</div>  -->
