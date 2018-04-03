@@ -228,13 +228,14 @@ export class StimuliComponent {
       const curCoord = this.trial.picture.coordinate;
 
       const that = this;
+      let timer;
       const p1 = new Promise(
         (resolve, reject) => {
-          window.setTimeout(function() {
+          timer = setInterval(function() {
               if (typeof that.imageElement != null) {
-                resolve();
+                resolve(timer);
               }
-            }, 1000);
+            }, 250);
           // window.setTimeout(function() {
           //   reject();
           // }, 3000);
@@ -244,6 +245,7 @@ export class StimuliComponent {
       p1
         .then(
           function(val) {
+            clearInterval(timer);
             const width = that.imageElement.nativeElement.width;
             const nwidth = that.imageElement.nativeElement.naturalWidth;
             const height = that.imageElement.nativeElement.height;
