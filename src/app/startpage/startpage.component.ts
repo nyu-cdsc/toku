@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-startpage',
@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./startpage.component.css']
 })
 export class StartPageComponent {
-  gameStarted = false; 
+  @Output() gameStarted = new EventEmitter<boolean>();
 
   startGame(){
-    this.gameStarted = true; 
+    this.gameStarted.emit(true)
   }
 
 }

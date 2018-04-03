@@ -1,5 +1,3 @@
-<h1 align="center">Let's learn about animals!</h1>
-
 <h1 align="center">How old are you?</h1>
 
 <div class="button-container">
@@ -12,6 +10,20 @@
 	<button (click)="setAge(10)">10</button>
 	<button (click)="showOtherAge()">Other age</button>
 </div> 
+
+<audio (ended)="audioEnded(4)" autoplay src="assets/audio/age.m4a" type="audio/mp4"></audio>
+<audio (ended)="audioEnded(5)" *ngIf = "this.audio == 4" autoplay src="assets/audio/4.m4a" type="audio/mp4"></audio>
+<audio (ended)="audioEnded(6)" *ngIf = "this.audio == 5" autoplay src="assets/audio/5.m4a" type="audio/mp4"></audio>
+<audio (ended)="audioEnded(7)" *ngIf = "this.audio == 6" autoplay src="assets/audio/6.m4a" type="audio/mp4"></audio>
+<audio (ended)="audioEnded(8)" *ngIf = "this.audio == 7" autoplay src="assets/audio/7.m4a" type="audio/mp4"></audio>
+<audio (ended)="audioEnded(9)" *ngIf = "this.audio == 8" autoplay src="assets/audio/8.m4a" type="audio/mp4"></audio>
+<audio (ended)="audioEnded(10)" *ngIf = "this.audio == 9" autoplay src="assets/audio/9.m4a" type="audio/mp4"></audio>
+<audio (ended)="audioEnded(11)" *ngIf = "this.audio == 10" autoplay src="assets/audio/10.m4a" type="audio/mp4"></audio>
+<audio *ngIf = "this.audio == 11" autoplay src="assets/audio/10older.m4a" type="audio/mp4"></audio>
+
+
+
+
 
 <!-- need to define showOtherAge() -->
 <!-- define ngIf for below -->

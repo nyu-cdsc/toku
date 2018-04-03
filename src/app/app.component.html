@@ -11,22 +11,20 @@
 <!-- why is the audio for study 3 of the kid audio and not a video??? that would delete a lot of logic -->
 <!-- Need to make "other age" button functional -->
 <!--  -->
-<div [hidden] = "stuff.gameStarted">
-    <app-startpage #stuff></app-startpage>
+<div *ngIf = "!gameStarted">
+    <app-startpage (gameStarted) = "startGame($event)"></app-startpage>
 </div>
 
+<age (year) ="setAge($event)" *ngIf = "this.gameStarted && !this.age" #grab></age>
 
-<div [hidden] = "!stuff.gameStarted || grab.year">
-    <age #grab></age>
-</div>
+<app-stimuli *ngIf="this.age"></app-stimuli>
 
-<app-stimuli *ngIf="grab.year"></app-stimuli>
-
-<button class=resetButton *ngIf="stuff.gameStarted" (click)="startOver()">Start over</button>
+<button class=resetButton *ngIf="this.gameStarted" (click)="startOver()">Start over</button>
 
 <video (ended)="startOver()" *ngIf = "itsOver" autoplay="autoplay" preload="auto"  
     src="assets/video/endvideo.mp4" type="video/mp4">
 </video> 
+
 
 
 

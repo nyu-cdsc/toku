@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'age',
@@ -6,12 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./age.component.css']
 })
 export class AgeComponent {
-  year = 0;
+  @Output() year = new EventEmitter<number>();
+
+  audio = 0; 
 
   constructor() { }
 
   setAge(number) {
-    this.year = number;
+    this.year.emit(number);
     console.log("setAge was called", this.year)
+  }
+
+  audioEnded(value){
+    this.audio = value
+
   }
 }
