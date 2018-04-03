@@ -1,0 +1,13 @@
+.outroVideoContainer {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    height: 90vh; 
+}
+
+.outroVideo {
+    width: 65%;
+    height: auto;
+    display: block;
+	margin: 0 auto;
+}

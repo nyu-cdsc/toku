@@ -69,7 +69,7 @@ export class StimuliComponent {
       return; // study already set- one per session
     }
     this.study = this.allStudies[Math.floor(Math.random() * this.allStudies.length)];
-    this.study = this.allStudies[1] //GET RID OF THIS
+    // this.study = this.allStudies[1] //GET RID OF THIS
   }
 
   setCondition() {

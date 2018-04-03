@@ -2,8 +2,8 @@
 <!-- add ability to log data and export that data to a csv --> 
 <!-- add a time out component: no response on button page within a minute, time out, log data, and restart --> 
 <!-- add better transition for start over button to new game -->
-<!-- Need to make "other age" button functional -->
-<!--  -->
+
+
 <!-- <div *ngIf = "!this.isResetting"> -->
     <div *ngIf = "!this.itsOver">
         <div *ngIf = "!gameStarted">
@@ -16,10 +16,11 @@
         <button class=resetButton *ngIf="this.gameStarted" (click)="startOver()">Start over</button>
     </div>
 
-
-    <video (ended)="startOver()" *ngIf = "this.itsOver" autoplay="autoplay" preload="auto"  
-        src="assets/video/endvideo.mp4" type="video/mp4">
-    </video> 
+    <div class = "outroVideoContainer">
+        <video class = "outroVideo" (ended)="startOver()" *ngIf = "this.itsOver" autoplay="autoplay" preload="auto"  
+            src="assets/video/endvideo.mp4" type="video/mp4">
+        </video> 
+    </div>
 <!-- </div> -->
 
 
