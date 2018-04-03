@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { Component, EventEmitter, Output, Input } from '@angular/core';
+=======
+import { Component, EventEmitter, Input, Output, ViewChild, ElementRef } from '@angular/core';
+>>>>>>> aadcc9b... in progress - pulling dimensions from native image element
 import { STUDIES, ATTENTIONCHECK } from './default-stimuli';
 import { Study, Condition, Trial, AttnCheck, Coordinate } from './stimuli';
 import { ResponseService } from '../response/response.service';
@@ -11,7 +15,14 @@ import { Response } from '../response/response';
 })
 export class StimuliComponent {
   @Output() numberOfTrialsEvent = new EventEmitter<number>();
+<<<<<<< HEAD
   @Input() age: number;
+=======
+  @Input() age;
+
+  // @ViewChild('thecontainer') imageContainerElement: ElementRef;
+  @ViewChild('theimage') imageElement: ElementRef;
+>>>>>>> aadcc9b... in progress - pulling dimensions from native image element
 
   allStudies: Study[] = STUDIES;
   // the single study to be run
@@ -39,7 +50,7 @@ export class StimuliComponent {
   playSecondAudio = false;
   numberOfTrials = 0;
 
-  // for getCurrentVideo() and getCurrentAudio()
+  // for getCurrentVideo() and getCurrdentAudio()
   currentVideo: string;
   currentAudio: string;
   currentImage: string;
@@ -75,19 +86,29 @@ export class StimuliComponent {
       // guard
       return; // study already set- one per session
     }
+<<<<<<< HEAD
     this.study = this.allStudies[
       Math.floor(Math.random() * this.allStudies.length)
     ];
     // this.study = this.allStudies[1] //GET RID OF THIS
+=======
+    this.study = this.allStudies[Math.floor(Math.random() * this.allStudies.length)];
+>>>>>>> aadcc9b... in progress - pulling dimensions from native image element
   }
 
   setCondition() {
     if (typeof this.condition !== 'undefined') {
       return; // condition already set- one per session
     }
+<<<<<<< HEAD
 
     const condition = this.study.conditions[Math.floor(Math.random() * this.study.conditions.length)];
     const conditionCopy = JSON.parse(JSON.stringify(condition));
+=======
+    const condition = this.study.conditions[Math.floor(Math.random() * this.study.conditions.length)];
+    const conditionCopy = JSON.parse(JSON.stringify(condition));
+
+>>>>>>> aadcc9b... in progress - pulling dimensions from native image element
     this.condition = conditionCopy;
   }
 
@@ -190,11 +211,58 @@ export class StimuliComponent {
     return image;
   }
 
+<<<<<<< HEAD
   getCurrentImageCoordinates() {
     const coords = this.trial.picture.coordinate;
 
     if (coords !== this.currentImageCoordinates) {
       this.currentImageCoordinates = this.trial.picture.coordinate;
+=======
+  getCurrentImageCoordinates(){
+    // if (typeof this.imageElement == 'undefined') {
+    //   return;
+    // }
+    const coords = this.trial.picture.coordinate;
+
+    if (coords != this.currentImageCoordinates) {
+      const curCoord = this.trial.picture.coordinate;
+
+      const that = this;
+      const p1 = new Promise(
+        (resolve, reject) => {
+          window.setTimeout(function() {
+              if (typeof that.imageElement != null) {
+                resolve();
+              }
+            }, 1000);
+          // window.setTimeout(function() {
+          //   reject();
+          // }, 3000);
+        }
+      );
+
+      p1
+        .then(
+          function(val) {
+            const width = that.imageElement.nativeElement.width;
+            const nwidth = that.imageElement.nativeElement.naturalWidth;
+            const height = that.imageElement.nativeElement.height;
+            const nheight = that.imageElement.nativeElement.naturalHeight;
+            console.log(width, height, nwidth, nheight);
+          })
+        .catch(
+          reason => {
+            console.log('promise rejected: ', reason);
+          });
+
+      // const nwidth = this.currentImageElement.nativeElement.nativeWidth;
+
+      // get reference to image of id 'clickimage' here, store in var
+      // get scaling factor, and map through curCoord and apply the scaling factor to them
+      // store result into this.currentImageCoordinates
+
+      this.currentImageCoordinates = curCoord;
+>>>>>>> aadcc9b... in progress - pulling dimensions from native image element
     }
 
     return coords;
