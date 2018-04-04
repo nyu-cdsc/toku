@@ -1,6 +1,10 @@
 .currentButton {
     animation: grow 2s;
   }
+
+button:hover {
+    animation: grow 2s;
+}
   
   @keyframes grow {
     0%, 100% {
@@ -16,3 +20,44 @@
 h1 {
     font-size: 50pt;
 }
+
+    @media screen and (max-width: 1275px) {
+
+        .otherAgeButton {
+            font-size: 30pt;
+        }
+
+    }
+
+    @media screen and (max-width: 1275px) {
+
+        .otherAgeButton {
+            font-size: 30pt;
+        }
+
+    }
+
+    @media screen and (max-width: 1000px) {
+
+        .otherAgeButton {
+            font-size: 25pt;
+        }
+
+    }
+
+    @media screen and (max-width: 850px) {
+
+        .otherAgeButton {
+            font-size: 20pt;
+        }
+
+    }
+
+    @media screen and (max-width: 700px) {
+
+        .otherAgeButton {
+            font-size: 10pt;
+        }
+
+    }
+

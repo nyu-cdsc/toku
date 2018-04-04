@@ -48,20 +48,24 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/porcupines.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,578,224,767",
+                                    coordinate: "0,0,224,767",
                                     disabled: false
+                                    //578
                                 },
                                 {
-                                    coordinate: "236,490,440,640",
+                                    coordinate: "236,0,440,640",
                                     disabled: false
+                                    //490
                                 },                                
                                 {
-                                    coordinate: "450,360,640,512",
+                                    coordinate: "450,0,640,512",
                                     disabled: false
+                                    //360
                                 },                                
                                 {
-                                    coordinate: "650,230,830,390",
+                                    coordinate: "650,0,830,390",
                                     disabled: false
+                                    //230
                                 },                                
                                 {
                                     coordinate: "840,0,1023,270",
@@ -112,23 +116,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/skunks.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,385,215,660",
+                                    coordinate: "0,0,215,660",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "216,385,410,660",
+                                    coordinate: "216,0,410,660",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "411,385,605,660",
+                                    coordinate: "411,0,605,660",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "606,385,800,660",
+                                    coordinate: "606,0,800,660",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "801,385,1023,660",
+                                    coordinate: "801,0,1023,660",
                                     disabled: false
                                 }
                             ]
@@ -261,7 +265,7 @@ export const STUDIES: Study[] = [
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "820,560,1023,74",
+                                    coordinate: "820,560,1023,740",
                                     disabled: false
                                 }
                             ]
@@ -319,19 +323,19 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/porcupines.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,578,224,767",
+                                    coordinate: "0,0,224,767",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "236,490,440,640",
+                                    coordinate: "236,0,440,640",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "450,360,640,512",
+                                    coordinate: "450,0,640,512",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "650,230,830,390",
+                                    coordinate: "650,0,830,390",
                                     disabled: false
                                 },                                
                                 {
@@ -383,23 +387,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/skunks.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,385,215,660",
+                                    coordinate: "0,0,215,660",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "216,385,410,660",
+                                    coordinate: "216,0,410,660",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "411,385,605,660",
+                                    coordinate: "411,0,605,660",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "606,385,800,660",
+                                    coordinate: "606,0,800,660",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "801,385,1023,660",
+                                    coordinate: "801,0,1023,660",
                                     disabled: false
                                 }
                             ]
@@ -533,7 +537,7 @@ export const STUDIES: Study[] = [
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "820,560,1023,74",
+                                    coordinate: "820,560,1023,740",
                                     disabled: false
                                 }
                             ]
@@ -591,19 +595,19 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/porcupines.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,578,224,767",
+                                    coordinate: "0,0,224,767",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "236,490,440,640",
+                                    coordinate: "236,0,440,640",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "450,360,640,512",
+                                    coordinate: "450,0,640,512",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "650,230,830,390",
+                                    coordinate: "650,0,830,390",
                                     disabled: false
                                 },                                
                                 {
@@ -655,23 +659,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/skunks.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,385,215,660",
+                                    coordinate: "0,0,215,660",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "216,385,410,660",
+                                    coordinate: "216,0,410,660",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "411,385,605,660",
+                                    coordinate: "411,0,605,660",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "606,385,800,660",
+                                    coordinate: "606,0,800,660",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "801,385,1023,660",
+                                    coordinate: "801,0,1023,660",
                                     disabled: false
                                 }
                             ]
@@ -681,139 +685,139 @@ export const STUDIES: Study[] = [
                 ]
             },
 
-            {
-                id: "affirmation2", 
-                trials: [
-                    {
-                        id: "cheetah", 
-                        picture1: ["../assets/image/child.jpg"], 
-                        sound1: ["../assets/audio/ch_3_2.m4a"],
-                        movie: ["../assets/video/ch_3_2_Aff.mp4"], 
-                        picture: {
-                            picture: ["../assets/image/cheetahs.jpg"],
-                            coordinate: [
-                                {
-                                    coordinate: "0,576,1023,767",
-                                    disabled: false
-                                },
-                                {
-                                    coordinate: "0,441,1023,575",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "0,351,1023,440",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "0,156,1023,350",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "0,0,1023,155",
-                                    disabled: false
-                                }
-                            ]
-                        },
-                        sound: ["../assets/audio/ch_1.m4a"]
-                    },
-                    {
-                        id: "porcupine", 
-                        picture1: ["../assets/image/child.jpg"],
-                        sound1: ["../assets/audio/po_3_2.m4a"],
-                        movie: ["../assets/video/po_3_2_Aff.mp4"], 
-                        picture: {
-                            picture: ["../assets/image/porcupines.jpg"],
-                            coordinate: [
-                                {
-                                    coordinate: "0,578,224,767",
-                                    disabled: false
-                                },
-                                {
-                                    coordinate: "236,490,440,640",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "450,360,640,512",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "650,230,830,390",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "840,0,1023,270",
-                                    disabled: false
-                                }
-                            ]
-                        },
-                        sound: ["../assets/audio/po_1.m4a"]
-                    },
-                    {
-                        id: "kangaroo", 
-                        picture1: ["../assets/image/child.jpg"],
-                        sound1: ["../assets/audio/kg_3_2.m4a"],
-                        movie: ["../assets/video/kg_3_2_Aff.mp4"], 
-                        picture: {
-                            picture: ["../assets/image/kangaroos.jpg"],
-                            coordinate: [
-                                {
-                                    coordinate: "0,0,211,766",
-                                    disabled: false
-                                },
-                                {
-                                    coordinate: "212,0,405,766",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "406,0,600,766",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "601,0,795,766",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "796,0,1023,766",
-                                    disabled: false
-                                }
-                            ]
-                        },
-                        sound: ["../assets/audio/kg_1.m4a"]
-                    },
-                    {
-                        id: "skunk", 
-                        picture1: ["../assets/image/child.jpg"],
-                        sound1: ["../assets/audio/sk_3_2.m4a"],
-                        movie: ["../assets/video/sk_3_2_Aff.mp4"], 
-                        picture: {
-                            picture: ["../assets/image/skunks.jpg"],
-                            coordinate: [
-                                {
-                                    coordinate: "0,385,215,660",
-                                    disabled: false
-                                },
-                                {
-                                    coordinate: "216,385,410,660",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "411,385,605,660",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "606,385,800,660",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "801,385,1023,660",
-                                    disabled: false
-                                }
-                            ]
-                        },
-                        sound: ["../assets/audio/sk_1.m4a"]
-                    },
-                ]
-            },
+            // {
+            //     id: "affirmation2", 
+            //     trials: [
+            //         {
+            //             id: "cheetah", 
+            //             picture1: ["../assets/image/child.jpg"], 
+            //             sound1: ["../assets/audio/ch_3_2.m4a"],
+            //             movie: ["../assets/video/ch_3_2_Aff.mp4"], 
+            //             picture: {
+            //                 picture: ["../assets/image/cheetahs.jpg"],
+            //                 coordinate: [
+            //                     {
+            //                         coordinate: "0,576,1023,767",
+            //                         disabled: false
+            //                     },
+            //                     {
+            //                         coordinate: "0,441,1023,575",
+            //                         disabled: false
+            //                     },                                
+            //                     {
+            //                         coordinate: "0,351,1023,440",
+            //                         disabled: false
+            //                     },                                
+            //                     {
+            //                         coordinate: "0,156,1023,350",
+            //                         disabled: false
+            //                     },                                
+            //                     {
+            //                         coordinate: "0,0,1023,155",
+            //                         disabled: false
+            //                     }
+            //                 ]
+            //             },
+            //             sound: ["../assets/audio/ch_1.m4a"]
+            //         },
+            //         {
+            //             id: "porcupine", 
+            //             picture1: ["../assets/image/child.jpg"],
+            //             sound1: ["../assets/audio/po_3_2.m4a"],
+            //             movie: ["../assets/video/po_3_2_Aff.mp4"], 
+            //             picture: {
+            //                 picture: ["../assets/image/porcupines.jpg"],
+            //                 coordinate: [
+            //                     {
+            //                         coordinate: "0,0,224,767",
+            //                         disabled: false
+            //                     },
+            //                     {
+            //                         coordinate: "236,0,440,640",
+            //                         disabled: false
+            //                     },                                
+            //                     {
+            //                         coordinate: "450,0,640,512",
+            //                         disabled: false
+            //                     },                                
+            //                     {
+            //                         coordinate: "650,0,830,390",
+            //                         disabled: false
+            //                     },                                
+            //                     {
+            //                         coordinate: "840,0,1023,270",
+            //                         disabled: false
+            //                     }
+            //                 ]
+            //             },
+            //             sound: ["../assets/audio/po_1.m4a"]
+            //         },
+            //         {
+            //             id: "kangaroo", 
+            //             picture1: ["../assets/image/child.jpg"],
+            //             sound1: ["../assets/audio/kg_3_2.m4a"],
+            //             movie: ["../assets/video/kg_3_2_Aff.mp4"], 
+            //             picture: {
+            //                 picture: ["../assets/image/kangaroos.jpg"],
+            //                 coordinate: [
+            //                     {
+            //                         coordinate: "0,0,211,766",
+            //                         disabled: false
+            //                     },
+            //                     {
+            //                         coordinate: "212,0,405,766",
+            //                         disabled: false
+            //                     },                                
+            //                     {
+            //                         coordinate: "406,0,600,766",
+            //                         disabled: false
+            //                     },                                
+            //                     {
+            //                         coordinate: "601,0,795,766",
+            //                         disabled: false
+            //                     },                                
+            //                     {
+            //                         coordinate: "796,0,1023,766",
+            //                         disabled: false
+            //                     }
+            //                 ]
+            //             },
+            //             sound: ["../assets/audio/kg_1.m4a"]
+            //         },
+            //         {
+            //             id: "skunk", 
+            //             picture1: ["../assets/image/child.jpg"],
+            //             sound1: ["../assets/audio/sk_3_2.m4a"],
+            //             movie: ["../assets/video/sk_3_2_Aff.mp4"], 
+            //             picture: {
+            //                 picture: ["../assets/image/skunks.jpg"],
+            //                 coordinate: [
+            //                     {
+            //                         coordinate: "0,0,215,660",
+            //                         disabled: false
+            //                     },
+            //                     {
+            //                         coordinate: "216,0,410,660",
+            //                         disabled: false
+            //                     },                                
+            //                     {
+            //                         coordinate: "411,0,605,660",
+            //                         disabled: false
+            //                     },                                
+            //                     {
+            //                         coordinate: "606,0,800,660",
+            //                         disabled: false
+            //                     },                                
+            //                     {
+            //                         coordinate: "801,0,1023,660",
+            //                         disabled: false
+            //                     }
+            //                 ]
+            //             },
+            //             sound: ["../assets/audio/sk_1.m4a"]
+            //         },
+            //     ]
+            // },
 
             {
                 id: "correction1", 
@@ -859,19 +863,19 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/porcupines.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,578,224,767",
+                                    coordinate: "0,0,224,767",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "236,490,440,640",
+                                    coordinate: "236,0,440,640",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "450,360,640,512",
+                                    coordinate: "450,0,640,512",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "650,230,830,390",
+                                    coordinate: "650,0,830,390",
                                     disabled: false
                                 },                                
                                 {
@@ -923,23 +927,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/skunks.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,385,215,660",
+                                    coordinate: "0,0,215,660",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "216,385,410,660",
+                                    coordinate: "216,0,410,660",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "411,385,605,660",
+                                    coordinate: "411,0,605,660",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "606,385,800,660",
+                                    coordinate: "606,0,800,660",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "801,385,1023,660",
+                                    coordinate: "801,0,1023,660",
                                     disabled: false
                                 }
                             ]
@@ -949,139 +953,139 @@ export const STUDIES: Study[] = [
                 ]
             },
 
-            {   
-                id: "correction2", 
-                trials: [
-                    {
-                        id: "cheetah", 
-                        picture1: ["../assets/image/child.jpg"], 
-                        sound1: ["../assets/audio/ch_3_2.m4a"],
-                        movie: ["../assets/video/ch_3_2_Corr.mp4"], 
-                        picture: {
-                            picture: ["../assets/image/cheetahs.jpg"],
-                            coordinate: [
-                                {
-                                    coordinate: "0,576,1023,767",
-                                    disabled: false
-                                },
-                                {
-                                    coordinate: "0,441,1023,575",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "0,351,1023,440",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "0,156,1023,350",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "0,0,1023,155",
-                                    disabled: false
-                                }
-                            ]
-                        },
-                        sound: ["../assets/audio/ch_1.m4a"]
-                    },
-                    {
-                        id: "porcupine", 
-                        picture1: ["../assets/image/child.jpg"],
-                        sound1: ["../assets/audio/po_3_2.m4a"],
-                        movie: ["../assets/video/po_3_2_Corr.mp4"], 
-                        picture: {
-                            picture: ["../assets/image/porcupines.jpg"],
-                            coordinate: [
-                                {
-                                    coordinate: "0,578,224,767",
-                                    disabled: false
-                                },
-                                {
-                                    coordinate: "236,490,440,640",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "450,360,640,512",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "650,230,830,390",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "840,0,1023,270",
-                                    disabled: false
-                                }
-                            ]
-                        },
-                        sound: ["../assets/audio/po_1.m4a"]
-                    },
-                    {
-                        id: "kangaroo", 
-                        picture1: ["../assets/image/child.jpg"],
-                        sound1: ["../assets/audio/kg_3_2.m4a"],
-                        movie: ["../assets/video/kg_3_2_Corr.mp4"], 
-                        picture: {
-                            picture: ["../assets/image/kangaroos.jpg"],
-                            coordinate: [
-                                {
-                                    coordinate: "0,0,211,766",
-                                    disabled: false
-                                },
-                                {
-                                    coordinate: "212,0,405,766",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "406,0,600,766",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "601,0,795,766",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "796,0,1023,766",
-                                    disabled: false
-                                }
-                            ]
-                        },
-                        sound: ["../assets/audio/kg_1.m4a"]
-                    },
-                    {
-                        id: "skunk", 
-                        picture1: ["../assets/image/child.jpg"],
-                        sound1: ["../assets/audio/sk_3_2.m4a"],
-                        movie: ["../assets/video/sk_3_2_Corr.mp4"], 
-                        picture: {
-                            picture: ["../assets/image/skunks.jpg"],
-                            coordinate: [
-                                {
-                                    coordinate: "0,385,215,660",
-                                    disabled: false
-                                },
-                                {
-                                    coordinate: "216,385,410,660",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "411,385,605,660",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "606,385,800,660",
-                                    disabled: false
-                                },                                
-                                {
-                                    coordinate: "801,385,1023,660",
-                                    disabled: false
-                                }
-                            ]
-                        },
-                        sound: ["../assets/audio/sk_1.m4a"]
-                    },
-                ]
-            }
+            // {   
+            //     id: "correction2", 
+            //     trials: [
+            //         {
+            //             id: "cheetah", 
+            //             picture1: ["../assets/image/child.jpg"], 
+            //             sound1: ["../assets/audio/ch_3_2.m4a"],
+            //             movie: ["../assets/video/ch_3_2_Corr.mp4"], 
+            //             picture: {
+            //                 picture: ["../assets/image/cheetahs.jpg"],
+            //                 coordinate: [
+            //                     {
+            //                         coordinate: "0,576,1023,767",
+            //                         disabled: false
+            //                     },
+            //                     {
+            //                         coordinate: "0,441,1023,575",
+            //                         disabled: false
+            //                     },                                
+            //                     {
+            //                         coordinate: "0,351,1023,440",
+            //                         disabled: false
+            //                     },                                
+            //                     {
+            //                         coordinate: "0,156,1023,350",
+            //                         disabled: false
+            //                     },                                
+            //                     {
+            //                         coordinate: "0,0,1023,155",
+            //                         disabled: false
+            //                     }
+            //                 ]
+            //             },
+            //             sound: ["../assets/audio/ch_1.m4a"]
+            //         },
+            //         {
+            //             id: "porcupine", 
+            //             picture1: ["../assets/image/child.jpg"],
+            //             sound1: ["../assets/audio/po_3_2.m4a"],
+            //             movie: ["../assets/video/po_3_2_Corr.mp4"], 
+            //             picture: {
+            //                 picture: ["../assets/image/porcupines.jpg"],
+            //                 coordinate: [
+            //                     {
+            //                         coordinate: "0,0,224,767",
+            //                         disabled: false
+            //                     },
+            //                     {
+            //                         coordinate: "236,0,440,640",
+            //                         disabled: false
+            //                     },                                
+            //                     {
+            //                         coordinate: "450,0,640,512",
+            //                         disabled: false
+            //                     },                                
+            //                     {
+            //                         coordinate: "650,0,830,390",
+            //                         disabled: false
+            //                     },                                
+            //                     {
+            //                         coordinate: "840,0,1023,270",
+            //                         disabled: false
+            //                     }
+            //                 ]
+            //             },
+            //             sound: ["../assets/audio/po_1.m4a"]
+            //         },
+                    // {
+                    //     id: "kangaroo", 
+                    //     picture1: ["../assets/image/child.jpg"],
+                    //     sound1: ["../assets/audio/kg_3_2.m4a"],
+                    //     movie: ["../assets/video/kg_3_2_Corr.mp4"], 
+                    //     picture: {
+                    //         picture: ["../assets/image/kangaroos.jpg"],
+                    //         coordinate: [
+                    //             {
+                    //                 coordinate: "0,0,211,766",
+                    //                 disabled: false
+                    //             },
+                    //             {
+                    //                 coordinate: "212,0,405,766",
+                    //                 disabled: false
+                    //             },                                
+                    //             {
+                    //                 coordinate: "406,0,600,766",
+                    //                 disabled: false
+                    //             },                                
+                    //             {
+                    //                 coordinate: "601,0,795,766",
+                    //                 disabled: false
+                    //             },                                
+                    //             {
+                    //                 coordinate: "796,0,1023,766",
+                    //                 disabled: false
+                    //             }
+                    //         ]
+                    //     },
+                    //     sound: ["../assets/audio/kg_1.m4a"]
+                    // },
+                    // {
+                    //     id: "skunk", 
+                    //     picture1: ["../assets/image/child.jpg"],
+                    //     sound1: ["../assets/audio/sk_3_2.m4a"],
+                    //     movie: ["../assets/video/sk_3_2_Corr.mp4"], 
+                    //     picture: {
+                    //         picture: ["../assets/image/skunks.jpg"],
+                    //         coordinate: [
+                    //             {
+                    //                 coordinate: "0,0,215,660",
+                    //                 disabled: false
+                    //             },
+                    //             {
+                    //                 coordinate: "216,0,410,660",
+                    //                 disabled: false
+                    //             },                                
+                    //             {
+                    //                 coordinate: "411,0,605,660",
+                    //                 disabled: false
+                    //             },                                
+                    //             {
+                    //                 coordinate: "606,0,800,660",
+                    //                 disabled: false
+                    //             },                                
+                    //             {
+                    //                 coordinate: "801,0,1023,660",
+                    //                 disabled: false
+                    //             }
+                    //         ]
+                    //     },
+                    //     sound: ["../assets/audio/sk_1.m4a"]
+                    // },
+            //     ]
+            // }
         ]
     },
 ];

@@ -63,6 +63,7 @@ export class StimuliComponent {
     }
   }
 
+
   // set one study at random from list
   setStudy() {
     if(typeof this.study !== 'undefined'){ // guard
@@ -213,6 +214,7 @@ export class StimuliComponent {
       }
       return val+"px";
     })
+    console.log(res)
     return res;
   }
 

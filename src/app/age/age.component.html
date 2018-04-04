@@ -9,7 +9,7 @@
 		<button [class.currentButton] = "this.audio == 8" (click)="setAge(8)">8</button>
 		<button [class.currentButton] = "this.audio == 9" (click)="setAge(9)">9</button>
 		<button [class.currentButton] = "this.audio == 10" (click)="setAge(10)">10</button>
-		<button [class.currentButton] = "this.audio == 11" (click)="showOtherAge()">Other age</button>
+		<button class = "otherAgeButton" [class.currentButton] = "this.audio == 11" (click)="showOtherAge()">Other age</button>
 	</div> 
 
 	<audio (ended)="audioEnded(4)" autoplay src="assets/audio/age.m4a" type="audio/mp4"></audio>
