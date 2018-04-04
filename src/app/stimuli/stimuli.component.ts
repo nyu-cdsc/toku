@@ -59,8 +59,10 @@ export class StimuliComponent {
 
     this.setStudy();
     this.setCondition();
+    console.log(this.condition.trials, "THIS IS THE LIST IN CONSTRUCTOR")
     this.setTrial();
     this.firstTrial = this.trial;
+
     if (this.study.id == 3) {
       this.playAltAudio = true;
       console.log(this.playAltAudio);
@@ -79,6 +81,7 @@ export class StimuliComponent {
       return; // study already set- one per session
     }
     this.study = this.allStudies[Math.floor(Math.random() * this.allStudies.length)];
+    this.study = this.allStudies[1] //GET RID OF THIS BEFORE LAUNCH
   }
 
   setCondition() {
@@ -107,16 +110,19 @@ export class StimuliComponent {
 
   // return location of current trial in conditions' list of trials
   getTrialIndexById(id): number {
+    console.log(id, "THIS IS THE ID")
+    console.log(this.condition.trials, "THIS IS THE LIST")
     let result: number;
 
-    this.study.conditions.forEach(cond => {
-      cond.trials.forEach((trial, index) => {
+    // this.study.conditions.forEach(cond => {
+      this.condition.trials.forEach((trial, index) => {
         if (trial.id == id) {
           result = index;
         }
       });
-    });
-
+    // });
+    console.log(result, "THIS IS THE RESULT")
+    console.log(this.condition.trials, "THIS IS THE LIST")
     return result;
   }
 
@@ -343,7 +349,9 @@ export class StimuliComponent {
 
     // need to get index of the current trial within the conditions' list
     const index = this.getTrialIndexById(this.trial.id);
+    console.log(this.condition.trials, "!!!THE LIST BEFORE SPLICE")
     this.condition.trials.splice(index, 1);
+    console.log(this.condition.trials, "!!!THE LIST AFTER SPLICE")
 
     console.log('after getTrialIndexbyID in next trial()');
 
