@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { Component, EventEmitter, Output, Input } from '@angular/core';
-=======
 import { Component, EventEmitter, Input, Output, ViewChild, ElementRef } from '@angular/core';
->>>>>>> aadcc9b... in progress - pulling dimensions from native image element
 import { STUDIES, ATTENTIONCHECK } from './default-stimuli';
 import { Study, Condition, Trial, AttnCheck, Coordinate } from './stimuli';
 import { ResponseService } from '../response/response.service';
@@ -15,14 +11,10 @@ import { Response } from '../response/response';
 })
 export class StimuliComponent {
   @Output() numberOfTrialsEvent = new EventEmitter<number>();
-<<<<<<< HEAD
   @Input() age: number;
-=======
-  @Input() age;
 
   // @ViewChild('thecontainer') imageContainerElement: ElementRef;
   @ViewChild('theimage') imageElement: ElementRef;
->>>>>>> aadcc9b... in progress - pulling dimensions from native image element
 
   allStudies: Study[] = STUDIES;
   // the single study to be run
@@ -86,29 +78,15 @@ export class StimuliComponent {
       // guard
       return; // study already set- one per session
     }
-<<<<<<< HEAD
-    this.study = this.allStudies[
-      Math.floor(Math.random() * this.allStudies.length)
-    ];
-    // this.study = this.allStudies[1] //GET RID OF THIS
-=======
     this.study = this.allStudies[Math.floor(Math.random() * this.allStudies.length)];
->>>>>>> aadcc9b... in progress - pulling dimensions from native image element
   }
 
   setCondition() {
     if (typeof this.condition !== 'undefined') {
       return; // condition already set- one per session
     }
-<<<<<<< HEAD
-
     const condition = this.study.conditions[Math.floor(Math.random() * this.study.conditions.length)];
     const conditionCopy = JSON.parse(JSON.stringify(condition));
-=======
-    const condition = this.study.conditions[Math.floor(Math.random() * this.study.conditions.length)];
-    const conditionCopy = JSON.parse(JSON.stringify(condition));
-
->>>>>>> aadcc9b... in progress - pulling dimensions from native image element
     this.condition = conditionCopy;
   }
 
@@ -211,13 +189,6 @@ export class StimuliComponent {
     return image;
   }
 
-<<<<<<< HEAD
-  getCurrentImageCoordinates() {
-    const coords = this.trial.picture.coordinate;
-
-    if (coords !== this.currentImageCoordinates) {
-      this.currentImageCoordinates = this.trial.picture.coordinate;
-=======
   getCurrentImageCoordinates(){
     // if (typeof this.imageElement == 'undefined') {
     //   return;
@@ -264,7 +235,6 @@ export class StimuliComponent {
       // store result into this.currentImageCoordinates
 
       this.currentImageCoordinates = curCoord;
->>>>>>> aadcc9b... in progress - pulling dimensions from native image element
     }
 
     return coords;
