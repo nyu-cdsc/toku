@@ -3,26 +3,19 @@
 <!-- add a time out component: no response on button page within a minute, time out, log data, and restart --> 
 <!-- add better transition for start over button to new game -->
 
-
-<!-- <div *ngIf = "!this.isResetting"> -->
-    <div *ngIf = "!this.itsOver">
-        <div *ngIf = "!gameStarted">
-            <app-startpage (gameStarted) = "startGame($event)"></app-startpage>
-        </div>
-
-        <age (year) ="setAge($event)" *ngIf = "this.gameStarted && !this.age" #grab></age>
-
-        <app-stimuli *ngIf="this.age" (numberOfTrialsEvent) = "trialsCompleted($event)"></app-stimuli> 
-        <button class=resetButton *ngIf="this.gameStarted" (click)="startOver()">Start over</button>
+<div *ngIf = "!this.itsOver">
+    <div *ngIf = "!gameStarted">
+        <app-startpage (gameStarted) = "startGame($event)"></app-startpage>
     </div>
 
-    <div class = "outroVideoContainer" *ngIf = "this.itsOver">
-        <video class = "outroVideo" (ended)="startOver()" autoplay="autoplay" preload="auto"  
-            src="assets/video/endvideo.mp4" type="video/mp4">
-        </video> 
-    </div>
-<!-- </div> -->
+    <age (year) = "setAge($event)" *ngIf = "this.gameStarted && !this.age"></age>
 
+    <app-stimuli *ngIf="this.age" [age]="this.age" (numberOfTrialsEvent) = "trialsCompleted($event)"></app-stimuli> 
+    <button class=resetButton *ngIf="this.gameStarted" (click)="startOver()">Start over</button>
+</div>
 
-
-
+<div class = "outroVideoContainer" *ngIf = "this.itsOver">
+    <video class = "outroVideo" (ended)="startOver()" autoplay="autoplay" preload="auto"  
+        src="assets/video/endvideo.mp4" type="video/mp4">
+    </video> 
+</div>

@@ -22,7 +22,7 @@ describe('ResponseService', () => {
       study: 3,
       condition: 'affirmation1',
       trial: 'porcupine',
-      response: 3,
+      response: [3],
       attnTrial: 'one',
       attnResponse: 2,
     };

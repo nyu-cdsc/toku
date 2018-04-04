@@ -22,7 +22,7 @@
 <!-- Then play audio and image -->
 <div class="imgContainer" *ngIf = "this.introEnded && this.showPicture && !this.playAltAudio && !attnCheckTrial && !playSecondAudio">
   <!-- Image, buttons, and audio for each trial for all Studies -->
-  <img [src]="getCurrentImage()" usemap = "#testmap"/>
+  <img [src]="getCurrentImage()" usemap="#testmap" #theimage />
   <!-- TODO need to make coordinates responsive using JS  -->
   <!-- TODO coordinates aren't correctly populating from template -->
   <map name = "testmap">
