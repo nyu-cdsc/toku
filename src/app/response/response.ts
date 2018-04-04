@@ -1,40 +1,35 @@
 export class Response {
-    id: string = new Date().toISOString(); // datetime should be fine
-    age: number = -1;
-    study: number = -1;
-    condition: string = '';
-    trial: string = '';
-    response: number[] = [];
-    attnTrial: string = '';
-    attnResponse: number = -1;
-
-    data = {
-        id: "",
-        age: -1,
-
+    data: {
+        id: number,
+        datestamp: string,
+        age: number,
+        study: number,
+        condition: string,
+        trial: string,
+        response: number[],
+        attnTrial: string,
+        attnResponse: number
+    } = {
+            id: Date.now(),
+            datestamp: new Date().toISOString(),
+            age: -1,
+            study: -1,
+            condition: '',
+            trial: '',
+            response: [],
+            attnTrial: '',
+            attnResponse: -1
     };
 
-
     getKeys() {
-        const keys = ['id', 'age', 'study', 'condition', 'trial', 'response', 'attnTrial', 'attnResponse'];
-
-        // was nice and dynamic, but won't work
-        // for (let item in this) { 
-        //     if (this.hasOwnProperty(item)) {
-        //         if (typeof this[item] !== 'function') {
-        //             keys.push(item);
-        //         }
-        //     }
-        // }
-
-        return keys;
+        return ['id', 'datestamp', 'age', 'study', 'condition', 'trial', 'response', 'attnTrial', 'attnResponse'];
     }
 
     // returns header string - call this first
     getCSVHeader() {
         const keys = this.getKeys();
         let output = keys.reduce((accum, current, idx) => {
-            if (idx == 1) {
+            if (idx === 1) {
                 accum = "'" + accum + "'";
             }
             return accum + ',' + "'" + current + "'";
@@ -48,7 +43,7 @@ export class Response {
     toCSV() {
         const keys = this.getKeys();
         const output = keys.reduce((accum, cur, idx) => {
-            if (idx == 1) {
+            if (idx === 1) {
                 accum = "'" + this[accum].toString() + "'";
             }
             return accum += ',' + "'" + this[cur].toString() + "'";
@@ -59,10 +54,10 @@ export class Response {
 
     toJSON() {
         const keys = this.getKeys();
-        let out = {};
+        const out = {};
 
         keys.map((cur, idx) => {
-            out[cur] = this[cur];
+            out[cur] = this.data[cur];
         });
 
         return JSON.stringify(out);
@@ -73,7 +68,7 @@ export class Response {
         const keys = this.getKeys();
 
         keys.map((cur, idx) => {
-            this[cur] = res[cur];
+            this.data[cur] = res[cur];
         });
     }
 }

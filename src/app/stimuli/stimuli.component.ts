@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { STUDIES, ATTENTIONCHECK } from './default-stimuli';
-import { Study, Condition, Trial, AttnCheck, Coordinate } from './stimuli'; 
+import { Study, Condition, Trial, AttnCheck, Coordinate } from './stimuli';
 import { ResponseService } from '../response/response.service';
 import { Response } from '../response/response';
 
@@ -18,54 +18,57 @@ export class StimuliComponent {
   // the single condition to be run
   condition: Condition;
   // the current trial - this will be updated throughout the session
-  trial: Trial; 
+  trial: Trial;
   attnCheck: AttnCheck;
-  attnSound: string = "";
- 
+  attnSound: string = '';
+
   vid = 0;
   aud = 0;
-  pic = 0; 
+  pic = 0;
   showPicture = false;
-  introEnded = false; 
-  playAltAudio = false; 
-  chosenValue = null; 
-  attnCheckTrial = false; 
-  firstTrial: Trial; 
+  introEnded = false;
+  playAltAudio = false;
+  chosenValue = null;
+  attnCheckTrial = false;
+  firstTrial: Trial;
   responseService: ResponseService;
-  response: Response; 
+  response: Response;
   attnAnimalSound = false;
-  attnSoundOver = false; 
-  playSecondAudio = false; 
-  numberOfTrials = 0; 
+  attnSoundOver = false;
+  playSecondAudio = false;
+  numberOfTrials = 0;
 
   // for getCurrentVideo() and getCurrentAudio()
   currentVideo: string;
-  currentAudio: string; 
+  currentAudio: string;
   currentImage: string;
   currentImageCoordinates: Coordinate[];
-  currentAttnSound: string; 
+  currentAttnSound: string;
 
   // initialize: choose the study, condition, and first trial
-  constructor( responseService: ResponseService ){
+  constructor( responseService: ResponseService ) {
     this.responseService = responseService;
+    // precaution - refresh db connection
+    this.responseService.getDBConnection();
+
     this.setStudy();
     this.setCondition();
     this.setTrial();
     this.firstTrial = this.trial;
-    if (this.study.id == 3){
+    if (this.study.id === 3) {
       this.playAltAudio = true;
-      console.log(this.playAltAudio)
+      console.log(this.playAltAudio);
     }
 
-    if (this.study.id != 3){
+    if (this.study.id !== 3) {
       this.introEnded = true;
-      console.log(this.introEnded)
+      console.log(this.introEnded);
     }
   }
 
   // set one study at random from list
   setStudy() {
-    if(typeof this.study !== 'undefined'){ // guard
+    if (typeof this.study !== 'undefined') { // guard
       return; // study already set- one per session
     }
     this.study = this.allStudies[Math.floor(Math.random() * this.allStudies.length)];
@@ -73,32 +76,32 @@ export class StimuliComponent {
   }
 
   setCondition() {
-    if(typeof this.condition !== 'undefined'){
+    if (typeof this.condition !== 'undefined') {
       return; // condition already set- one per session
     }
     this.condition = this.study.conditions[Math.floor(Math.random() * this.study.conditions.length)];
   }
 
-  videoEnded(alt){
+  videoEnded(alt) {
     if (alt) {
       this.introEnded = true;
-      console.log(this.introEnded, "if the video ended properly after alt intro")
+      console.log(this.introEnded, 'if the video ended properly after alt intro');
     }
 
-    let result = this.nextVideo();
+    const result = this.nextVideo();
     if (!result && !alt) {
       this.showPicture = true;
     }
   }
 
   // return location of current trial in conditions' list of trials
-  getTrialIndexById(id):number {
+  getTrialIndexById(id): number {
     let result: number;
 
     this.study.conditions.forEach(cond => {
       cond.trials.forEach((trial, index) => {
-        if (trial.id == id){
-          result = index; 
+        if (trial.id === id) {
+          result = index;
         }
       });
     });
@@ -107,12 +110,12 @@ export class StimuliComponent {
   }
 
   setTrial() {
-    let length = this.condition.trials.length;
+    const length = this.condition.trials.length;
     this.trial = this.condition.trials[Math.floor(Math.random() * length)];
   }
 
-  nextVideo():boolean{
-     if (this.vid == this.trial.movie.length - 1){
+  nextVideo(): boolean {
+     if (this.vid === this.trial.movie.length - 1) {
       return false;
     }
 
@@ -120,46 +123,45 @@ export class StimuliComponent {
     return true;
   }
 
-  getCurrentVideo(){
-    console.log("before", this.currentVideo)
-    console.log("showPicture", this.showPicture)
-    let video = this.trial.movie[this.vid];
-    if (video != this.currentVideo) {
+  getCurrentVideo() {
+    console.log('before', this.currentVideo);
+    console.log('showPicture', this.showPicture);
+    const video = this.trial.movie[this.vid];
+    if (video !== this.currentVideo) {
       // keep them in sync
       this.currentVideo = video;
     }
-    console.log("after", this.currentVideo)
+    console.log('after', this.currentVideo);
     return video;
   }
 
-  audioEnded(alt){
+  audioEnded(alt) {
     if (alt) {
       this.playAltAudio = false;
     }
   }
 
-  getCurrentAudio(audioType){
-
+  getCurrentAudio(audioType) {
     console.log(this.study.id);
     let audio = this.trial.sound[this.aud];
-    
-    if (audioType == 0) {
+
+    if (audioType === 0) {
       audio = this.trial.sound1[this.aud];
     }
 
-    if (audioType == 2){
+    if (audioType === 2) {
       audio = this.trial.sound[this.aud + 1];
     }
 
-    if (audio != this.currentAudio) {
+    if (audio !== this.currentAudio) {
       this.currentAudio = audio;
     }
 
     return audio;
   }
 
-  nextAudio():boolean{
-    if (this.aud == this.trial.sound.length - 1){
+  nextAudio(): boolean {
+    if (this.aud === this.trial.sound.length - 1) {
      return false;
    }
 
@@ -167,91 +169,91 @@ export class StimuliComponent {
    return true;
  }
 
-  getCurrentImage(){
-    let image = this.trial.picture.picture[this.pic];
-    if (image != this.currentImage) {
+  getCurrentImage() {
+    const image = this.trial.picture.picture[this.pic];
+    if (image !== this.currentImage) {
       this.currentImage = image;
     }
 
     return image;
   }
 
-  getCurrentImageCoordinates(){
-    let coords = this.trial.picture.coordinate;
+  getCurrentImageCoordinates() {
+    const coords = this.trial.picture.coordinate;
 
-    if(coords != this.currentImageCoordinates){
+    if (coords !== this.currentImageCoordinates) {
       this.currentImageCoordinates = this.trial.picture.coordinate;
     }
 
     return coords;
   }
 
-  getAttnAudio(){
-    if (this.attnSound != ""){
+  getAttnAudio() {
+    if (this.attnSound !== '') {
       return this.attnSound;
-    } 
+    }
 
     this.attnSound = ATTENTIONCHECK.sound[Math.floor(Math.random() * ATTENTIONCHECK.sound.length)];
-    console.log(this.attnSound, "this is the animal sound")
+    console.log(this.attnSound, 'this is the animal sound');
     return this.attnSound;
   }
 
-  attnAudioEnded(attnSoundDone){
+  attnAudioEnded(attnSoundDone) {
     this.attnAnimalSound = true;
 
-    if (attnSoundDone){
+    if (attnSoundDone) {
       this.attnSoundOver = true;
     }
   }
 
   getCssCoordinates(coords) {
-    let res = coords.split(",");
+    let res = coords.split(',');
     res = res.map((val) => {
       val = val - 80; // todo make the box size set somewhere and use that var
-      if(val < 0){
+      if (val < 0) {
         val = 0;
       }
-      return val+"px";
-    })
+      return val + 'px';
+    });
     return res;
   }
 
   blockedCoordinates() {
-    if(this.currentImageCoordinates){
+    if (this.currentImageCoordinates) {
       return this.currentImageCoordinates.filter((value) => {
         return value.disabled; // send back only the disabled coordinate areas
-      })
+      });
     }
 
     return null;
   }
 
-  nextAttnCheck(value, oneMoreAudio){
+  nextAttnCheck(value, oneMoreAudio) {
     console.log('nextAttn, received as value: ', value);
 
-    if(this.response) {
-      this.response.response.push(value+1);
+    if (this.response) {
+      this.response.data.response.push(value + 1);
     }
     this.response = new Response();
 
-    this.response.response = [value + 1]; // ngfor indexes by 0
-    this.response.age = -1; // todo fill in TODO
-    this.response.study = this.study.id;
-    this.response.condition = this.condition.id;
-    this.response.trial = this.trial.id;
+    this.response.data.response = [value + 1]; // ngfor indexes by 0
+    this.response.data.age = -1; // todo fill in TODO
+    this.response.data.study = this.study.id;
+    this.response.data.condition = this.condition.id;
+    this.response.data.trial = this.trial.id;
 
     this.currentImageCoordinates[value].disabled = true;
     // TODO need age, input from age component
-    // TODO add rfunctionality so that for only study 2, it logs data for first audio 
-    if(oneMoreAudio == true && this.study.id == 2){
-      this.playSecondAudio = true; 
-      console.log(this.playSecondAudio, "playSecondAudio is set to this")
+    // TODO add rfunctionality so that for only study 2, it logs data for first audio
+    if (oneMoreAudio === true && this.study.id === 2) {
+      this.playSecondAudio = true;
+      console.log(this.playSecondAudio, 'playSecondAudio is set to this');
     } else {
       this.attnCheckTrial = true;
     }
   }
 
-  trialsCompleted(){
+  trialsCompleted() {
     this.numberOfTrials++;
     this.numberOfTrialsEvent.emit(this.numberOfTrials);
   }
@@ -259,46 +261,44 @@ export class StimuliComponent {
   // todo split into two functions - juggling too much
   // stores value sent to it by image (click)
   // removes finished trial from list, for next selection
-  nextTrial(value){
-    this.trialsCompleted()
-    console.log("at beginning of next trial()")
-    this.response.attnTrial = this.attnSound;
-    this.response.attnResponse = value + 1; // ngfor indexes by 0
-    
+  nextTrial(value) {
+    this.trialsCompleted();
+    console.log('at beginning of next trial()');
+    this.response.data.attnTrial = this.attnSound;
+    this.response.data.attnResponse = value + 1; // ngfor indexes by 0
+
     // need to get index of the current trial within the conditions' list
-    let index = this.getTrialIndexById(this.trial.id)
+    const index = this.getTrialIndexById(this.trial.id);
     this.condition.trials.splice(index, 1);
 
-    console.log("after getTrialIndexbyID in next trial()")
+    console.log('after getTrialIndexbyID in next trial()');
 
     this.setTrial();
 
-    console.log("after setTrial() of next trial()")
+    console.log('after setTrial() of next trial()');
     this.vid = 0;
     this.aud = 0;
-    this.pic = 0; 
+    this.pic = 0;
     this.showPicture = false;
-    this.attnCheckTrial = false; 
+    this.attnCheckTrial = false;
     this.attnAnimalSound = false;
-    this.attnSoundOver = false; 
+    this.attnSoundOver = false;
     this.playSecondAudio = false;
-    this.attnSound = ""; 
-    
-    console.log("after resetting lots of things in next trial()")
-    
+    this.attnSound = '';
+
+    console.log('after resetting lots of things in next trial()');
     this.responseService.setResponse(this.response);
     this.response = null;
 
-    if (this.study.id == 3){
+    if (this.study.id === 3) {
       this.playAltAudio = true;
     }
-    
-    console.log("at end of next trial()")
-    console.log(this.introEnded, "what introEnded is set at ");
-    console.log("showPicture =", this.showPicture);
-    console.log("playAltAudio =", this.playAltAudio);
-    console.log("trial =", this.trial);
+
+    console.log('at end of next trial()');
+    console.log(this.introEnded, 'what introEnded is set at ');
+    console.log('showPicture =', this.showPicture);
+    console.log('playAltAudio =', this.playAltAudio);
+    console.log('trial =', this.trial);
 
   }
-
-} 
+}

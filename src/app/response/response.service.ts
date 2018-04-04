@@ -4,32 +4,60 @@ import { Response } from './response';
 @Injectable()
 export class ResponseService {
   responses: Response[] = [];
+  DBNAME = 'conference';
+  STORE = 'responses';
+  db;
 
-  constructor() { }
-
-  // returns either response from id or list of all responses
-  getResponse(id): Response | Response[] {
-    if (id == null) {
-      return this.responses;
-    }
-
-    // TODO - not ready for prod, invalid
-    if (this.responses.length > 0) {
-      return this.responses[0];
-    }
+  constructor() {
+    this.getDBConnection();
   }
 
+  getDBConnection() {
+    const that = this;
+    const request = indexedDB.open(this.DBNAME);
+    request.onsuccess = function () {
+      that.db = request.result;
+    };
+    request.onupgradeneeded = function () {
+      console.log('db being created or upgraded');
+      // request.result instead of that.db, as it isn't yet populated at this point (async)
+      const responseStore = request.result.createObjectStore(
+        that.STORE, {
+          'keyPath': 'id',
+        }
+      );
+      responseStore.createIndex('by_id', 'id');
+      // todo error checking?
+      console.log('db creation/upgrade completed');
+    };
+  }
+
+  startTransaction() {
+    return this.db.transaction(this.STORE, 'readwrite');
+  }
+
+  // getResponses(id): Response[] {
+  // }
+
+  // if error then reconnect to db
   setResponse(response: Response) {
-    this.responses.push(response);
+    const transaction = this.startTransaction();
+    transaction.oncomplete = function () {
+      console.log('response stored successfully');
+    };
+    transaction.onerror = function (err) {
+      console.log('transaction failed: ', err);
+    };
+
+    const responseStore = transaction.objectStore(this.STORE);
+    responseStore.put(response.data);
   }
 
-  // todo response prototype should have a 'toString' or 'toCSV' function and handle this itself --
-  // this should just be looping
   getCSV() {
-    let output = this.responses[0].getCSVHeader();
+    let output = new Response().getCSVHeader();
 
     output += this.responses.map((cur, idx) => {
-      return cur.getCSV() + '\n';
+      return cur.toCSV() + '\n';
     });
 
     return output;
