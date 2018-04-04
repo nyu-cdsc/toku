@@ -199,60 +199,27 @@ export class StimuliComponent {
     // if (typeof this.imageElement == 'undefined') {
     //   return;
     // }
-    const coords = this.trial.picture.coordinate;
+    let coords = this.trial.picture.coordinate;
 
     if (coords != this.currentImageCoordinates) {
-      const curCoord = this.trial.picture.coordinate;
+      coords = coords.map(val => {
+        let res = val.coordinate.split(',');
+        res = res.map(v => {
+          return String(Math.floor(Number(v) * .86)); //.95 if on surface book
+        });
 
-      const that = this;
-      let timer;
-      const p1 = new Promise(
-        (resolve, reject) => {
-          timer = setInterval(function() {
-              if (typeof that.imageElement != null) {
-                resolve(timer);
-              }
-            }, 250);
-          // window.setTimeout(function() {
-          //   reject();
-          // }, 3000);
-        }
-      );
+        let finished = res.join(',');
+        let final = {
+          coordinate: finished,
+          disabled: val.disabled
+        };
+        
+        return final;
+      });
 
-      let scalingFactor = {};
-
-      p1
-        .then(
-          function(val) {
-            clearInterval(timer);
-
-            const width = that.imageElement.nativeElement.width;
-            const nwidth = that.imageElement.nativeElement.naturalWidth;
-            const height = that.imageElement.nativeElement.height;
-            const nheight = that.imageElement.nativeElement.naturalHeight;
-
-            scalingFactor = {
-              width: width / nwidth,
-              height: height / nheight
-            };
-
-            console.log(width, height, nwidth, nheight);
-          })
-        .catch(
-          reason => {
-            console.log('promise rejected: ', reason);
-          });
-
-      // const nwidth = this.currentImageElement.nativeElement.nativeWidth;
-
-      // get reference to image of id 'clickimage' here, store in var
-      // get scaling factor, and map through curCoord and apply the scaling factor to them
-      // store result into this.currentImageCoordinates
-
-      this.currentImageCoordinates = curCoord;
+      this.currentImageCoordinates = coords;
+      return coords; 
     }
-
-    return coords;
   }
 
   getAttnAudio() {
