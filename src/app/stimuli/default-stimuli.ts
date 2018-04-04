@@ -181,23 +181,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/tulvers.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "0,0,264,145",
+                                    coordinate: "770,600,1023,766",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "190,155,445,295",
+                                    coordinate: "580,460,825,570",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "374,305,660,440",
+                                    coordinate: "400,325,645,435",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "560,450,820,580",
+                                    coordinate: "223,180,465,300",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "725,590,1013,740",
+                                    coordinate: "0,0,284,157",
                                     disabled: false
                                 }
                             ]
@@ -453,23 +453,23 @@ export const STUDIES: Study[] = [
                             picture: ["../assets/image/tulvers.jpg"],
                             coordinate: [
                                 {
-                                    coordinate: "740,585,1023,766",
+                                    coordinate: "770,600,1023,766",
                                     disabled: false
                                 },
                                 {
-                                    coordinate: "560,445,840,584",
+                                    coordinate: "580,460,825,570",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "380,305,658,444",
+                                    coordinate: "400,325,645,435",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "200,260,480,304",
+                                    coordinate: "223,180,465,300",
                                     disabled: false
                                 },                                
                                 {
-                                    coordinate: "0,0,305,259",
+                                    coordinate: "0,0,284,157",
                                     disabled: false
                                 }
                             ]
@@ -1080,6 +1080,7 @@ export const STUDIES: Study[] = [
             //             },
             //             sound: ["../assets/audio/sk_1.m4a"]
             //         },
+  
             //     ]
             // }
         ]
