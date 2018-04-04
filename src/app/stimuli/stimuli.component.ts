@@ -245,11 +245,19 @@ export class StimuliComponent {
   nextAttnCheck(value, oneMoreAudio) {
     console.log('nextAttn, received as value: ', value);
 
-    if (this.response) {
+    if (this.response.data.response.length > 0) {
       this.response.data.response.push(value + 1);
-    }
-    this.response = new Response();
+    } else {
 
+      this.response = new Response();
+    }
+
+    // four responses? I thought that only two max, and applied to certain trials only
+    // that would eliminate need for separate participant id, if all pushed into lists
+    // but this would need to be the same for attnResponse/trial as well
+    // and each trial would need to be in a list
+
+    this.response.data.participant = this.participant;
     this.response.data.response = [value + 1]; // ngfor indexes by 0
     this.response.data.age = this.age; // todo fill in TODO
     this.response.data.study = this.study.id;
