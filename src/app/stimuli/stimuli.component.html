@@ -14,7 +14,7 @@
 <!-- First play video -->
 <!-- <div *ngFor="let stim of stimuli"> -->
 <div class="videoContainer" *ngIf = "this.introEnded && !this.showPicture && !this.playAltAudio">
-  <video (ended)="videoEnded()" controls autoplay="autoplay" preload="auto" [src]="getCurrentVideo()" type='video/mp4'></video>
+  <video (ended)="videoEnded()" autoplay="autoplay" preload="auto" [src]="getCurrentVideo()" type='video/mp4'></video>
 </div>
   <!-- <img [src]="currentImage"> -->
 <!-- </div> -->

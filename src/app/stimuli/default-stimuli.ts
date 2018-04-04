@@ -1080,7 +1080,6 @@ export const STUDIES: Study[] = [
             //             },
             //             sound: ["../assets/audio/sk_1.m4a"]
             //         },
-  
             //     ]
             // }
         ]
