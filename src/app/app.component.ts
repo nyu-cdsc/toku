@@ -7,27 +7,27 @@ import { StimuliComponent } from './stimuli/stimuli.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  @ViewChild(StimuliComponent) currentStimuliComponent: StimuliComponent
-  // @Input() isResetting = false; 
-  
+  @ViewChild(StimuliComponent) currentStimuliComponent: StimuliComponent;
+  // @Input() isResetting = false;
 
-  gameStarted = false; 
-  age = 0; 
+  gameStarted = false;
+  age = 0;
 
   itsOver = false;
-  //this.currentStimuliComponent.itsOver;
+  // this.currentStimuliComponent.itsOver;
 
   startGame(cond) {
-    this.gameStarted = cond; 
+    this.gameStarted = cond;
   }
 
-  setAge(value){
-    this.age = value; 
-    console.log(this.age, "is the age of the kid")
+  setAge(value) {
+    this.age = value;
+    console.log(this.age, 'is the age of the kid');
   }
 
-  trialsCompleted(number){
-    if (number == 4){
+  // todo trigger itsOver from event (to avoid hardcoding of trial count)
+  trialsCompleted(number) {
+    if (number === 4) {
       this.itsOver = true;
     }
   }
@@ -35,17 +35,16 @@ export class AppComponent {
   // onReset() {
   //   this.isResetting = true;
   //   this.age = 0;
-  //   this.gameStarted = false; 
-  //   this.itsOver = false; 
+  //   this.gameStarted = false;
+  //   this.itsOver = false;
   //   this.currentStimuliComponent
   //   setTimeout(() => this.isResetting = false, 0);
   //   return false;
   // }
-  
-  startOver(){
-    this.age = 0;
-    this.gameStarted = false; 
-    this.itsOver = false; 
-  }
 
+  startOver() {
+    this.age = 0;
+    this.gameStarted = false;
+    this.itsOver = false;
+  }
 }

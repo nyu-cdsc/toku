@@ -15,6 +15,7 @@ export class ResponseService {
   getDBConnection() {
     const that = this;
     const request = indexedDB.open(this.DBNAME);
+
     request.onsuccess = function () {
       that.db = request.result;
     };
@@ -26,7 +27,8 @@ export class ResponseService {
           'keyPath': 'id',
         }
       );
-      responseStore.createIndex('by_id', 'id');
+      responseStore.createIndex('by_id', 'id', { 'unique': true });
+      responseStore.createIndex('by_participant', 'participant', { 'unique': false });
       // todo error checking?
       console.log('db creation/upgrade completed');
     };

@@ -2,6 +2,7 @@ export class Response {
     data: {
         id: number,
         datestamp: string,
+        participant: number,
         age: number,
         study: number,
         condition: string,
@@ -12,6 +13,7 @@ export class Response {
     } = {
             id: Date.now(),
             datestamp: new Date().toISOString(),
+            participant: -1,
             age: -1,
             study: -1,
             condition: '',
