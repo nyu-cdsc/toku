@@ -85,9 +85,10 @@ export class StimuliComponent {
     if (typeof this.condition !== 'undefined') {
       return; // condition already set- one per session
     }
-    this.condition = this.study.conditions[
-      Math.floor(Math.random() * this.study.conditions.length)
-    ];
+
+    const condition = this.study.conditions[Math.floor(Math.random() * this.study.conditions.length)];
+    const conditionCopy = JSON.parse(JSON.stringify(condition));
+    this.condition = conditionCopy;
   }
 
   videoEnded(alt) {
@@ -245,27 +246,19 @@ export class StimuliComponent {
   nextAttnCheck(value, oneMoreAudio) {
     console.log('nextAttn, received as value: ', value);
 
-    if (this.response.data.response.length > 0) {
-      this.response.data.response.push(value + 1);
-    } else {
-
+    if (!this.response) {
       this.response = new Response();
+      this.response.data.participant = this.participant;
+      this.response.data.response = [value + 1]; // ngfor indexes by 0
+      this.response.data.age = this.age; // todo fill in TODO
+      this.response.data.study = this.study.id;
+      this.response.data.condition = this.condition.id;
+      this.response.data.trial = this.trial.id;
+    } else {
+      this.response.data.response.push(value + 1);
     }
 
-    // four responses? I thought that only two max, and applied to certain trials only
-    // that would eliminate need for separate participant id, if all pushed into lists
-    // but this would need to be the same for attnResponse/trial as well
-    // and each trial would need to be in a list
-
-    this.response.data.participant = this.participant;
-    this.response.data.response = [value + 1]; // ngfor indexes by 0
-    this.response.data.age = this.age; // todo fill in TODO
-    this.response.data.study = this.study.id;
-    this.response.data.condition = this.condition.id;
-    this.response.data.trial = this.trial.id;
-
     this.currentImageCoordinates[value].disabled = true;
-    // TODO need age, input from age component
     // TODO add rfunctionality so that for only study 2, it logs data for first audio
     if (oneMoreAudio === true && this.study.id === 2) {
       this.playSecondAudio = true;
