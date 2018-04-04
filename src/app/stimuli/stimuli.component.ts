@@ -42,7 +42,7 @@ export class StimuliComponent {
   playSecondAudio = false;
   numberOfTrials = 0;
 
-  // for getCurrentVideo() and getCurrdentAudio()
+  // for getCurrentVideo() and getCurrentAudio()
   currentVideo: string;
   currentAudio: string;
   currentImage: string;
@@ -61,12 +61,12 @@ export class StimuliComponent {
     this.setCondition();
     this.setTrial();
     this.firstTrial = this.trial;
-    if (this.study.id === 3) {
+    if (this.study.id == 3) {
       this.playAltAudio = true;
       console.log(this.playAltAudio);
     }
 
-    if (this.study.id !== 3) {
+    if (this.study.id != 3) {
       this.introEnded = true;
       console.log(this.introEnded);
     }
@@ -74,7 +74,7 @@ export class StimuliComponent {
 
   // set one study at random from list
   setStudy() {
-    if (typeof this.study !== 'undefined') {
+    if (typeof this.study != 'undefined') {
       // guard
       return; // study already set- one per session
     }
@@ -82,7 +82,7 @@ export class StimuliComponent {
   }
 
   setCondition() {
-    if (typeof this.condition !== 'undefined') {
+    if (typeof this.condition != 'undefined') {
       return; // condition already set- one per session
     }
     const condition = this.study.conditions[Math.floor(Math.random() * this.study.conditions.length)];
@@ -111,7 +111,7 @@ export class StimuliComponent {
 
     this.study.conditions.forEach(cond => {
       cond.trials.forEach((trial, index) => {
-        if (trial.id === id) {
+        if (trial.id == id) {
           result = index;
         }
       });
@@ -126,7 +126,7 @@ export class StimuliComponent {
   }
 
   nextVideo(): boolean {
-    if (this.vid === this.trial.movie.length - 1) {
+    if (this.vid == this.trial.movie.length - 1) {
       return false;
     }
 
@@ -138,7 +138,7 @@ export class StimuliComponent {
     console.log('before', this.currentVideo);
     console.log('showPicture', this.showPicture);
     const video = this.trial.movie[this.vid];
-    if (video !== this.currentVideo) {
+    if (video != this.currentVideo) {
       // keep them in sync
       this.currentVideo = video;
     }
@@ -156,15 +156,15 @@ export class StimuliComponent {
     console.log(this.study.id);
     let audio = this.trial.sound[this.aud];
 
-    if (audioType === 0) {
+    if (audioType == 0) {
       audio = this.trial.sound1[this.aud];
     }
 
-    if (audioType === 2) {
+    if (audioType == 2) {
       audio = this.trial.sound[this.aud + 1];
     }
 
-    if (audio !== this.currentAudio) {
+    if (audio != this.currentAudio) {
       this.currentAudio = audio;
     }
 
@@ -172,7 +172,7 @@ export class StimuliComponent {
   }
 
   nextAudio(): boolean {
-    if (this.aud === this.trial.sound.length - 1) {
+    if (this.aud == this.trial.sound.length - 1) {
       return false;
     }
 
@@ -182,7 +182,7 @@ export class StimuliComponent {
 
   getCurrentImage() {
     const image = this.trial.picture.picture[this.pic];
-    if (image !== this.currentImage) {
+    if (image != this.currentImage) {
       this.currentImage = image;
     }
 
@@ -213,14 +213,23 @@ export class StimuliComponent {
         }
       );
 
+      let scalingFactor = {};
+
       p1
         .then(
           function(val) {
             clearInterval(timer);
+
             const width = that.imageElement.nativeElement.width;
             const nwidth = that.imageElement.nativeElement.naturalWidth;
             const height = that.imageElement.nativeElement.height;
             const nheight = that.imageElement.nativeElement.naturalHeight;
+
+            scalingFactor = {
+              width: width / nwidth,
+              height: height / nheight
+            };
+
             console.log(width, height, nwidth, nheight);
           })
         .catch(
@@ -241,7 +250,7 @@ export class StimuliComponent {
   }
 
   getAttnAudio() {
-    if (this.attnSound !== '') {
+    if (this.attnSound != '') {
       return this.attnSound;
     }
 
@@ -300,7 +309,7 @@ export class StimuliComponent {
 
     this.currentImageCoordinates[value].disabled = true;
     // TODO add rfunctionality so that for only study 2, it logs data for first audio
-    if (oneMoreAudio === true && this.study.id === 2) {
+    if (oneMoreAudio == true && this.study.id == 2) {
       this.playSecondAudio = true;
       console.log(this.playSecondAudio, 'playSecondAudio is set to this');
     } else {
@@ -317,7 +326,7 @@ export class StimuliComponent {
   // (stackoverflow code licensed as MIT)
   basename(str) {
     let base = String(str).substring(str.lastIndexOf('/') + 1);
-    if (base.lastIndexOf('.') !== -1) {
+    if (base.lastIndexOf('.') != -1) {
       base = base.substring(0, base.lastIndexOf('.'));
     }
     return base;
@@ -355,7 +364,7 @@ export class StimuliComponent {
     this.responseService.setResponse(this.response);
     this.response = null;
 
-    if (this.study.id === 3) {
+    if (this.study.id == 3) {
       this.playAltAudio = true;
     }
 
