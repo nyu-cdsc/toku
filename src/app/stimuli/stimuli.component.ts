@@ -74,6 +74,7 @@ export class StimuliComponent {
     }
   }
 
+
   // set one study at random from list
   setStudy() {
     if (typeof this.study != 'undefined') {
@@ -250,8 +251,10 @@ export class StimuliComponent {
       if (val < 0) {
         val = 0;
       }
+
       return val + 'px';
     });
+
     return res;
   }
 
