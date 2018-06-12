@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Response } from './response';
+import * as FileSaver from 'file-saver';
 
 @Injectable()
 export class ResponseService {
-  responses: Response[] = [];
   DBNAME = 'conference';
   STORE = 'responses';
   db;
@@ -34,12 +34,41 @@ export class ResponseService {
     };
   }
 
-  startTransaction() {
-    return this.db.transaction(this.STORE, 'readwrite');
+  startTransaction(readonly: boolean = false) {
+    let type = 'readwrite';
+    if (readonly) {
+      type = 'readonly';
+    }
+    return this.db.transaction(this.STORE, type);
   }
 
-  // getResponses(id): Response[] {
-  // }
+  getResponses(): Promise<Response[]> {
+    const transaction = this.startTransaction(true);
+    const store = transaction.objectStore(this.STORE);
+    const responses: Response[] = [];
+
+    const responsePromise: Promise<Response[]> = new Promise(function (resolve, reject) {
+      // let datas = [];
+      let req = store.getAll();
+      req.onsuccess = function() {
+        let datas = req.result;
+        datas.map(d => {
+          let r = new Response();
+          r.data = d;
+
+          responses.push(r);
+        });
+
+        resolve(responses);
+      };
+    });
+
+
+    // return promise here, and above give the code to resolve it
+    // still need to come up with link, and make sure csv still works
+
+    return responsePromise;
+  }
 
   // if error then reconnect to db
   setResponse(response: Response) {
@@ -56,13 +85,20 @@ export class ResponseService {
   }
 
   getCSV() {
+    const responsePromise = this.getResponses();
     let output = new Response().getCSVHeader();
 
-    output += this.responses.map((cur, idx) => {
-      return cur.toCSV() + '\n';
-    });
+    responsePromise.then(function (responses) {
+      responses.map((cur, idx) => {
+        output += cur.toCSV() + '\n';
+      });
 
-    return output;
+      console.log('OUTPUT');
+      console.log(output);
+      const file = new Blob([output], { type: 'text/csv' });
+      const stamp = new Date().toISOString();
+      FileSaver.saveAs(file, 'export-' + stamp + '.csv');
+    });
   }
 
 }

@@ -32,9 +32,9 @@ export class Response {
         const keys = this.getKeys();
         let output = keys.reduce((accum, current, idx) => {
             if (idx === 1) {
-                accum = "'" + accum + "'";
+                accum = accum + ',';
             }
-            return accum + ',' + "'" + current + "'";
+            return accum + current + ',';
         });
         output += '\n';
 
@@ -46,9 +46,16 @@ export class Response {
         const keys = this.getKeys();
         const output = keys.reduce((accum, cur, idx) => {
             if (idx === 1) {
-                accum = "'" + this[accum].toString() + "'";
+                accum = this.data[accum].toString() + ',';
             }
-            return accum += ',' + "'" + this[cur].toString() + "'";
+            let temp = this.data[cur].toString();
+
+            // for values that are lists - todo move thhis to their toString()
+            if (temp.indexOf(',') != -1) {
+                temp = '"' + temp + '"';
+            }
+
+            return accum += temp + ',';
         });
 
         return output;
