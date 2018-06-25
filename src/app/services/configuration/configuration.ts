@@ -2,18 +2,22 @@
 export class Action {
   id: string;
   group: number;
-  action: Stimuli[];
-  repeat: number;
+  activity?: Stimuli[];
+  repeat?: number;
   children?: any[]; // change to PatternGroup || Pattern[] || PatternGroup[]?
 }
 
 export class Block {
   id: string;
   group: number;
-  pickOne: boolean;
-  randomize: boolean;
-  repeat: number; // applies to the entire group
+  pickOne?: boolean;
+  randomize?: boolean;
+  repeat?: number; // applies to the entire group
   items: any[];
+}
+
+export interface Groupable {
+  group: number;
 }
 
 // Action -> Command? Component to Actor? Or Command?

@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
 
+import { Groupable } from './configuration';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigurationService {
 
-  constructor() { }
+  constructor() {
+    // now in here, pull in the stimuli components as needed via DI (they're loaded in app.module)
+
+  }
+
   // types are in config.ts
   //
   // here, we are only concerned with building the run list. not with traversing what we've created, but building it
@@ -23,6 +29,37 @@ export class ConfigurationService {
 
   genRunListNew() {
     //
+  }
+
+  // recurses down list that meets the Groupable interface and orders them
+  orderByGroup(list) {
+    list.map(val => {
+      if (!<Groupable>val) {
+        // mixed here. probably want to error out if there's anything in the list that is NOT groupable, so do that for now
+        // TODO proper error handling like right now.
+
+        // error here
+        return 'ERRNOTGROUP';
+      }
+    });
+
+    list.sort(this.groupSorter);
+
+    console.log(list);
+    console.log(list[0].items);
+    // todo want to return new object! copy val and then sort? immutable sort?
+
+    return list;
+  }
+
+  groupSorter(a, b) {
+    if (a.group > b.group) {
+      return 1;
+    } else if (a.group < b.group) {
+      return -1;
+    }
+
+    return 0;
   }
 
   genRunList(list) {
