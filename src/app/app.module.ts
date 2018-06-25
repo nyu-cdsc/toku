@@ -2,10 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { SoundComponent } from './sound/sound.component';
-import { MovieComponent } from './movie/movie.component';
-import { ConditionalComponent } from './conditional/conditional.component';
-import { PictureComponent } from './picture/picture.component';
+import { SoundComponent } from './stimuli/sound/sound.component';
+import { MovieComponent } from './stimuli/movie/movie.component';
+import { ConditionalComponent } from './stimuli/conditional/conditional.component';
+import { PictureComponent } from './stimuli/picture/picture.component';
+
+import { ConfigurationService } from './services/configuration/configuration.service';
+import { ResponseService } from './services/response/response.service';
 
 @NgModule({
   declarations: [
@@ -13,7 +16,9 @@ import { PictureComponent } from './picture/picture.component';
     SoundComponent,
     MovieComponent,
     ConditionalComponent,
-    PictureComponent
+    PictureComponent,
+    ConfigurationService,
+    ResponseService
   ],
   imports: [
     BrowserModule
