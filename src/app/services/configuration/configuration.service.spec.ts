@@ -1,52 +1,74 @@
 import { inject, TestBed } from '@angular/core/testing';
 
-import { Action, Block } from './configuration';
+import { Action, Control } from './configuration';
 import { ConfigurationService } from './configuration.service';
 
 describe('ConfigurationService', () => {
+  // NOTE -- new() will be called on all these automatically once it's a yaml config file
+  // for now should be done explicitly
   const firstAction: Action = new Action();
-  firstAction.id = 'two'; // = {
-  firstAction.group = 1;
-  const secondAction: Action = {
-    id: 'three',
-    group: 2
-  };
-  const anotherBlock: Block = {
-    id: 'anotherB',
-    group: 2,
-    items: [
-      {
-        id: 'broken',
-        group: 3
-      },
-    ]
+  firstAction.id = 'firstA';
+  firstAction.stimuli = [];
+  firstAction.type = 'action'; // todo this shouldn't be necessary - constructor!
+
+  const miscAction: Action = {
+    id: 'miscA',
+    type: 'action', // TODO type shouldn't be needed here, just in the list for deserialization - can remove after
+    stimuli: []
   };
 
-  const testConfig: Block[] = [
+  // how to new() this? TODO find out!
+  const secondAction: Action = {
+    type: 'action',
+    id: 'secondA',
+    stimuli: [],
+    items: [
+      {
+        type: 'action',
+        id: 'yetAnotherA'
+      },
+      miscAction
+    ]
+  };
+  // TODO add fourthAction with full constructor call
+
+  // TODO test arbitrarily adding more lists for further nesting, not just in Actions
+  const testConfig: any[] = [
     {
-      id: 'begin',
-      group: 2,
-      items: [
-        {
-          id: 'one',
-          group: 1
-        },
-        secondAction,
-        firstAction,
-        anotherBlock
-      ],
-    }, {
-      id: 'next',
-      group: 3,
-      items: [
-        {
-          id: 'one',
-          group: 1
-        },
-        secondAction,
-        firstAction
-      ],
-    }
+      type: 'action',
+      id: 'anotherA', // separate from anotherA defined above, as in a separate group and not a variable
+      stimuli: []
+    },
+    firstAction,
+    secondAction,
+    {
+      type: 'control',
+      repeat: 1,
+      shuffle: true
+    },
+    [
+      {
+        type: 'control',
+        repeat: 1,
+        shuffle: true
+      },
+      miscAction,
+      {
+        type: 'action',
+        id: 'yetYetAnotherA',
+        stimuli: []
+      },
+      {
+        type: 'action',
+        id: 'yetYetAnotherA2',
+        stimuli: []
+      },
+      {
+        type: 'action',
+        id: 'yetYetAnotherA3',
+        stimuli: []
+      }
+    ]
   ];
 
   beforeEach(() => {
@@ -55,51 +77,57 @@ describe('ConfigurationService', () => {
     });
   });
 
-  // it('should be created', inject([ConfigurationService], (service: ConfigurationService) => {
-  //   expect(service).toBeTruthy();
-  // }));
+  it('should find control object in group', inject([ConfigurationService], (service: ConfigurationService) => {
+    const res = service.getControl(testConfig);
+    // console.log(res);
+    expect(res.repeat).toBe(1);
+  }));
 
-  // it('should ensure that items are groupable', inject([ConfigurationService], (service: ConfigurationService) => {
-  //   // expect(service.orderByGroup(testConfig)).not.toBe('ERRNOTGROUP');
-  //   expect(service.validateList(testConfig)).toBeTruthy();
-  // }));
+  it('should walk through list and apply function at every level', inject([ConfigurationService], (service: ConfigurationService) => {
+    // const func = (item) => item.id;
+    // const res = service.walkThrough(testConfig, func);
+    // console.log(res);
+    // expect(res).toBe([]);
+  }));
 
-  // it('should recursively order by group number', inject([ConfigurationService], (service: ConfigurationService) => {
-  //   // expect(service.orderByGroup(testConfig)).toBeTruthy();
-  //   expect(testConfig[0].id).toBe('begin');
-  // }));
+  it('should find control object in group for each level', inject([ConfigurationService], (service: ConfigurationService) => {
+    // expect(service.getControl(testConfig)).toBeTruthy();
+  }));
 
-  // it('should RECURSIVELY extract groups into list', inject([ConfigurationService], (service: ConfigurationService) => {
-  //   // ensure that group 2 at first level _contains_ the ids of 'next' and 'begin'
-  //   // TODO change to reflect _contains_
-  //   service.extractGroups.bind(service);
-  //   const res = testConfig.reduce(service.extractGroups.bind(service), []);
+  it('should shuffle within same group - deep shuffle', inject([ConfigurationService], (service: ConfigurationService) => {
+    // const compare = [];
+    // const firstPre = { pre: testConfig.indexOf(firstAction) };
+    // const secondPre = { pre: testConfig.indexOf(secondAction) };
 
-  //   const resItem = res[2][0].id; // lolz this is great
-  //   console.log('RES IS', res);
-  //   res.map(i => console.log(i));
-  //   expect(resItem).toBe('begin');
+    // // TODO redo shuffle/deepshuffle to return a new list instead of shuffling existing!
+    // service.deepShuffle(testConfig);
 
-  //   // ensure that group 1 _under_ group 2 contains 'one' and 'two'
-  // }));
+    // compare['first']['post'] = testConfig.indexOf(firstAction);
+    // compare['second']['post'] = testConfig.indexOf(secondAction);
 
-  it('should shuffle within same group', inject([ConfigurationService], (service: ConfigurationService) => {
-    // expect(testConfig[0].id).toBe('begin');
-    expect(true).toBe(true);
+    // // console.log(compare);
+
+    // const res = compare.every(item => {
+    //   if (item['pre'] === item['post']) {
+    //     return true;
+    //   }
+    //   return false;
+    // });
+
+    // ^TODO get the walkthrough helper working with this, and go through list before/after comparing indexOf values
+
+    // expect(res).toBe(false, compare);
   }));
 
   it('should not shuffle if randomize/shuffle is false (use shuffle)', inject([ConfigurationService], (service: ConfigurationService) => {
-    // expect(testConfig[0].id).toBe('begin');
-    expect(true).toBe(true);
+    // expect(true).toBe(true);
   }));
 
   it('should pickOne', inject([ConfigurationService], (service: ConfigurationService) => {
-    // expect(testConfig[0].id).toBe('begin');
     expect(true).toBe(true);
   }));
 
-  it('should repeat if set', inject([ConfigurationService], (service: ConfigurationService) => {
-    // expect(testConfig[0].id).toBe('begin');
+  it('should repeat number of times set', inject([ConfigurationService], (service: ConfigurationService) => {
     expect(true).toBe(true);
   }));
 });

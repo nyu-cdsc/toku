@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Groupable } from './configuration';
-
+import { Action, Control } from './configuration';
 @Injectable({
   providedIn: 'root'
 })
@@ -9,20 +8,12 @@ export class ConfigurationService {
   constructor() {
     // now in here, pull in the stimuli components as needed via DI (they're loaded in app.module)
 
-    // this.extractGroups.bind(this);
   }
 
   // here, we are only concerned with building the run list. not with traversing what we've created, but building it
   // by scanning the config file as much as necessary
 
   genRunListNew(list) {
-    // if (!this.validateList(list)) {
-    //   // throw actual error here/manage as desired
-    // }
-
-    // this.orderByGroup(list);
-    // so the groups have to be extracted recursively in order to act upon them..
-    // const groups = list.reduce(this.extractGroups, []);
 
 
     // TODO ^ it should also be checking for shuffle being set -- and that would affect the behavior of the above
@@ -46,66 +37,70 @@ export class ConfigurationService {
 
   }
 
-  // extractGroups(accum, item) {
-  //   console.log('THIS IS ', this);
-  //   if (!accum[item.group]) {
-  //     accum[item.group] = [];
-  //   }
+  // this helper takes a function, and walks down the list recursively for it
+  walkThrough(list, func) {
+    const res = list.map(item => {
+      if (item.items) {
+        const innerRes = this.walkThrough(item.items, func);
+      }
 
-  //   if (item.items) {
-  //     item.items.map(i => console.log(i));
-  //     item.items = item.items.reduce(this.extractGroups.bind(this), []);
-  //     item.items.map(i => console.log(i));
-  //   }
-  //   // goal is to recursively take care of breaking all the groups into their lists before returning at top level
-  //   // blocks organize actions, actions do NOT organize themselves, so this is simpler to look for
-  //   accum[item.group].push(item);
-  //   return accum;
-  // }
+      if (Array.isArray(item)) {
+        const innerRes = this.walkThrough(item, func); // TODO ensure no clashing with the above! shouldn't happen though
+        // console.log('ARRAY IS', item);
+      }
 
-  // // todo this can be removed as actions will no longer be groupable
-  // testGroupable(item: Groupable): item is Groupable {
-  //   // TODO proper logging here if something isn't right, so it is traceable later
-  //   return (<Groupable>item).group !== undefined;
-  // }
+      // how to combine innerRes with res?
+      // a lot of the complexity here is in trying to return a new list instead of just modifying the original and then
+      // checking on it. but some of these functions won't want to change it - and will just be extracting information
+      // from it, so I need the facility to get all that information from all levels back
 
-  // validateList(list) {
-  //   return list.every(val => {
-  //     let innerRes = true;
-  //     if (val.items) {
-  //       innerRes = this.validateList(val.items);
-  //     }
+      return func(item);
+    });
 
-  //     const res = this.testGroupable(val);
+    // what if I don't want to loop through it this way at all, but to step through it a little at a time?
+    // I only need to getControl() at the time I descend another level - it doesn't need to all be preprocessed
 
-  //     if (!innerRes || !res) {
-  //       return false;
-  //     }
-  //     return true;
-  //   });
-  // }
+    // if I want it to all be live beforehand, then I want an unmarshal function. otherwise, not seeing the reason for this method
+    console.log(res);
 
-  // recurses down list that meets the Groupable interface and orders them
-  // orderByGroup(list) {
-  //   list.sort(this.groupSorter);
+    return res;
+  }
 
-  //   // console.log(list);
-  //   // console.log(list[0].items);
-  //   // todo want to return new object! copy val and then sort? immutable sort?
+  // go with this strategy first. one major pass at a time
+  deepShuffle(list) {
+    // first need to search the current level of list for a Control object
+    // then shuffle current list if shuffle is set
+    if (this.getControl(list).shuffle) {
+      console.log('WE ARE SHUFFLIN');
+      this.shuffle(list);
+    }
 
-  //   // todo is the return even necessary? isn't the reference being manipulated above? check!
-  //   return list;
-  // }
+    // now descend through list and shuffle lower levels
+    list = list.map(item => {
+      if (item.items) {
+        item.items = this.deepShuffle(item.items);
+      } else if (Array.isArray(item)) {
+        item = this.deepShuffle(item);
+      }
 
-  // groupSorter(a, b) {
-  //   if (a.group > b.group) {
-  //     return 1;
-  //   } else if (a.group < b.group) {
-  //     return -1;
-  //   }
+      return item;
+    });
 
-  //   return 0;
-  // }
+    return list;
+  }
+
+  getControl(list): Control {
+    const res = list.filter(item => {
+      if (item.type === 'control') {
+        return item; // Object.assign(new Control(), item);
+      }
+    })[0]; // todo validation for +1 Control elements, or just handle
+    const cont = Object.assign(new Control(), res);
+
+    return cont || new Control();
+  }
+
+
 
   // genRunList(list) {
   //   // set trial randomly
@@ -127,7 +122,7 @@ export class ConfigurationService {
 
   // from https://www.w3resource.com/javascript-exercises/javascript-array-exercise-17.php
   // Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
-  shuffleList(list) {
+  shuffle(list) {
     let ctr = list.length,
       temp,
       index;
