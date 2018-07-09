@@ -22,7 +22,7 @@ describe('ConfigurationService', () => {
     type: 'action',
     id: 'secondA',
     stimuli: [],
-    items: [
+    children: [
       {
         type: 'action',
         id: 'yetAnotherA'
@@ -105,6 +105,8 @@ describe('ConfigurationService', () => {
     // compare['first']['post'] = testConfig.indexOf(firstAction);
     // compare['second']['post'] = testConfig.indexOf(secondAction);
 
+    // TODO JUST USE Map()
+
     // // console.log(compare);
 
     // const res = compare.every(item => {
@@ -128,7 +130,7 @@ describe('ConfigurationService', () => {
   }));
 
   it('should repeat number of times set', inject([ConfigurationService], (service: ConfigurationService) => {
-    expect(true).toBe(true);
+    // this should generate additional elements in the list
   }));
 });
 

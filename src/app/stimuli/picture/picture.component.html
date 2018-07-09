@@ -1,3 +1,7 @@
 <p>
   picture works!
+  <br>disable is {{parameters.disable && 'true' || 'false'}}
+  <br>filename is {{parameters?.filename}}
+
+  <img [src]="parameters.filename">
 </p>

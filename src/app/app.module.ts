@@ -9,6 +9,7 @@ import { PictureComponent } from './stimuli/picture/picture.component';
 
 import { ConfigurationService } from './services/configuration/configuration.service';
 import { ResponseService } from './services/response/response.service';
+import { StimloaderDirective } from './stimloader.directive';
 
 @NgModule({
   declarations: [
@@ -17,13 +18,18 @@ import { ResponseService } from './services/response/response.service';
     MovieComponent,
     ConditionalComponent,
     PictureComponent,
-    ConfigurationService,
-    ResponseService
+    // ConfigurationService,
+    // ResponseService,
+    StimloaderDirective
+  ],
+  entryComponents: [
+    PictureComponent,
+    MovieComponent
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [ConfigurationService, ResponseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { Action, Control } from './configuration';
+import { exampleConfig } from './default';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -8,6 +10,10 @@ export class ConfigurationService {
   constructor() {
     // now in here, pull in the stimuli components as needed via DI (they're loaded in app.module)
 
+  }
+
+  genFromExample() {
+    return this.genRunListNew(exampleConfig);
   }
 
   // here, we are only concerned with building the run list. not with traversing what we've created, but building it
@@ -34,6 +40,10 @@ export class ConfigurationService {
     // we put full shuffle on everything. think about this! of course they could omit group or just have them all be
     // the same, but there should be defined behavior around this
 
+
+    // TODO - REMOVE Control objects! those are simply to create the runlist, which should be nothing but actions!
+
+    return list;
 
   }
 
