@@ -14,6 +14,7 @@ describe('ConfigurationService', () => {
   const miscAction: Action = {
     id: 'miscA',
     type: 'action', // TODO type shouldn't be needed here, just in the list for deserialization - can remove after
+    // also applies to Control
     stimuli: []
   };
 
@@ -30,7 +31,6 @@ describe('ConfigurationService', () => {
       miscAction
     ]
   };
-  // TODO add fourthAction with full constructor call
 
   // TODO test arbitrarily adding more lists for further nesting, not just in Actions
   const testConfig: any[] = [

@@ -8,9 +8,9 @@ describe('SoundComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SoundComponent ]
+      declarations: [SoundComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,5 +21,8 @@ describe('SoundComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('should take an optional button component/stimuli for response - composite component', () => {
+    // expect(component).toBeTruthy();
   });
 });

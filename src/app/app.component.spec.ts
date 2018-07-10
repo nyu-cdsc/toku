@@ -61,4 +61,10 @@ describe('AppComponent', () => {
       'picture works!'
     );
   }));
+  it('should -- SIMPLER -- continue to next action upon Complete status being received', async(() => {
+    // todo move to Run service
+    // const fixture = TestBed.createComponent(AppComponent);
+    // const app = fixture.debugElement.componentInstance;
+    // expect(app).toBeTruthy();
+  }));
 });

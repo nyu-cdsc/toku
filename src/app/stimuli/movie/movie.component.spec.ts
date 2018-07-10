@@ -8,9 +8,9 @@ describe('MovieComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MovieComponent ]
+      declarations: [MovieComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,5 +21,15 @@ describe('MovieComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('should freeze in place/remain on last frame OR first frame after done, if option set', () => {
+    // expect(component).toBeTruthy();
+  });
+  it('should be able to have one long video that is broken up by other stimuli like button at defined freeze-points', () => {
+    // expect(component).toBeTruthy();
+    // todo come up with good implementation for this
+  });
+  it('should take an optional button component/stimuli for response - composite component', () => {
+    // expect(component).toBeTruthy();
   });
 });

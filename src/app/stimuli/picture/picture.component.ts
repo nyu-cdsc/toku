@@ -6,7 +6,7 @@ import { Stimuli, Parameters } from '../stimuli';
   styleUrls: ['./picture.component.css']
 })
 export class PictureComponent implements Stimuli {
-  type = 'picture';
+  type = 'picture'; // TODO again only necessary for the configuration list, not the object itself
   @Input() parameters: any;
 
   constructor() {

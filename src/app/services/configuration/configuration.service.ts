@@ -13,26 +13,13 @@ export class ConfigurationService {
   }
 
   genFromExample() {
-    return this.genRunListNew(exampleConfig);
+    return this.genRunList(exampleConfig);
   }
 
   // here, we are only concerned with building the run list. not with traversing what we've created, but building it
   // by scanning the config file as much as necessary
 
-  genRunListNew(list) {
-
-
-    // TODO ^ it should also be checking for shuffle being set -- and that would affect the behavior of the above
-    // -- or it might be best to take that sorted list, break everything into actual Groups, and operate on them then
-    // although it's possible to do that without the additional sorting step, I suppose it needs to be done anyway?
-    // -- unless a new list is composed afterward with the groups all put back together
-    // sorting is probably necessary regardless - it just may be done before or after
-    //
-    // so the next step is definitely to take those groups and break them into independent lists
-    // perhaps this, and the ordering of those lists, should be composed of two new, smaller functions that focus on always,
-    // _always_ breaking out groups into their own lists and managing them from there - then the shuffle is simply an
-    // additional operation applied when desired
-    //
+  genRunList(list) {
     // this would also aid with choosing a single item from a group, if we enable that - pickOnePerGroup -- better naming
     // and I suppose repeat would also be a little easier when working with more focused lists
     //
@@ -40,9 +27,8 @@ export class ConfigurationService {
     // we put full shuffle on everything. think about this! of course they could omit group or just have them all be
     // the same, but there should be defined behavior around this
 
-
     // TODO - REMOVE Control objects! those are simply to create the runlist, which should be nothing but actions!
-
+    // or should they remain?
     return list;
 
   }
@@ -69,6 +55,7 @@ export class ConfigurationService {
 
     // what if I don't want to loop through it this way at all, but to step through it a little at a time?
     // I only need to getControl() at the time I descend another level - it doesn't need to all be preprocessed
+    // todo no - it should be. everything should be processed before it ever makes it out of this service
 
     // if I want it to all be live beforehand, then I want an unmarshal function. otherwise, not seeing the reason for this method
     console.log(res);
@@ -116,8 +103,6 @@ export class ConfigurationService {
   //   // set trial randomly
   //   const length = list.length;
   //   let result = [];
-  //   // basically see if an item in the list matches an interface, and if it does, recurse through it
-  //   // blocks and trials will meet that interface
   //   // if we are randomizing sections
   //   if (list.randomize) {
   //     // const blockCopy = JSON.parse(JSON.stringify(this.block));
