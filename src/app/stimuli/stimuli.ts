@@ -1,6 +1,11 @@
+import { EventEmitter } from '@angular/core';
+
 export interface Stimuli {
-  type: string; // ugh please do away with this?
   parameters: any;
+  finishedEvent: EventEmitter<any>;
+  // responseEvent: EventEmitter<any>;
+  responseEnabled: boolean;
+  sendResponse(value: any);
 }
 
 // Just inject Movie component here? angular/typescript nuances!

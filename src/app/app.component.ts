@@ -1,9 +1,9 @@
-import { Component, ComponentFactoryResolver, ViewChild, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewChild, OnInit, ViewContainerRef } from '@angular/core';
 
 import { ConfigurationService } from './services/configuration/configuration.service';
-import { Action } from './services/configuration/configuration';
-import { StimuliItem } from './stimuli-item';
-import { stimuliComponentResolver } from './stimuli/utils';
+// import { Action } from './services/configuration/configuration';
+// import { StimuliItem } from './stimuli-item';
+import { buildStimuli, stimuliComponentResolver } from './stimuli/utils';
 import { StimloaderDirective } from './stimloader.directive';
 import { Parameters, Stimuli } from './stimuli/stimuli';
 // todo Action, Stimuli clearly belongs somewhere other than the configuration service -- but where?
@@ -32,31 +32,25 @@ export class AppComponent implements OnInit {
   runThrough() {
     this.config.map(action => {
       action.stimuli.map(s => {
-        this.buildStimuli(s);
+        buildStimuli(s, this.stimDirective.viewContainerRef, this.componentFactoryResolver);
       });
     });
   }
 
   testCall() {
     const s = this.config[0].stimuli[0];
-    this.buildStimuli(s);
+    // buildStimuli(s, this.stimDirective.viewContainerRef, this.componentFactoryResolver);
+    this.buildStimuli(s, this.stimDirective.viewContainerRef, this.componentFactoryResolver);
   }
 
-  buildStimuli(stimuli: Stimuli) {
-    // this.currentConfigIndex = (this.currentConfigIndex + 1); // DO length check
-    // let action: Action = this.config[this.currentConfigIndex];
+  // this.currentConfigIndex = (this.currentConfigIndex + 1); // DO length check
+  // let action: Action = this.config[this.currentConfigIndex];
 
-    // const stimHolder = new StimuliItem(s);
-    // const componentFactory = this.componentFactoryResolver.resolveComponentFactory(stimHolder.component);
-    // const componentFactory = this.componentFactoryResolver.resolveComponentFactory(MovieComponent);
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(stimuliComponentResolver(stimuli));
+  buildStimuli(stimuli: Stimuli, view: ViewContainerRef, resolver: ComponentFactoryResolver) {
+    const componentFactory = resolver.resolveComponentFactory(stimuliComponentResolver(stimuli));
+    view.clear();
 
-    const viewContainerRef = this.stimDirective.viewContainerRef;
-    viewContainerRef.clear();
-
-    const componentRef = viewContainerRef.createComponent(componentFactory);
+    const componentRef = view.createComponent(componentFactory);
     (<Stimuli>componentRef.instance).parameters = stimuli.parameters;
-
   }
-
 }
