@@ -12,22 +12,36 @@ import { StimloaderDirective } from '../../stimloader.directive';
 })
 export class PictureComponent implements Stimuli, OnInit {
   @Input() parameters: any;
-  @Output() finishedEvent = new EventEmitter<boolean>();
-  // @Output() responseEvent = new EventEmitter<boolean>();
+  @Output() finishedEvent = new EventEmitter<any>();
   @ViewChild(StimloaderDirective) stimDirective: StimloaderDirective;
 
-  responseEnabled = false;
-  consumedCoords = null;
+  // TODO property here to receive finishedEvent from child(ren)
 
-  constructor() { }
+  responseEnabled = true;
+  // response: Response;
+  responseService: ResponseService;
+  // consumedCoords = null;
+  modifiedParameters: {};
+
+  constructor(responseService: ResponseService) {
+    this.responseService = responseService;
+  }
   ngOnInit() { }
+
+  setResponseEnabled() {
+    if (this.parameters.children) {
+
+    }
+
+    if (this.parameters.delay) { }
+  }
 
   getCoordinates() {
     if (!this.responseEnabled) {
       return null;
     }
 
-    let coords = this.parameters.coordinate;
+    let coords = this.parameters.coordinates;
 
     coords = coords.map(val => {
       let res = val.coordinate.split(',');
@@ -57,38 +71,54 @@ export class PictureComponent implements Stimuli, OnInit {
   }
 
   blockedCoordinates() {
-    if (this.consumedCoords) {
-      return this.consumedCoords;
+    if (this.parameters.coordinates) {
+      return this.parameters.coordinates.filter(value => {
+        return value.disabled; // send back only the disabled coordinate areas
+      });
     }
 
     return null;
   }
 
-  setValue(value) {
-    // this.buttonResponse = value;
-    // console.log(this.buttonResponse, "is the button response");
-    // this.nextTrial(this.buttonResponse);
-  }
+  // todo actionable stimuli and display stimuli?
 
   // two functions - one at this level and one above
-  // over here we should only be sending the raw data from the stimuli - which can vary among them
-  // but at the end should be something that fits into response.data.response - so just return that
+  // but at the end should be something that fits into response.data.response - so just send that
   sendResponse(value) {
-    const responseService = new ResponseService;
+    if (!this.responseEnabled) {
+      return null;
+    }
     const response = new Response();
     // response.data.participant = this.participant;
-    // response.data.study = this.study.name;
-    // response.data.block = this.block.id;
-    // response.data.trial = this.trial.id;
+    // response.data.action = this.action.id; // TODO how to get?
     response.data.response.push(value + 1); // todo test this logic
+    // this.response = response;
 
     // TODO make spec/test
-    this.consumedCoords[value] = true;
-    responseService.setResponse(response);
+    // this.consumedCoords[value] = true;
+    this.setModifiedParameters(value);
+    this.responseService.setResponse(response);
+    this.done();
   }
 
+  // TODO make coordinates a Map()!
+  setModifiedParameters(value) {
+    this.modifiedParameters = { coordinates: this.parameters.coordinates };
+
+    // const idx = this.modifiedParameters.coordinates.indexOf(value);
+    // this.modifiedParameters.coordinates[idx].disabled = true;
+  }
+
+  // TODO
+  // send back optional Parameters to the parent, which can then be sent through a ControlService filter function
+  // and passed on to the following members when the Control for the group has a property marked 'sequence'
+  //
+  // that'll do for now
+  // can send back object that packages both modified values and the response
   done() {
-    this.finishedEvent.emit(true);
+    console.log('calling DONE!');
+    this.finishedEvent.emit(null);
+    // this.finishedEvent.emit(this.modifiedParameters);
   }
 
   buildStimuli(stimuli: Stimuli, view: ViewContainerRef, resolver: ComponentFactoryResolver) {
@@ -100,10 +130,15 @@ export class PictureComponent implements Stimuli, OnInit {
   }
 }
 
+// TODO if I make this a class, I can attach a function to its prototype to manage things like disabling coordinates inside of it!
+// and then I'd be removing that responsibility from images - along with ALL coordinate responsibilities!
 // export class Coordinate {
 //   coordinate: string;
 // }
 
 export class PictureParameters implements Parameters {
   disable: boolean; // for now..
+  // coordinates: Coordinates;
 }
+
+// could literally return the modifiedParameters object along with its type definition..

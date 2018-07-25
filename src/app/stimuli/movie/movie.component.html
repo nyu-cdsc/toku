@@ -1,7 +1,9 @@
 <p>
-  movie works!
+  movie works! {{parameters}}
 </p>
 
 <video (ended)="videoEnded()" autoplay="autoplay" preload="auto" width="500">
-  <source src="assets/video/PiDi_2b.mp4" type='video/mp4' />
+  <source [src]="parameters?.filename" type='video/mp4' />
 </video>
+
+<!-- todo make the type property dynamic as well -->

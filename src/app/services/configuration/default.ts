@@ -14,15 +14,17 @@ export const exampleConfig: any[] = [
       {
         type: 'picture',
         parameters: {
-          diable: false,
-          // filename: '../../../assets/picture/PiDi_2a_Moment.jpg'
-          filename: '/assets/picture/PiDi_2a_Moment.jpg'
+          disable: false,
+          // filename: '../../..../../../assets/picture/PiDi_2a_Moment.jpg'
+          filename: '../../../assets/picture/PiDi_2a_Moment.jpg'
         }
       }
     ]
   },
   miscAction
 ];
+
+export const projectName = "dg";
 
 const animalGif2: any = {
   id: 'animalGif2',
@@ -31,7 +33,8 @@ const animalGif2: any = {
     {
       type: 'movie',
       parameters: {
-        filename: '/assets/movie/animal2.mp4'
+        disable: false,
+        filename: '../../../assets/movie/animal2.mp4'
       }
     }
   ]
@@ -44,7 +47,7 @@ const animalGif3: any = {
     {
       type: 'movie',
       parameters: {
-        filename: '/assets/movie/animal3.mp4'
+        filename: '../../../assets/movie/animal3.mp4'
       }
     }
   ]
@@ -58,7 +61,8 @@ const dgTraining: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/dggive.mp4'
+          disable: false,
+          filename: '../../../assets/movie/dggive.mp4'
         }
       }
     ]
@@ -70,21 +74,21 @@ const dgTraining: any[] = [
       {
         type: 'picture',
         parameters: {
-          filename: '/assets/picture/dggive.jpg',
-          coordinates: [{ 'yes': ['0', '0', '1000', '1000'] }, { 'no': ['0', '0', '1000', '1000'] }],
+          filename: '../../../assets/picture/dggive.jpg',
+          coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
         },
-        children: [
-          {
-            type: 'sound',
-            parameters: {
-              filename: '/assets/sound/elzoologico.mp3'
-            }
-          },
-          {
-            type: 'control',
-            runStyle: 'simultaenous'
-          }
-        ]
+        // children: [
+        //   {
+        //     type: 'sound',
+        //     parameters: {
+        //       filename: '../../../assets/sound/elzoologico.mp3'
+        //     }
+        //   },
+        //   {
+        //     type: 'control',
+        //     runStyle: 'simultaenous'
+        //   }
+        // ]
       }
     ]
   },
@@ -95,7 +99,7 @@ const dgTraining: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/dggivefeedback.mp4'
+          filename: '../../../assets/movie/dggivefeedback.mp4'
         }
       }
     ]
@@ -107,7 +111,7 @@ const dgTraining: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/dgkeep.mp4'
+          filename: '../../../assets/movie/dgkeep.mp4'
         }
       }
     ]
@@ -119,7 +123,7 @@ const dgTraining: any[] = [
       {
         type: 'picture',
         parameters: {
-          filename: '/assets/picture/dgke.jpg',
+          filename: '../../../assets/picture/dgkeep.jpg',
           coordinates: []
         }
       }
@@ -132,7 +136,7 @@ const dgTraining: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/dgkeepfeedback.mp4'
+          filename: '../../../assets/movie/dgkeepfeedback.mp4'
         }
       }
     ]
@@ -144,7 +148,7 @@ const dgTraining: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/dgw2bintro.mp4'
+          filename: '../../../assets/movie/dgw2bintro.mp4'
         }
       }
     ]
@@ -156,7 +160,7 @@ const dgTraining: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/dgbelong.mp4'
+          filename: '../../../assets/movie/dgbelong.mp4'
         }
       }
     ]
@@ -168,7 +172,7 @@ const dgTraining: any[] = [
       {
         type: 'picture',
         parameters: {
-          filename: '/assets/picture/dgbelong.jpg',
+          filename: '../../../assets/picture/dgbelong.jpg',
           coordinates: []
         }
       }
@@ -181,7 +185,7 @@ const dgTraining: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/dg1reminder.mp4'
+          filename: '../../../assets/movie/dg1reminder.mp4'
         }
       }
     ]
@@ -196,7 +200,7 @@ const dgWhite: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/dgwhiteintro.mp4'
+          filename: '../../../assets/movie/dgwhiteintro.mp4'
         }
       }
     ]
@@ -208,7 +212,7 @@ const dgWhite: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/dgwhite1.mp4',
+          filename: '../../../assets/movie/dgwhite1.mp4',
         }
       }
     ]
@@ -220,7 +224,7 @@ const dgWhite: any[] = [
       {
         type: 'picture',
         parameters: {
-          filename: '/assets/picture/dgwhite1.jpg',
+          filename: '../../../assets/picture/dgwhite1.jpg',
           coordinates: []
         }
       }
@@ -233,7 +237,7 @@ const dgWhite: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/dgwhite2.mp4',
+          filename: '../../../assets/movie/dgwhite2.mp4',
         }
       }
     ]
@@ -245,7 +249,7 @@ const dgWhite: any[] = [
       {
         type: 'picture',
         parameters: {
-          filename: '/assets/picture/dgwhite2.jpg',
+          filename: '../../../assets/picture/dgwhite2.jpg',
           coordinates: []
         }
       }
@@ -258,7 +262,7 @@ const dgWhite: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/dgwhite3.mp4',
+          filename: '../../../assets/movie/dgwhite3.mp4',
         }
       }
     ]
@@ -270,7 +274,7 @@ const dgWhite: any[] = [
       {
         type: 'picture',
         parameters: {
-          filename: '/assets/picture/dgwhite3.jpg',
+          filename: '../../../assets/picture/dgwhite3.jpg',
           coordinates: []
         }
       }
@@ -283,7 +287,7 @@ const dgWhite: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/dgwhite4.mp4',
+          filename: '../../../assets/movie/dgwhite4.mp4',
         }
       }
     ]
@@ -295,7 +299,7 @@ const dgWhite: any[] = [
       {
         type: 'picture',
         parameters: {
-          filename: '/assets/picture/dgwhite4.jpg',
+          filename: '../../../assets/picture/dgwhite4.jpg',
           coordinates: []
         }
       }
@@ -311,7 +315,7 @@ const dgBlack: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/dgblackintro.mp4'
+          filename: '../../../assets/movie/dgblackintro.mp4'
         }
       }
     ]
@@ -323,7 +327,7 @@ const dgBlack: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/dgblack1.mp4',
+          filename: '../../../assets/movie/dgblack1.mp4',
         }
       }
     ]
@@ -335,7 +339,7 @@ const dgBlack: any[] = [
       {
         type: 'picture',
         parameters: {
-          filename: '/assets/picture/dgblack1.jpg',
+          filename: '../../../assets/picture/dgblack1.jpg',
           coordinates: []
         }
       }
@@ -348,7 +352,7 @@ const dgBlack: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/dgblack2.mp4',
+          filename: '../../../assets/movie/dgblack2.mp4',
         }
       }
     ]
@@ -360,7 +364,7 @@ const dgBlack: any[] = [
       {
         type: 'picture',
         parameters: {
-          filename: '/assets/picture/dgblack2.jpg',
+          filename: '../../../assets/picture/dgblack2.jpg',
           coordinates: []
         }
       }
@@ -373,7 +377,7 @@ const dgBlack: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/dgblack3.mp4',
+          filename: '../../../assets/movie/dgblack3.mp4',
         }
       }
     ]
@@ -385,7 +389,7 @@ const dgBlack: any[] = [
       {
         type: 'picture',
         parameters: {
-          filename: '/assets/picture/dgblack3.jpg',
+          filename: '../../../assets/picture/dgblack3.jpg',
           coordinates: []
         }
       }
@@ -398,7 +402,7 @@ const dgBlack: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/dgblack4.mp4',
+          filename: '../../../assets/movie/dgblack4.mp4',
         }
       }
     ]
@@ -410,7 +414,7 @@ const dgBlack: any[] = [
       {
         type: 'picture',
         parameters: {
-          filename: '/assets/picture/dgblack4.jpg',
+          filename: '../../../assets/picture/dgblack4.jpg',
           coordinates: []
         }
       }
@@ -426,7 +430,7 @@ const reTraining: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/regive.mp4'
+          filename: '../../../assets/movie/regive.mp4'
         }
       }
     ]
@@ -438,7 +442,7 @@ const reTraining: any[] = [
       {
         type: 'picture',
         parameters: {
-          filename: '/assets/picture/regive.jpg',
+          filename: '../../../assets/picture/regive.jpg',
           coordinates: []
         }
       }
@@ -451,7 +455,7 @@ const reTraining: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/regivefeedback.mp4'
+          filename: '../../../assets/movie/regivefeedback.mp4'
         }
       }
     ]
@@ -463,7 +467,7 @@ const reTraining: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/rekeep.mp4'
+          filename: '../../../assets/movie/rekeep.mp4'
         }
       }
     ]
@@ -475,7 +479,7 @@ const reTraining: any[] = [
       {
         type: 'picture',
         parameters: {
-          filename: '/assets/picture/rekeep..jpg',
+          filename: '../../../assets/picture/rekeep..jpg',
           coordinates: []
         }
       }
@@ -488,7 +492,7 @@ const reTraining: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/rekeepfeedback.mp4'
+          filename: '../../../assets/movie/rekeepfeedback.mp4'
         }
       }
     ]
@@ -500,7 +504,7 @@ const reTraining: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/rew2bintro.mp4'
+          filename: '../../../assets/movie/rew2bintro.mp4'
         }
       }
     ]
@@ -512,7 +516,7 @@ const reTraining: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/rebelong.mp4'
+          filename: '../../../assets/movie/rebelong.mp4'
         }
       }
     ]
@@ -524,7 +528,7 @@ const reTraining: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/picture/rebelong.jpg',
+          filename: '../../../assets/picture/rebelong.jpg',
           coordinates: []
         }
       }
@@ -537,7 +541,7 @@ const reTraining: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/re1reminder.mp4'
+          filename: '../../../assets/movie/re1reminder.mp4'
         }
       }
     ]
@@ -552,7 +556,7 @@ const reWhite: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/rewhiteintro.mp4'
+          filename: '../../../assets/movie/rewhiteintro.mp4'
         }
       }
     ]
@@ -564,7 +568,7 @@ const reWhite: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/rewhite1.mp4',
+          filename: '../../../assets/movie/rewhite1.mp4',
         }
       }
     ]
@@ -576,7 +580,7 @@ const reWhite: any[] = [
       {
         type: 'picture',
         parameters: {
-          filename: '/assets/picture/rewhite1.jpg',
+          filename: '../../../assets/picture/rewhite1.jpg',
           coordinates: []
         }
       }
@@ -589,7 +593,7 @@ const reWhite: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/rewhite2.mp4',
+          filename: '../../../assets/movie/rewhite2.mp4',
         }
       }
     ]
@@ -601,7 +605,7 @@ const reWhite: any[] = [
       {
         type: 'picture',
         parameters: {
-          filename: '/assets/picture/rewhite2.jpg',
+          filename: '../../../assets/picture/rewhite2.jpg',
           coordinates: []
         }
       }
@@ -614,7 +618,7 @@ const reWhite: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/rewhite3.mp4',
+          filename: '../../../assets/movie/rewhite3.mp4',
         }
       }
     ]
@@ -626,7 +630,7 @@ const reWhite: any[] = [
       {
         type: 'picture',
         parameters: {
-          filename: '/assets/picture/rewhite3.jpg',
+          filename: '../../../assets/picture/rewhite3.jpg',
           coordinates: []
         }
       }
@@ -639,7 +643,7 @@ const reWhite: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/rewhite4.mp4',
+          filename: '../../../assets/movie/rewhite4.mp4',
         }
       }
     ]
@@ -651,7 +655,7 @@ const reWhite: any[] = [
       {
         type: 'picture',
         parameters: {
-          filename: '/assets/picture/rewhite4.jpg',
+          filename: '../../../assets/picture/rewhite4.jpg',
           coordinates: []
         }
       }
@@ -667,7 +671,7 @@ const reBlack: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/reblackintro.mp4'
+          filename: '../../../assets/movie/reblackintro.mp4'
         }
       }
     ]
@@ -679,7 +683,7 @@ const reBlack: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/reblack1.mp4',
+          filename: '../../../assets/movie/reblack1.mp4',
         }
       }
     ]
@@ -691,7 +695,7 @@ const reBlack: any[] = [
       {
         type: 'picture',
         parameters: {
-          filename: '/assets/picture/reblack1.jpg',
+          filename: '../../../assets/picture/reblack1.jpg',
           coordinates: []
         }
       }
@@ -704,7 +708,7 @@ const reBlack: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/reblack2.mp4',
+          filename: '../../../assets/movie/reblack2.mp4',
         }
       }
     ]
@@ -716,7 +720,7 @@ const reBlack: any[] = [
       {
         type: 'picture',
         parameters: {
-          filename: '/assets/picture/reblack2.jpg',
+          filename: '../../../assets/picture/reblack2.jpg',
           coordinates: []
         }
       }
@@ -729,7 +733,7 @@ const reBlack: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/reblack3.mp4',
+          filename: '../../../assets/movie/reblack3.mp4',
         }
       }
     ]
@@ -741,7 +745,7 @@ const reBlack: any[] = [
       {
         type: 'picture',
         parameters: {
-          filename: '/assets/picture/reblack3.jpg',
+          filename: '../../../assets/picture/reblack3.jpg',
           coordinates: []
         }
       }
@@ -754,7 +758,7 @@ const reBlack: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/reblack4.mp4',
+          filename: '../../../assets/movie/reblack4.mp4',
         }
       }
     ]
@@ -766,7 +770,7 @@ const reBlack: any[] = [
       {
         type: 'picture',
         parameters: {
-          filename: '/assets/picture/reblack4.jpg',
+          filename: '../../../assets/picture/reblack4.jpg',
           coordinates: []
         }
       }
@@ -782,7 +786,7 @@ const statusTask: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/status1intro.mp4'
+          filename: '../../../assets/movie/status1intro.mp4'
         }
       },
     ]
@@ -796,7 +800,7 @@ const statusTask: any[] = [
           {
             type: 'movie',
             parameters: {
-              filename: '/assets/movie/status1left.mp4'
+              filename: '../../../assets/movie/status1left.mp4'
             }
           }
         ]
@@ -808,7 +812,7 @@ const statusTask: any[] = [
           {
             type: 'picture',
             parameters: {
-              filename: '/assets/picture/status1left.jpg',
+              filename: '../../../assets/picture/status1left.jpg',
               coordinates: [],
             }
           }
@@ -821,7 +825,7 @@ const statusTask: any[] = [
           {
             type: 'movie',
             parameters: {
-              filename: '/assets/movie/status1right.mp4'
+              filename: '../../../assets/movie/status1right.mp4'
             }
           }
         ]
@@ -833,7 +837,7 @@ const statusTask: any[] = [
           {
             type: 'picture',
             parameters: {
-              filename: '/assets/picture/status1right.jpg',
+              filename: '../../../assets/picture/status1right.jpg',
               coordinates: [],
             }
           }
@@ -848,7 +852,7 @@ const statusTask: any[] = [
           {
             type: 'movie',
             parameters: {
-              filename: '/assets/movie/status2left.mp4'
+              filename: '../../../assets/movie/status2left.mp4'
             }
           }
         ]
@@ -860,7 +864,7 @@ const statusTask: any[] = [
           {
             type: 'picture',
             parameters: {
-              filename: '/assets/picture/status2left.jpg',
+              filename: '../../../assets/picture/status2left.jpg',
               coordinates: [],
             }
           }
@@ -873,7 +877,7 @@ const statusTask: any[] = [
           {
             type: 'movie',
             parameters: {
-              filename: '/assets/movie/status2right.mp4'
+              filename: '../../../assets/movie/status2right.mp4'
             }
           }
         ]
@@ -885,7 +889,7 @@ const statusTask: any[] = [
           {
             type: 'picture',
             parameters: {
-              filename: '/assets/picture/status2right.jpg',
+              filename: '../../../assets/picture/status2right.jpg',
               coordinates: [],
             }
           }
@@ -904,7 +908,7 @@ const statusTask: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/greatjob3.mp4',
+          filename: '../../../assets/movie/greatjob3.mp4',
         }
       }
     ]
@@ -919,7 +923,7 @@ const attitudesTask: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/attitudesintro.mp4',
+          filename: '../../../assets/movie/attitudesintro.mp4',
         }
       }
     ]
@@ -931,7 +935,7 @@ const attitudesTask: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/attitudestraining.mp4',
+          filename: '../../../assets/movie/attitudestraining.mp4',
         }
       }
     ]
@@ -945,7 +949,7 @@ const attitudesTask: any[] = [
           {
             type: 'movie',
             parameters: {
-              filename: '/assets/movie/ftswhite1.mp4',
+              filename: '../../../assets/movie/ftswhite1.mp4',
             }
           }
         ]
@@ -957,7 +961,7 @@ const attitudesTask: any[] = [
           {
             type: 'picture',
             parameters: {
-              filename: '/assets/picture/ftswhite1.jpg',
+              filename: '../../../assets/picture/ftswhite1.jpg',
               coordinates: []
             }
           }
@@ -972,7 +976,7 @@ const attitudesTask: any[] = [
           {
             type: 'movie',
             parameters: {
-              filename: '/assets/movie/ftswhite2.mp4',
+              filename: '../../../assets/movie/ftswhite2.mp4',
             }
           }
         ]
@@ -984,7 +988,7 @@ const attitudesTask: any[] = [
           {
             type: 'picture',
             parameters: {
-              filename: '/assets/picture/ftsblack2.jpg',
+              filename: '../../../assets/picture/ftsblack2.jpg',
               coordinates: []
             }
           }
@@ -999,7 +1003,7 @@ const attitudesTask: any[] = [
           {
             type: 'movie',
             parameters: {
-              filename: '/assets/movie/ftsblack1.mp4',
+              filename: '../../../assets/movie/ftsblack1.mp4',
             }
           }
         ]
@@ -1011,7 +1015,7 @@ const attitudesTask: any[] = [
           {
             type: 'picture',
             parameters: {
-              filename: '/assets/picture/ftsblack1.jpg',
+              filename: '../../../assets/picture/ftsblack1.jpg',
               coordinates: []
             }
           }
@@ -1026,7 +1030,7 @@ const attitudesTask: any[] = [
           {
             type: 'movie',
             parameters: {
-              filename: '/assets/movie/ftsblack2.mp4',
+              filename: '../../../assets/movie/ftsblack2.mp4',
             }
           }
         ]
@@ -1038,7 +1042,7 @@ const attitudesTask: any[] = [
           {
             type: 'picture',
             parameters: {
-              filename: '/assets/picture/ftsblack2.jpg',
+              filename: '../../../assets/picture/ftsblack2.jpg',
               coordinates: []
             }
           }
@@ -1057,7 +1061,7 @@ const attitudesTask: any[] = [
       {
         type: 'movie',
         parameters: {
-          filename: '/assets/movie/done.mp4',
+          filename: '../../../assets/movie/done.mp4',
         }
       }
     ]

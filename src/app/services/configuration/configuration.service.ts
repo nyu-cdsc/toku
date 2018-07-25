@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Action, Control } from './configuration';
-import { exampleConfig } from './default';
+import { exampleConfig, whiteFirstCondition, blackFirst, projectName } from './default';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,17 @@ export class ConfigurationService {
 
   genFromExample() {
     return this.genRunList(exampleConfig);
+  }
+
+  getProjectName() {
+    return projectName;
+  }
+
+  genFromRandom() {
+    const list = [whiteFirstCondition, blackFirst];
+    this.shuffle(list);
+
+    return this.genRunList(list[0]);
   }
 
   // here, we are only concerned with building the run list. not with traversing what we've created, but building it
