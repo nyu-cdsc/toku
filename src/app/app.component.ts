@@ -19,13 +19,15 @@ import { ResponseService } from './services/response/response.service';
 export class AppComponent implements OnInit {
   title = 'new';
   config: any[];
-  currentConfigIndex = -1;
   @ViewChild(StimloaderDirective) stimDirective: StimloaderDirective;
+  iterator: any;
 
   // todo rename to configurator?
   constructor(private componentFactoryResolver: ComponentFactoryResolver, private configuration: ConfigurationService, responseService: ResponseService) {
     this.config = configuration.genFromRandom(); // todo isn't there a shorthand for this?
     responseService.getDBConnection(this.configuration.getProjectName());
+    // todo setting config above now unnecessary
+    this.iterator = this.iterate(this.config);
   }
 
   ngOnInit() {
@@ -34,7 +36,6 @@ export class AppComponent implements OnInit {
   }
 
   runThrough() {
-    console.log('runthrough called, current index is ', this.currentConfigIndex);
     // this.config.map(action => {
     //   action.stimuli.map(s => {
     //     buildStimuli(s, this.stimDirective.viewContainerRef, this.componentFactoryResolver);
@@ -42,10 +43,17 @@ export class AppComponent implements OnInit {
     // });
 
     // todo need proper step-through, keeping track of where in parent, and all levels below..
-    const s = this.config[0][++this.currentConfigIndex].stimuli[0];
+    // const s = this.config[0][++this.currentConfigIndex].stimuli[0];
+
+    this.nextItem();
     // const s = this.config[0][1].stimuli[0];
+  }
+
+  nextItem() {
+    // todo check for done=true
+    const s = this.iterator.next().value;
     console.log(s);
-    this.buildStimuli(s, this.stimDirective.viewContainerRef, this.componentFactoryResolver);
+    this.buildStimuli(s.stimuli[0], this.stimDirective.viewContainerRef, this.componentFactoryResolver);
   }
 
   testCall() {
@@ -55,14 +63,42 @@ export class AppComponent implements OnInit {
     this.buildStimuli(s, this.stimDirective.viewContainerRef, this.componentFactoryResolver);
   }
 
+  // todo rewrite in like ten lines with a generator
   iterate(data) {
+    function iterator(data) {
+      const iterStack = [];
+      iterStack.push(data[Symbol.iterator]());
 
+      function getCurentIter() {
+        return iterStack[iterStack.length - 1];
+      }
+      function next() {
+        const res = getCurentIter().next();
+        if (res.done) {
+          if (iterStack.length > 1) {
+            iterStack.pop();
+            return next();
+          }
+        }
+        if (Array.isArray(res.value)) {
+          iterStack.push(res.value[Symbol.iterator]());
+          return next();
+        }
+
+        return res;
+      }
+
+      return { next: next.bind(this) };
+    }
+
+    return iterator(data);
   }
 
   // this.currentConfigIndex = (this.currentConfigIndex + 1); // DO length check
   // let action: Action = this.config[this.currentConfigIndex];
 
   // TODO https://blog.angularindepth.com/here-is-how-to-get-viewcontainerref-before-viewchild-query-is-evaluated-f649e51315fb
+  // TODO and iterator moved to config service, and above to render service?
 
   buildStimuli(stimuli: Stimuli, view: ViewContainerRef, resolver: ComponentFactoryResolver) {
     const componentFactory = resolver.resolveComponentFactory(stimuliComponentResolver(stimuli));
@@ -76,7 +112,8 @@ export class AppComponent implements OnInit {
 
     inst.finishedEvent.subscribe(data => {
       // this.iterate(data);
-      this.runThrough();
+      // this.runThrough();
+      this.nextItem();
     })
     // (<Stimuli>componentRef.instance).parameters = stimuli.parameters;
   }
