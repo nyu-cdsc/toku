@@ -1,0 +1,28 @@
+- get finishedEvent wired between parents and children
+- get the incrementer function working. later break into its own service
+
+
+
+
+
+
+- figure out modifiedProperties or propertiesDiff or whatever it is that gets passed back
+- make function to deal with it - actual diff function? replace that _single_ or any objects sent back
+  - so it's very simple and consistent behavior - any items marked to be replaced, are the ones that are replaced
+    - is this implicit, or explicit? if a type only has a single return type, then it should be clear what it is
+    - as there should only be one parameter that has the response values
+
+    - should those become a type that is defined right there in params? or is this again already clear
+    - FOR NOW, just replace that single object of each type that will later be marked as the response type
+    - or the values-carrying type. each stimuli has one of these? it's meeting an interface or just a role
+    - at the end of it, could just have a marker of 'responder' 
+
+- break out coordinate into its own type. first in the same file, then move it elsewhere
+
+- get the utils functions fixed and in a service
+- finish shuffling things so there are no cyclic dependencies
+
+
+
+
+- figure out communication/store between siblings, deprecate children?
