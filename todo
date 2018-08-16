@@ -26,3 +26,29 @@
 
 
 - figure out communication/store between siblings, deprecate children?
+
+DEPLOY:
+- direct api to GKE/EKS to spin up nodes -- and create buckets
+- direct api to send over kube pods
+- pull down key for auth
+
+PULL:
+- connect over some api call rather than ssh, use key to get to it 
+- .. figure it out
+
+DESTROY:
+- first PULL all data down to local archive
+- reverse of DEPLOY
+
+
+
+other:
+  Action -> Frame (represents step in study + positioning of stimuli)
+  
+  maybe move all structs out of config as they aren't actually instantiated there
+
+  get builder service - attaches to view and instantiates components
+
+  config run through control functions using observer.pipe()
+
+

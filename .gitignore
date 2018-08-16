@@ -33,3 +33,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# assets (comment for release repos)
+src/assets/movie/
+src/assets/picture/
+src/assets/sound/
+
