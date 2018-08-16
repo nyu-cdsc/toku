@@ -99,6 +99,10 @@ export class AppComponent implements OnInit {
 
   // TODO https://blog.angularindepth.com/here-is-how-to-get-viewcontainerref-before-viewchild-query-is-evaluated-f649e51315fb
   // TODO and iterator moved to config service, and above to render service?
+  // iterator should be own service? or config works fine.. but idea is it only iterates over array/map produced by config
+  // and render is totally separate, but could call iterator? or some controller calls both?
+  // don't overdo it
+  // iterator and renderer can be combined in runner service, could implement both or just include both
 
   buildStimuli(stimuli: Stimuli, view: ViewContainerRef, resolver: ComponentFactoryResolver) {
     const componentFactory = resolver.resolveComponentFactory(stimuliComponentResolver(stimuli));

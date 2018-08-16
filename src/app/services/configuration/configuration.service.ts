@@ -44,35 +44,34 @@ export class ConfigurationService {
 
   }
 
-  // this helper takes a function, and walks down the list recursively for it
-  walkThrough(list, func) {
-    const res = list.map(item => {
-      if (item.items) {
-        const innerRes = this.walkThrough(item.items, func);
+  // I only need to getControl() at the time I descend another level - it doesn't need to all be preprocessed
+  // todo no - it should be. everything should be processed before it ever makes it out of this service
+  // if I want it to all be live beforehand, then I want an unmarshal function. otherwise, not seeing the reason for this method
+
+
+  getControl(list): Control {
+    const res = list.filter(item => {
+      if (item.type === 'control') {
+        return item; // Object.assign(new Control(), item);
       }
+    })[0]; // todo validation for +1 Control elements, or just handle
+    const cont = Object.assign(new Control(), res);
 
-      if (Array.isArray(item)) {
-        const innerRes = this.walkThrough(item, func); // TODO ensure no clashing with the above! shouldn't happen though
-        // console.log('ARRAY IS', item);
-      }
-
-      // how to combine innerRes with res?
-      // a lot of the complexity here is in trying to return a new list instead of just modifying the original and then
-      // checking on it. but some of these functions won't want to change it - and will just be extracting information
-      // from it, so I need the facility to get all that information from all levels back
-
-      return func(item);
-    });
-
-    // what if I don't want to loop through it this way at all, but to step through it a little at a time?
-    // I only need to getControl() at the time I descend another level - it doesn't need to all be preprocessed
-    // todo no - it should be. everything should be processed before it ever makes it out of this service
-
-    // if I want it to all be live beforehand, then I want an unmarshal function. otherwise, not seeing the reason for this method
-    console.log(res);
-
-    return res;
+    return cont || new Control();
   }
+
+
+  // genRunList(list) {
+  //   // set trial randomly
+  //   const length = list.length;
+  //   let result = [];
+  //   // if we are randomizing sections
+  //   if (list.randomize) {
+  //     // const blockCopy = JSON.parse(JSON.stringify(this.block));
+  //     // check for primary/ordered item(s)
+
+  // TODO probably want to zip down a list of small filter and map functions, comparator function, shuffle function --
+  // observer.pipe() or promise.All()
 
   // go with this strategy first. one major pass at a time
   deepShuffle(list) {
@@ -96,35 +95,6 @@ export class ConfigurationService {
 
     return list;
   }
-
-  getControl(list): Control {
-    const res = list.filter(item => {
-      if (item.type === 'control') {
-        return item; // Object.assign(new Control(), item);
-      }
-    })[0]; // todo validation for +1 Control elements, or just handle
-    const cont = Object.assign(new Control(), res);
-
-    return cont || new Control();
-  }
-
-
-
-  // genRunList(list) {
-  //   // set trial randomly
-  //   const length = list.length;
-  //   let result = [];
-  //   // if we are randomizing sections
-  //   if (list.randomize) {
-  //     // const blockCopy = JSON.parse(JSON.stringify(this.block));
-  //     // check for primary/ordered item(s)
-
-  // TODO probably want to zip down a list of small filter and map functions, comparator function, shuffle function --
-  // just do it that way
-  // then easy to add on more features for parsing this list
-  // and at some point read the formalized material on parsing..
-
-  // could put all the functions into a list and call them with reduce() against the main list
 
   // from https://www.w3resource.com/javascript-exercises/javascript-array-exercise-17.php
   // Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
