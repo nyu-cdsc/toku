@@ -1,9 +1,9 @@
 import { inject, TestBed } from '@angular/core/testing';
 
 import { Action, Control } from './configuration';
-import { ConfigurationService } from './configuration.service';
+import { RunnerService } from './runner.service';
 
-describe('ConfigurationService', () => {
+describe('RunnerService', () => {
   // NOTE -- new() will be called on all these automatically once it's a yaml config file
   // for now should be done explicitly
   const firstAction: Action = new Action();

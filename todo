@@ -1,8 +1,7 @@
 - get finishedEvent wired between parents and children
 - get the incrementer function working. later break into its own service
 
-
-
+  -- also - move the main default-config aggregations into single object, so they can be sorted/onePicked, and not all imported
 
 
 
@@ -15,14 +14,10 @@
     - should those become a type that is defined right there in params? or is this again already clear
     - FOR NOW, just replace that single object of each type that will later be marked as the response type
     - or the values-carrying type. each stimuli has one of these? it's meeting an interface or just a role
-    - at the end of it, could just have a marker of 'responder' 
+    - at the end of it, could just have a marker of 'responder'
 
 - break out coordinate into its own type. first in the same file, then move it elsewhere
-
 - get the utils functions fixed and in a service
-- finish shuffling things so there are no cyclic dependencies
-
-
 
 
 - figure out communication/store between siblings, deprecate children?
@@ -33,7 +28,7 @@ DEPLOY:
 - pull down key for auth
 
 PULL:
-- connect over some api call rather than ssh, use key to get to it 
+- connect over some api call rather than ssh, use key to get to it
 - .. figure it out
 
 DESTROY:
@@ -44,11 +39,51 @@ DESTROY:
 
 other:
   Action -> Frame (represents step in study + positioning of stimuli)
-  
+    all stimuli in Frame, no other abstractions
+
   maybe move all structs out of config as they aren't actually instantiated there
 
   get builder service - attaches to view and instantiates components
 
-  config run through control functions using observer.pipe()
+  config run through control functions using observer.pipe(), list then available for runner/builder
+    perhaps config should allow iteration in itself, and Builder is the only thing that matters
+    only split them up when it makes a difference
+
+RESPONSE{} object sent in params{} to each stimuli?
+and that response could hold within it coordinates or whatever that specific type expects
+  as these things - buttons, coordinates, etc are ONLY sent for a response, this would work
 
 
+NO UTILS files, just services!
+
+flow is as events --
+  stimuli -> aggregation container/Frame -> appComponent -> <- service (in reverse)
+
+
+responses are separate from completion. the stimuli will know when it is done and send that event when it is
+  parent can decide if it needs to wait for all to be done, if there are two -- or if only the first complete is desired
+    in this case, ENSURE there is no race condition where a response can be sent during frame teardown!
+  also no responses from double clicks
+    sure sounds like a great scenario for an observable..
+
+    could also make it as simple as passing the config to the receiver, so if only one value should be received for that frame,
+    it drops all else..
+      and a new subscription would be made each frame, right?
+
+
+
+services and stimuli might not be the right file structure
+  stimuli should have its own service, and types
+
+so instead of services, maybe just have it be flatter
+
+configurator/
+response/
+runner/
+stimuli/
+stimuli/stimuli.service.ts (resolve and validate)
+
+
+TODO - move all of this into specific sections rather than global
+
+configuration -> yaml + processing (transparent into Runner generator)

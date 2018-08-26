@@ -40,4 +40,11 @@ export class MovieComponent implements Stimuli, OnInit {
     // this.setModifiedParameters(value);
     // this.responseService.setResponse(response);
   }
+
+  // TODO enable the ability to layer invisible buttons/image/div/canvas with coordinates for response over the movie container box, scale properly
+
+  // TODO also enable pause points in the video where the above can then be utilized, so that a single video can just be the entire media, with a list
+  // of response{} timecode points/responses
+
+
 }

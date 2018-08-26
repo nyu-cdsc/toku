@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewContainerRef, Compo
 import { Stimuli, Parameters } from '../stimuli';
 import { ResponseService } from '../../services/response/response.service';
 import { Response } from '../../services/response/response';
-import { buildStimuli, stimuliComponentResolver } from '../utils';
 import { StimloaderDirective } from '../../stimloader.directive';
 
 @Component({
@@ -121,13 +120,6 @@ export class PictureComponent implements Stimuli, OnInit {
     // this.finishedEvent.emit(this.modifiedParameters);
   }
 
-  buildStimuli(stimuli: Stimuli, view: ViewContainerRef, resolver: ComponentFactoryResolver) {
-    const componentFactory = resolver.resolveComponentFactory(stimuliComponentResolver(stimuli));
-    view.clear();
-
-    const componentRef = view.createComponent(componentFactory);
-    (<Stimuli>componentRef.instance).parameters = stimuli.parameters;
-  }
 }
 
 // TODO if I make this a class, I can attach a function to its prototype to manage things like disabling coordinates inside of it!

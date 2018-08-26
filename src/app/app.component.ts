@@ -3,7 +3,7 @@ import { Component, ComponentFactoryResolver, ViewChild, OnInit, ViewContainerRe
 import { ConfigurationService } from './services/configuration/configuration.service';
 // import { Action } from './services/configuration/configuration';
 // import { StimuliItem } from './stimuli-item';
-import { buildStimuli, stimuliComponentResolver } from './stimuli/utils';
+import { buildStimuli, stimuliComponentResolver } from './stimuli/stimuli.service';
 import { StimloaderDirective } from './stimloader.directive';
 import { Parameters, Stimuli } from './stimuli/stimuli';
 import { MovieComponent } from './stimuli/movie/movie.component';
@@ -49,6 +49,7 @@ export class AppComponent implements OnInit {
     // const s = this.config[0][1].stimuli[0];
   }
 
+  // TODO rename to next() or requestNextFrame(), etc
   nextItem() {
     // todo check for done=true
     const s = this.iterator.next().value;
@@ -63,47 +64,6 @@ export class AppComponent implements OnInit {
     this.buildStimuli(s, this.stimDirective.viewContainerRef, this.componentFactoryResolver);
   }
 
-  // todo rewrite in like ten lines with a generator
-  iterate(data) {
-    function iterator(data) {
-      const iterStack = [];
-      iterStack.push(data[Symbol.iterator]());
-
-      function getCurentIter() {
-        return iterStack[iterStack.length - 1];
-      }
-      function next() {
-        const res = getCurentIter().next();
-        if (res.done) {
-          if (iterStack.length > 1) {
-            iterStack.pop();
-            return next();
-          }
-        }
-        if (Array.isArray(res.value)) {
-          iterStack.push(res.value[Symbol.iterator]());
-          return next();
-        }
-
-        return res;
-      }
-
-      return { next: next.bind(this) };
-    }
-
-    return iterator(data);
-  }
-
-  // this.currentConfigIndex = (this.currentConfigIndex + 1); // DO length check
-  // let action: Action = this.config[this.currentConfigIndex];
-
-  // TODO https://blog.angularindepth.com/here-is-how-to-get-viewcontainerref-before-viewchild-query-is-evaluated-f649e51315fb
-  // TODO and iterator moved to config service, and above to render service?
-  // iterator should be own service? or config works fine.. but idea is it only iterates over array/map produced by config
-  // and render is totally separate, but could call iterator? or some controller calls both?
-  // don't overdo it
-  // iterator and renderer can be combined in runner service, could implement both or just include both
-
   buildStimuli(stimuli: Stimuli, view: ViewContainerRef, resolver: ComponentFactoryResolver) {
     const componentFactory = resolver.resolveComponentFactory(stimuliComponentResolver(stimuli));
     view.clear();
@@ -115,10 +75,9 @@ export class AppComponent implements OnInit {
     console.log(inst);
 
     inst.finishedEvent.subscribe(data => {
-      // this.iterate(data);
-      // this.runThrough();
       this.nextItem();
     })
     // (<Stimuli>componentRef.instance).parameters = stimuli.parameters;
   }
+
 }
