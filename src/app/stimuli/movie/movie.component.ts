@@ -29,16 +29,6 @@ export class MovieComponent implements Stimuli, OnInit {
     if (!this.responseEnabled) {
       return null;
     }
-    // const response = new Response();
-    // response.data.participant = this.participant;
-    // response.data.action = this.action.id; // TODO how to get?
-    // response.data.response.push(value + 1); // todo test this logic
-    // this.response = response;
-
-    // TODO make spec/test
-    // this.consumedCoords[value] = true;
-    // this.setModifiedParameters(value);
-    // this.responseService.setResponse(response);
   }
 
   // TODO enable the ability to layer invisible buttons/image/div/canvas with coordinates for response over the movie container box, scale properly

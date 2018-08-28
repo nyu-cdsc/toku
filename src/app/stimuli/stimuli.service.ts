@@ -9,7 +9,7 @@ import { MovieComponent } from './movie/movie.component';
 export class StimuliService {
   constructor() { }
 
-  stimuliComponentResolver(stimuli: any) {
+  componentResolver(stimuli: any) {
     console.log("INPUT STIM IS", stimuli);
     let res: Type<any>;
 
@@ -37,5 +37,9 @@ export class StimuliService {
     // OR I could make it super easy, and ONLY pass down parameters with the modified object? but then that wouldn't
     // actually meet the interface for the parameters, as it would only have some of the values..
     // so it could jsut be an object? is there a type solution for this?
+  }
+
+  validate() {
+
   }
 }

@@ -1,8 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewContainerRef, ComponentFactoryResolver, ViewChild } from '@angular/core';
 import { Stimuli, Parameters } from '../stimuli';
-import { ResponseService } from '../../services/response/response.service';
-import { Response } from '../../services/response/response';
-import { StimloaderDirective } from '../../stimloader.directive';
 
 @Component({
   selector: 'app-picture',
@@ -12,19 +9,17 @@ import { StimloaderDirective } from '../../stimloader.directive';
 export class PictureComponent implements Stimuli, OnInit {
   @Input() parameters: any;
   @Output() finishedEvent = new EventEmitter<any>();
-  @ViewChild(StimloaderDirective) stimDirective: StimloaderDirective;
+  // @ViewChild(StimloaderDirective) stimDirective: StimloaderDirective;
 
   // TODO property here to receive finishedEvent from child(ren)
 
   responseEnabled = true;
   // response: Response;
-  responseService: ResponseService;
+  // todo send response to parent, this is a 'dumb' component in that sense
   // consumedCoords = null;
   modifiedParameters: {};
 
-  constructor(responseService: ResponseService) {
-    this.responseService = responseService;
-  }
+  constructor() { }
   ngOnInit() { }
 
   setResponseEnabled() {
@@ -79,24 +74,24 @@ export class PictureComponent implements Stimuli, OnInit {
     return null;
   }
 
-  // todo actionable stimuli and display stimuli?
-
   // two functions - one at this level and one above
   // but at the end should be something that fits into response.data.response - so just send that
   sendResponse(value) {
-    if (!this.responseEnabled) {
-      return null;
-    }
-    const response = new Response();
-    // response.data.participant = this.participant;
-    // response.data.action = this.action.id; // TODO how to get?
-    response.data.response.push(value + 1); // todo test this logic
-    // this.response = response;
+    // TODO -- response service not created here, but in parent. just send back
+    // Response val as in the one inside Params and choice made (perhaps change Response to Choice to make it clear the level it's from)
+    // if (!this.responseEnabled) {
+    //   return null;
+    // }
+    // const response = new Response();
+    // // response.data.participant = this.participant;
+    // // response.data.action = this.action.id; // TODO how to get?
+    // response.data.response.push(value + 1); // todo test this logic
+    // // this.response = response;
 
-    // TODO make spec/test
-    // this.consumedCoords[value] = true;
-    this.setModifiedParameters(value);
-    this.responseService.setResponse(response);
+    // // TODO make spec/test
+    // // this.consumedCoords[value] = true;
+    // this.setModifiedParameters(value);
+    // this.responseService.setResponse(response);
     this.done();
   }
 
@@ -108,11 +103,11 @@ export class PictureComponent implements Stimuli, OnInit {
     // this.modifiedParameters.coordinates[idx].disabled = true;
   }
 
-  // TODO
-  // send back optional Parameters to the parent, which can then be sent through a ControlService filter function
-  // and passed on to the following members when the Control for the group has a property marked 'sequence'
-  //
-  // that'll do for now
+  validate() {
+
+  }
+
+
   // can send back object that packages both modified values and the response
   done() {
     console.log('calling DONE!');
@@ -126,11 +121,15 @@ export class PictureComponent implements Stimuli, OnInit {
 // and then I'd be removing that responsibility from images - along with ALL coordinate responsibilities!
 // export class Coordinate {
 //   coordinate: string;
+//
+//   validate() {}
 // }
 
 export class PictureParameters implements Parameters {
   disable: boolean; // for now..
   // coordinates: Coordinates;
+
+  validate() { }
 }
 
 // could literally return the modifiedParameters object along with its type definition..

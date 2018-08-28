@@ -95,7 +95,8 @@ export class RunnerService {
     return list;
   }
 
-  // TODO this becomes the generator that runs it all
+  // TODO make this the generator that runs it all
+  // two-way; receives data for conditional decisions
   iterate(data) {
     function iterator(data) {
       const iterStack = [];
