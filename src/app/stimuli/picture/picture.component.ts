@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewContainerRef, ComponentFactoryResolver, ViewChild } from '@angular/core';
-import { Stimuli, Parameters } from '../stimuli';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Stimuli, Parameters, SimpleResponse } from '../stimuli';
 
 @Component({
   selector: 'app-picture',
@@ -8,25 +8,15 @@ import { Stimuli, Parameters } from '../stimuli';
 })
 export class PictureComponent implements Stimuli, OnInit {
   @Input() parameters: any;
-  @Output() finishedEvent = new EventEmitter<any>();
-  // @ViewChild(StimloaderDirective) stimDirective: StimloaderDirective;
+  @Output() doneEvent = new EventEmitter<any>();
+  @Output() responseEvent = new EventEmitter<any>();
 
-  // TODO property here to receive finishedEvent from child(ren)
-
-  responseEnabled = true;
-  // response: Response;
-  // todo send response to parent, this is a 'dumb' component in that sense
-  // consumedCoords = null;
-  modifiedParameters: {};
+  responseEnabled = false; // todo let the parent decide what to do with responses -- this is just to prevent early responses
 
   constructor() { }
   ngOnInit() { }
 
   setResponseEnabled() {
-    if (this.parameters.children) {
-
-    }
-
     if (this.parameters.delay) { }
   }
 
@@ -64,60 +54,29 @@ export class PictureComponent implements Stimuli, OnInit {
     return res;
   }
 
-  blockedCoordinates() {
-    if (this.parameters.coordinates) {
-      return this.parameters.coordinates.filter(value => {
-        return value.disabled; // send back only the disabled coordinate areas
-      });
-    }
-
-    return null;
-  }
-
-  // two functions - one at this level and one above
-  // but at the end should be something that fits into response.data.response - so just send that
-  sendResponse(value) {
-    // TODO -- response service not created here, but in parent. just send back
+  sendSimpleResponse(value) {
     // Response val as in the one inside Params and choice made (perhaps change Response to Choice to make it clear the level it's from)
-    // if (!this.responseEnabled) {
-    //   return null;
-    // }
-    // const response = new Response();
-    // // response.data.participant = this.participant;
-    // // response.data.action = this.action.id; // TODO how to get?
-    // response.data.response.push(value + 1); // todo test this logic
-    // // this.response = response;
+    if (!this.responseEnabled) {
+      return null;
+    }
+    const response: SimpleResponse = { value: value + 1 };
+    // todo change this to send a modified version of the Response object that'll be inside the Params sent to us
 
-    // // TODO make spec/test
-    // // this.consumedCoords[value] = true;
-    // this.setModifiedParameters(value);
-    // this.responseService.setResponse(response);
     this.done();
-  }
-
-  // TODO make coordinates a Map()!
-  setModifiedParameters(value) {
-    this.modifiedParameters = { coordinates: this.parameters.coordinates };
-
-    // const idx = this.modifiedParameters.coordinates.indexOf(value);
-    // this.modifiedParameters.coordinates[idx].disabled = true;
   }
 
   validate() {
 
   }
 
-
-  // can send back object that packages both modified values and the response
   done() {
-    console.log('calling DONE!');
-    this.finishedEvent.emit(null);
-    // this.finishedEvent.emit(this.modifiedParameters);
+    this.doneEvent.emit(null);
   }
 
 }
 
 // TODO if I make this a class, I can attach a function to its prototype to manage things like disabling coordinates inside of it!
+// TODO make coordinates a Map()!
 // and then I'd be removing that responsibility from images - along with ALL coordinate responsibilities!
 // export class Coordinate {
 //   coordinate: string;

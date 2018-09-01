@@ -25,6 +25,7 @@ export class Control {
   pickOne?: boolean;
   shuffle?: string;
   repeat?: number; // applies to the entire group -- could make it so it optionally accepts a list of IDs to repeat
+  runStyle?: string; // 'simultaneous', 'sequence', 'default'
 
   constructor() {
     this.pickOne = false;

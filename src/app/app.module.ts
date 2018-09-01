@@ -8,10 +8,9 @@ import { ConditionalComponent } from './stimuli/conditional/conditional.componen
 import { PictureComponent } from './stimuli/picture/picture.component';
 import { ButtonComponent } from './stimuli/button/button.component';
 
-import { ConfigurationService } from './configuration/configuration.service';
+import { RunnerService } from './runner/runner.service';
 import { StimuliService } from './stimuli/stimuli.service';
 import { ResponseService } from './response/response.service';
-import { RunnerService } from './runner/runner.service';
 import { StimloaderDirective } from './stimloader.directive';
 
 @NgModule({
@@ -34,7 +33,7 @@ import { StimloaderDirective } from './stimloader.directive';
   imports: [
     BrowserModule
   ],
-  providers: [ConfigurationService, ResponseService, RunnerService, StimuliService],
+  providers: [ResponseService, RunnerService, StimuliService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

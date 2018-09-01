@@ -17,6 +17,7 @@ export interface Parameters {
   // file?: string[]; // is optional possible in an interface?
 }
 
-// TODO response{} object sent in params{} to each stimuli?
-// and that response could hold within it coordinates or whatever that specific type expects
-//   as these things - buttons, coordinates, etc are ONLY sent for a response, this would work
+export interface SimpleResponse {
+  value: any;
+  // what else should go here?
+}

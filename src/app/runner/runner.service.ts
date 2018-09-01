@@ -7,27 +7,17 @@ export class RunnerService {
   list = [];
 
   constructor() {
-    // todo set this.list here, generator and rest of functions will operate on it
-    // parse yaml, choose from random (funcs for each)
-
+    // todo parse yaml, choose from random (funcs for each)
     // todo to make testing easier, optionally accept list[] here in param
 
+    const list = [whiteFirstCondition, blackFirst];
+    this.shuffle(list);
+    this.list = list[0]; //todo fix
   }
 
-
-  genFromExample() {
-    return this.genRunList(exampleConfig);
-  }
 
   getProjectName() {
     return projectName;
-  }
-
-  genFromRandom() {
-    const list = [whiteFirstCondition, blackFirst];
-    this.shuffle(list);
-
-    return this.genRunList(list[0]);
   }
 
   // todo -- stimuliService has validation and resolution. instantiation takes place inside parent component that calls this (it calls stimservice for resolution and
@@ -95,35 +85,17 @@ export class RunnerService {
     return list;
   }
 
-  // TODO make this the generator that runs it all
   // two-way; receives data for conditional decisions
-  iterate(data) {
-    function iterator(data) {
-      const iterStack = [];
-      iterStack.push(data[Symbol.iterator]());
-
-      function getCurentIter() {
-        return iterStack[iterStack.length - 1];
+  * cycle(runList) {
+    let input;
+    for (let item of runList) {
+      if (Array.isArray(item)) {
+        input = yield* this.cycle(item);
       }
-      function next() {
-        const res = getCurentIter().next();
-        if (res.done) {
-          if (iterStack.length > 1) {
-            iterStack.pop();
-            return next();
-          }
-        }
-        if (Array.isArray(res.value)) {
-          iterStack.push(res.value[Symbol.iterator]());
-          return next();
-        }
-
-        return res;
-      }
-
-      return { next: next.bind(this) };
+      input = yield processItem(item, input);
     }
 
-    return iterator(data);
+    // todo use proper response/param objs- new interface to hold both?
   }
 }
+
