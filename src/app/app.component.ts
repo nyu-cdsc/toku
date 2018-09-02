@@ -15,21 +15,17 @@ import { RunnerService } from './runner/runner.service';
 })
 export class AppComponent implements OnInit {
   title = 'new';
-  config: any[];
   @ViewChild(StimloaderDirective) stimDirective: StimloaderDirective;
   iterator: any;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver, private runner: RunnerService, responseService: ResponseService, private stim: StimuliService) {
-    this.config = runner.genFromRandom(); // todo isn't there a shorthand for this?
+    // todo this should be done elsewhere - module?
     responseService.getDBConnection(this.runner.getProjectName());
-    // todo setting config above now unnecessary
-    this.iterator = runner.iterate(this.config); // also this line should be within runner - not needed here
+    this.iterator = runner.cycle(); // also this line should be within runner - not needed here
   }
 
   ngOnInit() {
-    // this.testCall();
-    // this.runThrough();
-    this.nextItem(); // todo this is wrong, rewrite - see what runThrough did? or just think
+    this.nextItem();
   }
 
   // TODO rename to next() or requestNextFrame(), etc
@@ -40,37 +36,26 @@ export class AppComponent implements OnInit {
     this.buildStimuli(s.stimuli[0], this.stimDirective.viewContainerRef, this.componentFactoryResolver);
   }
 
-  testCall() {
-    const s = this.config[0].stimuli[0];
-    // buildStimuli(s, this.stimDirective.viewContainerRef, this.componentFactoryResolver);
+  // testCall() {
+  //   const s = this.config[0].stimuli[0];
+  //   // buildStimuli(s, this.stimDirective.viewContainerRef, this.componentFactoryResolver);
 
-    this.buildStimuli(s, this.stimDirective.viewContainerRef, this.componentFactoryResolver);
-  }
+  //   this.buildStimuli(s, this.stimDirective.viewContainerRef, this.componentFactoryResolver);
+  // }
 
   buildStimuli(stimuli: Stimuli, view: ViewContainerRef, resolver: ComponentFactoryResolver) {
     const componentFactory = resolver.resolveComponentFactory(this.stim.componentResolver(stimuli));
     view.clear();
 
     const componentRef = view.createComponent(componentFactory);
-    const inst = (<Stimuli>componentRef.instance);
+    // const inst = (<Stimuli>componentRef.instance);
+    const inst = <Stimuli>componentRef.instance; // todo does this make a difference?
     // console.log(inst);
     inst.parameters = stimuli.parameters;
     console.log(inst);
 
-    inst.finishedEvent.subscribe(data => {
+    inst.doneEvent.subscribe(data => {
       this.nextItem();
     })
-    // (<Stimuli>componentRef.instance).parameters = stimuli.parameters;
   }
-
-
-  // todo make new component that just contains Frame?
-
-  // todo handle sequences of events, where modified Choice/Response obj is passed from frame to frame (if Control{sequence: true})
-  // to enable groups/sequences. each sets their choice, which removes that option for the one that follows
-
-  // ALSO - do this INSTEAD of a conditional component? it could be a block-level control() that makes choice in generator for next frame
-  // depending on the result of the response from frame before it
-
-  // I didn't need pre-processing, I just needed centralization for the generated script
 }

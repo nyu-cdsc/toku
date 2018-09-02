@@ -10,15 +10,18 @@ export class PictureComponent implements Stimuli, OnInit {
   @Input() parameters: any;
   @Output() doneEvent = new EventEmitter<any>();
   @Output() responseEvent = new EventEmitter<any>();
-
-  responseEnabled = false; // todo let the parent decide what to do with responses -- this is just to prevent early responses
+  responseEnabled = true; // this can be disabled by parent via [responseEnabled]
 
   constructor() { }
   ngOnInit() { }
 
-  setResponseEnabled() {
-    if (this.parameters.delay) { }
-  }
+  // todo just call from appropriate point - e.g. when audio ends
+  // todo this would actually be controlled by the parent
+  // TODO although, if this is kept stateless and a NEW response object is made from the one in params,
+  // with 'used' set to true, and we keep making new ones and put the responsibility on the parent
+  // whether to use them or not -- that would work
+  // but this would be fine too and might be useful to indicate that a button can't be clicked yet, etc.
+  // todo think on both ^
 
   getCoordinates() {
     if (!this.responseEnabled) {
@@ -66,7 +69,7 @@ export class PictureComponent implements Stimuli, OnInit {
   }
 
   validate() {
-
+    return true;
   }
 
   done() {

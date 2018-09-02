@@ -1,4 +1,4 @@
-import { Stimuli } from '../stimuli/stimuli';
+import { Stimuli, Parameters } from '../stimuli/stimuli';
 
 // TODO Action -> Frame (represents step in study + positioning of stimuli)
 //   all stimuli in Frame, no other abstractions
@@ -13,25 +13,57 @@ import { Stimuli } from '../stimuli/stimuli';
 // block + frame/step would probably be most intuitive
 
 export class Action {
-  // could define constructor and then they could be instantiated functionally
   id: string;
   stimuli: Stimuli[]; // should be able to display several images side by side, above/below, buttons, etc.
-  // children?: any[]; // contains other actions or controls, to enable organization of interdependent tasks
-  // children ^ unnecessary when we have blocks/nesting in the config
-  control?: Control;
+  // parameters: Parameters;
+
+  constructor(item) {
+    this.validate(item);
+
+    this.id = item.id;
+    this.stimuli = item.stimuli;
+    // this.parameters = item.parameters; // todo Action has multiple stimuli, so we need to control those
+    // // todo do we really? they're all going to have to run simultaneously anyway.
+    // new Parameters(item.params); // -- parameters can vary by Stimuli, so it needs to be an interface that each implementation validates
+  }
+
+  // todo
+  validate(item) {
+    return true;
+  }
 }
+
+// TODO action/Frame/Step might really need to be broken into its own component, to control decisions/responses within/between stimuli before
+// passing up at the Block scope
 
 export class Control {
   pickOne?: boolean;
   shuffle?: string;
-  repeat?: number; // applies to the entire group -- could make it so it optionally accepts a list of IDs to repeat
-  runStyle?: string; // 'simultaneous', 'sequence', 'default'
+  repeat?: number;
+  runStyle?: string;
 
-  constructor() {
-    this.pickOne = false;
-    this.shuffle = "none"; // "deep", "shallow"
-    this.repeat = 0;
+  constructor(control) {
+    this.validate(control);
 
-    // todo take optional obj from config and do a merge with default properties
+    this.pickOne = control.pickOne || false;
+    this.shuffle = control.shuffle || "none"; // "deep", "shallow"
+    this.repeat = control.repeat || 0; // todo falsy?
+    this.runStyle = control.runStyle || "default";
   }
+
+  validate(control) {
+    const validShuffle = ['none', 'deep', 'shallow'];
+    const validRunStyle = ['sync', 'sequence', 'default']
+    if (control.shuffle) {
+      if (validShuffle.indexOf(control.shuffle) === -1) {
+        // todo throw error/extend angular exceptions/whatever here
+      }
+    }
+    if (control.runStyle) {
+      if (validRunStyle.indexOf(control.runStyle) === -1) {
+        // todo throw error/extend angular exceptions/whatever here
+      }
+    }
+  }
+
 }

@@ -1,6 +1,4 @@
-projectName = 'dg';
-
-animalGif2 = {
+var animalGif2 = {
   id: 'animalGif2',
   type: 'action',
   stimuli: [
@@ -14,7 +12,7 @@ animalGif2 = {
   ]
 };
 
-animalGif3 = {
+var animalGif3 = {
   id: 'animalGif3',
   type: 'action',
   stimuli: [
@@ -28,8 +26,11 @@ animalGif3 = {
 };
 
 // todo show arbitrary nesting/GROUPING with [[]] etc - lists within lists, but NOT lists within items
+// todo enable groups/lists to have a name/id when it's not stored directly in a variable (or just require it?)
+// especially for conditions- will need to log it in responses
 
-dgTraining = [
+var dgTraining = [
+  name = 'dgTraining', // todo this
   {
     type: 'action',
     id: 'dgGive',
@@ -156,7 +157,8 @@ dgTraining = [
   },
 ];
 
-dgWhite = [
+var dgWhite = [
+  name = 'dgWhite',
   {
     type: 'action',
     id: 'dgWhiteIntro',
@@ -271,7 +273,7 @@ dgWhite = [
   },
 ];
 
-dgBlack = [
+var dgBlack = [
   {
     type: 'action',
     id: 'dgBlackIntro',
@@ -386,7 +388,7 @@ dgBlack = [
   },
 ];
 
-reTraining = [
+var reTraining = [
   {
     type: 'action',
     id: 'reGive',
@@ -512,7 +514,7 @@ reTraining = [
   },
 ];
 
-reWhite = [
+var reWhite = [
   {
     type: 'action',
     id: 'reWhiteIntro',
@@ -627,7 +629,7 @@ reWhite = [
   },
 ];
 
-reBlack = [
+var reBlack = [
   {
     type: 'action',
     id: 'reBlackIntro',
@@ -742,7 +744,7 @@ reBlack = [
   },
 ];
 
-statusTask = [
+var statusTask = [
   {
     type: 'action',
     id: 'status1Intro',
@@ -849,6 +851,7 @@ statusTask = [
       {
         type: 'action',
         id: 'status2RightResponse',
+        type: 'movie',
         stimuli: [
           {
             type: 'picture',
@@ -879,7 +882,7 @@ statusTask = [
   },
 ];
 
-attitudesTask = [
+var attitudesTask = [
   {
     type: 'action',
     id: 'attitudesIntro',
@@ -1032,7 +1035,7 @@ attitudesTask = [
   },
 ];
 
-whiteFirstCondition = [
+var whiteFirstCondition = [
   dgTraining,
   dgWhite,
   animalGif2,
@@ -1045,7 +1048,7 @@ whiteFirstCondition = [
   attitudesTask
 ];
 
-blackFirst = [
+var blackFirstCondition = [
   dgTraining,
   dgBlack,
   animalGif2,
@@ -1057,3 +1060,11 @@ blackFirst = [
   statusTask,
   attitudesTask
 ];
+
+export const Project = {
+  conditions: [
+    whiteFirstCondition,
+    blackFirstCondition
+  ],
+  name: "dg"
+}

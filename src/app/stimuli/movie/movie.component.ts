@@ -9,7 +9,8 @@ import { Stimuli, Parameters } from '../stimuli';
 })
 export class MovieComponent implements Stimuli, OnInit {
   @Input() parameters: any;
-  @Output() finishedEvent = new EventEmitter<any>();
+  @Output() doneEvent = new EventEmitter<any>();
+  @Output() responseEvent = new EventEmitter<any>();
   responseEnabled = true;
 
   constructor() { }
@@ -22,13 +23,17 @@ export class MovieComponent implements Stimuli, OnInit {
   }
 
   done() {
-    this.finishedEvent.emit(null);
+    this.doneEvent.emit(null);
   }
 
-  sendResponse(value) {
+  sendSimpleResponse(value) {
     if (!this.responseEnabled) {
       return null;
     }
+  }
+
+  validate() {
+    return true;
   }
 
   // TODO enable the ability to layer invisible buttons/image/div/canvas with coordinates for response over the movie container box, scale properly
