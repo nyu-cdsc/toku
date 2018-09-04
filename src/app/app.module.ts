@@ -2,33 +2,35 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { SoundComponent } from './stimuli/sound/sound.component';
-import { MovieComponent } from './stimuli/movie/movie.component';
-import { ConditionalComponent } from './stimuli/conditional/conditional.component';
-import { PictureComponent } from './stimuli/picture/picture.component';
-import { ButtonComponent } from './stimuli/button/button.component';
+import { ButtonComponent } from './components/responders/button/button.component';
+import { CoordinateComponent } from './components/responders/coordinate/coordinate.component';
+import { SoundComponent } from './components/stimuli/sound/sound.component';
+import { MovieComponent } from './components/stimuli/movie/movie.component';
+import { PictureComponent } from './components/stimuli/picture/picture.component';
 
-import { RunnerService } from './runner/runner.service';
-import { StimuliService } from './stimuli/stimuli.service';
-import { ResponseService } from './response/response.service';
-import { StimloaderDirective } from './stimloader.directive';
+import { StimuliDirective } from './stimuli.directive';
+
+import { ResponseService } from './services/response/response.service';
+import { RunnerService } from './services/runner/runner.service';
+import { StimuliService } from './components/stimuli/stimuli.service';  // TODO extract this out! or find better directory structure
+// todo perhaps this ^ is a signal that stimuli should become a module with its components, services AND directive bundled together
 
 @NgModule({
   declarations: [
     AppComponent,
+    ButtonComponent,
+    CoordinateComponent,
     SoundComponent,
     MovieComponent,
-    ConditionalComponent,
     PictureComponent,
-    ButtonComponent,
-    StimloaderDirective
+    StimuliDirective
   ],
   entryComponents: [
     PictureComponent,
     MovieComponent,
     SoundComponent,
     ButtonComponent,
-    ConditionalComponent
+    CoordinateComponent
   ],
   imports: [
     BrowserModule

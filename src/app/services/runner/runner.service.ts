@@ -33,8 +33,8 @@ export class RunnerService {
         return item; // Object.assign(new Control(), item);
       }
     })[0]; // todo validation for +1 Control elements, or just handle
-    const cont = Object.assign(new Control(), res);
-
+    // const cont = Object.assign(new Control(), res);
+    const cont = new Control(res);
     return cont || new Control();
   }
 
@@ -87,26 +87,20 @@ export class RunnerService {
 
   // two-way; receives data for conditional decisions
   // todo also document generator - here and in readme
-  *cycle(runList?) {
-    if (!runList) {
-      runList = this.list;
+  *cycle(list?) {
+    if (!list) {
+      list = this.list;
     }
-    const control: Control = this.getControl(runList);
-    // todo break this into function processList()
-    if (control.shuffle == 'shallow') {
-      this.shuffle(runList); // todo make shuffle do immutables!
-    }
-    else if (control.shuffle == 'deep') {
-      this.deepShuffle(runList);
-    }
+    const control: Control = this.getControl(list);
+    // const name = this.getName(runList);
 
     let input;
-    for (let item of runList) {
+    for (let item of list) {
       if (Array.isArray(item)) {
         input = yield* this.cycle(item);
       }
-      if (item.type === 'control') {
-        item = runList.next(); // todo does this actually work?
+      if (item.type !== 'action') {
+        continue;
       }
       input = yield this.processItem(item, input);
     }
@@ -115,10 +109,42 @@ export class RunnerService {
     // todo use proper response/param objs- new interface to hold both?
   }
 
+  
+  processList(list, control) {
+    if (control.shuffle == 'shallow') {
+      this.shuffle(list); // todo make shuffle do immutables!
+    }
+    else if (control.shuffle == 'deep') {
+      this.deepShuffle(list);
+    }
+
+    if(control.repeat > 0){
+      list = this.repeatList(list, control.repeat);
+    }
+
+  }
+
+  repeatListFunctional(list, control) {
+    if(control.repeat > 0){
+      list = this.repeatList(list, control.repeat);
+    }
+    
+    return list;
+  }
   // todo TYPES on parameters! just everywhere
   // todo pass control into this? I need to use control at the generator level to know when to ignore the rest of the list though (pickone) and shuffle
   // ..and repeat. I need to essentially manipulate the list I'm reading, which might not be great, so I really need to be creating a new one..
   // which I can do in cycle()
+
+  repeatList(list, count) {
+    let newList = list;
+    for( let i = 0; i < count; i++ ) {  // start at 0, count up to repeat amount
+      console.log('on cycle: ', i);
+      newList = newList.concat(list);
+    }
+
+    return newList; // todo look at cleaner way to do it
+  }
 
   processItem(item, input) {
     // this.getControl(); // also get control here and go down decision tree / observer pipe list
@@ -130,7 +156,6 @@ export class RunnerService {
 
   // todo validate action, control, etc here (but not the stimuli? can call stimuliservice.validateAll() for the rest)
   validate() {
-
   }
 
   // tODO we need to get the control before we process any items. so for each level we need to see if this exists, and if not, make it

@@ -1,16 +1,16 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { Stimuli, Parameters } from '../stimuli';
+import { Stimuli, Parameters, Responsive, StimuliResponse } from '../stimuli';
 
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.component.html',
   styleUrls: ['./movie.component.css']
 })
-export class MovieComponent implements Stimuli, OnInit {
-  @Input() parameters: any;
+export class MovieComponent implements Stimuli, Responsive, OnInit {
+  @Input() parameters: Parameters; // todo this should be Parameters | movieParameters and be instantiated by onInit()
   @Output() doneEvent = new EventEmitter<any>();
-  @Output() responseEvent = new EventEmitter<any>();
+  @Output() responseEvent = new EventEmitter<StimuliResponse>();
   responseEnabled = true;
 
   constructor() { }
@@ -26,7 +26,7 @@ export class MovieComponent implements Stimuli, OnInit {
     this.doneEvent.emit(null);
   }
 
-  sendSimpleResponse(value) {
+  sendStimuliResponse(value) {
     if (!this.responseEnabled) {
       return null;
     }
@@ -40,6 +40,11 @@ export class MovieComponent implements Stimuli, OnInit {
 
   // TODO also enable pause points in the video where the above can then be utilized, so that a single video can just be the entire media, with a list
   // of response{} timecode points/responses
+}
 
+export class MovieParameters implements Parameters {
+  disable: boolean; // for now..
+  file: string;
 
+  validate() { }
 }

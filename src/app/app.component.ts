@@ -1,12 +1,11 @@
 import { Component, ComponentFactoryResolver, ViewChild, OnInit, ViewContainerRef } from '@angular/core';
 
-// import { buildStimuli, stimuliComponentResolver } from './stimuli/stimuli.service';
-import { StimuliService } from './stimuli/stimuli.service';
-import { StimloaderDirective } from './stimloader.directive';
-import { Parameters, Stimuli } from './stimuli/stimuli';
+import { StimuliService } from './components/stimuli/stimuli.service';
+import { StimuliDirective } from './stimuli.directive'; // todo directives dir
+import { Parameters, Stimuli } from './components/stimuli/stimuli';
 // todo ^ can this be loaded via di?
-import { ResponseService } from './response/response.service';
-import { RunnerService } from './runner/runner.service';
+import { ResponseService } from './services/response/response.service';
+import { RunnerService } from './services/runner/runner.service';
 
 @Component({
   selector: 'app-root',
@@ -15,33 +14,27 @@ import { RunnerService } from './runner/runner.service';
 })
 export class AppComponent implements OnInit {
   title = 'new';
-  @ViewChild(StimloaderDirective) stimDirective: StimloaderDirective;
+  @ViewChild(StimuliDirective) stimDirective: StimuliDirective;
   iterator: any;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver, private runner: RunnerService, responseService: ResponseService, private stim: StimuliService) {
-    // todo this should be done elsewhere - module?
     responseService.getDBConnection(this.runner.getProjectName());
+    // todo this ^ should be done elsewhere - module?
     this.iterator = runner.cycle(); // also this line should be within runner - not needed here
   }
 
   ngOnInit() {
-    this.nextItem();
+    this.nextAction(null);
   }
 
-  // TODO rename to next() or requestNextFrame(), etc
-  nextItem() {
-    // todo check for done=true
-    const s = this.iterator.next().value;
+  nextAction(data) {
+   // todo check for done=true
+    const s = this.iterator.next(data).value;
+    // todo should data not be passed when it's null? should verify the generator behavior
     console.log(s);
     this.buildStimuli(s.stimuli[0], this.stimDirective.viewContainerRef, this.componentFactoryResolver);
+    // todo ^ this needs to be fixed, can't just call [0] anymore
   }
-
-  // testCall() {
-  //   const s = this.config[0].stimuli[0];
-  //   // buildStimuli(s, this.stimDirective.viewContainerRef, this.componentFactoryResolver);
-
-  //   this.buildStimuli(s, this.stimDirective.viewContainerRef, this.componentFactoryResolver);
-  // }
 
   buildStimuli(stimuli: Stimuli, view: ViewContainerRef, resolver: ComponentFactoryResolver) {
     const componentFactory = resolver.resolveComponentFactory(this.stim.componentResolver(stimuli));
@@ -55,7 +48,7 @@ export class AppComponent implements OnInit {
     console.log(inst);
 
     inst.doneEvent.subscribe(data => {
-      this.nextItem();
+      this.nextAction(data);
     })
   }
 }

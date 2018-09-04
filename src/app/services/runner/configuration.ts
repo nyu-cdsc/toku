@@ -1,4 +1,5 @@
-import { Stimuli, Parameters } from '../stimuli/stimuli';
+import { Stimuli, Parameters } from '../../components/stimuli/stimuli';
+// todo ^ this should re-implement the stimuli interface or that needs to be centralized differently somehow
 
 // TODO Action -> Frame (represents step in study + positioning of stimuli)
 //   all stimuli in Frame, no other abstractions
@@ -37,18 +38,19 @@ export class Action {
 // passing up at the Block scope
 
 export class Control {
-  pickOne?: boolean;
-  shuffle?: string;
-  repeat?: number;
-  runStyle?: string;
+  pickOne?: boolean = false;
+  shuffle?: string = "none";
+  repeat?: number = 0;
+  runStyle?: string = "default";
 
-  constructor(control) {
-    this.validate(control);
-
-    this.pickOne = control.pickOne || false;
-    this.shuffle = control.shuffle || "none"; // "deep", "shallow"
-    this.repeat = control.repeat || 0; // todo falsy?
-    this.runStyle = control.runStyle || "default";
+  constructor(control?) {
+    if(control) {
+      this.validate(control);
+      if(control.pickOne) this.pickOne = control.pickOne;
+      if(control.shuffle) this.shuffle = control.shuffle;
+      if(control.repeat) this.repeat = control.repeat; // todo falsy?
+      if(control.runStyle) this.runStyle = control.runStyle;
+    }
   }
 
   validate(control) {

@@ -1,17 +1,17 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Stimuli, Parameters, SimpleResponse } from '../stimuli';
+import { Stimuli, Responsive, Parameters, StimuliResponse } from '../stimuli';
 
 @Component({
   selector: 'app-picture',
   templateUrl: './picture.component.html',
   styleUrls: ['./picture.component.css']
 })
-export class PictureComponent implements Stimuli, OnInit {
-  @Input() parameters: any;
+export class PictureComponent implements Stimuli, Responsive, OnInit {
+  @Input() parameters: Parameters | PictureParameters;
   @Output() doneEvent = new EventEmitter<any>();
-  @Output() responseEvent = new EventEmitter<any>();
+  @Output() responseEvent = new EventEmitter<StimuliResponse>();
   responseEnabled = true; // this can be disabled by parent via [responseEnabled]
-
+  
   constructor() { }
   ngOnInit() { }
 
@@ -23,6 +23,7 @@ export class PictureComponent implements Stimuli, OnInit {
   // but this would be fine too and might be useful to indicate that a button can't be clicked yet, etc.
   // todo think on both ^
 
+  // TODO need to redo the blockedCoords functionality - 'used' => true etc.
   getCoordinates() {
     if (!this.responseEnabled) {
       return null;
@@ -57,13 +58,14 @@ export class PictureComponent implements Stimuli, OnInit {
     return res;
   }
 
-  sendSimpleResponse(value) {
+  sendStimuliResponse(value) {
     // Response val as in the one inside Params and choice made (perhaps change Response to Choice to make it clear the level it's from)
     if (!this.responseEnabled) {
       return null;
     }
-    const response: SimpleResponse = { value: value + 1 };
+    const response: StimuliResponse = { value: value + 1, used: true }; // todo remove used? idk
     // todo change this to send a modified version of the Response object that'll be inside the Params sent to us
+    this.responseEvent.emit(response);
 
     this.done();
   }
@@ -81,15 +83,24 @@ export class PictureComponent implements Stimuli, OnInit {
 // TODO if I make this a class, I can attach a function to its prototype to manage things like disabling coordinates inside of it!
 // TODO make coordinates a Map()!
 // and then I'd be removing that responsibility from images - along with ALL coordinate responsibilities!
-// export class Coordinate {
-//   coordinate: string;
-//
-//   validate() {}
-// }
+
+
+export class Coordinate implements StimuliResponse {
+  coordinate: Map<string, string>; // e.g. top, right, bottom, left (or just make it a list and have it be implicit)
+  // todo coordinateBox^ ?
+  value: string;
+  used: boolean;
+  // TODO - ideally the stimuliresponse would be the entire Coordinate object..
+  // - why? the value is the identifier -- the actual coord does not matter. though it could help to have the whole thing to ease swapping stuff out functionally..
+  // but in reality all that matters is flipping the 'used' property, which can be done with a simple map or find()
+  // the interface might still work? it just needs value (and perhaps 'used') to be satisfied -- more can be included
+
+  validate() {}
+}
 
 export class PictureParameters implements Parameters {
   disable: boolean; // for now..
-  // coordinates: Coordinates;
+  coordinates: Coordinate[];
 
   validate() { }
 }

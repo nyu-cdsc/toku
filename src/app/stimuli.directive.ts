@@ -1,8 +1,8 @@
 import { Directive, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: '[stimLoader]'
+  selector: '[stimuli]'
 })
-export class StimloaderDirective {
+export class StimuliDirective {
   constructor(public viewContainerRef: ViewContainerRef) { }
 }
