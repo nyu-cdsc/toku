@@ -33,7 +33,7 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('new');
   }));
 
-  it('should render "picture works!" in p tag', async(() => {
+  it('should render "movie works!" in p tag', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
@@ -45,5 +45,11 @@ describe('AppComponent', () => {
     // const fixture = TestBed.createComponent(AppComponent);
     // const app = fixture.debugElement.componentInstance;
     // expect(app).toBeTruthy();
+  }));
+  it('nextAction', async(() => {
+  }));
+  it('studyEnded', async(() => {
+  }));
+  it('buildStimuli', async(() => {
   }));
 });

@@ -39,28 +39,28 @@ export class Action {
 
 export class Control {
   pickOne?: boolean = false;
-  shuffle?: string = "none";
+  shuffle?: boolean = false;
   repeat?: number = 0;
   runStyle?: string = "default";
 
   constructor(control?) {
-    if(control) {
+    if (control) {
       this.validate(control);
-      if(control.pickOne) this.pickOne = control.pickOne;
-      if(control.shuffle) this.shuffle = control.shuffle;
-      if(control.repeat) this.repeat = control.repeat; // todo falsy?
-      if(control.runStyle) this.runStyle = control.runStyle;
+      if (control.pickOne) this.pickOne = control.pickOne;
+      if (control.shuffle) this.shuffle = control.shuffle;
+      if (control.repeat) this.repeat = control.repeat; // todo falsy?
+      if (control.runStyle) this.runStyle = control.runStyle;
     }
   }
 
   validate(control) {
-    const validShuffle = ['none', 'deep', 'shallow'];
+    // const validShuffle = ['none', 'deep', 'shallow'];
     const validRunStyle = ['sync', 'sequence', 'default']
-    if (control.shuffle) {
-      if (validShuffle.indexOf(control.shuffle) === -1) {
-        // todo throw error/extend angular exceptions/whatever here
-      }
-    }
+    // if (control.shuffle) {
+    //   if (validShuffle.indexOf(control.shuffle) === -1) {
+    //     // todo throw error/extend angular exceptions/whatever here
+    //   }
+    // }
     if (control.runStyle) {
       if (validRunStyle.indexOf(control.runStyle) === -1) {
         // todo throw error/extend angular exceptions/whatever here

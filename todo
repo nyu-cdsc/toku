@@ -13,6 +13,20 @@
 
 - get conditional choices working through generator and back
 
+RESPONSES:
+  'payload' which for now just includes the entire object, and it will have an 'action' which tells the generator
+    what to do with it
+
+RESPONDERS:
+  pulled into the stimuli components if they have anything that is a StimuliResponse type in their parameters (scan? label?)
+    else, just fire the doneEvent() when finished, after a parameter-set delay, etc - or the action/frame itself can receive the click..
+      or it just defaults to a conditional of layering its entire self with a clickable div that fires done()
+
+FRAME:
+  its own component, which handles multiple responses/done events from multiple stimuli, and then passes this up to the parent that handles
+    the frame/action itself, and iterates to the next one
+  parameters to the frame would be the placement of the stimuli, or it would get this from the stimuli config itself - think on it
+
 - yaml
 - export
 - validation and error handling
@@ -25,6 +39,40 @@ response sent stimuli->parent, it decides what to let through based on Control s
 TODO - move all of this into specific sections rather than global
 
 
+RESPONSE thoughts:
+  - two competing ways to handle it
+    1. have it be a tiny object/closure that is passed around and has functionality to set/unset its used property via standardized interface call
+    2. they're all the same, so pass it through function that simply flips the used property based on received value object
+  - what are the advantages/disadvantages of both?
+    - smart object
+      - passing around object with logic
+      - need to instantiate it
+      - the parent needs to know how to talk to it
+    - dumb object 
+      - the parent has to know how to manipulate it
+      - could get reducer/whatever from the same package as the object, but that's just breaking it up more
+
+    - is this a fundamental difference between functional and oo?
+    - can/is it sensible to pass a smart/encapsulated object down a list of manipulators? a message-based object.
+
+    - actually is it even relevant in this instance? if it's used, then it would just be passed up to the parent already used - the parent
+      would not need to do that itself. it would just be passing it along. so how that's set, makes no difference in this case
+    - it only came about because a different type of object was being passed up, which was incomplete and would really act as a message to
+      manipulate one later on. that just shouldn't be necessary here. 
+      - but should we pass the whole thing up to the parent every single time just to accomodate for the case it needs to be re-used?
+        - perhaps it could, in the case that the parent, the parameters, supports a message/call that re-integrates this Response
+        - ** so essentially, parameters.replace(response) or something - that would do! **
+          - and in that case it wouldn't need the whole thing. just the 'key', which in this case is the value
+          - so I leave it just as it is, make Parameter smarter.. but then there's the issue that it's an interface and not an
+            abstract/base class. so it may be time to change that.
+              - is there a better way to do this that is better for modularity? or is inheritance actually correct in this instance.
+              - or one interface is implemented by one, another by another.. or this is removed from the parent and done elsewhere..
+
+              - this could be handled by the runner service. it's already got params, and if the params are actually passed back up for it
+                to do something with, then it's like a conditional. although in this case it should probably have an additional value that tells
+                it what 'action' to do, e.g. 'replace', 'decide', etc - and then we're right back to actions and reducers..
+
+                - ** so yeah, for now put an optional 'action' onto the object **
 
 
 DEPLOY:

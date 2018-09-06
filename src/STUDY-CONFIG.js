@@ -29,8 +29,10 @@ var animalGif3 = {
 // todo enable groups/lists to have a name/id when it's not stored directly in a variable (or just require it?)
 // especially for conditions- will need to log it in responses
 
+// TODO look into Map() as a solution to this. right now it only works with lists, and lists in lists. but I can't name the list, etc.
+// TODO other soltutions: just use objects, so objects within objects and know their structure (could be fine), and introspection/reflection to get variable names
 var dgTraining = [
-  name = 'dgTraining', // todo this
+  // name = 'dgTraining', // todo this is totally invalid syntax, this is a list not an object
   {
     type: 'action',
     id: 'dgGive',
@@ -158,7 +160,7 @@ var dgTraining = [
 ];
 
 var dgWhite = [
-  name = 'dgWhite',
+  // name = 'dgWhite', // todo this is totally invalid syntax, this is a list not an object
   {
     type: 'action',
     id: 'dgWhiteIntro',

@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   title = 'new';
   @ViewChild(StimuliDirective) stimDirective: StimuliDirective;
   iterator: any;
+  done: boolean = false;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver, private runner: RunnerService, responseService: ResponseService, private stim: StimuliService) {
     responseService.getDBConnection(this.runner.getProjectName());
@@ -27,9 +28,21 @@ export class AppComponent implements OnInit {
     this.nextAction(null);
   }
 
+  // todo just done()?
+  studyEnded() {
+    // TODO implement end of study logic here
+      // note that the config can put what it wants the end of study Frame to be -- so this could just be running cleanup, etc.
+  }
+
   nextAction(data) {
-   // todo check for done=true
-    const s = this.iterator.next(data).value;
+    if(this.done) {
+      this.studyEnded();
+    }
+
+    const cur = this.iterator.next(data);
+    const s = cur.value;
+    this.done = cur.done;
+
     // todo should data not be passed when it's null? should verify the generator behavior
     console.log(s);
     this.buildStimuli(s.stimuli[0], this.stimDirective.viewContainerRef, this.componentFactoryResolver);
