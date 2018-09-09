@@ -1,17 +1,5 @@
 import { Stimuli } from '../../components/stimuli/stimuli';
-// todo ^ this should re-implement Parametersthe stimuli interface or that needs to be centralized differently somehow
-
 // TODO Action -> Frame (represents step in study + positioning of stimuli)
-//   all stimuli in Frame, no other abstractions
-// but there's nesting, determining which frame actually gets run. is that fine?
-
-// for the sake of making the config/yaml easier, could put 'block' in there (as guiding interface for user)
-// and those organize each of the groups of frames, as opposed to direct nesting
-
-// it just doesn't matter. try both later on and see which looks nicer. the groups/nesting only
-// exist for the purpose of making decisions, and Control{} can exist in whatever types need it
-
-// block + frame/step would probably be most intuitive
 
 export class Action {
   id: string;
@@ -33,9 +21,6 @@ export class Action {
     return true;
   }
 }
-
-// TODO action/Frame/Step might really need to be broken into its own component, to control decisions/responses within/between stimuli before
-// passing up at the Block scope
 
 export class Control {
   pickOne?: boolean = false;

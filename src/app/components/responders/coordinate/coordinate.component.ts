@@ -11,7 +11,7 @@ import { Message } from '../../../message';
 export class MapComponent implements OnInit {
   // @Input() coords: any;
   @Input() parameters: any;
-  @Output() selectionEvent = new EventEmitter<any>(); // todo refine?
+  @Output() selectionEvent = new EventEmitter<Message>();
   areas: ClickArea[] = [];
   // todo ^ make a setter for coordParams? is that doable?
 

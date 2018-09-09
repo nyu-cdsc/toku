@@ -1,5 +1,5 @@
 export class ClickArea {
-    area: Coordinate; // TODO in config file just jump to this property (and value) -- so it's just shape, coordinates, value
+    area: Coordinate;
     value: string;
     used: false;
 

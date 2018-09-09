@@ -1073,5 +1073,5 @@ export const Project = {
     whiteFirstCondition,
     blackFirstCondition
   ],
-  name: "dg"
+  name: "ra2"
 }

@@ -77,8 +77,7 @@ export class RunnerService {
       input = yield this.processItem(item, input);
     }
 
-    // TODO verify return value used by yield*
-    // TODO use proper response/param objs- new interface to hold both?
+    // TODO use Message here and in response service
   }
 
   // TODO this and its dependent functions should be moved into its own class

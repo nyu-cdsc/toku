@@ -1,7 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Stimuli, Responsive } from '../stimuli';
-import { MapComponent } from '../../responders/coordinate/coordinate.component';
-import { Coordinate } from '../../responders/coordinate/coordinate';
 import { Message } from '../../../message';
 
 @Component({
@@ -13,7 +11,7 @@ export class PictureComponent implements Stimuli, Responsive, OnInit {
   @Input() parameters: any;
   @Output() doneEvent = new EventEmitter<any>();
   @Output() responseEvent = new EventEmitter<Message>();
-  responseEnabled = true; // this can be disabled by parent via [responseEnabled]
+  @Input() responseEnabled = true; // this can be disabled by parent via [responseEnabled]
   // todo ^ don't create map component UNTIL this is enabled, to prevent 'used' from being set prematurely
 
   constructor() { }
@@ -21,13 +19,9 @@ export class PictureComponent implements Stimuli, Responsive, OnInit {
 
   sendMessage(message: Message) {
     console.log('message received in pic! is', message);
-    // Response val as in the one inside Params and choice made (perhaps change Response to Choice to make it clear the level it's from)
-    // if (!this.responseEnabled) {
-    //   return null; // todo don't do this here, have it determine whether the responder is instantiated at all
-    // }
-    // const response: Message = { value: value + 1 };
+    // todo Response val as in the one inside Params and choice made (perhaps change Response to Choice to make it clear the level it's from)
     this.responseEvent.emit(message);
-
+    // todo support multiple reponses in future
     this.done();
   }
 
@@ -40,5 +34,3 @@ export class PictureComponent implements Stimuli, Responsive, OnInit {
   }
 
 }
-
-// TODO if I make this a class, I can attach a function to its prototype to manage things like disabling coordinates inside of it!

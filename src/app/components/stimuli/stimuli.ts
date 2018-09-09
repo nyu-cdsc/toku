@@ -10,5 +10,5 @@ export interface Stimuli {
 export interface Responsive {
   responseEvent: EventEmitter<any>;
   responseEnabled: boolean;
-  sendMessage(Message);
+  sendMessage(message: Message);
 }
