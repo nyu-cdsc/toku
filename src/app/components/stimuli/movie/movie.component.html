@@ -2,7 +2,7 @@
   movie works! {{parameters}}
 </p>
 
-<video (ended)="videoEnded()" autoplay="autoplay" preload="auto" width="500">
+<video (ended)="videoEnded()" autoplay="autoplay" preload="auto" width="500" controls>
   <source [src]="parameters?.filename" type='video/mp4' />
 </video>
 

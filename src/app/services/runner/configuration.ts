@@ -1,5 +1,5 @@
-import { Stimuli, Parameters } from '../../components/stimuli/stimuli';
-// todo ^ this should re-implement the stimuli interface or that needs to be centralized differently somehow
+import { Stimuli } from '../../components/stimuli/stimuli';
+// todo ^ this should re-implement Parametersthe stimuli interface or that needs to be centralized differently somehow
 
 // TODO Action -> Frame (represents step in study + positioning of stimuli)
 //   all stimuli in Frame, no other abstractions

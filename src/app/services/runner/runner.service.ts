@@ -21,14 +21,25 @@ export class RunnerService {
     return Project.name;
   }
 
-  // TODO PRIORITY pending implementation of name - we will need this for storing responses
-  // getName(list): string {
-  //   const res = list.filter(item => {
-  //     if (item.type === 'control') {
-  //       return item; // Object.assign(new Control(), item);
-  //     }
-  //   })[0]; // TODO validation for +1 Name elements, or just handle
-  // }
+  getBlockName(list): string {
+    const res = list.filter(item => {
+      if (item.name && (Object.keys(item).length == 1)) {
+        return item;
+      }
+    })[0]; // TODO validation for +1 name elements, or just handle
+
+    return res;
+  }
+
+  getControlMap(list): Control {
+    const res = list.get('control');
+    let cont = new Control();
+    if (res) {
+      cont = new Control(res);
+    }
+
+    return cont;
+  }
 
   getControl(list): Control {
     const res = list.filter(item => {
@@ -73,7 +84,6 @@ export class RunnerService {
   // TODO this and its dependent functions should be moved into its own class
   processList(list, control) {
     // todo use observer.pipe() on these  - or just check for errors here
-
     // TODO separate the actual implementation of the functions from the ones that make decisions based on control{}
     // e.g runShuffle, runRepeat, etc. or baseShuffle, baseRepeat -- or move the implementations to their own class and have wrappers defined here
     list = this.shuffleFunctional(list, control);
@@ -147,25 +157,3 @@ export class RunnerService {
   // TODO validate action, control, etc here (but not the stimuli? can call stimuliservice.validateAll() for the rest)
   validate() { }
 }
-
-  // todo deepshuffle should not be relevant with current strategy
-  // // go with this strategy first. one major pass at a time
-  // deepShuffle(list, control) {
-  //   if (control.shuffle) {
-  //     this.shuffle(list);
-  //   }
-
-  //   // now descend through list and shuffle lower levels
-  //   list = list.map(item => {
-  //     if (item.items) {
-  //       // TODO we don't even have 'items' anymore! fix!
-  //       item.items = this.deepShuffle(item.items);
-  //     } else if (Array.isArray(item)) {
-  //       item = this.deepShuffle(item);
-  //     }
-
-  //     return item;
-  //   });
-
-  //   return list;
-  // }

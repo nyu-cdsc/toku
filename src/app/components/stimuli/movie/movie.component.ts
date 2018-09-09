@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { Stimuli, Parameters, Responsive, StimuliResponse } from '../stimuli';
+import { Stimuli, Responsive } from '../stimuli';
+import { Message } from '../../../message';
 
 @Component({
   selector: 'app-movie',
@@ -8,9 +9,9 @@ import { Stimuli, Parameters, Responsive, StimuliResponse } from '../stimuli';
   styleUrls: ['./movie.component.css']
 })
 export class MovieComponent implements Stimuli, Responsive, OnInit {
-  @Input() parameters: Parameters; // todo this should be Parameters | movieParameters and be instantiated by onInit()
+  @Input() parameters: any; // todo the one other option here is to use a setter and _cast_ the param type to one we create for this component. 
   @Output() doneEvent = new EventEmitter<any>();
-  @Output() responseEvent = new EventEmitter<StimuliResponse>();
+  @Output() responseEvent = new EventEmitter<Message>();
   responseEnabled = true;
 
   constructor() { }
@@ -26,10 +27,11 @@ export class MovieComponent implements Stimuli, Responsive, OnInit {
     this.doneEvent.emit(null);
   }
 
-  sendStimuliResponse(value) {
+  sendMessage(message: Message) {
     if (!this.responseEnabled) {
       return null;
     }
+
   }
 
   validate() {
@@ -40,11 +42,4 @@ export class MovieComponent implements Stimuli, Responsive, OnInit {
 
   // TODO also enable pause points in the video where the above can then be utilized, so that a single video can just be the entire media, with a list
   // of response{} timecode points/responses
-}
-
-export class MovieParameters implements Parameters {
-  disable: boolean; // for now..
-  file: string;
-
-  validate() { }
 }

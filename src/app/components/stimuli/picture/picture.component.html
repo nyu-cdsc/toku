@@ -8,12 +8,7 @@
 <ng-template #withMap>
   <!-- populate image -->
   <img [src]="parameters?.filename" usemap="#picturemap" #theimage />
-  <!-- populating coordinates -->
-  <map name="picturemap">
-    <area *ngFor="let c of getCoordinates(); index as i" (click)="sendSimpleResponse(c.response)" shape="rect" [coords]="c.coordinate">
-  </map>
-  <!-- blocked coordinates? -->
-  <!-- <div *ngFor="let c of blockedCoordinates()" [ngStyle]="{'position': 'absolute', 'z-index': '10', 'width':'80px', 'height':'80px', 'left':getCssCoordinates(c.coordinate)[2], 'top':getCssCoordinates(c.coordinate)[3]} "></div> -->
+  <toku-map *ngIf="responseEnabled" (selectionEvent)="sendMessage($event)" [parameters]="parameters"></toku-map>
 </ng-template>
 
 <!-- populating buttons if buttons required -->

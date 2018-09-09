@@ -32,7 +32,9 @@ var animalGif3 = {
 // TODO look into Map() as a solution to this. right now it only works with lists, and lists in lists. but I can't name the list, etc.
 // TODO other soltutions: just use objects, so objects within objects and know their structure (could be fine), and introspection/reflection to get variable names
 var dgTraining = [
-  // name = 'dgTraining', // todo this is totally invalid syntax, this is a list not an object
+  {
+    name: "dgTraining"
+  },
   {
     type: 'action',
     id: 'dgGive',
@@ -54,7 +56,8 @@ var dgTraining = [
         type: 'picture',
         parameters: {
           filename: '../../../assets/picture/dggive.jpg',
-          coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
+          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
+          coordinates: [{ value: 'yes', shape: "rect", coordinates: "0, 0, 1000, 1000" }, { value: 'no', shape: "rect", coordinates: "0, 0, 1000, 1000" }],
         },
       }
     ]
@@ -160,7 +163,9 @@ var dgTraining = [
 ];
 
 var dgWhite = [
-  // name = 'dgWhite', // todo this is totally invalid syntax, this is a list not an object
+  {
+    name: "dgWhite"
+  },
   {
     type: 'action',
     id: 'dgWhiteIntro',

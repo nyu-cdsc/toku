@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Stimuli, Parameters } from '../stimuli';
+import { Stimuli } from '../stimuli';
 
 @Component({
   selector: 'app-sound',
@@ -7,7 +7,7 @@ import { Stimuli, Parameters } from '../stimuli';
   styleUrls: ['./sound.component.css']
 })
 export class SoundComponent implements Stimuli, OnInit {
-  @Input() parameters: Parameters;
+  @Input() parameters: any;
   @Output() doneEvent = new EventEmitter<any>();
 
   constructor() { }
@@ -19,11 +19,4 @@ export class SoundComponent implements Stimuli, OnInit {
     return true;
   }
 
-}
-
-export class SoundParameters implements Parameters {
-  disable: boolean; // for now..
-  file: string;
-
-  validate() { }
 }
