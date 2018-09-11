@@ -1,0 +1,20 @@
+<div *ngIf="parameters?.coordinates; then withMap else withoutMap" class="pictureContainer" [class.hasMap]="parameters?.coordinates"></div>
+
+<ng-template #withoutMap>
+  <!-- populate image -->
+  <img [src]="parameters?.filename" #theimage />
+</ng-template>
+
+<ng-template #withMap>
+  <!-- populate image -->
+  <img [src]="parameters?.filename" usemap="#picturemap" #theimage />
+  <toku-map *ngIf="responseEnabled" (selectionEvent)="sendMessage($event)" [parameters]="parameters"></toku-map>
+</ng-template>
+
+<!-- populating buttons if buttons required -->
+<!-- <app-button (response) = "setValue($event)" [bu -->
+
+<p>
+  picture works!
+  <br>filename is {{parameters?.filename}}
+</p>

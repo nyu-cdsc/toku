@@ -1,15 +1,10 @@
 import { Component, ComponentFactoryResolver, ViewChild, OnInit, ViewContainerRef } from '@angular/core';
 
-import { ConfigurationService } from './services/configuration/configuration.service';
-// import { Action } from './services/configuration/configuration';
-// import { StimuliItem } from './stimuli-item';
-import { buildStimuli, stimuliComponentResolver } from './stimuli/utils';
-import { StimloaderDirective } from './stimloader.directive';
-import { Parameters, Stimuli } from './stimuli/stimuli';
-import { MovieComponent } from './stimuli/movie/movie.component';
+import { StimuliService } from './components/stimuli/stimuli.service';
+import { StimuliDirective } from './stimuli.directive'; // todo directives dir
+import { Stimuli, Responsive } from './components/stimuli/stimuli';
 import { ResponseService } from './services/response/response.service';
-// todo Action, Stimuli clearly belongs somewhere other than the configuration service -- but where?
-// stimuli should be defined under stimuli/?
+import { RunnerService } from './services/runner/runner.service';
 
 @Component({
   selector: 'app-root',
@@ -18,103 +13,64 @@ import { ResponseService } from './services/response/response.service';
 })
 export class AppComponent implements OnInit {
   title = 'new';
-  config: any[];
-  @ViewChild(StimloaderDirective) stimDirective: StimloaderDirective;
+  @ViewChild(StimuliDirective) stimDirective: StimuliDirective;
   iterator: any;
+  done: boolean = false;
+  responseCache = [];
 
-  // todo rename to configurator?
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private configuration: ConfigurationService, responseService: ResponseService) {
-    this.config = configuration.genFromRandom(); // todo isn't there a shorthand for this?
-    responseService.getDBConnection(this.configuration.getProjectName());
-    // todo setting config above now unnecessary
-    this.iterator = this.iterate(this.config);
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, private runner: RunnerService, private responseService: ResponseService, private stim: StimuliService) {
+    responseService.getDBConnection(this.runner.getProjectName());
+    // todo this ^ should be done elsewhere - module?
+    this.iterator = runner.cycle(); // also this line should be within runner - not needed here
   }
 
   ngOnInit() {
-    // this.testCall();
-    this.runThrough();
+    this.nextAction(null);
   }
 
-  runThrough() {
-    // this.config.map(action => {
-    //   action.stimuli.map(s => {
-    //     buildStimuli(s, this.stimDirective.viewContainerRef, this.componentFactoryResolver);
-    //   });
-    // });
-
-    // todo need proper step-through, keeping track of where in parent, and all levels below..
-    // const s = this.config[0][++this.currentConfigIndex].stimuli[0];
-
-    this.nextItem();
-    // const s = this.config[0][1].stimuli[0];
+  studyEnded() {
+    // TODO implement end of study logic here
+    // note that the config can put what it wants the end of study Frame to be -- so this could just be running cleanup, etc.
   }
 
-  nextItem() {
-    // todo check for done=true
-    const s = this.iterator.next().value;
-    console.log(s);
-    this.buildStimuli(s.stimuli[0], this.stimDirective.viewContainerRef, this.componentFactoryResolver);
-  }
-
-  testCall() {
-    const s = this.config[0].stimuli[0];
-    // buildStimuli(s, this.stimDirective.viewContainerRef, this.componentFactoryResolver);
-
-    this.buildStimuli(s, this.stimDirective.viewContainerRef, this.componentFactoryResolver);
-  }
-
-  // todo rewrite in like ten lines with a generator
-  iterate(data) {
-    function iterator(data) {
-      const iterStack = [];
-      iterStack.push(data[Symbol.iterator]());
-
-      function getCurentIter() {
-        return iterStack[iterStack.length - 1];
-      }
-      function next() {
-        const res = getCurentIter().next();
-        if (res.done) {
-          if (iterStack.length > 1) {
-            iterStack.pop();
-            return next();
-          }
-        }
-        if (Array.isArray(res.value)) {
-          iterStack.push(res.value[Symbol.iterator]());
-          return next();
-        }
-
-        return res;
-      }
-
-      return { next: next.bind(this) };
+  nextAction(data) {
+    if (this.done) {
+      this.studyEnded();
     }
 
-    return iterator(data);
+    const cur = this.iterator.next(data);
+    const s = cur.value;
+    this.done = cur.done;
+
+    console.log(s);
+    this.buildStimuli(s.stimuli[0], this.stimDirective.viewContainerRef, this.componentFactoryResolver);
+    // todo ^ this needs to be fixed, can't just call [0] anymore
+    // todo ^ will be  once multiple stimuli/Frame/whatever is supported
   }
 
-  // this.currentConfigIndex = (this.currentConfigIndex + 1); // DO length check
-  // let action: Action = this.config[this.currentConfigIndex];
-
-  // TODO https://blog.angularindepth.com/here-is-how-to-get-viewcontainerref-before-viewchild-query-is-evaluated-f649e51315fb
-  // TODO and iterator moved to config service, and above to render service?
-
   buildStimuli(stimuli: Stimuli, view: ViewContainerRef, resolver: ComponentFactoryResolver) {
-    const componentFactory = resolver.resolveComponentFactory(stimuliComponentResolver(stimuli));
+    const componentFactory = resolver.resolveComponentFactory(this.stim.componentResolver(stimuli));
     view.clear();
 
     const componentRef = view.createComponent(componentFactory);
-    const inst = (<Stimuli>componentRef.instance);
-    // console.log(inst);
+    const inst = <Stimuli | Stimuli & Responsive>componentRef.instance; // todo does this make a difference?
     inst.parameters = stimuli.parameters;
-    console.log(inst);
 
-    inst.finishedEvent.subscribe(data => {
-      // this.iterate(data);
-      // this.runThrough();
-      this.nextItem();
-    })
-    // (<Stimuli>componentRef.instance).parameters = stimuli.parameters;
+    const instR = <Responsive>inst; // gah
+    if (instR) {
+      // instR.responseEnabled = false;
+      instR.responseEvent.subscribe(message => {
+        this.responseCache.push(message);
+        this.responseService.setResponse(message);
+      });
+    }
+
+    inst.doneEvent.subscribe(data => {
+      // this.nextAction(data);
+      const responses = this.responseCache;
+      this.responseCache = [];
+      this.nextAction(responses);
+      // todo could query the service for every response that took place under the current action, less state in here
+    });
   }
 }
