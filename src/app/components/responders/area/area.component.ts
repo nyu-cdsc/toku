@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { ClickArea, Coordinate } from './coordinate';
+import { ClickArea } from './area';
 import { Message } from '../../../message';
 
 
@@ -8,7 +8,7 @@ import { Message } from '../../../message';
   templateUrl: './coordinate.component.html',
   styleUrls: ['./coordinate.component.css']
 })
-export class MapComponent implements OnInit {
+export class AreaComponent implements OnInit {
   // @Input() coords: any;
   @Input() parameters: any;
   @Output() selectionEvent = new EventEmitter<Message>();
@@ -34,16 +34,16 @@ export class MapComponent implements OnInit {
   }
 
   getCoordinates() {
-    const coords = this.areas.map(val => {
-      if (!val.used) {
-        let res = val.area.coordinates.map(v => {
+    const coords = this.areas.map(area => {
+      if (!area.used) {
+        let scaledCoords = area.coordinates.map(v => {
           return String(Math.floor(v * 0.86)) // .95 on surface book
         });
 
         return {
-          coordinates: res.join(','),
-          shape: val.area.shape,
-          value: val.value
+          coordinates: scaledCoords.join(','),
+          shape: area.shape,
+          value: area.value
         }
       }
     });

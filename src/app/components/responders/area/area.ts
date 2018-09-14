@@ -1,29 +1,17 @@
 export class ClickArea {
-    area: Coordinate;
+    coordinates: Array<number>;
+    shape: string;
     value: string;
     used: false;
 
     constructor(obj) {
-        this.area = new Coordinate(obj.shape, obj.coordinates);
-        this.value = obj.value;
-    }
-
-    validate() {
-    }
-}
-
-export class Coordinate {
-    shape: string;
-    coordinates: Array<number>;
-
-    constructor(shape, coordinates) {
-        coordinates = coordinates.split(',').map(val => {
-            return Number(val);
+        const coordinates = obj.coordinates.split(',').map(coord => {
+            return Number(coord);
         })
-        shape = shape || 'rect';
+        const shape = obj.shape || 'rect';
         this.validate(shape, coordinates);
 
-        this.shape = shape, this.coordinates = coordinates;
+        this.coordinates = coordinates, this.shape = shape, this.value = obj.value;
     }
 
     validate(shape, coordinates: Array<number>) {

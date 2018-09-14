@@ -1,27 +1,11 @@
 NOW:
   - coordinate component implemented, map for coords or just list
   - payload passed to generator, with message to send response (also default)
-
-    - so then why does it need anything other than 'value'? we don't even need 'used'. if it shouldn't  
-      - be re-used, then just send that as the action and don't include it the next time round
-
-      - if everything has a method 'removeByValue' or something, that'd do it - could even make it meet an Interface
-      - (or in a more complex system, just passing a function along instead of/in addition to an action, that does the thing)
-
-      the fundamental objective is to 
-        be able to control whether certain areas / values can be chosen more than once
-        within an action and across them
-
-  - it can take care of its local state and just wipe (if set to) the area that was clicked
-
   for sequence:
-- if I instantiate it as a live object in the generator and pass it on, then I can pass the same object along and modify it as it goes
-  - this could be done in generator or on parent component
+    - just create additional object, like 'usedResponses' and pass it inside or alongside params  
+      - generator doesn't need to know anything about any of it
 
-all I need are the coordinates working (fully) and the responses working - conditional can wait for tomorrow
-  if this is working _tonight_, I can rebase everything, and have a clean place for her to start from
-
-
+  - responses now passed along as list to generator (though it may end up storing them itself in the future)
 
 
 **** just pass 'used' list along inside/alongside parameters, make sure it gets down to mapcomponent ****
@@ -160,3 +144,9 @@ later:
       - init, test/serve/develop, deploy, pull, destroy, etc.
       - deploy/pull/destroy just forward to the actual toku package.json call, none of that is in this scaffold repo
       - so it checks and runs init etc. first before actually calling those internally
+
+
+
+FUTURE:
+  should be easy to insert a form before or afterward, and store the data properly (different table than responses)
+ 
