@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { AppModule } from '../../../app.module';
 
 import { PictureComponent } from './picture.component';
 
@@ -6,11 +7,24 @@ describe('PictureComponent', () => {
   let component: PictureComponent;
   let fixture: ComponentFixture<PictureComponent>;
 
+  // beforeEach(async(() => {
+  //   TestBed.configureTestingModule({
+  //     declarations: [PictureComponent]
+  //   })
+  //     .compileComponents();
+  // }));
   beforeEach(async(() => {
+    // TestBed.configureTestingModule({
+    //   declarations: [AppComponent]
+    // }).overrideModule(BrowserDynamicTestingModule, {
+    //   set: {
+    //     entryComponents: [PictureComponent, MovieComponent],
+    //   }
+    // }).compileComponents();
     TestBed.configureTestingModule({
-      declarations: [PictureComponent]
-    })
-      .compileComponents();
+      // declarations: [AppComponent],
+      imports: [AppModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -26,7 +26,7 @@ export class Control {
   pickOne?: boolean = false;
   shuffle?: boolean = false;
   repeat?: number = 0;
-  runStyle?: string = "default";
+  runStyle?: string = 'default';
 
   constructor(control?) {
     if (control) {
@@ -40,7 +40,7 @@ export class Control {
 
   validate(control) {
     // const validShuffle = ['none', 'deep', 'shallow'];
-    const validRunStyle = ['sync', 'sequence', 'default']
+    const validRunStyle = ['sync', 'sequence', 'default'];
     // if (control.shuffle) {
     //   if (validShuffle.indexOf(control.shuffle) === -1) {
     //     // todo throw error/extend angular exceptions/whatever here

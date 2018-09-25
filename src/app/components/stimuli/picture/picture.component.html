@@ -8,7 +8,7 @@
 <ng-template #withMap>
   <!-- populate image -->
   <img [src]="parameters?.filename" usemap="#picturemap" #theimage />
-  <toku-map *ngIf="responseEnabled" (selectionEvent)="sendMessage($event)" [parameters]="parameters"></toku-map>
+  <app-map *ngIf="responseEnabled" (selectionEvent)="sendMessage($event)" [params]="parameters"></app-map>
 </ng-template>
 
 <!-- populating buttons if buttons required -->

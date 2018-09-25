@@ -67,7 +67,7 @@ export class RunnerService {
     // const name = this.getName(runList);
 
     let input;
-    for (let item of list) {
+    for (const item of list) {
       if (Array.isArray(item)) {
         input = yield* this.cycle(item); // todo what to do with input? pass it on?
       }
@@ -106,7 +106,7 @@ export class RunnerService {
   // TODO is default behavior at random?
   pickOne(list, control) {
     if (control.pickOne) {
-      list = this.shuffle(list)[0];
+      return [this.shuffle(list)[0]];
     }
 
     return list;

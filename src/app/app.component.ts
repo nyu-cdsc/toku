@@ -12,14 +12,22 @@ import { RunnerService } from './services/runner/runner.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'new';
   @ViewChild(StimuliDirective) stimDirective: StimuliDirective;
+  title: string;
   iterator: any;
   done: boolean = false;
   responseCache = [];
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private runner: RunnerService, private responseService: ResponseService, private stim: StimuliService) {
-    responseService.getDBConnection(this.runner.getProjectName());
+  constructor(
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private runner: RunnerService,
+    private responseService: ResponseService,
+    private stim: StimuliService
+  ) {
+    const title = this.runner.getProjectName();
+    responseService.getDBConnection(title);
+    this.title = title;
+
     // todo this ^ should be done elsewhere - module?
     this.iterator = runner.cycle(); // also this line should be within runner - not needed here
   }

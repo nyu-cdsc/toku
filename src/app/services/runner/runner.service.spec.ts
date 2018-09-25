@@ -1,6 +1,5 @@
 import { inject, TestBed } from '@angular/core/testing';
 
-import { Action, Control } from './configuration';
 import { RunnerService } from './runner.service';
 
 describe('RunnerService', () => {
@@ -13,9 +12,8 @@ describe('RunnerService', () => {
   const testControl: any = {
     type: 'control',
     repeat: 1
-  }
+  };
 
-  // TODO test arbitrarily adding more lists for further nesting, not just in Actions
   const testConfig: any[] = [
     {
       type: 'action',
@@ -27,7 +25,7 @@ describe('RunnerService', () => {
     [
       {
         type: 'control',
-        repeat: 0,
+        repeat: 1,
         shuffle: true
       },
       secondAction,
@@ -57,50 +55,58 @@ describe('RunnerService', () => {
 
   it('should find control object in group', inject([RunnerService], (service: RunnerService) => {
     const res = service.getControl(testConfig);
-    // console.log(res);
     expect(res.repeat).toBe(1);
   }));
 
-  it('should shuffle within same group - deep shuffle', inject([RunnerService], (service: RunnerService) => {
-    // const compare = [];
-    // const firstPre = { pre: testConfig.indexOf(firstAction) };
-    // const secondPre = { pre: testConfig.indexOf(secondAction) };
-
-    // // TODO redo shuffle/deepshuffle to return a new list instead of shuffling existing!
-    // service.deepShuffle(testConfig);
-
-    // compare['first']['post'] = testConfig.indexOf(firstAction);
-    // compare['second']['post'] = testConfig.indexOf(secondAction);
-
-    // TODO JUST USE Map()
-
-    // // console.log(compare);
-
-    // const res = compare.every(item => {
-    //   if (item['pre'] === item['post']) {
-    //     return true;
-    //   }
-    //   return false;
-    // });
-
-    // ^TODO get the walkthrough helper working with this, and go through list before/after comparing indexOf values
-
-    // expect(res).toBe(false, compare);
+  it('should not shuffle if not set', inject([RunnerService], (service: RunnerService) => {
+    const cont: any = {
+      type: 'control'
+    };
+    const res = service.shuffleFunctional(testConfig, cont);
+    expect(res).toEqual(testConfig);
   }));
 
-  it('should not shuffle if randomize/shuffle is false (use shuffle)', inject([RunnerService], (service: RunnerService) => {
-    // expect(true).toBe(true);
+  it('should shuffle if set', inject([RunnerService], (service: RunnerService) => {
+    const cont: any = {
+      type: 'control',
+      shuffle: true
+    };
+    const res = service.shuffleFunctional(testConfig, cont);
+    expect(res.length).toEqual(testConfig.length, 'length of shuffled list should be the same as original');
+
+    let count = 0;
+    for (let i = 0; i < res.length; i++) {
+      if (res[i].id === testConfig[i].id) {
+        count++;
+      }
+    }
+    expect(count).not.toEqual(res.length, 'items in shuffled list should not be in the same location');
   }));
 
-  it('should pickOne', inject([RunnerService], (service: RunnerService) => {
-    expect(true).toBe(true);
+  // TODO - account for the result being an entire block instead of just an action? would be resolved if it were an object..
+  it('should pickOne if set', inject([RunnerService], (service: RunnerService) => {
+    const cont: any = {
+      type: 'control',
+      pickOne: true
+    };
+    const res = service.pickOne(testConfig, cont);
+    expect(res.length).toBe(1);
   }));
 
   it('should repeat number of times set', inject([RunnerService], (service: RunnerService) => {
-    const res = service.repeatList(testConfig, testControl.repeat);
-    
+    const cont: any = {
+      type: 'control',
+      repeat: 2
+    };
+    const res = service.repeat(testConfig, cont);
     // if repeat is 0, length is equivalent to origLength * (1 + 0) (e.g. it's the same, and 1+1 if repeat doubles it, etc..)
-    expect(res.length).toBe(testConfig.length * (1 + testControl.repeat));
+    expect(res.length).toBe(testConfig.length * (1 + cont.repeat));
+  }));
+
+  it('should clone', inject([RunnerService], (service: RunnerService) => {
+    const res = service.clone(testConfig);
+    expect(res === testConfig).toBe(false);
+    expect(res).toEqual(testConfig); // deep comparison
   }));
 });
 

@@ -1,4 +1,4 @@
-import { StimloaderDirective } from './stimloader.directive';
+import { StimuliDirective } from './stimuli.directive';
 
 describe('StimloaderDirective', () => {
   it('should create an instance', () => {

@@ -12,4 +12,7 @@ describe('ResponseService', () => {
   it('should be created', inject([ResponseService], (service: ResponseService) => {
     expect(service).toBeTruthy();
   }));
+  it('should pickOne', inject([ResponseService], (service: ResponseService) => {
+    expect(true).toBe(true);
+  }));
 });
