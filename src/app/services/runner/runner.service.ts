@@ -76,7 +76,7 @@ export class RunnerService {
       if (Array.isArray(item)) {
         input = yield* this.cycle(item, input); // todo what to do with input? pass it on?
       }
-      if (item.type !== 'action' && item.type !== 'condition') {
+      if (item.type !== 'action' && item.type !== 'conditional') {
         continue;
       }
       if (other) {
@@ -157,10 +157,8 @@ export class RunnerService {
   }
 
   processItem(item, input) {
-    console.log(item);
-
-    if (item.type === 'condition') {
-      item = item.items[input];
+    if (item.type === 'conditional') {
+      item = item.items[input.value];
     }
     // TODO add in conditional support via (input)
     const obj = new Action(item);
