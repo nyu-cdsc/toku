@@ -12,7 +12,6 @@ export class PictureComponent implements Stimuli, Responsive, OnInit {
   @Output() doneEvent = new EventEmitter<any>();
   @Output() responseEvent = new EventEmitter<Message>();
   @Input() responseEnabled = true; // this can be disabled by parent via [responseEnabled]
-  // todo ^ don't create map component UNTIL this is enabled, to prevent 'used' from being set prematurely
 
   constructor() { }
   ngOnInit() { }

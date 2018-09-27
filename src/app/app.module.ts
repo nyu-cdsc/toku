@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ButtonComponent } from './components/responders/button/button.component';
-import { MapComponent } from './components/responders/coordinate/coordinate.component';
+import { AreaComponent } from './components/responders/area/area.component';
 import { SoundComponent } from './components/stimuli/sound/sound.component';
 import { MovieComponent } from './components/stimuli/movie/movie.component';
 import { PictureComponent } from './components/stimuli/picture/picture.component';
@@ -19,7 +19,7 @@ import { StimuliService } from './components/stimuli/stimuli.service';  // TODO 
   declarations: [
     AppComponent,
     ButtonComponent,
-    MapComponent,
+    AreaComponent,
     SoundComponent,
     MovieComponent,
     PictureComponent,
@@ -30,7 +30,7 @@ import { StimuliService } from './components/stimuli/stimuli.service';  // TODO 
     MovieComponent,
     SoundComponent,
     ButtonComponent,
-    MapComponent
+    AreaComponent
   ],
   imports: [
     BrowserModule

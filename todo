@@ -1,54 +1,32 @@
-NOW:
-  - coordinate component implemented, map for coords or just list
-  - payload passed to generator, with message to send response (also default)
+- conditionals
+- scaling
 
-    - so then why does it need anything other than 'value'? we don't even need 'used'. if it shouldn't  
-      - be re-used, then just send that as the action and don't include it the next time round
+- export/working responses
+- working block names, in responses
+- form at beginning/end of study, data stored (not as response) -- form specified in config file
+  - AND THEN USE THIS for responses! e.g. collecting the particpants' age, etc.
+- yaml
+- might need to bring back deepshuffle - to hit all blocks and they don't need to say it each time
+  - might be an antipattern though
 
-      - if everything has a method 'removeByValue' or something, that'd do it - could even make it meet an Interface
-      - (or in a more complex system, just passing a function along instead of/in addition to an action, that does the thing)
+- validation (more) and error handling
+- tests
+- stricter typing, docblocks, docs
 
-      the fundamental objective is to 
-        be able to control whether certain areas / values can be chosen more than once
-        within an action and across them
+- let them just give us css? fully formed web components and just run them? interface to store responses (or overlay via config file)
 
-  - it can take care of its local state and just wipe (if set to) the area that was clicked
+
+
 
   for sequence:
-- if I instantiate it as a live object in the generator and pass it on, then I can pass the same object along and modify it as it goes
-  - this could be done in generator or on parent component
-
-all I need are the coordinates working (fully) and the responses working - conditional can wait for tomorrow
-  if this is working _tonight_, I can rebase everything, and have a clean place for her to start from
-
-
-
-
-**** just pass 'used' list along inside/alongside parameters, make sure it gets down to mapcomponent ****
-
-
-
-
-
+    - just create additional object, like 'usedResponses' and pass it inside or alongside params  
+      - generator doesn't need to know anything about any of it
+  - responses now passed along as list to generator (though it may end up storing them itself in the future)
 
 - working config/runner
-  - finally need to separate object instantiation from the config
-    - Param objects for instance will have response objects, but in the config they won't have 'used' properties on them
-    - just make it optional, still separate. make the object _create_ functions in stimuliservice for the generator
-- working event flow
-  - response working
     - params give us response object
-    - we set switch of 'used' to true whenever one checked and send the entire object up to parent
-      - rather than just sending the specific response
-    - FOR NOW, just replace that single object of each type that will later be marked as the response type
-    - or the values-carrying type. each stimuli has one of these? it's meeting an interface or just a role
     - at the end of it, could just have a marker of 'responder'
-
 - get conditional choices working through generator and back
-
-RESPONSES:
-  'payload' which for now just includes the entire object, and it will have an 'action' which tells the generator
-    what to do with it
 
 RESPONDERS:
   pulled into the stimuli components if they have anything that is a StimuliResponse type in their parameters (scan? label?)
@@ -60,52 +38,12 @@ FRAME:
     the frame/action itself, and iterates to the next one
   parameters to the frame would be the placement of the stimuli, or it would get this from the stimuli config itself - think on it
 
-- yaml
-- export
-- validation and error handling
-- stricter typing, docblocks, docs
 
 flow is as events --
   stimuli -> appComponent/response aggregator/Frame -> <- service (in reverse)
 response sent stimuli->parent, it decides what to let through based on Control settings/param/whatever the child tells it
 
 TODO - move all of this into specific sections rather than global
-
-
-RESPONSE thoughts:
-  - two competing ways to handle it
-    1. have it be a tiny object/closure that is passed around and has functionality to set/unset its used property via standardized interface call
-    2. they're all the same, so pass it through function that simply flips the used property based on received value object
-  - what are the advantages/disadvantages of both?
-    - smart object
-      - passing around object with logic
-      - need to instantiate it
-      - the parent needs to know how to talk to it
-    - dumb object 
-      - the parent has to know how to manipulate it
-      - could get reducer/whatever from the same package as the object, but that's just breaking it up more
-
-    - is this a fundamental difference between functional and oo?
-    - can/is it sensible to pass a smart/encapsulated object down a list of manipulators? a message-based object.
-
-    - actually is it even relevant in this instance? if it's used, then it would just be passed up to the parent already used - the parent
-      would not need to do that itself. it would just be passing it along. so how that's set, makes no difference in this case
-    - it only came about because a different type of object was being passed up, which was incomplete and would really act as a message to
-      manipulate one later on. that just shouldn't be necessary here. 
-      - but should we pass the whole thing up to the parent every single time just to accomodate for the case it needs to be re-used?
-        - perhaps it could, in the case that the parent, the parameters, supports a message/call that re-integrates this Response
-        - ** so essentially, parameters.replace(response) or something - that would do! **
-          - and in that case it wouldn't need the whole thing. just the 'key', which in this case is the value
-          - so I leave it just as it is, make Parameter smarter.. but then there's the issue that it's an interface and not an
-            abstract/base class. so it may be time to change that.
-              - is there a better way to do this that is better for modularity? or is inheritance actually correct in this instance.
-              - or one interface is implemented by one, another by another.. or this is removed from the parent and done elsewhere..
-
-              - this could be handled by the runner service. it's already got params, and if the params are actually passed back up for it
-                to do something with, then it's like a conditional. although in this case it should probably have an additional value that tells
-                it what 'action' to do, e.g. 'replace', 'decide', etc - and then we're right back to actions and reducers..
-
-                - ** so yeah, for now put an optional 'action' onto the object **
 
 
 DEPLOY:
@@ -148,8 +86,6 @@ so it is very clear what occurred
 
 
 
-
-
 later:
   - this respository should probably be treated as a dependency, and their projects should be nothing other than:
     package.json
@@ -160,3 +96,9 @@ later:
       - init, test/serve/develop, deploy, pull, destroy, etc.
       - deploy/pull/destroy just forward to the actual toku package.json call, none of that is in this scaffold repo
       - so it checks and runs init etc. first before actually calling those internally
+
+
+
+FUTURE:
+  should be easy to insert a form before or afterward, and store the data properly (different table than responses)
+ 

@@ -45,6 +45,10 @@ export class ResponseService {
     return this.db.transaction(this.STORE, type);
   }
 
+  newResponse(): Response {
+    return new Response();
+  }
+
   getResponses(): Promise<Response[]> {
     const transaction = this.startTransaction(true);
     const store = transaction.objectStore(this.STORE);

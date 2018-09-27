@@ -1,40 +1,28 @@
 export class ClickArea {
-    area: Coordinate;
+    coordinates: Array<number>;
+    shape: string;
     value: string;
     used: false;
 
     constructor(obj) {
-        this.area = new Coordinate(obj.shape, obj.coordinates);
-        this.value = obj.value;
-    }
-
-    validate() {
-    }
-}
-
-export class Coordinate {
-    shape: string;
-    coordinates: Array<number>;
-
-    constructor(shape, coordinates) {
-        coordinates = coordinates.split(',').map(val => {
-            return Number(val);
-        })
-        shape = shape || 'rect';
+        const coordinates = obj.coordinates.split(',').map(coord => {
+            return Number(coord);
+        });
+        const shape = obj.shape || 'rect';
         this.validate(shape, coordinates);
 
-        this.shape = shape, this.coordinates = coordinates;
+        this.coordinates = coordinates, this.shape = shape, this.value = obj.value;
     }
 
     validate(shape, coordinates: Array<number>) {
         switch (shape) {
             case 'rect':
-                if (coordinates.length != 4) {
+                if (coordinates.length !== 4) {
                     // throw error with length mismatch - be specific (rather than just returning false)
                 }
                 break;
             case 'circle':
-                if (coordinates.length != 2) {
+                if (coordinates.length !== 2) {
                     // throw error
                 }
                 break;

@@ -9,10 +9,10 @@ import { Message } from '../../../message';
   styleUrls: ['./movie.component.css']
 })
 export class MovieComponent implements Stimuli, Responsive, OnInit {
-  @Input() parameters: any; // todo the one other option here is to use a setter and _cast_ the param type to one we create for this component. 
+  @Input() parameters: any; // todo the one other option here is to use a setter and _cast_ the param type to one we create for this component.
   @Output() doneEvent = new EventEmitter<any>();
   @Output() responseEvent = new EventEmitter<Message>();
-  responseEnabled = true;
+  responseEnabled = false;
 
   constructor() { }
 

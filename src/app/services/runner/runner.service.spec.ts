@@ -1,6 +1,5 @@
 import { inject, TestBed } from '@angular/core/testing';
 
-import { Action, Control } from './configuration';
 import { RunnerService } from './runner.service';
 
 describe('RunnerService', () => {
@@ -9,13 +8,27 @@ describe('RunnerService', () => {
     id: 'secondA',
     stimuli: []
   };
+  const thirdAction: any = {
+    type: 'action',
+    id: 'thirdA',
+    stimuli: []
+  };
+  const fourthAction: any = {
+    type: 'action',
+    id: 'fourthA',
+    stimuli: []
+  };
+  const fifthAction: any = {
+    type: 'action',
+    id: 'fifthA',
+    stimuli: []
+  };
 
   const testControl: any = {
     type: 'control',
-    repeat: 1
-  }
+    repeat: 0
+  };
 
-  // TODO test arbitrarily adding more lists for further nesting, not just in Actions
   const testConfig: any[] = [
     {
       type: 'action',
@@ -23,6 +36,25 @@ describe('RunnerService', () => {
       stimuli: []
     },
     secondAction,
+    {
+      type: 'condition',
+      id: 'firstCondition',
+      items: {
+        // 'one': {
+
+        // },
+        'one': fourthAction,
+        'onetwo': secondAction,
+        'two': thirdAction,
+        'three': [ // just like blocks elsewhere - just a list. list of obhs and lists - although in this case, with keys
+          // {
+
+          // },
+          fifthAction,
+          secondAction
+        ]
+      }
+    },
     testControl,
     [
       {
@@ -57,50 +89,90 @@ describe('RunnerService', () => {
 
   it('should find control object in group', inject([RunnerService], (service: RunnerService) => {
     const res = service.getControl(testConfig);
-    // console.log(res);
-    expect(res.repeat).toBe(1);
+    expect(res.repeat).toBe(0);
   }));
 
-  it('should shuffle within same group - deep shuffle', inject([RunnerService], (service: RunnerService) => {
-    // const compare = [];
-    // const firstPre = { pre: testConfig.indexOf(firstAction) };
-    // const secondPre = { pre: testConfig.indexOf(secondAction) };
-
-    // // TODO redo shuffle/deepshuffle to return a new list instead of shuffling existing!
-    // service.deepShuffle(testConfig);
-
-    // compare['first']['post'] = testConfig.indexOf(firstAction);
-    // compare['second']['post'] = testConfig.indexOf(secondAction);
-
-    // TODO JUST USE Map()
-
-    // // console.log(compare);
-
-    // const res = compare.every(item => {
-    //   if (item['pre'] === item['post']) {
-    //     return true;
-    //   }
-    //   return false;
-    // });
-
-    // ^TODO get the walkthrough helper working with this, and go through list before/after comparing indexOf values
-
-    // expect(res).toBe(false, compare);
+  it('should not shuffle if not set', inject([RunnerService], (service: RunnerService) => {
+    const cont: any = {
+      type: 'control'
+    };
+    const res = service.shuffleFunctional(testConfig, cont);
+    expect(res).toEqual(testConfig);
   }));
 
-  it('should not shuffle if randomize/shuffle is false (use shuffle)', inject([RunnerService], (service: RunnerService) => {
-    // expect(true).toBe(true);
+  it('should shuffle if set', inject([RunnerService], (service: RunnerService) => {
+    const cont: any = {
+      type: 'control',
+      repeat: 3,
+      shuffle: true
+    };
+    const source = service.repeat(testConfig, cont); // increase reliability of test by making source larger
+    const res = service.shuffleFunctional(source, cont);
+    expect(res.length).toEqual(source.length, 'length of shuffled list should be the same as original');
+
+    let count = 0;
+    for (let i = 0; i < res.length; i++) {
+      if (res[i].id === source[i].id) {
+        count++;
+      }
+    }
+    expect(count).not.toEqual(res.length, 'items in shuffled list should not be in the same location');
   }));
 
-  it('should pickOne', inject([RunnerService], (service: RunnerService) => {
-    expect(true).toBe(true);
+  // TODO - account for the result being an entire block instead of just an action? would be resolved if it were an object..
+  it('should pickOne if set', inject([RunnerService], (service: RunnerService) => {
+    const cont: any = {
+      type: 'control',
+      pickOne: true
+    };
+    const res = service.pickOne(testConfig, cont);
+    expect(res.length).toBe(1);
   }));
 
   it('should repeat number of times set', inject([RunnerService], (service: RunnerService) => {
-    const res = service.repeatList(testConfig, testControl.repeat);
-    
+    const cont: any = {
+      type: 'control',
+      repeat: 2
+    };
+    const res = service.repeat(testConfig, cont);
     // if repeat is 0, length is equivalent to origLength * (1 + 0) (e.g. it's the same, and 1+1 if repeat doubles it, etc..)
-    expect(res.length).toBe(testConfig.length * (1 + testControl.repeat));
+    expect(res.length).toBe(testConfig.length * (1 + cont.repeat));
   }));
-});
 
+  it('should clone', inject([RunnerService], (service: RunnerService) => {
+    const res = service.clone(testConfig);
+    expect(res === testConfig).toBe(false);
+    expect(res).toEqual(testConfig); // deep comparison
+  }));
+
+  it('(generator) should receive value even on nested iteration', inject([RunnerService], (service: RunnerService) => {
+    // check for value being passed in to processItem, processList, etc.
+    const iterator = service.cycle(testConfig);
+    let val = iterator.next();
+    console.log(val);
+    val = iterator.next('one');
+    console.log(val);
+    val = iterator.next('onetwo');
+    console.log(val);
+    expect(val.value[2]).toBe('action');
+    expect(val.value[1]).toBe('secondA');
+    // val = iterator.next('two');
+    // console.log(val);
+    // val = iterator.next('three');
+    // console.log(val);
+    // val = iterator.next('fourth');
+    // console.log(val);
+    // val = iterator.next('fifth');
+    // console.log(val);
+    // val = iterator.next('sixth');
+    // console.log(val);
+    // val = iterator.next('final');
+    // console.log(val);
+
+  }));
+
+  it('(generator) should make decision based on data passed in, when conditional set', inject([RunnerService], (service: RunnerService) => {
+    // ^
+  }));
+
+});

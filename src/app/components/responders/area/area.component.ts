@@ -1,24 +1,24 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { ClickArea, Coordinate } from './coordinate';
+import { Component, EventEmitter, Input, Output, OnInit, OnChanges } from '@angular/core';
+import { ClickArea } from './area';
 import { Message } from '../../../message';
 
 
 @Component({
-  selector: 'toku-map',
-  templateUrl: './coordinate.component.html',
-  styleUrls: ['./coordinate.component.css']
+  selector: 'app-map',
+  templateUrl: './area.component.html',
+  styleUrls: ['./area.component.css']
 })
-export class MapComponent implements OnInit {
+export class AreaComponent implements OnChanges {
   // @Input() coords: any;
-  @Input() parameters: any;
+  @Input() params: any;
   @Output() selectionEvent = new EventEmitter<Message>();
   areas: ClickArea[] = [];
   // todo ^ make a setter for coordParams? is that doable?
 
   constructor() { }
 
-  ngOnInit() {
-    for (const v of this.parameters.coordinates) {
+  ngOnChanges() {
+    for (const v of this.params.coordinates) {
       this.areas.push(new ClickArea(v));
     }
     // console.log("PARAMS ARE", this.parameters);
@@ -27,24 +27,24 @@ export class MapComponent implements OnInit {
 
   click(val) {
     console.log('AREA SELECTED!', val);
-    this.selectionEvent.emit(<Message>{ value: val })
+    this.selectionEvent.emit(<Message>{ value: val });
     // todo used should be set here, but it needs to be passed back to Stimuli so it can be sent up in Message
     // todo or is used set by parent based on if responses going yet, and they send new set of params back to us and we reload?
 
   }
 
   getCoordinates() {
-    const coords = this.areas.map(val => {
-      if (!val.used) {
-        let res = val.area.coordinates.map(v => {
-          return String(Math.floor(v * 0.86)) // .95 on surface book
+    const coords = this.areas.map(area => {
+      if (!area.used) {
+        const scaledCoords = area.coordinates.map(v => {
+          return String(Math.floor(v * 0.86)); // .95 on surface book
         });
 
         return {
-          coordinates: res.join(','),
-          shape: val.area.shape,
-          value: val.value
-        }
+          coordinates: scaledCoords.join(','),
+          shape: area.shape,
+          value: area.value
+        };
       }
     });
 
