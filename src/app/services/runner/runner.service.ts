@@ -24,6 +24,10 @@ export class RunnerService {
     return Project.name;
   }
 
+  getProject() {
+    return Project;
+  }
+
   getBlockName(list): string {
     const res = list.filter(item => {
       if (item.name && (Object.keys(item).length === 1)) {

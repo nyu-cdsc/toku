@@ -15,11 +15,11 @@ export class AppComponent implements OnInit {
   @ViewChild(StimuliDirective) stimDirective: StimuliDirective;
   study: string;
   iterator: any;
-  done: boolean = false;
   responseCache = [];
   curActionName: string; // TODO this is getting unwieldy again -- all these items are for responses, should be in generator
   condition: string;
   curBlockName: string;
+  ended: any;
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
     const title = this.runner.getProjectName();
     responseService.getDBConnection(title);
     this.study = title;
-
+    this.ended = this.runner.getProject().ended;
     // todo this ^ should be done elsewhere - module?
     this.iterator = runner.cycle();
     this.condition = this.runner.getBlockName(runner.list);
@@ -43,15 +43,17 @@ export class AppComponent implements OnInit {
   }
 
   studyEnded() {
+    console.log('studyEnded() has been called');
+    this.buildStimuli(this.ended.stimuli[0], this.stimDirective.viewContainerRef, this.componentFactoryResolver);
     // TODO implement end of study logic here
     // note that the config can put what it wants the end of study Frame to be -- so this could just be running cleanup, etc.
   }
 
   nextAction(data) {
-    if (this.done) {
-      this.studyEnded();
-    }
     const cur = this.iterator.next(data);
+    if (cur.done) {
+      return this.studyEnded();
+    }
     const action = cur.value;
     this.curActionName = action.id;
     this.curBlockName = this.runner.getBlockName(this.runner.list); // todo
@@ -59,7 +61,7 @@ export class AppComponent implements OnInit {
     this.buildStimuli(action.stimuli[0], this.stimDirective.viewContainerRef, this.componentFactoryResolver);
     // todo ^ this needs to be fixed, can't just call [0] anymore
     // todo ^ will be  once multiple stimuli/Frame/whatever is supported
-    this.done = cur.done;
+
   }
 
   buildStimuli(stimuli: Stimuli, view: ViewContainerRef, resolver: ComponentFactoryResolver) {
