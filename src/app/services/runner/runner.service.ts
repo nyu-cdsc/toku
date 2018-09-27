@@ -157,15 +157,14 @@ export class RunnerService {
   }
 
   processItem(item, input) {
+    console.log(item);
+
     if (item.type === 'condition') {
       item = item.items[input];
     }
     // TODO add in conditional support via (input)
     const obj = new Action(item);
 
-    if (input) {
-      return [input, item.id, item.type];
-    }
     return item;
   }
 
