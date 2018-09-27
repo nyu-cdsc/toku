@@ -1,36 +1,28 @@
-var animalGif2 = {
-  id: 'animalGif2',
-  type: 'action',
-  stimuli: [
-    {
-      type: 'movie',
-      parameters: {
-        disable: false,
-        filename: '../../../assets/movie/content/animal2.mp4'
-      }
-    }
-  ]
-};
-
-var animalGif3 = {
-  id: 'animalGif3',
-  type: 'action',
-  stimuli: [
-    {
-      type: 'movie',
-      parameters: {
-        filename: '../../../assets/movie/content/animal3.mp4'
-      }
-    }
-  ]
-};
-
 // todo show arbitrary nesting/GROUPING with [[]] etc - lists within lists, but NOT lists within items
 // todo enable groups/lists to have a name/id when it's not stored directly in a variable (or just require it?)
 // especially for conditions- will need to log it in responses
 
 // TODO look into Map() as a solution to this. right now it only works with lists, and lists in lists. but I can't name the list, etc.
 // TODO other soltutions: just use objects, so objects within objects and know their structure (could be fine), and introspection/reflection to get variable names
+
+var startGame = [
+  {
+    type: 'action',
+    id: 'startGame',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/start.jpeg',
+          coordinates: [
+            { value: 'started', shape: "rect", coordinates: "0, 0, 1024, 768" },
+          ]
+        },
+      }
+    ]
+  },
+]
+
 var friction = [
   {
     name: "Friction"
@@ -562,8 +554,14 @@ var contingentFeedback = [
         type: 'picture',
         parameters: {
           filename: '../../../assets/picture/persistence/wood.jpeg',
-          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [{ value: 'one', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+          coordinates: [
+            { value: 'one', shape: "rect", coordinates: "161, 646, 250, 740" },
+            { value: 'two', shape: "rect", coordinates: "282, 646, 370, 740" },
+            { value: 'three', shape: "rect", coordinates: "400, 646, 490, 740" },
+            { value: 'four', shape: "rect", coordinates: "518, 646, 608, 740" },
+            { value: 'five', shape: "rect", coordinates: "634, 646, 726, 740" },
+            { value: 'six', shape: "rect", coordinates: "756, 646, 844, 740" },
+          ],
         },
       }
     ]
@@ -666,8 +664,14 @@ var contingentFeedback = [
         type: 'picture',
         parameters: {
           filename: '../../../assets/picture/persistence/playmat.jpeg',
-          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [{ value: 'one', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+          coordinates: [
+            { value: 'one', shape: "rect", coordinates: "161, 646, 250, 740" },
+            { value: 'two', shape: "rect", coordinates: "282, 646, 370, 740" },
+            { value: 'three', shape: "rect", coordinates: "400, 646, 490, 740" },
+            { value: 'four', shape: "rect", coordinates: "518, 646, 608, 740" },
+            { value: 'five', shape: "rect", coordinates: "634, 646, 726, 740" },
+            { value: 'six', shape: "rect", coordinates: "756, 646, 844, 740" },
+          ]
         },
       }
     ]
@@ -776,7 +780,9 @@ var end = [
         type: 'picture',
         parameters: {
           filename: '../../../assets/picture/content/age.jpeg',
-          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+          coordinates: [
+            { value: 'three', shape: "rect", coordinates: "186, 244, 398, 544" },
+            { value: 'four', shape: "rect", coordinates: "626, 244, 826, 544" }],
         }
       }
     ]
@@ -801,7 +807,10 @@ var end = [
         type: 'picture',
         parameters: {
           filename: '../../../assets/picture/content/gender.jpeg',
-          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+          coordinates: [
+            { value: 'boy', shape: "rect", coordinates: "96, 244, 464, 490" },
+            { value: 'girl', shape: "rect", coordinates: "550 ,244, 918, 490" }
+          ],
         }
       }
     ]
@@ -829,7 +838,10 @@ var endMemory = [
         type: 'picture',
         parameters: {
           filename: '../../../assets/picture/persistence/memory.jpeg',
-          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "150, 240, 436, 504" },
+            { value: 'right', shape: "rect", coordinates: "584, 240, 816, 504" }
+          ],
         }
       }
     ]
@@ -837,6 +849,7 @@ var endMemory = [
 ]
 
 var contentStudy = [
+  startGame,
   friction,
   sciMethod,
   interest,
@@ -884,12 +897,24 @@ var test = [
       },
     }
   },
-
+  {
+    type: 'action',
+    id: 'test2',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/content/gender.jpeg',
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        }
+      }
+    ]
+  },
 ]
 
 
 var persistenceStudy = [
-  test,
+  startGame,
   contingentFeedback,
   end,
   endMemory
@@ -897,8 +922,8 @@ var persistenceStudy = [
 
 export const Project = {
   conditions: [
-    // contentStudy,
-    persistenceStudy
+    contentStudy,
+    // persistenceStudy
   ],
   name: "interventionStudy",
   ended: {

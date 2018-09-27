@@ -1,3 +1,23 @@
 img {
-  width: 1600px;
+  width: 1024px;
+}
+
+.started {
+  animation-name: pulse;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-delay: 0s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-fill-mode: none;
+  animation-play-state: running;
+}
+
+@keyframes pulse {
+  0% {
+      opacity: 1;
+  }
+  100% {
+      opacity: .6;
+  }
 }
