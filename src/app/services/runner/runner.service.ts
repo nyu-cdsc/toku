@@ -65,30 +65,37 @@ export class RunnerService {
 
   // two-way; receives data for conditional decisions
   // TODO also document generator - here and in readme
-  *cycle(list?, other?) {
+  *cycle(list?, passedInput?) {
+    console.log('NEWCYCLE******************************')
     // *cycle(list, other?) {
     if (!list) {
       list = this.list;
     }
+
+    let input = yield 'start';
     const control: Control = this.getControl(list);
     list = this.processList(list, control);
     // const name = this.getName(runList);
     // TODO ^
 
     // TODO find way to deal with logic in here -- also pass through list of funcs?
-    let input;
+    if (passedInput) {
+      input = passedInput;
+      passedInput = null;
+    }
+
     for (const item of list) {
       if (Array.isArray(item)) {
-        input = yield* this.cycle(item, input); // todo what to do with input? pass it on?
+        input = yield* this.cycle(item, input);
       }
       if (item.type !== 'action' && item.type !== 'conditional') {
         continue;
       }
-      if (other) {
-        input = yield this.processItem(item, other);
-        other = null;
+
+      if (item.type === 'conditional') {
+        input = yield* this.cycle(item.items[input[0].value], input);
       } else {
-        input = yield this.processItem(item, input);
+        input = yield item;
       }
     }
     // TODO use Message here and in response service
@@ -98,12 +105,47 @@ export class RunnerService {
   processList(list, control) {
     // todo use observer.pipe() on these  - or just check for errors here
     // TODO separate the actual implementation of the functions from the ones that make decisions based on control{}
-    // e.g runShuffle, runRepeat, etc. or baseShuffle, baseRepeat -- or move the implementations to their own class and have wrappers defined here
     list = this.shuffleFunctional(list, control);
     list = this.repeat(list, control);
     list = this.pickOne(list, control);
 
     return list;
+  }
+
+  // TODO - input won't work in this way because this function isn't called anew each time now?
+  *processItem(item, passedInput?) {
+    let input = yield 'start';
+    if (item.type === 'conditional') {
+      // item = ;
+      // TODO support multiple responses
+      // if (Array.isArray(item)) {
+      console.log('CONDITIONAL');
+      if (passedInput) {
+        console.log('PASSED')
+        input = yield* this.cycle(item.items[passedInput[0].value], passedInput);
+      } else {
+        console.log('INPUT')
+        input = yield* this.cycle(item.items[input[0].value], input);
+      }
+    } else { // not conditional
+      console.log('NOT CONDITIONAL');
+      if (passedInput) {
+        console.log('PASSED')
+        input = yield [item.id, passedInput[0], 'yay'];
+      } else {
+        console.log('INPUT')
+        input = yield [item.id, input, 'yay'];
+      }
+    }
+    // const obj = new Action(item); // what was this for? validation?
+
+    // return [item.id, 'done'];
+  }
+
+  processConditional(item, input) {
+    // should be able to just recurse. why isn't that working, again? 
+    // processitem was made to get around generator issues, but is it needed? can we just set it up so execution is laid out right?
+
   }
 
   repeat(list, control) {
@@ -130,6 +172,10 @@ export class RunnerService {
     return list.slice(0);
   }
 
+  // TODO validate action, control, etc here (but not the stimuli? can call stimuliservice.validateAll() for the rest)
+  validate() { }
+
+  // can also be used as means to swap between shuffle algorithms
   shuffleFunctional(list, control) {
     if (control.shuffle) {
       list = this.shuffle(list);
@@ -161,21 +207,4 @@ export class RunnerService {
     return list;
   }
 
-  processItem(item, input) {
-    if (item.type === 'conditional') {
-      item = item.items[input[0].value];
-      // TODO support multiple responses
-
-      if (Array.isArray(item)) {
-        return this.cycle(item);
-      }
-    }
-    // TODO add in conditional support via (input)
-    const obj = new Action(item);
-
-    return item;
-  }
-
-  // TODO validate action, control, etc here (but not the stimuli? can call stimuliservice.validateAll() for the rest)
-  validate() { }
 }

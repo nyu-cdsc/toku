@@ -1,5 +1,4 @@
 import { inject, TestBed } from '@angular/core/testing';
-
 import { RunnerService } from './runner.service';
 
 describe('RunnerService', () => {
@@ -37,21 +36,15 @@ describe('RunnerService', () => {
     },
     secondAction,
     {
-      type: 'condition',
+      type: 'conditional',
       id: 'firstCondition',
-      items: {
-        // 'one': {
-
-        // },
-        'one': fourthAction,
-        'onetwo': secondAction,
-        'two': thirdAction,
-        'three': [ // just like blocks elsewhere - just a list. list of obhs and lists - although in this case, with keys
-          // {
-
-          // },
+      items: { // just like blocks elsewhere - just a list. list of actions and lists of lists - although in this case, with keys
+        'one': [fourthAction],
+        'onetwo': [fourthAction],
+        'two': [fourthAction],
+        'three': [
           fifthAction,
-          secondAction
+          fifthAction
         ]
       }
     },
@@ -62,7 +55,7 @@ describe('RunnerService', () => {
         repeat: 0,
         shuffle: true
       },
-      secondAction,
+      thirdAction,
       {
         type: 'action',
         id: 'yetYetAnotherA',
@@ -150,24 +143,24 @@ describe('RunnerService', () => {
     const iterator = service.cycle(testConfig);
     let val = iterator.next();
     console.log(val);
-    val = iterator.next('one');
+    val = iterator.next([{ value: 'one' }]);
     console.log(val);
-    val = iterator.next('onetwo');
+    val = iterator.next([{ value: 'onetwo' }]);
     console.log(val);
-    expect(val.value[2]).toBe('action');
-    expect(val.value[1]).toBe('secondA');
-    // val = iterator.next('two');
-    // console.log(val);
-    // val = iterator.next('three');
-    // console.log(val);
-    // val = iterator.next('fourth');
-    // console.log(val);
-    // val = iterator.next('fifth');
-    // console.log(val);
-    // val = iterator.next('sixth');
-    // console.log(val);
-    // val = iterator.next('final');
-    // console.log(val);
+    // expect(val.value[2]).toBe('action');
+    // expect(val.value[1]).toBe('secondA');
+    val = iterator.next([{ value: 'onetwo' }]);
+    console.log(val);
+    val = iterator.next([{ value: 'three' }]);
+    console.log(val);
+    val = iterator.next([{ value: 'three' }]);
+    console.log(val);
+    val = iterator.next([{ value: 'three' }]);
+    console.log(val);
+    val = iterator.next([{ value: 'three' }]);
+    console.log(val);
+    val = iterator.next([{ value: 'three' }]);
+    console.log(val);
 
   }));
 
