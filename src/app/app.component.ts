@@ -86,7 +86,8 @@ export class AppComponent implements OnInit {
 
     inst.doneEvent.subscribe(data => {
       if (this.done) {
-        window.location.reload();
+        this.resetGame();
+        // window.location.reload();
       }
       // this.nextAction(data);
       const responses = this.responseCache;
@@ -116,5 +117,8 @@ export class AppComponent implements OnInit {
     return response; // todo return Message?
   }
 
+  resetGame() {
+    window.location.reload();
+  }
   //  const condition = this.study.conditions[Math.floor(Math.random() * this.study.conditions.length)];
 }

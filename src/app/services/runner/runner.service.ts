@@ -10,10 +10,12 @@ export class RunnerService {
   list = [];
   stimService = new StimuliService();
 
-  // TODO can also throw in a loop _for development_ that validates the entire config beforehand rather than on iteration. (call stimuliservice.validateAll() in loop)
+  // TODO can also throw in a loop _for development_ that validates the entire config
+  // beforehand rather than on iteration. (call stimuliservice.validateAll() in loop)
   // can also have e2e test by running through start to finish
   constructor() {
-    // TODO to make testing easier, optionally accept list[] here in param, or setter, or it doesn't matter if the testing classes enable me to just st a class property..
+    // TODO to make testing easier, optionally accept list[] here in param, or setter,
+    // or it doesn't matter if the testing classes enable me to just st a class property..
     this.list = this.pickOne(Project.conditions, new Control({ pickOne: true }));
 
     // TODO ^^ store this as the condition! we need its name - store the name of the first list name, and we've got our condition
@@ -98,7 +100,8 @@ export class RunnerService {
   processList(list, control) {
     // todo use observer.pipe() on these  - or just check for errors here
     // TODO separate the actual implementation of the functions from the ones that make decisions based on control{}
-    // e.g runShuffle, runRepeat, etc. or baseShuffle, baseRepeat -- or move the implementations to their own class and have wrappers defined here
+    // e.g runShuffle, runRepeat, etc. or baseShuffle, baseRepeat --
+    // or move the implementations to their own class and have wrappers defined here
     list = this.shuffleFunctional(list, control);
     list = this.repeat(list, control);
     list = this.pickOne(list, control);
