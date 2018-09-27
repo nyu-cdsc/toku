@@ -75,6 +75,7 @@ export class RunnerService {
     // const name = this.getName(runList);
     // TODO ^
 
+    // TODO find way to deal with logic in here -- also pass through list of funcs?
     let input;
     for (const item of list) {
       if (Array.isArray(item)) {
