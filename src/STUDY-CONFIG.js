@@ -883,7 +883,7 @@ var test = [
     type: 'conditional',
     id: 'test1',
     items: {
-      'left': {
+      'left': [{
         type: 'action',
         id: 'playmat1',
         stimuli: [
@@ -894,7 +894,7 @@ var test = [
             }
           }
         ]
-      },
+      }],
     }
   },
   {

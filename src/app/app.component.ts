@@ -53,6 +53,9 @@ export class AppComponent implements OnInit {
 
   nextAction(data) {
     const cur = this.iterator.next(data);
+    if (cur.value === 'start') {
+      return this.nextAction(data);
+    }
     if (cur.done) {
       return this.studyEnded();
     }
