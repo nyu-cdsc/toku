@@ -158,7 +158,8 @@ export class RunnerService {
 
   processItem(item, input) {
     if (item.type === 'conditional') {
-      item = item.items[input.value];
+      item = item.items[input[0].value];
+      // TODO support multiple responses
     }
     // TODO add in conditional support via (input)
     const obj = new Action(item);
