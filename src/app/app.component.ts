@@ -13,26 +13,32 @@ import { RunnerService } from './services/runner/runner.service';
 })
 export class AppComponent implements OnInit {
   @ViewChild(StimuliDirective) stimDirective: StimuliDirective;
-  title: string;
+  study: string;
   iterator: any;
   done: boolean = false;
   responseCache = [];
+  curActionName: string; // TODO this is getting unwieldy again -- all these items are for responses, should be in generator
+  condition: string;
+  curBlockName: string;
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
-    private runner: RunnerService,
     private responseService: ResponseService,
+    private runner: RunnerService,
     private stim: StimuliService
   ) {
     const title = this.runner.getProjectName();
     responseService.getDBConnection(title);
-    this.title = title;
+    this.study = title;
 
     // todo this ^ should be done elsewhere - module?
-    this.iterator = runner.cycle(); // also this line should be within runner - not needed here
+    this.iterator = runner.cycle();
+    this.condition = this.runner.getBlockName(runner.list);
+    this.curBlockName = this.runner.getBlockName(runner.list);
   }
 
   ngOnInit() {
+    // begin iteration
     this.nextAction(null);
   }
 
@@ -45,15 +51,15 @@ export class AppComponent implements OnInit {
     if (this.done) {
       this.studyEnded();
     }
-
     const cur = this.iterator.next(data);
-    const s = cur.value;
-    this.done = cur.done;
+    const action = cur.value;
+    this.curActionName = action.id;
+    this.curBlockName = this.runner.getBlockName(this.runner.list); // todo
 
-    console.log(s);
-    this.buildStimuli(s.stimuli[0], this.stimDirective.viewContainerRef, this.componentFactoryResolver);
+    this.buildStimuli(action.stimuli[0], this.stimDirective.viewContainerRef, this.componentFactoryResolver);
     // todo ^ this needs to be fixed, can't just call [0] anymore
     // todo ^ will be  once multiple stimuli/Frame/whatever is supported
+    this.done = cur.done;
   }
 
   buildStimuli(stimuli: Stimuli, view: ViewContainerRef, resolver: ComponentFactoryResolver) {
@@ -69,7 +75,8 @@ export class AppComponent implements OnInit {
       // instR.responseEnabled = false;
       instR.responseEvent.subscribe(message => {
         this.responseCache.push(message);
-        this.responseService.setResponse(message);
+        this.responseService.setResponse(this.buildResponse(message, this.study, this.curBlockName, this.curActionName));
+        // todo ^ move this to generator, just pass cached messages along to it (already doing it anyway)
       });
     }
 
@@ -81,4 +88,26 @@ export class AppComponent implements OnInit {
       // todo could query the service for every response that took place under the current action, less state in here
     });
   }
+
+  // TODO use Message type? everywhere - in response, in services, in generator..
+  buildResponse(message, study, block, action) {
+    const response = this.responseService.newResponse();
+    response.data.participant = Date.now();
+    response.data.response = [message.value];
+    response.data.study = study; // TODO should be unnecessary
+    response.data.block = block;
+    response.data.trial = 1; // TODO fix
+    response.data.action = action;
+
+    // ^ trial doesn't matter, but think about it for later if they are doing multiple runs
+    // this is perhaps another reason why responses would be handled best by the generator, as it has access to all this
+
+    //   this.response.data.response = [value + 1]; // ngfor indexes by 0
+    // this.response.data.response.push(value + 1);
+    // TODO also accomodate for multiple response values in a single database row, like before?
+
+    return response; // todo return Message?
+  }
+
+  //  const condition = this.study.conditions[Math.floor(Math.random() * this.study.conditions.length)];
 }

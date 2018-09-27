@@ -15,6 +15,9 @@ export class RunnerService {
   constructor() {
     // TODO to make testing easier, optionally accept list[] here in param, or setter, or it doesn't matter if the testing classes enable me to just st a class property..
     this.list = this.pickOne(Project.conditions, new Control({ pickOne: true }));
+
+    // TODO ^^ store this as the condition! we need its name - store the name of the first list name, and we've got our condition
+    // what about switching between conditions?
   }
 
   getProjectName() {
@@ -23,7 +26,7 @@ export class RunnerService {
 
   getBlockName(list): string {
     const res = list.filter(item => {
-      if (item.name && (Object.keys(item).length == 1)) {
+      if (item.name && (Object.keys(item).length === 1)) {
         return item;
       }
     })[0]; // TODO validation for +1 name elements, or just handle
@@ -58,25 +61,31 @@ export class RunnerService {
 
   // two-way; receives data for conditional decisions
   // TODO also document generator - here and in readme
-  *cycle(list?) {
+  *cycle(list?, other?) {
+    // *cycle(list, other?) {
     if (!list) {
       list = this.list;
     }
     const control: Control = this.getControl(list);
     list = this.processList(list, control);
     // const name = this.getName(runList);
+    // TODO ^
 
     let input;
     for (const item of list) {
       if (Array.isArray(item)) {
-        input = yield* this.cycle(item); // todo what to do with input? pass it on?
+        input = yield* this.cycle(item, input); // todo what to do with input? pass it on?
       }
-      if (item.type !== 'action') {
+      if (item.type !== 'action' && item.type !== 'condition') {
         continue;
       }
-      input = yield this.processItem(item, input);
+      if (other) {
+        input = yield this.processItem(item, other);
+        other = null;
+      } else {
+        input = yield this.processItem(item, input);
+      }
     }
-
     // TODO use Message here and in response service
   }
 
@@ -125,6 +134,7 @@ export class RunnerService {
 
   // from https://www.w3resource.com/javascript-exercises/javascript-array-exercise-17.php
   // Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
+  // TODO evaluate shuffle algorithms and swap
   shuffle(list) {
     list = this.clone(list);
     let ctr = list.length,
@@ -147,9 +157,15 @@ export class RunnerService {
   }
 
   processItem(item, input) {
+    if (item.type === 'condition') {
+      item = item.items[input];
+    }
     // TODO add in conditional support via (input)
     const obj = new Action(item);
 
+    if (input) {
+      return [input, item.id, item.type];
+    }
     return item;
   }
 

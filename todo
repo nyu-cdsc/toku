@@ -1,12 +1,16 @@
 - conditionals
+- scaling
+
 - export/working responses
+- working block names, in responses
+- form at beginning/end of study, data stored (not as response) -- form specified in config file
+  - AND THEN USE THIS for responses! e.g. collecting the particpants' age, etc.
 - yaml
 - might need to bring back deepshuffle - to hit all blocks and they don't need to say it each time
   - might be an antipattern though
 
 - validation (more) and error handling
 - tests
-- form at beginning/end of study, data stored (not as response) -- form specified in config file
 - stricter typing, docblocks, docs
 
 - let them just give us css? fully formed web components and just run them? interface to store responses (or overlay via config file)

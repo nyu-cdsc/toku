@@ -8,10 +8,25 @@ describe('RunnerService', () => {
     id: 'secondA',
     stimuli: []
   };
+  const thirdAction: any = {
+    type: 'action',
+    id: 'thirdA',
+    stimuli: []
+  };
+  const fourthAction: any = {
+    type: 'action',
+    id: 'fourthA',
+    stimuli: []
+  };
+  const fifthAction: any = {
+    type: 'action',
+    id: 'fifthA',
+    stimuli: []
+  };
 
   const testControl: any = {
     type: 'control',
-    repeat: 1
+    repeat: 0
   };
 
   const testConfig: any[] = [
@@ -21,11 +36,30 @@ describe('RunnerService', () => {
       stimuli: []
     },
     secondAction,
+    {
+      type: 'condition',
+      id: 'firstCondition',
+      items: {
+        // 'one': {
+
+        // },
+        'one': fourthAction,
+        'onetwo': secondAction,
+        'two': thirdAction,
+        'three': [ // just like blocks elsewhere - just a list. list of obhs and lists - although in this case, with keys
+          // {
+
+          // },
+          fifthAction,
+          secondAction
+        ]
+      }
+    },
     testControl,
     [
       {
         type: 'control',
-        repeat: 1,
+        repeat: 0,
         shuffle: true
       },
       secondAction,
@@ -55,7 +89,7 @@ describe('RunnerService', () => {
 
   it('should find control object in group', inject([RunnerService], (service: RunnerService) => {
     const res = service.getControl(testConfig);
-    expect(res.repeat).toBe(1);
+    expect(res.repeat).toBe(0);
   }));
 
   it('should not shuffle if not set', inject([RunnerService], (service: RunnerService) => {
@@ -69,14 +103,16 @@ describe('RunnerService', () => {
   it('should shuffle if set', inject([RunnerService], (service: RunnerService) => {
     const cont: any = {
       type: 'control',
+      repeat: 3,
       shuffle: true
     };
-    const res = service.shuffleFunctional(testConfig, cont);
-    expect(res.length).toEqual(testConfig.length, 'length of shuffled list should be the same as original');
+    const source = service.repeat(testConfig, cont); // increase reliability of test by making source larger
+    const res = service.shuffleFunctional(source, cont);
+    expect(res.length).toEqual(source.length, 'length of shuffled list should be the same as original');
 
     let count = 0;
     for (let i = 0; i < res.length; i++) {
-      if (res[i].id === testConfig[i].id) {
+      if (res[i].id === source[i].id) {
         count++;
       }
     }
@@ -108,5 +144,35 @@ describe('RunnerService', () => {
     expect(res === testConfig).toBe(false);
     expect(res).toEqual(testConfig); // deep comparison
   }));
-});
 
+  it('(generator) should receive value even on nested iteration', inject([RunnerService], (service: RunnerService) => {
+    // check for value being passed in to processItem, processList, etc.
+    const iterator = service.cycle(testConfig);
+    let val = iterator.next();
+    console.log(val);
+    val = iterator.next('one');
+    console.log(val);
+    val = iterator.next('onetwo');
+    console.log(val);
+    expect(val.value[2]).toBe('action');
+    expect(val.value[1]).toBe('secondA');
+    // val = iterator.next('two');
+    // console.log(val);
+    // val = iterator.next('three');
+    // console.log(val);
+    // val = iterator.next('fourth');
+    // console.log(val);
+    // val = iterator.next('fifth');
+    // console.log(val);
+    // val = iterator.next('sixth');
+    // console.log(val);
+    // val = iterator.next('final');
+    // console.log(val);
+
+  }));
+
+  it('(generator) should make decision based on data passed in, when conditional set', inject([RunnerService], (service: RunnerService) => {
+    // ^
+  }));
+
+});
