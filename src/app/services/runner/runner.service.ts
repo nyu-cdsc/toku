@@ -84,17 +84,11 @@ export class RunnerService {
       if (item.type !== 'action' && item.type !== 'conditional') {
         continue;
       }
-      let res: any;
       if (other) {
-        res = this.processItem(item, other);
-        input = yield res;
+        input = yield this.processItem(item, other);
         other = null;
       } else {
-        res = this.processItem(item, input);
-        if (item.type === 'done') {
-          return item;
-        }
-        input = yield item; // this.processItem(item, input);
+        input = yield this.processItem(item, input);
       }
     }
     // TODO use Message here and in response service
@@ -172,7 +166,8 @@ export class RunnerService {
       item = item.items[input[0].value];
       // TODO support multiple responses
     }
-    // const obj = new Action(item); // todo this for validation?
+    // TODO add in conditional support via (input)
+    const obj = new Action(item);
 
     return item;
   }
