@@ -1,0 +1,8 @@
+.flexbox {
+  width: 99vw;
+  height: 99vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
