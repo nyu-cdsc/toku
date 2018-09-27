@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   study: string;
   iterator: any;
   responseCache = [];
+  done = false;
   curActionName: string; // TODO this is getting unwieldy again -- all these items are for responses, should be in generator
   condition: string;
   curBlockName: string;
@@ -44,6 +45,7 @@ export class AppComponent implements OnInit {
 
   studyEnded() {
     console.log('studyEnded() has been called');
+    this.done = true;
     this.buildStimuli(this.ended.stimuli[0], this.stimDirective.viewContainerRef, this.componentFactoryResolver);
     // TODO implement end of study logic here
     // note that the config can put what it wants the end of study Frame to be -- so this could just be running cleanup, etc.
@@ -83,6 +85,9 @@ export class AppComponent implements OnInit {
     }
 
     inst.doneEvent.subscribe(data => {
+      if (this.done) {
+        window.location.reload();
+      }
       // this.nextAction(data);
       const responses = this.responseCache;
       this.responseCache = [];
