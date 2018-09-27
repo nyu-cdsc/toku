@@ -6,7 +6,7 @@ var animalGif2 = {
       type: 'movie',
       parameters: {
         disable: false,
-        filename: '../../../assets/movie/animal2.mp4'
+        filename: '../../../assets/movie/content/animal2.mp4'
       }
     }
   ]
@@ -19,7 +19,7 @@ var animalGif3 = {
     {
       type: 'movie',
       parameters: {
-        filename: '../../../assets/movie/animal3.mp4'
+        filename: '../../../assets/movie/content/animal3.mp4'
       }
     }
   ]
@@ -31,1047 +31,886 @@ var animalGif3 = {
 
 // TODO look into Map() as a solution to this. right now it only works with lists, and lists in lists. but I can't name the list, etc.
 // TODO other soltutions: just use objects, so objects within objects and know their structure (could be fine), and introspection/reflection to get variable names
-var dgTraining = [
+var friction = [
   {
-    name: "dgTraining"
+    name: "Friction"
   },
   {
     type: 'action',
-    id: 'dgGive',
+    id: 'frictionIntro',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          disable: false,
-          filename: '../../../assets/movie/dggive.mp4'
+          filename: '../../../assets/movie/content/intro_to_content_study.mp4'
         }
       }
     ]
   },
   {
     type: 'action',
-    id: 'dgGiveQuestion',
+    id: 'friction1',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/content/Friction1.mp4'
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'frictionQ1',
     stimuli: [
       {
         type: 'picture',
         parameters: {
-          filename: '../../../assets/picture/dggive.jpg',
+          filename: '../../../assets/picture/content/Friction1.jpeg',
           // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [{ value: 'yes', shape: "rect", coordinates: "0, 0, 1000, 1000" }, { value: 'no', shape: "rect", coordinates: "0, 0, 1000, 1000" }],
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
         },
       }
     ]
   },
   {
     type: 'action',
-    id: 'dgGiveFeedback',
+    id: 'friction2',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/dggivefeedback.mp4'
+          filename: '../../../assets/movie/content/Friction2.mp4'
         }
       }
     ]
   },
   {
     type: 'action',
-    id: 'dgKeep',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/dgkeep.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'dgKeepQuestion',
+    id: 'frictionQ2',
     stimuli: [
       {
         type: 'picture',
         parameters: {
-          filename: '../../../assets/picture/dgkeep.jpg',
-          coordinates: []
-        }
+          filename: '../../../assets/picture/content/Friction2.jpeg',
+          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        },
       }
     ]
   },
   {
     type: 'action',
-    id: 'dgKeepFeedback',
+    id: 'friction3',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/dgkeepfeedback.mp4'
+          filename: '../../../assets/movie/content/Friction3.mp4'
         }
       }
     ]
   },
   {
     type: 'action',
-    id: 'dgTargets',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/dgw2bintro.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'dgBelong',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/dgbelong.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'dgKeep',
+    id: 'frictionQ3',
     stimuli: [
       {
         type: 'picture',
         parameters: {
-          filename: '../../../assets/picture/dgbelong.jpg',
-          coordinates: []
+          filename: '../../../assets/picture/content/Friction3.jpeg',
+          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        },
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'friction4',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/content/Friction4.mp4'
         }
       }
     ]
   },
   {
     type: 'action',
-    id: 'dgReminder',
+    id: 'frictionQ4',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/content/Friction4.jpeg',
+          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        },
+      }
+    ]
+  },
+];
+
+var sciMethod = [
+  {
+    name: "scientificMethod"
+  },
+  {
+    type: 'action',
+    id: 'sciMethod1',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/dg1reminder.mp4'
+          filename: '../../../assets/movie/content/observing.mp4'
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'sciMethodQ1',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/content/observing.jpeg',
+          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        },
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'sciMethod2',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/content/predicting.mp4'
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'sciMethodQ2',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/content/predicting.jpeg',
+          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        },
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'sciMethod3',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/content/checking.mp4'
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'sciMethodQ3',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/content/checking.jpeg',
+          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        },
+      }
+    ]
+  },
+];
+
+var interest = [
+  {
+    type: 'action',
+    id: 'interestIntro',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/content/into_content_study_pt2.mp4'
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'interest1',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/content/Interest1.mp4'
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'interestQ1',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/content/Interest1.jpeg',
+          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        },
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'interest2',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/content/Interest2.mp4'
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'interestQ2',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/content/Interest2.jpeg',
+          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        },
+      }
+    ]
+  },
+];
+
+var prevalence = [
+  {
+    type: 'action',
+    id: 'prevalenceIntro',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/content/prevalence.mp4'
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'prevalence1',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/content/prev_q1.mp4'
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'prevalenceQ1',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/content/Prevalence.jpeg',
+          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        },
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'prevalenceA1',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/content/prev_a1.mp4'
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'prevalence2',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/content/prev_q2.mp4'
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'prevalenceQ2',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/content/Prevalence.jpeg',
+          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        },
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'prevalenceA2',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/content/prev_a2.mp4'
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'prevalence3',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/content/prev_q3.mp4'
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'prevalenceQ3',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/content/Prevalence.jpeg',
+          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        },
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'prevalenceA3',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/content/prev_a3.mp4'
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'prevalence4',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/content/prev_q4.mp4'
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'prevalenceQ4',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/content/Prevalence.jpeg',
+          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        },
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'prevalenceA4',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/content/prev_a4.mp4'
         }
       }
     ]
   },
 ];
 
-var dgWhite = [
-  {
-    name: "dgWhite"
-  },
+var prevalenceDo = [
   {
     type: 'action',
-    id: 'dgWhiteIntro',
+    id: 'do',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/dgwhiteintro.mp4'
+          filename: '../../../assets/movie/content/do.mp4'
         }
       }
     ]
   },
   {
     type: 'action',
-    id: 'dgWhite1',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/dgwhite1.mp4',
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'dgWhite1Response',
+    id: 'doQ',
     stimuli: [
       {
         type: 'picture',
         parameters: {
-          filename: '../../../assets/picture/dgwhite1.jpg',
-          coordinates: []
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'dgWhite2',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/dgwhite2.mp4',
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'dgWhite2Response',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/dgwhite2.jpg',
-          coordinates: []
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'dgWhite3',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/dgwhite3.mp4',
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'dgWhite3Response',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/dgwhite3.jpg',
-          coordinates: []
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'dgWhite4',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/dgwhite4.mp4',
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'dgWhite4Response',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/dgwhite4.jpg',
-          coordinates: []
-        }
+          filename: '../../../assets/picture/content/Prevalence.jpeg',
+          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        },
       }
     ]
   },
 ];
 
-var dgBlack = [
+var prevalenceBe = [
   {
     type: 'action',
-    id: 'dgBlackIntro',
+    id: 'be',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/dgblackintro.mp4'
+          filename: '../../../assets/movie/content/be.mp4'
         }
       }
     ]
   },
   {
     type: 'action',
-    id: 'dgBlack1',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/dgblack1.mp4',
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'dgBlack1Response',
+    id: 'beQ',
     stimuli: [
       {
         type: 'picture',
         parameters: {
-          filename: '../../../assets/picture/dgblack1.jpg',
-          coordinates: []
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'dgBlack2',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/dgblack2.mp4',
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'dgBlack2Response',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/dgblack2.jpg',
-          coordinates: []
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'dgBlack3',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/dgblack3.mp4',
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'dgBlack3Response',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/dgblack3.jpg',
-          coordinates: []
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'dgBlack4',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/dgblack4.mp4',
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'dgBlack4Response',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/dgblack4.jpg',
-          coordinates: []
-        }
+          filename: '../../../assets/picture/content/Prevalence.jpeg',
+          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        },
       }
     ]
   },
 ];
 
-var reTraining = [
+var contingentFeedback = [
   {
     type: 'action',
-    id: 'reGive',
+    id: 'persistenceIntro',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/regive.mp4'
+          filename: '../../../assets/movie/persistence/intro_persistence.mp4'
         }
       }
     ]
   },
   {
     type: 'action',
-    id: 'reGiveQuestion',
+    id: 'wood',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/persistence/wood.mp4'
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'woodQ',
     stimuli: [
       {
         type: 'picture',
         parameters: {
-          filename: '../../../assets/picture/regive.jpg',
-          coordinates: []
-        }
+          filename: '../../../assets/picture/persistence/wood.jpeg',
+          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
+          coordinates: [{ value: 'one', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        },
       }
     ]
   },
   {
-    type: 'action',
-    id: 'reGiveFeedback',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/regivefeedback.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reKeep',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/rekeep.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reKeepQuestion',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/rekeep..jpg',
-          coordinates: []
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reKeepFeedback',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/rekeepfeedback.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reTargets',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/rew2bintro.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reBelong',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/rebelong.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reKeep',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/picture/rebelong.jpg',
-          coordinates: []
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reReminder',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/re1reminder.mp4'
-        }
-      }
-    ]
-  },
-];
-
-var reWhite = [
-  {
-    type: 'action',
-    id: 'reWhiteIntro',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/rewhiteintro.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reWhite1',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/rewhite1.mp4',
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reWhite1Response',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/rewhite1.jpg',
-          coordinates: []
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reWhite2',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/rewhite2.mp4',
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reWhite2Response',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/rewhite2.jpg',
-          coordinates: []
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reWhite3',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/rewhite3.mp4',
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reWhite3Response',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/rewhite3.jpg',
-          coordinates: []
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reWhite4',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/rewhite4.mp4',
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reWhite4Response',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/rewhite4.jpg',
-          coordinates: []
-        }
-      }
-    ]
-  },
-];
-
-var reBlack = [
-  {
-    type: 'action',
-    id: 'reBlackIntro',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/reblackintro.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reBlack1',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/reblack1.mp4',
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reBlack1Response',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/reblack1.jpg',
-          coordinates: []
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reBlack2',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/reblack2.mp4',
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reBlack2Response',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/reblack2.jpg',
-          coordinates: []
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reBlack3',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/reblack3.mp4',
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reBlack3Response',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/reblack3.jpg',
-          coordinates: []
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reBlack4',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/reblack4.mp4',
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'reBlack4Response',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/reblack4.jpg',
-          coordinates: []
-        }
-      }
-    ]
-  },
-];
-
-var statusTask = [
-  {
-    type: 'action',
-    id: 'status1Intro',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/status1intro.mp4'
-        }
-      },
-    ]
-  },
-  [
-    [
-      {
+    type: 'conditional',
+    id: 'woodConditional',
+    items: {
+      'one': {
         type: 'action',
-        id: 'status1Left',
+        id: 'wood1',
         stimuli: [
           {
             type: 'movie',
             parameters: {
-              filename: '../../../assets/movie/status1left.mp4'
+              filename: '../../../assets/movie/persistence/wood1.mp4',
             }
           }
         ]
       },
-      {
+      'two': {
         type: 'action',
-        id: 'status1LeftResponse',
-        stimuli: [
-          {
-            type: 'picture',
-            parameters: {
-              filename: '../../../assets/picture/status1left.jpg',
-              coordinates: [],
-            }
-          }
-        ]
-      },
-      {
-        type: 'action',
-        id: 'status1Right',
+        id: 'wood2',
         stimuli: [
           {
             type: 'movie',
             parameters: {
-              filename: '../../../assets/movie/status1right.mp4'
+              filename: '../../../assets/movie/persistence/wood2.mp4',
             }
           }
         ]
       },
-      {
+      'three': {
         type: 'action',
-        id: 'status1RightResponse',
-        stimuli: [
-          {
-            type: 'picture',
-            parameters: {
-              filename: '../../../assets/picture/status1right.jpg',
-              coordinates: [],
-            }
-          }
-        ]
-      },
-    ],
-    [
-      {
-        type: 'action',
-        id: 'status2Left',
+        id: 'wood3',
         stimuli: [
           {
             type: 'movie',
             parameters: {
-              filename: '../../../assets/movie/status2left.mp4'
+              filename: '../../../assets/movie/persistence/wood3.mp4',
             }
           }
         ]
       },
-      {
+      'four': {
         type: 'action',
-        id: 'status2LeftResponse',
-        stimuli: [
-          {
-            type: 'picture',
-            parameters: {
-              filename: '../../../assets/picture/status2left.jpg',
-              coordinates: [],
-            }
-          }
-        ]
-      },
-      {
-        type: 'action',
-        id: 'status2Right',
+        id: 'wood4',
         stimuli: [
           {
             type: 'movie',
             parameters: {
-              filename: '../../../assets/movie/status2right.mp4'
+              filename: '../../../assets/movie/persistence/wood4.mp4',
             }
           }
         ]
       },
-      {
+      'five': {
         type: 'action',
-        id: 'status2RightResponse',
+        id: 'wood5',
+        stimuli: [
+          {
+            type: 'movie',
+            parameters: {
+              filename: '../../../assets/movie/persistence/wood5.mp4',
+            }
+          }
+        ]
+      },
+      'six': {
+        type: 'action',
+        id: 'wood6',
+        stimuli: [
+          {
+            type: 'movie',
+            parameters: {
+              filename: '../../../assets/movie/persistence/wood6.mp4',
+            }
+          }
+        ]
+      },
+    },
+  },
+  {
+    type: 'action',
+    id: 'playmat',
+    stimuli: [
+      {
         type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/persistence/playmat.mp4'
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'playmatQ',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/persistence/playmat.jpeg',
+          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
+          coordinates: [{ value: 'one', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        },
+      }
+    ]
+  },
+  {
+    type: 'conditional',
+    id: 'playmatConditional',
+    items: {
+      'one': {
+        type: 'action',
+        id: 'playmat1',
         stimuli: [
           {
-            type: 'picture',
+            type: 'movie',
             parameters: {
-              filename: '../../../assets/picture/status2right.jpg',
-              coordinates: [],
+              filename: '../../../assets/movie/persistence/playmat_blue.mp4',
             }
           }
         ]
       },
-    ],
-    {
-      type: 'control', // shuffle the lists as a whole; objects within list stay in order
-      shuffle: true // shallow shuffle
+      'two': {
+        type: 'action',
+        id: 'playmat',
+        stimuli: [
+          {
+            type: 'movie',
+            parameters: {
+              filename: '../../../assets/movie/persistence/playmat_blue.mp4',
+            }
+          }
+        ]
+      },
+      'three': {
+        type: 'action',
+        id: 'playmat3',
+        stimuli: [
+          {
+            type: 'movie',
+            parameters: {
+              filename: '../../../assets/movie/persistence/playmat_blue.mp4',
+            }
+          }
+        ]
+      },
+      'four': {
+        type: 'action',
+        id: 'playmat4',
+        stimuli: [
+          {
+            type: 'movie',
+            parameters: {
+              filename: '../../../assets/movie/persistence/playmat_red.mp4',
+            }
+          }
+        ]
+      },
+      'five': {
+        type: 'action',
+        id: 'playmat5',
+        stimuli: [
+          {
+            type: 'movie',
+            parameters: {
+              filename: '../../../assets/movie/persistence/playmat_red.mp4',
+            }
+          }
+        ]
+      },
+      'six': {
+        type: 'action',
+        id: 'playmat6',
+        stimuli: [
+          {
+            type: 'movie',
+            parameters: {
+              filename: '../../../assets/movie/persistence/playmat_red.mp4',
+            }
+          }
+        ]
+      },
     }
-  ],
+  },
+];
+
+
+
+
+var end = [
   {
     type: 'action',
-    id: 'greatJob',
+    id: 'age',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/greatjob3.mp4',
+          filename: '../../../assets/movie/content/age.mp4'
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'ageQ',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/content/age.jpeg',
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'gender',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/content/gender.mp4'
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'genderQ',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/content/gender.jpeg',
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
         }
       }
     ]
   },
 ];
 
-var attitudesTask = [
+var endMemory = [
   {
     type: 'action',
-    id: 'attitudesIntro',
+    id: 'memory',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/attitudesintro.mp4',
+          filename: '../../../assets/movie/persistence/memory.mp4'
         }
       }
     ]
   },
   {
     type: 'action',
-    id: 'attitudesTraining',
+    id: 'memoryQ',
     stimuli: [
       {
-        type: 'movie',
+        type: 'picture',
         parameters: {
-          filename: '../../../assets/movie/attitudestraining.mp4',
+          filename: '../../../assets/picture/persistence/memory.jpeg',
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
         }
       }
     ]
   },
+]
+
+var contentStudy = [
+  friction,
+  sciMethod,
+  interest,
+  prevalence,
   [
-    [
-      {
-        type: 'action',
-        id: 'attitudesWhite1',
-        stimuli: [
-          {
-            type: 'movie',
-            parameters: {
-              filename: '../../../assets/movie/ftswhite1.mp4',
-            }
-          }
-        ]
-      },
-      {
-        type: 'action',
-        id: 'attitudesWhite1Response',
-        stimuli: [
-          {
-            type: 'picture',
-            parameters: {
-              filename: '../../../assets/picture/ftswhite1.jpg',
-              coordinates: []
-            }
-          }
-        ]
-      },
-    ],
-    [
-      {
-        type: 'action',
-        id: 'attitudesWhite2',
-        stimuli: [
-          {
-            type: 'movie',
-            parameters: {
-              filename: '../../../assets/movie/ftswhite2.mp4',
-            }
-          }
-        ]
-      },
-      {
-        type: 'action',
-        id: 'attitudesWhite2Response',
-        stimuli: [
-          {
-            type: 'picture',
-            parameters: {
-              filename: '../../../assets/picture/ftsblack2.jpg',
-              coordinates: []
-            }
-          }
-        ]
-      },
-    ],
-    [
-      {
-        type: 'action',
-        id: 'attitudesBlack1',
-        stimuli: [
-          {
-            type: 'movie',
-            parameters: {
-              filename: '../../../assets/movie/ftsblack1.mp4',
-            }
-          }
-        ]
-      },
-      {
-        type: 'action',
-        id: 'attitudesBlack1Response',
-        stimuli: [
-          {
-            type: 'picture',
-            parameters: {
-              filename: '../../../assets/picture/ftsblack1.jpg',
-              coordinates: []
-            }
-          }
-        ]
-      },
-    ],
-    [
-      {
-        type: 'action',
-        id: 'attitudesBlack2',
-        stimuli: [
-          {
-            type: 'movie',
-            parameters: {
-              filename: '../../../assets/movie/ftsblack2.mp4',
-            }
-          }
-        ]
-      },
-      {
-        type: 'action',
-        id: 'attitudesBlack2Response',
-        stimuli: [
-          {
-            type: 'picture',
-            parameters: {
-              filename: '../../../assets/picture/ftsblack2.jpg',
-              coordinates: []
-            }
-          }
-        ]
-      },
-    ],
+    prevalenceDo,
+    prevalenceBe,
     {
       type: 'control',
       shuffle: true
     }
   ],
+  end
+];
+
+var test = [
   {
+    type: 'action',
+    id: 'test2',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/content/gender.jpeg',
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        }
+      }
+    ]
+  },
+  {
+    type: 'conditional',
+    id: 'test1',
+    items: {
+      'left': {
+        type: 'action',
+        id: 'playmat1',
+        stimuli: [
+          {
+            type: 'movie',
+            parameters: {
+              filename: '../../../assets/movie/persistence/playmat_blue.mp4',
+            }
+          }
+        ]
+      },
+    }
+  },
+
+]
+
+
+var persistenceStudy = [
+  test,
+  contingentFeedback,
+  end,
+  endMemory
+];
+
+export const Project = {
+  conditions: [
+    // contentStudy,
+    persistenceStudy
+  ],
+  name: "interventionStudy",
+  ended: {
     type: 'action',
     id: 'done',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/done.mp4',
+          filename: '../../../assets/movie/End.mp4',
         }
       }
     ]
-  },
-];
-
-var whiteFirstCondition = [
-  dgTraining,
-  dgWhite,
-  animalGif2,
-  dgBlack,
-  reTraining,
-  reWhite,
-  animalGif3,
-  reBlack,
-  statusTask,
-  attitudesTask
-];
-
-var blackFirstCondition = [
-  dgTraining,
-  dgBlack,
-  animalGif2,
-  dgWhite,
-  reTraining,
-  reBlack,
-  animalGif3,
-  reWhite,
-  statusTask,
-  attitudesTask
-];
-
-export const Project = {
-  conditions: [
-    whiteFirstCondition,
-    blackFirstCondition
-  ],
-  name: "ra2"
+  }
 }
