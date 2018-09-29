@@ -51,11 +51,15 @@ export class RunnerService {
   }
 
   getControl(list): Control {
-    const res = list.filter(item => {
+    let res = list.filter(item => {
       if (item.type === 'control') {
         return item; // Object.assign(new Control(), item);
       }
-    })[0]; // TODO validation for +1 Control elements, or just handle
+    });
+
+    if (res.length > 1) {
+      res = res[0]; // TODO validation for +1 Control elements, or just handle
+    }
     // const cont = Object.assign(new Control(), res);
     let cont = new Control();
     if (res) {
