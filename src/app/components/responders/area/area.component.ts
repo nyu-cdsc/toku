@@ -13,6 +13,7 @@ export class AreaComponent implements OnChanges {
   @Input() params: any;
   @Output() selectionEvent = new EventEmitter<Message>();
   areas: ClickArea[] = [];
+  @Input() scalingFactor = window.devicePixelRatio;
   // todo ^ make a setter for coordParams? is that doable?
 
   constructor() { }
@@ -21,8 +22,6 @@ export class AreaComponent implements OnChanges {
     for (const v of this.params.coordinates) {
       this.areas.push(new ClickArea(v));
     }
-    // console.log("PARAMS ARE", this.parameters);
-    // const coords = this.parameters.coordinates;
   }
 
   click(val) {
@@ -33,11 +32,11 @@ export class AreaComponent implements OnChanges {
 
   }
 
-  getCoordinates() {
+  getCoordinates(scalingFactor = 0.86) {
     const coords = this.areas.map(area => {
       if (!area.used) {
         const scaledCoords = area.coordinates.map(v => {
-          return String(Math.floor(v * 0.86)); // .95 on surface book
+          return String(Math.floor(v * scalingFactor)); // .95 on surface book
         });
 
         return {
