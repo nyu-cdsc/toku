@@ -570,78 +570,78 @@ var contingentFeedback = [
     type: 'conditional',
     id: 'woodConditional',
     items: {
-      'one': {
+      'one': [{
         type: 'action',
         id: 'wood1',
         stimuli: [
           {
             type: 'movie',
             parameters: {
-              filename: '../../../assets/movie/persistence/wood1.mp4',
+              filename: '../../../assets/movie/persistence/wood_1.mp4',
             }
           }
         ]
-      },
-      'two': {
+      }],
+      'two': [{
         type: 'action',
         id: 'wood2',
         stimuli: [
           {
             type: 'movie',
             parameters: {
-              filename: '../../../assets/movie/persistence/wood2.mp4',
+              filename: '../../../assets/movie/persistence/wood_2.mp4',
             }
           }
         ]
-      },
-      'three': {
+      }],
+      'three': [{
         type: 'action',
         id: 'wood3',
         stimuli: [
           {
             type: 'movie',
             parameters: {
-              filename: '../../../assets/movie/persistence/wood3.mp4',
+              filename: '../../../assets/movie/persistence/wood_3.mp4',
             }
           }
         ]
-      },
-      'four': {
+      }],
+      'four': [{
         type: 'action',
         id: 'wood4',
         stimuli: [
           {
             type: 'movie',
             parameters: {
-              filename: '../../../assets/movie/persistence/wood4.mp4',
+              filename: '../../../assets/movie/persistence/wood_4.mp4',
             }
           }
         ]
-      },
-      'five': {
+      }],
+      'five': [{
         type: 'action',
         id: 'wood5',
         stimuli: [
           {
             type: 'movie',
             parameters: {
-              filename: '../../../assets/movie/persistence/wood5.mp4',
+              filename: '../../../assets/movie/persistence/wood_5.mp4',
             }
           }
         ]
-      },
-      'six': {
+      }],
+      'six': [{
         type: 'action',
         id: 'wood6',
         stimuli: [
           {
             type: 'movie',
             parameters: {
-              filename: '../../../assets/movie/persistence/wood6.mp4',
+              filename: '../../../assets/movie/persistence/wood_6.mp4',
             }
           }
         ]
-      },
+      }],
     },
   },
   {
@@ -680,7 +680,7 @@ var contingentFeedback = [
     type: 'conditional',
     id: 'playmatConditional',
     items: {
-      'one': {
+      'one': [{
         type: 'action',
         id: 'playmat1',
         stimuli: [
@@ -691,8 +691,8 @@ var contingentFeedback = [
             }
           }
         ]
-      },
-      'two': {
+      }],
+      'two': [{
         type: 'action',
         id: 'playmat',
         stimuli: [
@@ -703,8 +703,8 @@ var contingentFeedback = [
             }
           }
         ]
-      },
-      'three': {
+      }],
+      'three': [{
         type: 'action',
         id: 'playmat3',
         stimuli: [
@@ -715,8 +715,8 @@ var contingentFeedback = [
             }
           }
         ]
-      },
-      'four': {
+      }],
+      'four': [{
         type: 'action',
         id: 'playmat4',
         stimuli: [
@@ -727,8 +727,8 @@ var contingentFeedback = [
             }
           }
         ]
-      },
-      'five': {
+      }],
+      'five': [{
         type: 'action',
         id: 'playmat5',
         stimuli: [
@@ -739,8 +739,8 @@ var contingentFeedback = [
             }
           }
         ]
-      },
-      'six': {
+      }],
+      'six': [{
         type: 'action',
         id: 'playmat6',
         stimuli: [
@@ -751,13 +751,328 @@ var contingentFeedback = [
             }
           }
         ]
-      },
+      }],
     }
   },
 ];
 
+var persistenceTransition = [
+  {
+    type: 'action',
+    id: 'persistenceTransition',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/persistence/transition_choice.mp4',
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'persistenceTransitionQ',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/persistence/transition.jpeg',
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
+            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        }
+      }
+    ]
+  },
+]
 
+var persistence = [
+  {
+    type: 'action',
+    id: 'persistenceTransition1',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/persistence/transition_1st.mp4',
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'persistenceTransition1Q',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/persistence/transition.jpeg',
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
+            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        }
+      }
+    ]
+  },
+  {
+    type: 'conditional',
+    id: 'persistence1',
+    items: {
+      'left': [
+        paperTowel
+      ],
+      'right': [
+        end
+      ]
+    }
+  },
+]
 
+var paperTowel = [
+  {
+    type: 'action',
+    id: 'paperTowel',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/persistence/paper_towel.mp4',
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'paperTowelQ',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/persistence/paper_towel.jpeg',
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
+            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        }
+      }
+    ]
+  },
+  persistenceTransition,
+  {
+    type: 'conditional',
+    id: 'persistence2',
+    items: {
+      'left': [
+        blanket
+      ],
+      'right': [
+        end
+      ]
+    }
+  },
+]
+
+var blanket = [
+  {
+    type: 'action',
+    id: 'blanket',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/persistence/blanket.mp4',
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'blanketQ',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/persistence/blanket.jpeg',
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
+            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        }
+      }
+    ]
+  },
+  persistenceTransition,
+  {
+    type: 'conditional',
+    id: 'persistence3',
+    items: {
+      'left': [
+        foil
+      ],
+      'right': [
+        end
+      ]
+    }
+  },
+]
+
+var foil = [
+  {
+    type: 'action',
+    id: 'foil',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/persistence/foil.mp4',
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'foilQ',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/persistence/foil.jpeg',
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
+            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        }
+      }
+    ]
+  },
+  persistenceTransition,
+  {
+    type: 'conditional',
+    id: 'persistence4',
+    items: {
+      'left': [
+        wicker
+      ],
+      'right': [
+        end
+      ]
+    }
+  },
+]
+
+var wicker = [
+  {
+    type: 'action',
+    id: 'wicker',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/persistence/wicker.mp4',
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'wickerQ',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/persistence/wicker.jpeg',
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
+            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        }
+      }
+    ]
+  },
+  persistenceTransition,
+  {
+    type: 'conditional',
+    id: 'persistence5',
+    items: {
+      'left': [
+        leaves
+      ],
+      'right': [
+        end
+      ]
+    }
+  },
+]
+
+var leaves = [
+  {
+    type: 'action',
+    id: 'leaves',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/persistence/leaves.mp4',
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'leavesQ',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/persistence/leaves.jpeg',
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
+            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        }
+      }
+    ]
+  },
+  persistenceTransition,
+  {
+    type: 'conditional',
+    id: 'persistence6',
+    items: {
+      'left': [
+        legos
+      ],
+      'right': [
+        end
+      ]
+    }
+  },
+]
+
+var legos = [
+  {
+    type: 'action',
+    id: 'legos',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/persistence/legos.mp4',
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'legosQ',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/picture/persistence/legos.jpeg',
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
+            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+        }
+      }
+    ]
+  },
+  end
+]
 
 var end = [
   {
@@ -815,9 +1130,6 @@ var end = [
       }
     ]
   },
-];
-
-var endMemory = [
   {
     type: 'action',
     id: 'memory',
@@ -846,7 +1158,7 @@ var endMemory = [
       }
     ]
   },
-]
+];
 
 var contentStudy = [
   startGame,
@@ -879,51 +1191,19 @@ var test = [
       }
     ]
   },
-  {
-    type: 'conditional',
-    id: 'test1',
-    items: {
-      'left': [{
-        type: 'action',
-        id: 'playmat1',
-        stimuli: [
-          {
-            type: 'movie',
-            parameters: {
-              filename: '../../../assets/movie/persistence/playmat_blue.mp4',
-            }
-          }
-        ]
-      }],
-    }
-  },
-  {
-    type: 'action',
-    id: 'test2',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/content/gender.jpeg',
-          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
-        }
-      }
-    ]
-  },
 ]
 
 
 var persistenceStudy = [
   startGame,
   contingentFeedback,
-  end,
-  endMemory
+  persistence
 ];
 
 export const Project = {
   conditions: [
-    contentStudy,
-    // persistenceStudy
+    // contentStudy,
+    persistenceStudy
   ],
   name: "interventionStudy",
   ended: {
