@@ -15,12 +15,11 @@ export class PictureComponent implements Stimuli, Responsive, OnInit, AfterViewC
   @Input() responseEnabled = true; // this can be disabled by parent via [responseEnabled]
   @ViewChild(AreaComponent) areamap: AreaComponent;
   @ViewChild('theimage') theimage: ElementRef;
-  // sf = 0.86;
 
   constructor() { }
   ngOnInit() { }
   ngAfterViewChecked() {
-    this.areamap.scalingFactor = this.getScalingFactor();
+    // this.areamap.scalingFactor = this.getScalingFactor();
   }
 
   sendMessage(message: Message) {

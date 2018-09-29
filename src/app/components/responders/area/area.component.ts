@@ -13,7 +13,7 @@ export class AreaComponent implements OnChanges {
   @Input() params: any;
   @Output() selectionEvent = new EventEmitter<Message>();
   areas: ClickArea[] = [];
-  @Input() scalingFactor = 0.86;
+  @Input() scalingFactor = window.devicePixelRatio;
   // todo ^ make a setter for coordParams? is that doable?
 
   constructor() { }
