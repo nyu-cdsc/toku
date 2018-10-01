@@ -60,7 +60,9 @@ var friction = [
         parameters: {
           filename: '../../../assets/picture/content/Friction1.jpeg',
           // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
+            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
         },
       }
     ]
@@ -86,7 +88,9 @@ var friction = [
         parameters: {
           filename: '../../../assets/picture/content/Friction2.jpeg',
           // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "96, 44, 336, 692" },
+            { value: 'right', shape: "rect", coordinates: "698, 64, 942, 680" }],
         },
       }
     ]
@@ -112,7 +116,9 @@ var friction = [
         parameters: {
           filename: '../../../assets/picture/content/Friction3.jpeg',
           // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "88, 38, 350, 702" },
+            { value: 'right', shape: "rect", coordinates: "694, 40, 944, 700" }],
         },
       }
     ]
@@ -138,7 +144,9 @@ var friction = [
         parameters: {
           filename: '../../../assets/picture/content/Friction4.jpeg',
           // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "90, 412, 352, 584" },
+            { value: 'right', shape: "rect", coordinates: "722, 410, 834, 648" }],
         },
       }
     ]
@@ -170,7 +178,9 @@ var sciMethod = [
         parameters: {
           filename: '../../../assets/picture/content/observing.jpeg',
           // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "74, 248, 476, 580" },
+            { value: 'right', shape: "rect", coordinates: "568, 252, 994, 582" }],
         },
       }
     ]
@@ -196,7 +206,8 @@ var sciMethod = [
         parameters: {
           filename: '../../../assets/picture/content/predicting.jpeg',
           // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "46, 216, 458, 556" },
+          { value: 'right', shape: "rect", coordinates: "558, 208, 976, 550" }],
         },
       }
     ]
@@ -222,7 +233,8 @@ var sciMethod = [
         parameters: {
           filename: '../../../assets/picture/content/checking.jpeg',
           // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+          coordinates: [{ value: 'left', shape: "rect", coordinates: "48, 216, 458, 556" },
+          { value: 'right', shape: "rect", coordinates: "560, 216, 974, 552" }],
         },
       }
     ]
@@ -262,8 +274,12 @@ var interest = [
         type: 'picture',
         parameters: {
           filename: '../../../assets/picture/content/Interest1.jpeg',
-          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+          coordinates: [
+            { value: 'one', shape: "rect", coordinates: "94, 308, 266, 486" },
+            { value: 'two', shape: "rect", coordinates: "310, 308, 486, 486" },
+            { value: 'three', shape: "rect", coordinates: "540, 308, 724, 486" },
+            { value: 'four', shape: "rect", coordinates: "758, 308, 942, 486" },
+          ],
         },
       }
     ]
@@ -288,8 +304,12 @@ var interest = [
         type: 'picture',
         parameters: {
           filename: '../../../assets/picture/content/Interest2.jpeg',
-          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+          coordinates: [
+            { value: 'one', shape: "rect", coordinates: "94, 308, 266, 486" },
+            { value: 'two', shape: "rect", coordinates: "310, 308, 486, 486" },
+            { value: 'three', shape: "rect", coordinates: "540, 308, 724, 486" },
+            { value: 'four', shape: "rect", coordinates: "758, 308, 942, 486" },
+          ],
         },
       }
     ]
@@ -329,8 +349,12 @@ var prevalence = [
         type: 'picture',
         parameters: {
           filename: '../../../assets/picture/content/Prevalence.jpeg',
-          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+          coordinates: [
+            { value: 'one', shape: "rect", coordinates: "56, 294, 242, 488" },
+            { value: 'two', shape: "rect", coordinates: "300, 300, 490, 490" },
+            { value: 'three', shape: "rect", coordinates: "536, 298, 722, 490" },
+            { value: 'four', shape: "rect", coordinates: "774, 300, 962, 490" },
+          ],
         },
       }
     ]
@@ -367,8 +391,12 @@ var prevalence = [
         type: 'picture',
         parameters: {
           filename: '../../../assets/picture/content/Prevalence.jpeg',
-          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+          coordinates: [
+            { value: 'one', shape: "rect", coordinates: "56, 294, 242, 488" },
+            { value: 'two', shape: "rect", coordinates: "300, 300, 490, 490" },
+            { value: 'three', shape: "rect", coordinates: "536, 298, 722, 490" },
+            { value: 'four', shape: "rect", coordinates: "774, 300, 962, 490" },
+          ],
         },
       }
     ]
@@ -405,8 +433,12 @@ var prevalence = [
         type: 'picture',
         parameters: {
           filename: '../../../assets/picture/content/Prevalence.jpeg',
-          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+          coordinates: [
+            { value: 'one', shape: "rect", coordinates: "56, 294, 242, 488" },
+            { value: 'two', shape: "rect", coordinates: "300, 300, 490, 490" },
+            { value: 'three', shape: "rect", coordinates: "536, 298, 722, 490" },
+            { value: 'four', shape: "rect", coordinates: "774, 300, 962, 490" },
+          ],
         },
       }
     ]
@@ -443,8 +475,12 @@ var prevalence = [
         type: 'picture',
         parameters: {
           filename: '../../../assets/picture/content/Prevalence.jpeg',
-          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+          coordinates: [
+            { value: 'one', shape: "rect", coordinates: "56, 294, 242, 488" },
+            { value: 'two', shape: "rect", coordinates: "300, 300, 490, 490" },
+            { value: 'three', shape: "rect", coordinates: "536, 298, 722, 490" },
+            { value: 'four', shape: "rect", coordinates: "774, 300, 962, 490" },
+          ],
         },
       }
     ]
@@ -484,8 +520,12 @@ var prevalenceDo = [
         type: 'picture',
         parameters: {
           filename: '../../../assets/picture/content/Prevalence.jpeg',
-          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+          coordinates: [
+            { value: 'one', shape: "rect", coordinates: "56, 294, 242, 488" },
+            { value: 'two', shape: "rect", coordinates: "300, 300, 490, 490" },
+            { value: 'three', shape: "rect", coordinates: "536, 298, 722, 490" },
+            { value: 'four', shape: "rect", coordinates: "774, 300, 962, 490" },
+          ],
         },
       }
     ]
@@ -513,8 +553,12 @@ var prevalenceBe = [
         type: 'picture',
         parameters: {
           filename: '../../../assets/picture/content/Prevalence.jpeg',
-          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [{ value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" }, { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+          coordinates: [
+            { value: 'one', shape: "rect", coordinates: "56, 294, 242, 488" },
+            { value: 'two', shape: "rect", coordinates: "300, 300, 490, 490" },
+            { value: 'three', shape: "rect", coordinates: "536, 298, 722, 490" },
+            { value: 'four', shape: "rect", coordinates: "774, 300, 962, 490" },
+          ],
         },
       }
     ]
@@ -864,8 +908,13 @@ var legos = [
         parameters: {
           filename: '../../../assets/picture/persistence/legos.jpeg',
           coordinates: [
-            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
-            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+            { value: 'one', shape: "rect", coordinates: "161, 646, 250, 740" },
+            { value: 'two', shape: "rect", coordinates: "282, 646, 370, 740" },
+            { value: 'three', shape: "rect", coordinates: "400, 646, 490, 740" },
+            { value: 'four', shape: "rect", coordinates: "518, 646, 608, 740" },
+            { value: 'five', shape: "rect", coordinates: "634, 646, 726, 740" },
+            { value: 'six', shape: "rect", coordinates: "756, 646, 844, 740" },
+          ],
         }
       }
     ]
@@ -895,8 +944,13 @@ var leaves = [
         parameters: {
           filename: '../../../assets/picture/persistence/leaves.jpeg',
           coordinates: [
-            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
-            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+            { value: 'one', shape: "rect", coordinates: "161, 646, 250, 740" },
+            { value: 'two', shape: "rect", coordinates: "282, 646, 370, 740" },
+            { value: 'three', shape: "rect", coordinates: "400, 646, 490, 740" },
+            { value: 'four', shape: "rect", coordinates: "518, 646, 608, 740" },
+            { value: 'five', shape: "rect", coordinates: "634, 646, 726, 740" },
+            { value: 'six', shape: "rect", coordinates: "756, 646, 844, 740" },
+          ],
         }
       }
     ]
@@ -922,8 +976,8 @@ var leaves = [
         parameters: {
           filename: '../../../assets/picture/persistence/transition.jpeg',
           coordinates: [
-            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
-            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+            { value: 'left', shape: "rect", coordinates: "110, 332, 430, 448" },
+            { value: 'right', shape: "rect", coordinates: "642, 244, 912, 518" }],
         }
       }
     ]
@@ -962,8 +1016,13 @@ var wicker = [
         parameters: {
           filename: '../../../assets/picture/persistence/wicker.jpeg',
           coordinates: [
-            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
-            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+            { value: 'one', shape: "rect", coordinates: "161, 646, 250, 740" },
+            { value: 'two', shape: "rect", coordinates: "282, 646, 370, 740" },
+            { value: 'three', shape: "rect", coordinates: "400, 646, 490, 740" },
+            { value: 'four', shape: "rect", coordinates: "518, 646, 608, 740" },
+            { value: 'five', shape: "rect", coordinates: "634, 646, 726, 740" },
+            { value: 'six', shape: "rect", coordinates: "756, 646, 844, 740" },
+          ],
         }
       }
     ]
@@ -989,8 +1048,8 @@ var wicker = [
         parameters: {
           filename: '../../../assets/picture/persistence/transition.jpeg',
           coordinates: [
-            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
-            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+            { value: 'left', shape: "rect", coordinates: "110, 332, 430, 448" },
+            { value: 'right', shape: "rect", coordinates: "642, 244, 912, 518" }],
         }
       }
     ]
@@ -1029,8 +1088,13 @@ var foil = [
         parameters: {
           filename: '../../../assets/picture/persistence/foil.jpeg',
           coordinates: [
-            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
-            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+            { value: 'one', shape: "rect", coordinates: "161, 646, 250, 740" },
+            { value: 'two', shape: "rect", coordinates: "282, 646, 370, 740" },
+            { value: 'three', shape: "rect", coordinates: "400, 646, 490, 740" },
+            { value: 'four', shape: "rect", coordinates: "518, 646, 608, 740" },
+            { value: 'five', shape: "rect", coordinates: "634, 646, 726, 740" },
+            { value: 'six', shape: "rect", coordinates: "756, 646, 844, 740" },
+          ],
         }
       }
     ]
@@ -1056,8 +1120,8 @@ var foil = [
         parameters: {
           filename: '../../../assets/picture/persistence/transition.jpeg',
           coordinates: [
-            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
-            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+            { value: 'left', shape: "rect", coordinates: "110, 332, 430, 448" },
+            { value: 'right', shape: "rect", coordinates: "642, 244, 912, 518" }],
         }
       }
     ]
@@ -1096,8 +1160,13 @@ var blanket = [
         parameters: {
           filename: '../../../assets/picture/persistence/blanket.jpeg',
           coordinates: [
-            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
-            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+            { value: 'one', shape: "rect", coordinates: "161, 646, 250, 740" },
+            { value: 'two', shape: "rect", coordinates: "282, 646, 370, 740" },
+            { value: 'three', shape: "rect", coordinates: "400, 646, 490, 740" },
+            { value: 'four', shape: "rect", coordinates: "518, 646, 608, 740" },
+            { value: 'five', shape: "rect", coordinates: "634, 646, 726, 740" },
+            { value: 'six', shape: "rect", coordinates: "756, 646, 844, 740" },
+          ],
         }
       }
     ]
@@ -1123,8 +1192,8 @@ var blanket = [
         parameters: {
           filename: '../../../assets/picture/persistence/transition.jpeg',
           coordinates: [
-            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
-            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+            { value: 'left', shape: "rect", coordinates: "110, 332, 430, 448" },
+            { value: 'right', shape: "rect", coordinates: "642, 244, 912, 518" }],
         }
       }
     ]
@@ -1163,8 +1232,13 @@ var paperTowel = [
         parameters: {
           filename: '../../../assets/picture/persistence/paper_towel.jpeg',
           coordinates: [
-            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
-            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+            { value: 'one', shape: "rect", coordinates: "161, 646, 250, 740" },
+            { value: 'two', shape: "rect", coordinates: "282, 646, 370, 740" },
+            { value: 'three', shape: "rect", coordinates: "400, 646, 490, 740" },
+            { value: 'four', shape: "rect", coordinates: "518, 646, 608, 740" },
+            { value: 'five', shape: "rect", coordinates: "634, 646, 726, 740" },
+            { value: 'six', shape: "rect", coordinates: "756, 646, 844, 740" },
+          ],
         }
       }
     ]
@@ -1190,8 +1264,8 @@ var paperTowel = [
         parameters: {
           filename: '../../../assets/picture/persistence/transition.jpeg',
           coordinates: [
-            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
-            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+            { value: 'left', shape: "rect", coordinates: "110, 332, 430, 448" },
+            { value: 'right', shape: "rect", coordinates: "642, 244, 912, 518" }],
         }
       }
     ]
@@ -1230,8 +1304,8 @@ var persistence = [
         parameters: {
           filename: '../../../assets/picture/persistence/transition.jpeg',
           coordinates: [
-            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
-            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+            { value: 'left', shape: "rect", coordinates: "110, 332, 430, 448" },
+            { value: 'right', shape: "rect", coordinates: "642, 244, 912, 518" }],
         }
       }
     ]
@@ -1274,7 +1348,7 @@ var persistenceStudy = [
 
 export const Project = {
   conditions: [
-    // contentStudy,
+    contentStudy,
     persistenceStudy
   ],
   name: "interventionStudy",
