@@ -142,25 +142,25 @@ describe('RunnerService', () => {
     // check for value being passed in to processItem, processList, etc.
     const iterator = service.cycle(testConfig);
     let val = iterator.next();
-    console.log(val);
-    val = iterator.next([{ value: 'one' }]);
-    console.log(val);
-    val = iterator.next([{ value: 'onetwo' }]);
-    console.log(val);
-    // expect(val.value[2]).toBe('action');
-    // expect(val.value[1]).toBe('secondA');
-    val = iterator.next([{ value: 'onetwo' }]);
-    console.log(val);
-    val = iterator.next([{ value: 'three' }]);
-    console.log(val);
-    val = iterator.next([{ value: 'three' }]);
-    console.log(val);
-    val = iterator.next([{ value: 'three' }]);
-    console.log(val);
-    val = iterator.next([{ value: 'three' }]);
-    console.log(val);
-    val = iterator.next([{ value: 'three' }]);
-    console.log(val);
+    // console.log(val);
+    // val = iterator.next([{ value: 'one' }]);
+    // console.log(val);
+    // val = iterator.next([{ value: 'onetwo' }]);
+    // console.log(val);
+    // // expect(val.value[2]).toBe('action');
+    // // expect(val.value[1]).toBe('secondA');
+    // val = iterator.next([{ value: 'onetwo' }]);
+    // console.log(val);
+    // val = iterator.next([{ value: 'three' }]);
+    // console.log(val);
+    // val = iterator.next([{ value: 'three' }]);
+    // console.log(val);
+    // val = iterator.next([{ value: 'three' }]);
+    // console.log(val);
+    // val = iterator.next([{ value: 'three' }]);
+    // console.log(val);
+    // val = iterator.next([{ value: 'three' }]);
+    // console.log(val);
 
   }));
 
