@@ -1,5 +1,7 @@
 <div class = "flexbox">
   <ng-template stimuli></ng-template>
   <button class="resetButton" (dblclick)="resetGame()">Start over</button>
+
+  <button class="exportButton" (dblclick)="this.responseService.getCSV()">Export CSV</button>
 </div>
 
