@@ -94,6 +94,7 @@ export class ResponseService {
   }
 
   getCSV() {
+    console.log('I am being ran!');
     const responsePromise = this.getResponses();
     let output = new Response().getCSVHeader();
 

@@ -57,12 +57,18 @@ export class Response {
       if (idx === 1) {
         accum = this.data[accum].toString() + ',';
       }
-      let temp = this.data[cur].toString();
 
-      // for values that are lists - todo move thhis to their toString()
-      if (temp.indexOf(',') !== -1) {
-        temp = '"' + temp + '"';
+      let temp = '';
+      if (this.data[cur] === Object(this.data[cur])) {
+        temp = JSON.stringify(this.data[cur]);
+      } else {
+        temp = this.data[cur].toString();
+        if (temp.indexOf(',') !== -1) {
+          temp = '"' + temp + '"';
+        }
       }
+      // for values that are lists - todo move thhis to their toString()
+
 
       return (accum += temp + ',');
     });

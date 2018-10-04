@@ -29,3 +29,19 @@ body {
 .resetButton:hover {
   opacity: .5;
 }
+
+.exportButton {
+  color: rgb(226, 226, 226);
+  font-family : inherit;
+  background: #fff;
+  width: 100px;
+  font-size: 16px;
+  font-weight: 500;
+  height: 50px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 10px;
+  border: 1px dotted #bbb;
+  border-radius: 8px;
+}
