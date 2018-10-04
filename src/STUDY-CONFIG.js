@@ -1323,7 +1323,20 @@ var persistence = [
   },
 ]
 
+var forms = {
+  type: 'action',
+  id: 'schoolIDs',
+  stimuli: [
+    {
+      type: 'form',
+      parameters: {
+      }
+    }
+  ]
+}
+
 var contentStudy = [
+  forms,
   startGame,
   friction,
   sciMethod,
@@ -1346,10 +1359,11 @@ var persistenceStudy = [
   persistence
 ];
 
+
 export const Project = {
   conditions: [
     contentStudy,
-    persistenceStudy
+    // persistenceStudy
   ],
   name: "interventionStudy",
   ended: {

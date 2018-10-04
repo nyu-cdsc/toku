@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild, AfterContentInit, AfterContentChecked, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
 import { Stimuli, Responsive } from '../stimuli';
 import { Message } from '../../../message';
 import { AreaComponent } from '../../responders/area/area.component';
@@ -24,7 +24,8 @@ export class PictureComponent implements Stimuli, Responsive, OnInit, AfterViewC
 
   sendMessage(message: Message) {
     console.log('message received in pic! is', message);
-    // todo Response val as in the one inside Params and choice made (perhaps change Response to Choice to make it clear the level it's from)
+    // todo Response val as in the one inside Params and choice made (perhaps change Response to Choice to make
+    // it clear the level it's from)
     this.responseEvent.emit(message);
     // todo support multiple reponses in future
     this.done();

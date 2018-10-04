@@ -1,8 +1,8 @@
-<form>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" >
   School ID:<br>
-  <input type="text" name="schoolID"><br>
+  <input ngModel type="text" name="schoolID"><br>
   Classroom ID:<br>
-  <input type="text" name="classroomID">
-  <input type="submit" value="Submit">
+  <input ngModel type="text" name="classroomID">
+  <button type="submit" class="submitButton">Submit</button>
 </form>
 

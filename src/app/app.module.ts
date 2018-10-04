@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ButtonComponent } from './components/responders/button/button.component';
@@ -7,6 +8,7 @@ import { AreaComponent } from './components/responders/area/area.component';
 import { SoundComponent } from './components/stimuli/sound/sound.component';
 import { MovieComponent } from './components/stimuli/movie/movie.component';
 import { PictureComponent } from './components/stimuli/picture/picture.component';
+
 
 import { StimuliDirective } from './stimuli.directive';
 
@@ -32,10 +34,12 @@ import { FormComponent } from './components/stimuli/form/form.component';  // TO
     MovieComponent,
     SoundComponent,
     ButtonComponent,
-    AreaComponent
+    AreaComponent,
+    FormComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [ResponseService, RunnerService, StimuliService],
   bootstrap: [AppComponent]
