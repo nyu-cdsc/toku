@@ -37,7 +37,7 @@ export class RunnerService {
       }
     })[0]; // TODO validation for +1 name elements, or just handle
 
-    return res;
+    return res || '';
   }
 
   getControlMap(list): Control {
