@@ -22,15 +22,16 @@ export class AppComponent implements OnInit {
   curBlockName: string;
   ended: any;
   participant = Date.now();
+  responseService: ResponseService;
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
-    private responseService: ResponseService,
     private runner: RunnerService,
     private stim: StimuliService
   ) {
+    this.responseService = new ResponseService();
     const title = this.runner.getProjectName();
-    responseService.getDBConnection(title);
+    this.responseService.getDBConnection(title);
     this.study = title;
     this.ended = this.runner.getProject().ended;
     // todo this ^ should be done elsewhere - module?
