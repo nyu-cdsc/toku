@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
   condition: string;
   curBlockName: string;
   ended: any;
+  participant = Date.now();
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -103,7 +104,7 @@ export class AppComponent implements OnInit {
   // TODO use Message type? everywhere - in response, in services, in generator..
   buildResponse(message, study, block, action) {
     const response = this.responseService.newResponse();
-    response.data.participant = Date.now();
+    response.data.participant = this.participant;
     response.data.response = [message.value];
     response.data.study = study; // TODO should be unnecessary
     response.data.block = block;
