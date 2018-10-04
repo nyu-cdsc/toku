@@ -35,7 +35,7 @@ testem.log
 Thumbs.db
 
 # assets (comment for release repos)
-# src/assets/movie/
-# src/assets/picture/
-# src/assets/sound/
+src/assets/movie/
+src/assets/picture/
+src/assets/sound/
 
