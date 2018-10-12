@@ -1,5 +1,5 @@
 <!-- populating coordinates -->
 <map name="picturemap">
-  <area *ngFor="let c of getCoordinates(scalingFactor)" (click)="click(c.value)" [shape]="c.shape" [coords]="c.coordinates"
+  <area *ngFor="let c of getCoordinates()" (click)="click(c.value)" [shape]="c.shape" [coords]="c.coordinates"
     [alt]="c.value">
 </map>
