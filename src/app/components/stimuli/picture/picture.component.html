@@ -3,12 +3,14 @@
 <ng-template #withoutMap>
   <!-- populate image -->
   <img [src]="parameters?.filename" #theimage />
+  <audio [src]="parameters?.sound" autoplay #theaudio> ></audio>
 </ng-template>
 
 <ng-template #withMap>
   <!-- populate image -->
   <!-- TODO better way to populate img ID than from coordinate values. Works for present project but need something better -->
   <img [class]="parameters?.coordinates[0].value" [src]="parameters?.filename" usemap="#picturemap" #theimage />
+    <audio [src]="parameters?.sound" autoplay #theaudio> ></audio>
   <app-map #areamap *ngIf="responseEnabled" (selectionEvent)="sendMessage($event)" [params]="parameters"></app-map>
 </ng-template>
 

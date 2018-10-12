@@ -46,7 +46,7 @@ var friction = [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/content/Friction1.mp4'
+          filename: '../../../assets/movie/content/Friction1_10.9.mp4'
         }
       }
     ]
@@ -62,7 +62,9 @@ var friction = [
           // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
           coordinates: [
             { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
-            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
+            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }
+          ],
+          sound: '../../../assets/audio/friction1&2.m4a'
         },
       }
     ]
@@ -74,7 +76,7 @@ var friction = [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/content/Friction2.mp4'
+          filename: '../../../assets/movie/content/Friction2_10.9.mp4'
         }
       }
     ]
@@ -90,7 +92,9 @@ var friction = [
           // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
           coordinates: [
             { value: 'left', shape: "rect", coordinates: "96, 44, 336, 692" },
-            { value: 'right', shape: "rect", coordinates: "698, 64, 942, 680" }],
+            { value: 'right', shape: "rect", coordinates: "698, 64, 942, 680" }
+          ],
+          sound: '../../../assets/audio/friction1&2.m4a'
         },
       }
     ]
@@ -102,7 +106,7 @@ var friction = [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/content/Friction3.mp4'
+          filename: '../../../assets/movie/content/Friction3_10.9.mp4'
         }
       }
     ]
@@ -118,7 +122,9 @@ var friction = [
           // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
           coordinates: [
             { value: 'left', shape: "rect", coordinates: "88, 38, 350, 702" },
-            { value: 'right', shape: "rect", coordinates: "694, 40, 944, 700" }],
+            { value: 'right', shape: "rect", coordinates: "694, 40, 944, 700" }
+          ],
+          sound: '../../../assets/audio/friction3.m4a'
         },
       }
     ]
@@ -130,7 +136,7 @@ var friction = [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/content/Friction4.mp4'
+          filename: '../../../assets/movie/content/Friction4_10.9.mp4'
         }
       }
     ]
@@ -146,7 +152,9 @@ var friction = [
           // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
           coordinates: [
             { value: 'left', shape: "rect", coordinates: "90, 412, 352, 584" },
-            { value: 'right', shape: "rect", coordinates: "722, 410, 834, 648" }],
+            { value: 'right', shape: "rect", coordinates: "722, 410, 834, 648" }
+          ],
+          sound: '../../../assets/audio/friction4.m4a'
         },
       }
     ]
@@ -164,7 +172,7 @@ var sciMethod = [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/content/observing.mp4'
+          filename: '../../../assets/movie/content/observing_10.9.mp4'
         }
       }
     ]
@@ -180,7 +188,9 @@ var sciMethod = [
           // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
           coordinates: [
             { value: 'left', shape: "rect", coordinates: "74, 248, 476, 580" },
-            { value: 'right', shape: "rect", coordinates: "568, 252, 994, 582" }],
+            { value: 'right', shape: "rect", coordinates: "568, 252, 994, 582" }
+          ],
+          sound: '../../../assets/audio/observing.m4a'
         },
       }
     ]
@@ -192,7 +202,7 @@ var sciMethod = [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/content/predicting.mp4'
+          filename: '../../../assets/movie/content/predicting_10.9.mp4'
         }
       }
     ]
@@ -207,7 +217,9 @@ var sciMethod = [
           filename: '../../../assets/picture/content/predicting.jpeg',
           // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
           coordinates: [{ value: 'left', shape: "rect", coordinates: "46, 216, 458, 556" },
-          { value: 'right', shape: "rect", coordinates: "558, 208, 976, 550" }],
+          { value: 'right', shape: "rect", coordinates: "558, 208, 976, 550" }
+          ],
+          sound: '../../../assets/audio/predicting.m4a'
         },
       }
     ]
@@ -219,7 +231,7 @@ var sciMethod = [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/content/checking.mp4'
+          filename: '../../../assets/movie/content/checking_10.9.mp4'
         }
       }
     ]
@@ -234,7 +246,9 @@ var sciMethod = [
           filename: '../../../assets/picture/content/checking.jpeg',
           // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
           coordinates: [{ value: 'left', shape: "rect", coordinates: "48, 216, 458, 556" },
-          { value: 'right', shape: "rect", coordinates: "560, 216, 974, 552" }],
+          { value: 'right', shape: "rect", coordinates: "560, 216, 974, 552" }
+          ],
+          sound: '../../../assets/audio/checking.m4a'
         },
       }
     ]
@@ -261,7 +275,7 @@ var interest = [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/content/Interest1.mp4'
+          filename: '../../../assets/movie/content/Interest1_10.9.mp4'
         }
       }
     ]
@@ -280,6 +294,7 @@ var interest = [
             { value: 'three', shape: "rect", coordinates: "540, 308, 724, 486" },
             { value: 'four', shape: "rect", coordinates: "758, 308, 942, 486" },
           ],
+          sound: '../../../assets/audio/interest1&2.m4a'
         },
       }
     ]
@@ -291,7 +306,7 @@ var interest = [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/content/Interest2.mp4'
+          filename: '../../../assets/movie/content/Interest2_10.9.mp4'
         }
       }
     ]
@@ -310,6 +325,7 @@ var interest = [
             { value: 'three', shape: "rect", coordinates: "540, 308, 724, 486" },
             { value: 'four', shape: "rect", coordinates: "758, 308, 942, 486" },
           ],
+          sound: '../../../assets/audio/interest1&2.m4a'
         },
       }
     ]
@@ -863,7 +879,7 @@ var end = [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/persistence/memory.mp4'
+          filename: '../../../assets/movie/persistence/memory_10.9.mp4'
         }
       }
     ]
@@ -1335,35 +1351,44 @@ var forms = {
   ]
 }
 
-var contentStudy = [
+
+var contentStudyBe = [
   forms,
   startGame,
   friction,
   sciMethod,
   interest,
   prevalence,
-  [
-    prevalenceDo,
-    prevalenceBe,
-    {
-      type: 'control',
-      shuffle: true
-    }
-  ],
+  prevalenceDo,
+  prevalenceBe,
+  end
+];
+
+var contentStudyDo = [
+  forms,
+  startGame,
+  friction,
+  sciMethod,
+  interest,
+  prevalence,
+  prevalenceBe,
+  prevalenceDo,
   end
 ];
 
 var persistenceStudy = [
+  forms,
   startGame,
   contingentFeedback,
   persistence
 ];
 
-
 export const Project = {
   conditions: [
-    contentStudy,
-    // persistenceStudy
+    contentStudyDo,
+    contentStudyBe,
+    persistenceStudy,
+    persistenceStudy
   ],
   name: "interventionStudy",
   ended: {
