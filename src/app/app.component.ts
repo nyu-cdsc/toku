@@ -1,8 +1,5 @@
 import { Component, ComponentFactoryResolver, ViewChild, OnInit, ViewContainerRef } from '@angular/core';
 
-import { StimuliService } from './components/stimuli/stimuli.service';
-import { StimuliDirective } from './stimuli.directive'; // todo directives dir
-import { Stimuli, Responsive } from './components/stimuli/stimuli';
 import { ResponseService } from './services/response/response.service';
 import { RunnerService } from './services/runner/runner.service';
 
@@ -12,7 +9,6 @@ import { RunnerService } from './services/runner/runner.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  @ViewChild(StimuliDirective) stimDirective: StimuliDirective;
   study: string;
   iterator: any;
   responseCache = [];
@@ -23,11 +19,12 @@ export class AppComponent implements OnInit {
   ended: any;
   participant = Date.now();
   responseService: ResponseService;
+  // currentAction: Action
+  currentAction: any;
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private runner: RunnerService,
-    private stim: StimuliService
   ) {
     this.responseService = new ResponseService();
     const title = this.runner.getProjectName();
@@ -48,7 +45,13 @@ export class AppComponent implements OnInit {
   studyEnded() {
     console.log('studyEnded() has been called');
     this.done = true;
-    this.buildStimuli(this.ended.stimuli[0], this.stimDirective.viewContainerRef, this.componentFactoryResolver);
+
+
+    // TODO .. fix
+    // this.buildStimuli(this.ended.stimuli[0], this.stimDirective.viewContainerRef, this.componentFactoryResolver);
+    this.currentAction = this.ended;
+
+
     // TODO implement end of study logic here
     // note that the config can put what it wants the end of study Frame to be -- so this could just be running cleanup, etc.
   }
@@ -65,42 +68,17 @@ export class AppComponent implements OnInit {
     this.curActionName = action.id;
     this.curBlockName = this.runner.getBlockName(this.runner.list); // todo
 
-    this.buildStimuli(action.stimuli[0], this.stimDirective.viewContainerRef, this.componentFactoryResolver);
+    // TODO - now create new frame, set its action and subscribe to its events
+    // or just set the action on the frame we already have, and continue to subscribe to its events. either should work fine
+
+
+    this.currentAction = action;
+    // this.buildStimuli(action.stimuli[0], this.stimDirective.viewContainerRef, this.componentFactoryResolver);
+
     // todo ^ this needs to be fixed, can't just call [0] anymore
     // todo ^ will be  once multiple stimuli/Frame/whatever is supported
-
   }
 
-  buildStimuli(stimuli: Stimuli, view: ViewContainerRef, resolver: ComponentFactoryResolver) {
-    const componentFactory = resolver.resolveComponentFactory(this.stim.componentResolver(stimuli));
-    view.clear();
-
-    const componentRef = view.createComponent(componentFactory);
-    const inst = <Stimuli | Stimuli & Responsive>componentRef.instance; // todo does this make a difference?
-    inst.parameters = stimuli.parameters;
-
-    const instR = <Responsive>inst; // gah
-    if (instR) {
-      // instR.responseEnabled = false;
-      instR.responseEvent.subscribe(message => {
-        this.responseCache.push(message);
-        this.responseService.setResponse(this.buildResponse(message, this.study, this.curBlockName, this.curActionName));
-        // todo ^ move this to generator, just pass cached messages along to it (already doing it anyway)
-      });
-    }
-
-    inst.doneEvent.subscribe(data => {
-      if (this.done) {
-        this.resetGame();
-        // window.location.reload();
-      }
-      // this.nextAction(data);
-      const responses = this.responseCache;
-      this.responseCache = [];
-      this.nextAction(responses);
-      // todo could query the service for every response that took place under the current action, less state in here
-    });
-  }
 
   // TODO use Message type? everywhere - in response, in services, in generator..
   buildResponse(message, study, block, action) {
@@ -127,3 +105,26 @@ export class AppComponent implements OnInit {
   }
   //  const condition = this.study.conditions[Math.floor(Math.random() * this.study.conditions.length)];
 }
+
+// TODO -- do this on the toku-frame component that we instantiate here
+    // if (instR) {
+    //   // instR.responseEnabled = false;
+    //   instR.responseEvent.subscribe(message => {
+    //     this.responseCache.push(message);
+    //     this.responseService.setResponse(this.buildResponse(message, this.study, this.curBlockName, this.curActionName));
+    //     // todo ^ move this to generator, just pass cached messages along to it (already doing it anyway)
+    //   });
+    // }
+
+    // inst.doneEvent.subscribe(data => {
+    //   this.doneEvent.emit(null);
+    //   if (this.done) {
+    //     this.resetGame();
+    //     // window.location.reload();
+    //   }
+    //   // this.nextAction(data);
+    //   const responses = this.responseCache;
+    //   this.responseCache = [];
+    //   this.nextAction(responses);
+    //   // todo could query the service for every response that took place under the current action, less state in here
+    // });
