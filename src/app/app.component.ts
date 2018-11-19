@@ -13,7 +13,6 @@ export class AppComponent implements OnInit {
   iterator: any;
   responseCache = [];
   done = false;
-  curActionName: string; // TODO this is getting unwieldy again -- all these items are for responses, should be in generator
   condition: string;
   curBlockName: string;
   ended: any;
@@ -45,10 +44,6 @@ export class AppComponent implements OnInit {
   studyEnded() {
     console.log('studyEnded() has been called');
     this.done = true;
-
-
-    // TODO .. fix
-    // this.buildStimuli(this.ended.stimuli[0], this.stimDirective.viewContainerRef, this.componentFactoryResolver);
     this.currentAction = this.ended;
 
 
@@ -65,20 +60,13 @@ export class AppComponent implements OnInit {
       return this.studyEnded();
     }
     const action = cur.value;
-    this.curActionName = action.id;
     this.curBlockName = this.runner.getBlockName(this.runner.list); // todo
 
     // TODO - now create new frame, set its action and subscribe to its events
     // or just set the action on the frame we already have, and continue to subscribe to its events. either should work fine
 
-
     this.currentAction = action;
-    // this.buildStimuli(action.stimuli[0], this.stimDirective.viewContainerRef, this.componentFactoryResolver);
-
-    // todo ^ this needs to be fixed, can't just call [0] anymore
-    // todo ^ will be  once multiple stimuli/Frame/whatever is supported
   }
-
 
   // TODO use Message type? everywhere - in response, in services, in generator..
   buildResponse(message, study, block, action) {
@@ -104,27 +92,21 @@ export class AppComponent implements OnInit {
     window.location.reload();
   }
   //  const condition = this.study.conditions[Math.floor(Math.random() * this.study.conditions.length)];
+
+  frameResponse(message) {
+    this.responseCache.push(message);
+    this.responseService.setResponse(this.buildResponse(message, this.study, this.curBlockName, this.currentAction.id));
+    // todo ^ move this to generator, just pass cached messages along to it (already doing it anyway)
+  }
+
+  frameDone(data) {
+    if (this.done) {
+      this.resetGame();
+    }
+    const responses = this.responseCache;
+    this.responseCache = [];
+    this.nextAction(responses);
+    // todo could query the service for every response that took place under the current action, less state in here
+  }
 }
 
-// TODO -- do this on the toku-frame component that we instantiate here
-    // if (instR) {
-    //   // instR.responseEnabled = false;
-    //   instR.responseEvent.subscribe(message => {
-    //     this.responseCache.push(message);
-    //     this.responseService.setResponse(this.buildResponse(message, this.study, this.curBlockName, this.curActionName));
-    //     // todo ^ move this to generator, just pass cached messages along to it (already doing it anyway)
-    //   });
-    // }
-
-    // inst.doneEvent.subscribe(data => {
-    //   this.doneEvent.emit(null);
-    //   if (this.done) {
-    //     this.resetGame();
-    //     // window.location.reload();
-    //   }
-    //   // this.nextAction(data);
-    //   const responses = this.responseCache;
-    //   this.responseCache = [];
-    //   this.nextAction(responses);
-    //   // todo could query the service for every response that took place under the current action, less state in here
-    // });

@@ -15,7 +15,6 @@ export class FrameComponent implements OnChanges {
   @Output() responseEvent = new EventEmitter<Message>();
   @Input() responseEnabled = true; // this can be disabled by parent via [responseEnabled]
   @Input() action: any;
-  children: any; // todo fix typecheck
   // @ViewChildren(StimuliDirective) stimuliChildren: StimuliDirective[];
 
   constructor(
@@ -28,18 +27,19 @@ export class FrameComponent implements OnChanges {
 
   // todo this cannot be an init, but needs to be on change
   ngOnChanges() {
-    // todo guard clause
+    this.vRef.clear();
+
     if (this.action.stimuli) {
       for (const stimuli of this.action.stimuli) {
         this.buildStimuli(stimuli, this.vRef, this.componentFactoryResolver);
       }
     }
-    // for (const stimChild of this.stimuliChildren) {
-    //   this.buildStimuli(this.action.stimuli[0], this.stimDirective.viewContainerRef, this.componentFactoryResolver);
-    //   // TODO this is backwards -- for each stimuli hande to us by action, we should be creating a new stimuliChild directive in the view
-    //   // as it currently is, we need to know both at once - this should be two functions
-    // }
-    // TODO ^ build stimuli for all in list, tear down all after - or just replace this whole component, we'll see
+  }
+
+  done() {
+    if (!this.vRef.length) {
+      this.doneEvent.emit(null);
+    }
   }
 
   // buildStimuliDirective(stimuli: Stimuli);
@@ -48,7 +48,7 @@ export class FrameComponent implements OnChanges {
     view.clear();
 
     const componentRef = view.createComponent(componentFactory);
-    const inst = <Stimuli | Stimuli & Responsive>componentRef.instance; // todo does this make a difference?
+    const inst = <Stimuli | Stimuli & Responsive>componentRef.instance;
     inst.parameters = stimuli.parameters;
 
     const instR = <Responsive>inst; // gah
@@ -60,7 +60,8 @@ export class FrameComponent implements OnChanges {
     }
 
     inst.doneEvent.subscribe(data => {
-      this.doneEvent.emit(null);
+      componentRef.destroy();
+      this.done();
     });
   }
 }
