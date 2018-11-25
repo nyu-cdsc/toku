@@ -1,5 +1,5 @@
 <div class="flexbox">
-  <toku-frame (doneEvent)="this.frameDone($event)" (responseEvent)="this.frameResponse($event)" action="currentAction"></toku-frame>
+  <toku-frame (doneEvent)="this.frameDone($event)" (responseEvent)="this.frameResponse($event)" [action]="currentAction"></toku-frame>
   <!-- todo change ^ to function call? always fighting this.. -->
   <button class="resetButton" (dblclick)="resetGame()">Start over</button>
 

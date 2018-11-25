@@ -4,7 +4,7 @@ import { ResponseService } from './services/response/response.service';
 import { RunnerService } from './services/runner/runner.service';
 
 @Component({
-  selector: 'app-root',
+  selector: 'toku-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -52,6 +52,7 @@ export class AppComponent implements OnInit {
   }
 
   nextAction(data) {
+    // todo put in assertions/logs when running in DEV mode
     const cur = this.iterator.next(data);
     if (cur.value === 'start') {
       return this.nextAction(data);
@@ -61,11 +62,8 @@ export class AppComponent implements OnInit {
     }
     const action = cur.value;
     this.curBlockName = this.runner.getBlockName(this.runner.list); // todo
-
-    // TODO - now create new frame, set its action and subscribe to its events
-    // or just set the action on the frame we already have, and continue to subscribe to its events. either should work fine
-
     this.currentAction = action;
+    console.log('nextaction called, currentAction is: ', this.currentAction);
   }
 
   // TODO use Message type? everywhere - in response, in services, in generator..
@@ -84,6 +82,7 @@ export class AppComponent implements OnInit {
     //   this.response.data.response = [value + 1]; // ngfor indexes by 0
     // this.response.data.response.push(value + 1);
     // TODO also accomodate for multiple response values in a single database row, like before?
+    // ^ no longer going to do this. no.
 
     return response; // todo return Message?
   }
