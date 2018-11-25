@@ -1,7 +1,7 @@
-<div class = "flexbox">
-  <ng-template stimuli></ng-template>
+<div class="flexbox">
+  <toku-frame (doneEvent)="this.frameDone($event)" (responseEvent)="this.frameResponse($event)" [action]="currentAction"></toku-frame>
+  <!-- todo change ^ to function call? always fighting this.. -->
   <button class="resetButton" (dblclick)="resetGame()">Start over</button>
 
   <button class="exportButton" (dblclick)="this.responseService.getCSV()">Export CSV</button>
 </div>
-

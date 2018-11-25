@@ -10,12 +10,13 @@ import { MovieComponent } from './components/stimuli/movie/movie.component';
 import { PictureComponent } from './components/stimuli/picture/picture.component';
 
 
-import { StimuliDirective } from './stimuli.directive';
+import { StimuliDirective } from './components/stimuli.directive';
 
 import { ResponseService } from './services/response/response.service';
 import { RunnerService } from './services/runner/runner.service';
 import { StimuliService } from './components/stimuli/stimuli.service';
-import { FormComponent } from './components/stimuli/form/form.component';  // TODO extract this out! or find better directory structure
+import { FormComponent } from './components/stimuli/form/form.component';
+import { FrameComponent } from './components/frame/frame.component';  // TODO extract this out! or find better directory structure
 // todo perhaps this ^ is a signal that stimuli should become a module with its components, services AND directive bundled together
 
 @NgModule({
@@ -27,7 +28,8 @@ import { FormComponent } from './components/stimuli/form/form.component';  // TO
     MovieComponent,
     PictureComponent,
     StimuliDirective,
-    FormComponent
+    FormComponent,
+    FrameComponent
   ],
   entryComponents: [
     PictureComponent,
