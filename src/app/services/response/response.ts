@@ -10,8 +10,7 @@ export class Response {
     study: string; // TODO this is already set as DB name and there's only one study per project -- redundant
     block: string;
     action: string;
-    trial: number;
-    response: number[];
+    response: number;
   } = {
       id: Date.now(),
       datestamp: new Date().toISOString(),
@@ -19,8 +18,7 @@ export class Response {
       study: '',
       block: '',
       action: '',
-      trial: -1,
-      response: []
+      response: -1
     };
   // TODO ^ clean up
 
