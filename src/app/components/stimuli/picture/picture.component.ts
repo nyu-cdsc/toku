@@ -4,7 +4,7 @@ import { Message } from '../../../message';
 import { AreaComponent } from '../../responders/area/area.component';
 
 @Component({
-  selector: 'app-picture',
+  selector: 'toku-picture',
   templateUrl: './picture.component.html',
   styleUrls: ['./picture.component.css']
 })

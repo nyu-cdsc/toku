@@ -4,7 +4,7 @@ import { Stimuli, Responsive } from '../stimuli';
 import { Message } from '../../../message';
 
 @Component({
-  selector: 'app-form',
+  selector: 'toku-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })

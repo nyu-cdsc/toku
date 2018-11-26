@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Stimuli } from '../stimuli';
 
 @Component({
-  selector: 'app-sound',
+  selector: 'toku-sound',
   templateUrl: './sound.component.html',
   styleUrls: ['./sound.component.css']
 })

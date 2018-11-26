@@ -4,7 +4,7 @@ import { Stimuli, Responsive } from '../stimuli';
 import { Message } from '../../../message';
 
 @Component({
-  selector: 'app-movie',
+  selector: 'toku-movie',
   templateUrl: './movie.component.html',
   styleUrls: ['./movie.component.css']
 })

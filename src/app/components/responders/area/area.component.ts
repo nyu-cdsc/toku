@@ -4,7 +4,7 @@ import { Message } from '../../../message';
 
 
 @Component({
-  selector: 'app-map',
+  selector: 'toku-map',
   templateUrl: './area.component.html',
   styleUrls: ['./area.component.css']
 })
