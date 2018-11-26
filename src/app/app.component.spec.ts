@@ -46,7 +46,7 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     const res = app.buildResponse({ 'value': 'one' }, 'testStudy', 'testBlock', 'testAction');
 
-    expect(res.data.response[0]).toBe('one'); // grab first item in list of responses (see Response type)
+    expect(res.data.response).toBe('one'); // grab first item in list of responses (see Response type)
     expect(res.data.study).toBe('testStudy');
     expect(res.data.block).toBe('testBlock');
     expect(res.data.action).toBe('testAction');

@@ -70,12 +70,10 @@ export class AppComponent implements OnInit {
   buildResponse(message, study, block, action) {
     const response = this.responseService.newResponse();
     response.data.participant = this.participant;
-    response.data.response = [message.value];
+    response.data.response = message.value;
     response.data.study = study; // TODO should be unnecessary
     response.data.block = block;
     response.data.action = action;
-    //   this.response.data.response = [value + 1]; // ngfor indexes by 0
-
     return response; // todo return Message?
   }
 
