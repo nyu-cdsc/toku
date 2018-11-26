@@ -69,42 +69,42 @@ export class RunnerService {
     return cont;
   }
 
+  // TODO make list its own type, then can do list.getControl, list.process, list.getName, etc.
+  // actually would not need getControl, as the list would handle all that internally
+  // list.repeat, list.pickOne..
+  // what is better - having the list run itself or passing it through things? is there a combination of both?
+
   // two-way; receives data for conditional decisions
   // TODO also document generator - here and in readme
+  // TODO return Message here and in response service
   *cycle(list?, passedInput?) {
     console.log('NEWCYCLE******************************');
-    // *cycle(list, other?) {
-    if (!list) {
-      list = this.list;
-    }
-
     let input = yield 'start';
-    const control: Control = this.getControl(list);
-    list = this.processList(list, control);
-    // const name = this.getName(runList);
-    // TODO ^
 
-    // TODO find way to deal with logic in here -- also pass through list of funcs?
     if (passedInput) {
       input = passedInput;
       passedInput = null;
     }
+    list = list ? list : this.list;
+
+    const control: Control = this.getControl(list);
+    list = this.processList(list, control);
+    const blockName = this.getBlockName(list);
 
     for (const item of list) {
       if (Array.isArray(item)) {
         input = yield* this.cycle(item, input);
       }
-      if (item.type !== 'action' && item.type !== 'conditional') {
-        continue;
-      }
 
       if (item.type === 'conditional') {
+        // TODO handle multiple inputs - e.g. multiple responses
         input = yield* this.cycle(item.items[input[0].value], input);
+      } else if (item.type === 'action') {
+        input = yield { projectName: Project.name, blockName: blockName, action: item };
       } else {
-        input = yield item;
+        continue;
       }
     }
-    // TODO use Message here and in response service
   }
 
   // TODO this and its dependent functions should be moved into its own class
@@ -118,42 +118,6 @@ export class RunnerService {
     list = this.pickOne(list, control);
 
     return list;
-  }
-
-  // TODO - input won't work in this way because this function isn't called anew each time now?
-  *processItem(item, passedInput?) {
-    let input = yield 'start';
-    if (item.type === 'conditional') {
-      // item = ;
-      // TODO support multiple responses
-      // if (Array.isArray(item)) {
-      console.log('CONDITIONAL');
-      if (passedInput) {
-        console.log('PASSED');
-        input = yield* this.cycle(item.items[passedInput[0].value], passedInput);
-      } else {
-        console.log('INPUT');
-        input = yield* this.cycle(item.items[input[0].value], input);
-      }
-    } else { // not conditional
-      console.log('NOT CONDITIONAL');
-      if (passedInput) {
-        console.log('PASSED');
-        input = yield [item.id, passedInput[0], 'yay'];
-      } else {
-        console.log('INPUT');
-        input = yield [item.id, input, 'yay'];
-      }
-    }
-    // const obj = new Action(item); // what was this for? validation?
-
-    // return [item.id, 'done'];
-  }
-
-  processConditional(item, input) {
-    // should be able to just recurse. why isn't that working, again?
-    // processitem was made to get around generator issues, but is it needed? can we just set it up so execution is laid out right?
-
   }
 
   repeat(list, control) {

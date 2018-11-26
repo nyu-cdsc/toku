@@ -2,7 +2,6 @@ import {
   Component, ComponentFactoryResolver, EventEmitter, Input, Output, ɵNgOnChangesFeature, ViewChildren, ViewContainerRef, OnChanges
 } from '@angular/core';
 
-import { StimuliDirective } from '../stimuli.directive'; // todo directives dir
 import { Stimuli, Responsive } from '../stimuli/stimuli';
 import { StimuliService } from '../stimuli/stimuli.service';
 import { Message } from '../../message';

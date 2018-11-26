@@ -9,9 +9,6 @@ import { SoundComponent } from './components/stimuli/sound/sound.component';
 import { MovieComponent } from './components/stimuli/movie/movie.component';
 import { PictureComponent } from './components/stimuli/picture/picture.component';
 
-
-import { StimuliDirective } from './components/stimuli.directive';
-
 import { ResponseService } from './services/response/response.service';
 import { RunnerService } from './services/runner/runner.service';
 import { StimuliService } from './components/stimuli/stimuli.service';
@@ -27,7 +24,6 @@ import { FrameComponent } from './components/frame/frame.component';  // TODO ex
     SoundComponent,
     MovieComponent,
     PictureComponent,
-    StimuliDirective,
     FormComponent,
     FrameComponent
   ],
