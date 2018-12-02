@@ -19,6 +19,14 @@ export class PictureComponent implements Stimuli, Responsive, OnInit, AfterViewC
   constructor() { }
   ngOnInit() { }
   ngAfterViewChecked() {
+    if (this.parameters.height) {
+      console.log('YUP');
+      this.theimage.nativeElement.height = this.parameters.height;
+      console.log('what does it eqaul', this.theimage.nativeElement.height);
+    }
+    if (this.parameters.width) {
+      this.theimage.nativeElement.width = this.parameters.width;
+    }
     // this.areamap.scalingFactor = this.getScalingFactor();
   }
 

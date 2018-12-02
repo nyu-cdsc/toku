@@ -9,18 +9,31 @@ import { Message } from '../../../message';
   styleUrls: ['./movie.component.css']
 })
 export class MovieComponent implements Stimuli, Responsive, OnInit {
-  @Input() parameters: any; // todo the one other option here is to use a setter and _cast_ the param type to one we create for this component.
+  @Input() parameters: any; // todo the one other option here is to use a setter and _cast_
+  // the param type to one we create for this component.
   @Output() doneEvent = new EventEmitter<any>();
   @Output() responseEvent = new EventEmitter<Message>();
   responseEnabled = false;
+  pictureParameters = null;
 
   constructor() { }
 
   ngOnInit() {
+    if (this.parameters.coordinates) {
+      this.pictureParameters = {};
+      this.pictureParameters.coordinates = this.parameters.coordinates;
+      this.pictureParameters.width = 1024;
+      this.pictureParameters.height = 720;
+      this.pictureParameters.filename = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+    }
   }
 
   videoEnded() {
-    this.done();
+    if (this.parameters.coordinates) {
+      this.responseEnabled = true;
+    } else {
+      this.done();
+    }
   }
 
   done() {
@@ -30,16 +43,24 @@ export class MovieComponent implements Stimuli, Responsive, OnInit {
   sendMessage(message: Message) {
     if (!this.responseEnabled) {
       return null;
+    } else {
+      console.log('message received in movie! is', message);
+      // todo Response val as in the one inside Params and choice made (perhaps change Response to Choice to make
+      // it clear the level it's from)
+      this.responseEvent.emit(message);
+      // todo support multiple reponses in future
+      this.done();
     }
-
   }
 
   validate() {
     return true;
   }
 
-  // TODO enable the ability to layer invisible buttons/image/div/canvas with coordinates for response over the movie container box, scale properly
+  // TODO enable the ability to layer invisible buttons/image/div/canvas with coordinates for response
+  // over the movie container box, scale properly
 
-  // TODO also enable pause points in the video where the above can then be utilized, so that a single video can just be the entire media, with a list
+  // TODO also enable pause points in the video where the above can then be utilized, so that a single
+  // video can just be the entire media, with a list
   // of response{} timecode points/responses
 }
