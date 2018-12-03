@@ -18,6 +18,11 @@ export class PictureComponent implements Stimuli, Responsive, OnInit, AfterViewC
 
   constructor() { }
   ngOnInit() { }
+
+  // defect with Angular. null safety check is broken for attribute assignment.
+  // height would be set to 0 even if we did not have height in our parameters as
+  // opposed to height defaulting to native image size, hence why we are setting
+  // height and width here if there's something to set it to
   ngAfterViewChecked() {
     if (this.parameters.height) {
       console.log('YUP');

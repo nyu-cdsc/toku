@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 
 import { Stimuli, Responsive } from '../stimuli';
 import { Message } from '../../../message';
@@ -15,16 +15,23 @@ export class MovieComponent implements Stimuli, Responsive, OnInit {
   @Output() responseEvent = new EventEmitter<Message>();
   responseEnabled = false;
   pictureParameters = null;
+  @ViewChild('thevideo') thevideo: ElementRef;
 
   constructor() { }
 
   ngOnInit() {
+    // setting up parameters for the "invisible picture" that hosts responses coordinates
     if (this.parameters.coordinates) {
       this.pictureParameters = {};
       this.pictureParameters.coordinates = this.parameters.coordinates;
-      this.pictureParameters.width = 1024;
-      this.pictureParameters.height = 720;
       this.pictureParameters.filename = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+    }
+  }
+
+  videoStarted() {
+    if (this.parameters.coordinates) {
+      this.pictureParameters.width = this.thevideo.nativeElement.videoWidth;
+      this.pictureParameters.height = this.thevideo.nativeElement.videoHeight;
     }
   }
 
