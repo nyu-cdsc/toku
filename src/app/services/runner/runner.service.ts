@@ -57,9 +57,8 @@ export class RunnerService {
       }
     });
 
-    if (res.length > 1) {
-      res = res[0]; // TODO validation for +1 Control elements, or just handle
-    }
+    res = res[0]; // TODO validation for +1 Control elements, or just handle
+
     // const cont = Object.assign(new Control(), res);
     let cont = new Control();
     if (res) {
@@ -88,8 +87,9 @@ export class RunnerService {
     list = list ? list : this.list;
 
     const control: Control = this.getControl(list);
-    list = this.processList(list, control);
     const blockName = this.getBlockName(list);
+    console.log('in cycle, ', control, blockName);
+    list = this.processList(list, control);
 
     for (const item of list) {
       if (Array.isArray(item)) {
@@ -109,6 +109,7 @@ export class RunnerService {
 
   // TODO this and its dependent functions should be moved into its own class
   processList(list, control) {
+    console.log('entered processList, we have: ', list, control);
     // todo use observer.pipe() on these  - or just check for errors here
     // TODO separate the actual implementation of the functions from the ones that make decisions based on control{}
     // e.g runShuffle, runRepeat, etc. or baseShuffle, baseRepeat --
@@ -116,6 +117,7 @@ export class RunnerService {
     list = this.shuffleFunctional(list, control);
     list = this.repeat(list, control);
     list = this.pickOne(list, control);
+    console.log('exiting processList, we have: ', list);
 
     return list;
   }
@@ -150,6 +152,7 @@ export class RunnerService {
   // can also be used as means to swap between shuffle algorithms
   shuffleFunctional(list, control) {
     if (control.shuffle) {
+      console.log('SHUFFLIN');
       list = this.shuffle(list);
     }
     return list;

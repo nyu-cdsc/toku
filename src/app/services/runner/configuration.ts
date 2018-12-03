@@ -23,18 +23,18 @@ export class Action {
 }
 
 export class Control {
-  pickOne?: boolean = false;
-  shuffle?: boolean = false;
-  repeat?: number = 0;
-  runStyle?: string = 'default';
+  pickOne = false;
+  shuffle = false;
+  repeat = 0;
+  runStyle = 'default';
 
   constructor(control?) {
     if (control) {
       this.validate(control);
-      if (control.pickOne) this.pickOne = control.pickOne;
-      if (control.shuffle) this.shuffle = control.shuffle;
-      if (control.repeat) this.repeat = control.repeat; // todo falsy?
-      if (control.runStyle) this.runStyle = control.runStyle;
+      if (control.pickOne) { this.pickOne = control.pickOne; }
+      if (control.shuffle) { this.shuffle = control.shuffle; }
+      if (control.repeat) { this.repeat = control.repeat; } // todo falsy?
+      if (control.runStyle) { this.runStyle = control.runStyle; }
     }
   }
 
