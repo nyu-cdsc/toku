@@ -29,6 +29,7 @@ export class MovieComponent implements Stimuli, Responsive, OnInit {
   }
 
   videoStarted() {
+    // setting width and height for "invisible picture"
     if (this.parameters.coordinates) {
       this.pictureParameters.width = this.thevideo.nativeElement.videoWidth;
       this.pictureParameters.height = this.thevideo.nativeElement.videoHeight;
@@ -36,10 +37,20 @@ export class MovieComponent implements Stimuli, Responsive, OnInit {
   }
 
   videoEnded() {
+    // allows for response (if coordinates for response are set); otherwise, moves on to next stimuli
     if (this.parameters.coordinates) {
       this.responseEnabled = true;
     } else {
       this.done();
+    }
+  }
+
+  enableResponse() {
+    // ability to respond is delayed if delayResponse parameter set in config file
+    if (this.parameters.delayResponse) {
+      if (this.parameters.delayResponse < this.thevideo.nativeElement.currentTime) {
+        this.responseEnabled = true;
+      }
     }
   }
 
