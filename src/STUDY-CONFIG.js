@@ -1330,6 +1330,12 @@ var forms = {
     {
       type: 'form',
       parameters: {
+        questions: [
+          { name: 'id', type: "text", questionText: "Participant ID" },
+          { name: 'gender', type: "dropdown", options: ["female", "male", "other"], questionText: "Participant Gender" },
+          { name: 'age', type: "dropdown", options: ["4", "5", "6"], questionText: "Participant Age" },
+          { name: 'color', type: "text", questionText: "What's your favorite color?" }
+        ],
       }
     }
   ]

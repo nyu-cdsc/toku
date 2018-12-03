@@ -25,9 +25,7 @@ export class PictureComponent implements Stimuli, Responsive, OnInit, AfterViewC
   // height and width here if there's something to set it to
   ngAfterViewChecked() {
     if (this.parameters.height) {
-      console.log('YUP');
       this.theimage.nativeElement.height = this.parameters.height;
-      console.log('what does it eqaul', this.theimage.nativeElement.height);
     }
     if (this.parameters.width) {
       this.theimage.nativeElement.width = this.parameters.width;
