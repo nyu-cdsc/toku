@@ -1,8 +1,25 @@
-<form #f="ngForm" (ngSubmit)="onSubmit(f)" >
-  School ID:<br>
-  <input ngModel type="text" name="schoolID"><br>
-  Classroom ID:<br>
-  <input ngModel type="text" name="classroomID"><br>
-  <button type="submit" class="submitButton">Submit</button>
-</form>
 
+<div *ngIf="parameters?.start;">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
+      Participant ID:<br>
+      <input ngModel type="text" name="participantID"><br>
+      <button type="submit" class="submitButton">Submit</button>
+  </form>
+</div>
+
+
+<div *ngIf="parameters?.end;">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
+      Gender: <br>
+      <select ngModel name="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select><br>
+      Age: <br>
+      <input ngModel type="text" name="age"><br>
+      Comments: <br>
+      <input ngModel type="text" name="comments"><br>
+      <button type="submit" class="submitButton">Submit</button>
+  </form>
+</div>

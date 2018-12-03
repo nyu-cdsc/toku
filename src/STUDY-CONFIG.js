@@ -707,7 +707,6 @@ var re_greatjob = [
   },
 ]
 
-
 // status task stimuli
 
 var status_intro = [
@@ -920,13 +919,32 @@ var attitudes = [
   },
 ]
 
-var forms = {
+var done = [
+  {
+    name: "done"
+  },
+  {
+    type: 'action',
+    id: 'done',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/done.mp4',
+        }
+      }
+    ]
+  },
+]
+
+var startForm = {
   type: 'action',
-  id: 'schoolIDs',
+  id: 'startForm',
   stimuli: [
     {
       type: 'form',
       parameters: {
+        start: true,
       }
     }
   ]
@@ -934,7 +952,7 @@ var forms = {
 
 // conditions: whiteFirst vs blackFirst
 var whiteFirst = [
-  forms,
+  startForm,
   startGame,
   dg_intro,
   dg_white,
@@ -957,11 +975,13 @@ var whiteFirst = [
   ],
   status_greatjob,
   attitudes,
-  attitudes_intro
+  attitudes_intro,
+  done
 ];
 
 var blackFirst = [
-  forms,
+  startForm,
+  endForm,
   startGame,
   dg_intro,
   dg_black,
@@ -984,7 +1004,8 @@ var blackFirst = [
   ],
   status_greatjob,
   attitudes,
-  attitudes_intro
+  attitudes_intro,
+  done
 ];
 
 
@@ -999,9 +1020,9 @@ export const Project = {
     id: 'done',
     stimuli: [
       {
-        type: 'movie',
+        type: 'form',
         parameters: {
-          filename: '../../../assets/movie/done.mp4',
+          end: true,
         }
       }
     ]
