@@ -1,5 +1,16 @@
-<video (ended)="videoEnded()" autoplay="autoplay" preload="auto" width = "1024px">
+<video (playing)="videoStarted()" (ended)="videoEnded()" autoplay="autoplay" preload="auto"
+  style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);" (timeupdate)="enableResponse()"  #thevideo>
   <source [src]="parameters?.filename" type='video/mp4' />
 </video>
+
+<div *ngIf="parameters?.coordinates; then withMap" class="pictureContainer" [class.hasMap]="parameters?.coordinates"></div>
+<ng-template #withMap>
+  <toku-picture
+    [parameters]="pictureParameters" [responseEnabled]="responseEnabled"
+    style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);"
+    (responseEvent)="sendMessage($event)">
+  </toku-picture>
+</ng-template>
+
 
 <!-- todo make the type property dynamic as well -->
