@@ -1333,13 +1333,9 @@ var forms = {
         questions: [
           { name: 'id', type: "text", questionText: "Participant ID" },
           { name: 'gender', type: "dropdown", options: ["female", "male", "other"], questionText: "Participant Gender" },
-          { name: 'age', type: "text", questionText: "Participant Age" },
-          { name: 'age', type: "dropdown", options: ["4", "5", "6"], questionText: "Participant Age" }
+          { name: 'age', type: "dropdown", options: ["4", "5", "6"], questionText: "Participant Age" },
+          { name: 'color', type: "text", questionText: "What's your favorite color?" }
         ],
-        // dropdowns: [
-        //   { name: 'gender', options: ["female", "male", "other"], questionText: "Participant Gender", questionType: "select" },
-        //   { name: 'age', options: ["4", "5", "6"], questionText: "Participant Age", questionType: "select" }
-        // ],
       }
     }
   ]
