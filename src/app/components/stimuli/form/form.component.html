@@ -1,8 +1,15 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
-  School ID:<br>
-  <input ngModel type="text" name="schoolID"><br>
-  Classroom ID:<br>
-  <input ngModel type="text" name="classroomID"><br>
+  <div *ngFor="let q of parameters?.questions">
+    {{q.questionText}}<br>
+    <input ngModel [type]="q.type" [name]="q.name"><br>
+  </div>
+  <div *ngFor="let d of parameters?.dropdowns">
+    {{d.questionText}}<br>
+    <select ngModel name="d.name">
+      <option *ngFor="let o of d.options" value="o">{{o}}</option>
+    </select><br>
+  </div>
   <button type="submit" class="submitButton">Submit</button>
 </form>
+
 
