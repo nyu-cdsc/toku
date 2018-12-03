@@ -1,10 +1,4 @@
-// todo show arbitrary nesting/GROUPING with [[]] etc - lists within lists, but NOT lists within items
-// todo enable groups/lists to have a name/id when it's not stored directly in a variable (or just require it?)
-// especially for conditions- will need to log it in responses
-
-// TODO look into Map() as a solution to this. right now it only works with lists, and lists in lists. but I can't name the list, etc.
-// TODO other soltutions: just use objects, so objects within objects and know their structure (could be fine), and introspection/reflection to get variable names
-
+// start game slide
 var startGame = [
   {
     type: 'action',
@@ -16,1012 +10,170 @@ var startGame = [
           filename: '../../../assets/picture/start.jpeg',
           coordinates: [
             { value: 'started', shape: "rect", coordinates: "0, 0, 1024, 768" },
-          ]
+          ],
         },
       }
     ]
   },
 ]
 
-var friction = [
+// stimuli for dictator game
+var dg_intro = [
   {
-    name: "Friction"
+    name: "dg_intro"
   },
   {
     type: 'action',
-    id: 'frictionIntro',
+    id: 'dggive',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/content/intro_to_content_study.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'friction1',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/content/Friction1.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'frictionQ1',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/content/Friction1.jpeg',
-          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
+          filename: '../../../assets/movie/dggive.mp4',
           coordinates: [
-            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
-            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
-        },
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'friction2',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/content/Friction2.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'frictionQ2',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/content/Friction2.jpeg',
-          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [
-            { value: 'left', shape: "rect", coordinates: "96, 44, 336, 692" },
-            { value: 'right', shape: "rect", coordinates: "698, 64, 942, 680" }],
-        },
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'friction3',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/content/Friction3.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'frictionQ3',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/content/Friction3.jpeg',
-          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [
-            { value: 'left', shape: "rect", coordinates: "88, 38, 350, 702" },
-            { value: 'right', shape: "rect", coordinates: "694, 40, 944, 700" }],
-        },
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'friction4',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/content/Friction4.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'frictionQ4',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/content/Friction4.jpeg',
-          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [
-            { value: 'left', shape: "rect", coordinates: "90, 412, 352, 584" },
-            { value: 'right', shape: "rect", coordinates: "722, 410, 834, 648" }],
-        },
-      }
-    ]
-  },
-];
-
-var sciMethod = [
-  {
-    name: "scientificMethod"
-  },
-  {
-    type: 'action',
-    id: 'sciMethod1',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/content/observing.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'sciMethodQ1',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/content/observing.jpeg',
-          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [
-            { value: 'left', shape: "rect", coordinates: "74, 248, 476, 580" },
-            { value: 'right', shape: "rect", coordinates: "568, 252, 994, 582" }],
-        },
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'sciMethod2',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/content/predicting.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'sciMethodQ2',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/content/predicting.jpeg',
-          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [{ value: 'left', shape: "rect", coordinates: "46, 216, 458, 556" },
-          { value: 'right', shape: "rect", coordinates: "558, 208, 976, 550" }],
-        },
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'sciMethod3',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/content/checking.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'sciMethodQ3',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/content/checking.jpeg',
-          // coordinates: [{ response: 'yes', coordinate: "0, 0, 1000, 1000" }, { response: 'no', coordinate: "0, 0, 1000, 1000" }],
-          coordinates: [{ value: 'left', shape: "rect", coordinates: "48, 216, 458, 556" },
-          { value: 'right', shape: "rect", coordinates: "560, 216, 974, 552" }],
-        },
-      }
-    ]
-  },
-];
-
-var interest = [
-  {
-    type: 'action',
-    id: 'interestIntro',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/content/into_content_study_pt2.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'interest1',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/content/Interest1.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'interestQ1',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/content/Interest1.jpeg',
-          coordinates: [
-            { value: 'one', shape: "rect", coordinates: "94, 308, 266, 486" },
-            { value: 'two', shape: "rect", coordinates: "310, 308, 486, 486" },
-            { value: 'three', shape: "rect", coordinates: "540, 308, 724, 486" },
-            { value: 'four', shape: "rect", coordinates: "758, 308, 942, 486" },
+            { value: 'left', shape: "rect", coordinates: "0, 56, 370, 728" },
           ],
-        },
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'interest2',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/content/Interest2.mp4'
         }
       }
     ]
   },
   {
     type: 'action',
-    id: 'interestQ2',
+    id: 'dggive_feedback',
     stimuli: [
       {
-        type: 'picture',
+        type: 'movie',
         parameters: {
-          filename: '../../../assets/picture/content/Interest2.jpeg',
+          filename: '../../../assets/movie/dggivefeedback.mp4',
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'dgkeep',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/dgkeep.mp4',
           coordinates: [
-            { value: 'one', shape: "rect", coordinates: "94, 308, 266, 486" },
-            { value: 'two', shape: "rect", coordinates: "310, 308, 486, 486" },
-            { value: 'three', shape: "rect", coordinates: "540, 308, 724, 486" },
-            { value: 'four', shape: "rect", coordinates: "758, 308, 942, 486" },
+            { value: 'left', shape: "rect", coordinates: "0, 56, 370, 728" },
           ],
-        },
-      }
-    ]
-  },
-];
-
-var prevalence = [
-  {
-    type: 'action',
-    id: 'prevalenceIntro',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/content/prevalence.mp4'
         }
       }
     ]
   },
   {
     type: 'action',
-    id: 'prevalence1',
+    id: 'dgkeep_feedback',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/content/prev_q1.mp4'
+          filename: '../../../assets/movie/dgkeepfeedback.mp4',
         }
       }
     ]
   },
   {
     type: 'action',
-    id: 'prevalenceQ1',
+    id: 'dgw2bintro',
     stimuli: [
       {
-        type: 'picture',
+        type: 'movie',
         parameters: {
-          filename: '../../../assets/picture/content/Prevalence.jpeg',
+          filename: '../../../assets/movie/dgw2bintro.mp4',
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'dgbelong',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/dgbelong.mp4',
           coordinates: [
-            { value: 'one', shape: "rect", coordinates: "56, 294, 242, 488" },
-            { value: 'two', shape: "rect", coordinates: "300, 300, 490, 490" },
-            { value: 'three', shape: "rect", coordinates: "536, 298, 722, 490" },
-            { value: 'four', shape: "rect", coordinates: "774, 300, 962, 490" },
+            { value: 'correct', shape: "rect", coordinates: "0, 56, 370, 728" },
+            { value: 'wrong', shape: "rect", coordinates: "0, 56, 370, 728" },
           ],
-        },
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'prevalenceA1',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/content/prev_a1.mp4'
         }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'prevalence2',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/content/prev_q2.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'prevalenceQ2',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/content/Prevalence.jpeg',
-          coordinates: [
-            { value: 'one', shape: "rect", coordinates: "56, 294, 242, 488" },
-            { value: 'two', shape: "rect", coordinates: "300, 300, 490, 490" },
-            { value: 'three', shape: "rect", coordinates: "536, 298, 722, 490" },
-            { value: 'four', shape: "rect", coordinates: "774, 300, 962, 490" },
-          ],
-        },
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'prevalenceA2',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/content/prev_a2.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'prevalence3',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/content/prev_q3.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'prevalenceQ3',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/content/Prevalence.jpeg',
-          coordinates: [
-            { value: 'one', shape: "rect", coordinates: "56, 294, 242, 488" },
-            { value: 'two', shape: "rect", coordinates: "300, 300, 490, 490" },
-            { value: 'three', shape: "rect", coordinates: "536, 298, 722, 490" },
-            { value: 'four', shape: "rect", coordinates: "774, 300, 962, 490" },
-          ],
-        },
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'prevalenceA3',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/content/prev_a3.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'prevalence4',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/content/prev_q4.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'prevalenceQ4',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/content/Prevalence.jpeg',
-          coordinates: [
-            { value: 'one', shape: "rect", coordinates: "56, 294, 242, 488" },
-            { value: 'two', shape: "rect", coordinates: "300, 300, 490, 490" },
-            { value: 'three', shape: "rect", coordinates: "536, 298, 722, 490" },
-            { value: 'four', shape: "rect", coordinates: "774, 300, 962, 490" },
-          ],
-        },
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'prevalenceA4',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/content/prev_a4.mp4'
-        }
-      }
-    ]
-  },
-];
-
-var prevalenceDo = [
-  {
-    type: 'action',
-    id: 'do',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/content/do.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'doQ',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/content/Prevalence.jpeg',
-          coordinates: [
-            { value: 'one', shape: "rect", coordinates: "56, 294, 242, 488" },
-            { value: 'two', shape: "rect", coordinates: "300, 300, 490, 490" },
-            { value: 'three', shape: "rect", coordinates: "536, 298, 722, 490" },
-            { value: 'four', shape: "rect", coordinates: "774, 300, 962, 490" },
-          ],
-        },
-      }
-    ]
-  },
-];
-
-var prevalenceBe = [
-  {
-    type: 'action',
-    id: 'be',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/content/be.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'beQ',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/content/Prevalence.jpeg',
-          coordinates: [
-            { value: 'one', shape: "rect", coordinates: "56, 294, 242, 488" },
-            { value: 'two', shape: "rect", coordinates: "300, 300, 490, 490" },
-            { value: 'three', shape: "rect", coordinates: "536, 298, 722, 490" },
-            { value: 'four', shape: "rect", coordinates: "774, 300, 962, 490" },
-          ],
-        },
-      }
-    ]
-  },
-];
-
-var contingentFeedback = [
-  {
-    type: 'action',
-    id: 'persistenceIntro',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/persistence/intro_persistence.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'wood',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/persistence/wood.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'woodQ',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/persistence/wood.jpeg',
-          coordinates: [
-            { value: 'one', shape: "rect", coordinates: "161, 646, 250, 740" },
-            { value: 'two', shape: "rect", coordinates: "282, 646, 370, 740" },
-            { value: 'three', shape: "rect", coordinates: "400, 646, 490, 740" },
-            { value: 'four', shape: "rect", coordinates: "518, 646, 608, 740" },
-            { value: 'five', shape: "rect", coordinates: "634, 646, 726, 740" },
-            { value: 'six', shape: "rect", coordinates: "756, 646, 844, 740" },
-          ],
-        },
       }
     ]
   },
   {
     type: 'conditional',
-    id: 'woodConditional',
+    id: 'dgbelongcond',
     items: {
-      'one': [{
+      'correct': [{
         type: 'action',
-        id: 'wood1',
+        id: 'dgbelongcorrect',
         stimuli: [
           {
             type: 'movie',
             parameters: {
-              filename: '../../../assets/movie/persistence/wood_1.mp4',
+              filename: '../../../assets/movie/dgbelongcorrect.mp4',
             }
           }
         ]
       }],
-      'two': [{
+      'wrong': [{
         type: 'action',
-        id: 'wood2',
+        id: 'dgbelongwrong',
         stimuli: [
           {
             type: 'movie',
             parameters: {
-              filename: '../../../assets/movie/persistence/wood_2.mp4',
-            }
-          }
-        ]
-      }],
-      'three': [{
-        type: 'action',
-        id: 'wood3',
-        stimuli: [
-          {
-            type: 'movie',
-            parameters: {
-              filename: '../../../assets/movie/persistence/wood_3.mp4',
-            }
-          }
-        ]
-      }],
-      'four': [{
-        type: 'action',
-        id: 'wood4',
-        stimuli: [
-          {
-            type: 'movie',
-            parameters: {
-              filename: '../../../assets/movie/persistence/wood_4.mp4',
-            }
-          }
-        ]
-      }],
-      'five': [{
-        type: 'action',
-        id: 'wood5',
-        stimuli: [
-          {
-            type: 'movie',
-            parameters: {
-              filename: '../../../assets/movie/persistence/wood_5.mp4',
-            }
-          }
-        ]
-      }],
-      'six': [{
-        type: 'action',
-        id: 'wood6',
-        stimuli: [
-          {
-            type: 'movie',
-            parameters: {
-              filename: '../../../assets/movie/persistence/wood_6.mp4',
-            }
-          }
-        ]
-      }],
-    },
-  },
-  {
-    type: 'action',
-    id: 'playmat',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/persistence/playmat.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'playmatQ',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/persistence/playmat.jpeg',
-          coordinates: [
-            { value: 'one', shape: "rect", coordinates: "161, 646, 250, 740" },
-            { value: 'two', shape: "rect", coordinates: "282, 646, 370, 740" },
-            { value: 'three', shape: "rect", coordinates: "400, 646, 490, 740" },
-            { value: 'four', shape: "rect", coordinates: "518, 646, 608, 740" },
-            { value: 'five', shape: "rect", coordinates: "634, 646, 726, 740" },
-            { value: 'six', shape: "rect", coordinates: "756, 646, 844, 740" },
-          ]
-        },
-      }
-    ]
-  },
-  {
-    type: 'conditional',
-    id: 'playmatConditional',
-    items: {
-      'one': [{
-        type: 'action',
-        id: 'playmat1',
-        stimuli: [
-          {
-            type: 'movie',
-            parameters: {
-              filename: '../../../assets/movie/persistence/playmat_blue.mp4',
-            }
-          }
-        ]
-      }],
-      'two': [{
-        type: 'action',
-        id: 'playmat',
-        stimuli: [
-          {
-            type: 'movie',
-            parameters: {
-              filename: '../../../assets/movie/persistence/playmat_blue.mp4',
-            }
-          }
-        ]
-      }],
-      'three': [{
-        type: 'action',
-        id: 'playmat3',
-        stimuli: [
-          {
-            type: 'movie',
-            parameters: {
-              filename: '../../../assets/movie/persistence/playmat_blue.mp4',
-            }
-          }
-        ]
-      }],
-      'four': [{
-        type: 'action',
-        id: 'playmat4',
-        stimuli: [
-          {
-            type: 'movie',
-            parameters: {
-              filename: '../../../assets/movie/persistence/playmat_red.mp4',
-            }
-          }
-        ]
-      }],
-      'five': [{
-        type: 'action',
-        id: 'playmat5',
-        stimuli: [
-          {
-            type: 'movie',
-            parameters: {
-              filename: '../../../assets/movie/persistence/playmat_red.mp4',
-            }
-          }
-        ]
-      }],
-      'six': [{
-        type: 'action',
-        id: 'playmat6',
-        stimuli: [
-          {
-            type: 'movie',
-            parameters: {
-              filename: '../../../assets/movie/persistence/playmat_red.mp4',
+              filename: '../../../assets/movie/dgbelongwrong.mp4',
             }
           }
         ]
       }],
     }
   },
-];
-
-var end = [
   {
     type: 'action',
-    id: 'age',
+    id: 'dg1reminder',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/content/age.mp4'
+          filename: '../../../assets/movie/dg1reminder.mp4',
         }
       }
     ]
-  },
-  {
-    type: 'action',
-    id: 'ageQ',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/content/age.jpeg',
-          coordinates: [
-            { value: 'three', shape: "rect", coordinates: "186, 244, 398, 544" },
-            { value: 'four', shape: "rect", coordinates: "626, 244, 826, 544" }],
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'gender',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/content/gender.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'genderQ',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/content/gender.jpeg',
-          coordinates: [
-            { value: 'boy', shape: "rect", coordinates: "96, 244, 464, 490" },
-            { value: 'girl', shape: "rect", coordinates: "550 ,244, 918, 490" }
-          ],
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'memory',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/persistence/memory.mp4'
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'memoryQ',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/persistence/memory.jpeg',
-          coordinates: [
-            { value: 'left', shape: "rect", coordinates: "150, 240, 436, 504" },
-            { value: 'right', shape: "rect", coordinates: "584, 240, 816, 504" }
-          ],
-        }
-      }
-    ]
-  },
-];
-
-var legos = [
-  {
-    type: 'action',
-    id: 'legos',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/persistence/legos.mp4',
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'legosQ',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/persistence/legos.jpeg',
-          coordinates: [
-            { value: 'one', shape: "rect", coordinates: "161, 646, 250, 740" },
-            { value: 'two', shape: "rect", coordinates: "282, 646, 370, 740" },
-            { value: 'three', shape: "rect", coordinates: "400, 646, 490, 740" },
-            { value: 'four', shape: "rect", coordinates: "518, 646, 608, 740" },
-            { value: 'five', shape: "rect", coordinates: "634, 646, 726, 740" },
-            { value: 'six', shape: "rect", coordinates: "756, 646, 844, 740" },
-          ],
-        }
-      }
-    ]
-  },
-  end
-]
-
-var leaves = [
-  {
-    type: 'action',
-    id: 'leaves',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/persistence/leaves.mp4',
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'leavesQ',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/persistence/leaves.jpeg',
-          coordinates: [
-            { value: 'one', shape: "rect", coordinates: "161, 646, 250, 740" },
-            { value: 'two', shape: "rect", coordinates: "282, 646, 370, 740" },
-            { value: 'three', shape: "rect", coordinates: "400, 646, 490, 740" },
-            { value: 'four', shape: "rect", coordinates: "518, 646, 608, 740" },
-            { value: 'five', shape: "rect", coordinates: "634, 646, 726, 740" },
-            { value: 'six', shape: "rect", coordinates: "756, 646, 844, 740" },
-          ],
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'persistenceTransition6',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/movie/persistence/transition_choice.mp4',
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'persistenceTransition6Q',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/persistence/transition.jpeg',
-          coordinates: [
-            { value: 'left', shape: "rect", coordinates: "110, 332, 430, 448" },
-            { value: 'right', shape: "rect", coordinates: "642, 244, 912, 518" }],
-        }
-      }
-    ]
-  },
-  {
-    type: 'conditional',
-    id: 'persistence6',
-    items: {
-      'left':
-        legos,
-      'right':
-        end
-    }
   },
 ]
 
-var wicker = [
+var dg_white = [
+  {
+    name: "dg_white"
+  },
   {
     type: 'action',
-    id: 'wicker',
+    id: 'dgwhiteintro',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/persistence/wicker.mp4',
+          filename: '../../../assets/movie/dgwhiteintro.mp4',
         }
       }
     ]
   },
   {
     type: 'action',
-    id: 'wickerQ',
+    id: 'dgwhite1',
     stimuli: [
       {
-        type: 'picture',
+        type: 'movie',
         parameters: {
-          filename: '../../../assets/picture/persistence/wicker.jpeg',
+          filename: '../../../assets/movie/dgwhite1.mp4',
           coordinates: [
-            { value: 'one', shape: "rect", coordinates: "161, 646, 250, 740" },
-            { value: 'two', shape: "rect", coordinates: "282, 646, 370, 740" },
-            { value: 'three', shape: "rect", coordinates: "400, 646, 490, 740" },
-            { value: 'four', shape: "rect", coordinates: "518, 646, 608, 740" },
-            { value: 'five', shape: "rect", coordinates: "634, 646, 726, 740" },
-            { value: 'six', shape: "rect", coordinates: "756, 646, 844, 740" },
+            { value: 'left', shape: "rect", coordinates: "0, 56, 370, 728" },
           ],
         }
       }
@@ -1029,71 +181,82 @@ var wicker = [
   },
   {
     type: 'action',
-    id: 'persistenceTransition5',
+    id: 'dgwhite2',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/persistence/transition_choice.mp4',
+          filename: '../../../assets/movie/dgwhite2.mp4',
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
+          delayResponse: "0",
         }
       }
     ]
   },
   {
     type: 'action',
-    id: 'persistenceTransition5Q',
+    id: 'dgwhite3',
     stimuli: [
       {
-        type: 'picture',
+        type: 'movie',
         parameters: {
-          filename: '../../../assets/picture/persistence/transition.jpeg',
+          filename: '../../../assets/movie/dgwhite3.mp4',
           coordinates: [
-            { value: 'left', shape: "rect", coordinates: "110, 332, 430, 448" },
-            { value: 'right', shape: "rect", coordinates: "642, 244, 912, 518" }],
+            { value: 'correct', shape: "rect", coordinates: "0, 56, 370, 728" },
+            { value: 'wrong', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
+          delayResponse: "0",
         }
       }
     ]
   },
   {
-    type: 'conditional',
-    id: 'persistence5',
-    items: {
-      'left':
-        leaves,
-      'right':
-        end
-    }
+    type: 'action',
+    id: 'dgwhite4',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/dgwhite4.mp4',
+          coordinates: [
+            { value: 'correct', shape: "rect", coordinates: "0, 56, 370, 728" },
+            { value: 'wrong', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
+          delayResponse: "0",
+        }
+      }
+    ]
   },
 ]
 
-var foil = [
+var dg_black = [
+  {
+    name: "dg_black"
+  },
   {
     type: 'action',
-    id: 'foil',
+    id: 'dgblackintro',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/persistence/foil.mp4',
+          filename: '../../../assets/movie/dgblackintro.mp4',
         }
       }
     ]
   },
   {
     type: 'action',
-    id: 'foilQ',
+    id: 'dgblack1',
     stimuli: [
       {
-        type: 'picture',
+        type: 'movie',
         parameters: {
-          filename: '../../../assets/picture/persistence/foil.jpeg',
+          filename: '../../../assets/movie/dgblack1.mp4',
           coordinates: [
-            { value: 'one', shape: "rect", coordinates: "161, 646, 250, 740" },
-            { value: 'two', shape: "rect", coordinates: "282, 646, 370, 740" },
-            { value: 'three', shape: "rect", coordinates: "400, 646, 490, 740" },
-            { value: 'four', shape: "rect", coordinates: "518, 646, 608, 740" },
-            { value: 'five', shape: "rect", coordinates: "634, 646, 726, 740" },
-            { value: 'six', shape: "rect", coordinates: "756, 646, 844, 740" },
+            { value: 'left', shape: "rect", coordinates: "0, 56, 370, 728" },
           ],
         }
       }
@@ -1101,71 +264,119 @@ var foil = [
   },
   {
     type: 'action',
-    id: 'persistenceTransition4',
+    id: 'dgblack2',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/persistence/transition_choice.mp4',
+          filename: '../../../assets/movie/dgblack2.mp4',
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
+          delayResponse: "0",
         }
       }
     ]
   },
   {
     type: 'action',
-    id: 'persistenceTransition4Q',
+    id: 'dgblack3',
     stimuli: [
       {
-        type: 'picture',
+        type: 'movie',
         parameters: {
-          filename: '../../../assets/picture/persistence/transition.jpeg',
+          filename: '../../../assets/movie/dgblack3.mp4',
           coordinates: [
-            { value: 'left', shape: "rect", coordinates: "110, 332, 430, 448" },
-            { value: 'right', shape: "rect", coordinates: "642, 244, 912, 518" }],
+            { value: 'correct', shape: "rect", coordinates: "0, 56, 370, 728" },
+            { value: 'wrong', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
+          delayResponse: "0",
         }
       }
     ]
   },
   {
-    type: 'conditional',
-    id: 'persistence4',
-    items: {
-      'left':
-        wicker,
-      'right':
-        end
-    }
+    type: 'action',
+    id: 'dgblack4',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/dgblack4.mp4',
+          coordinates: [
+            { value: 'correct', shape: "rect", coordinates: "0, 56, 370, 728" },
+            { value: 'wrong', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
+          delayResponse: "0",
+        }
+      }
+    ]
   },
 ]
 
-var blanket = [
+var dg_transition = [
+  {
+    name: "dg_transition"
+  },
   {
     type: 'action',
-    id: 'blanket',
+    id: 'animal2',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/persistence/blanket.mp4',
+          filename: '../../../assets/movie/animal2.mp4',
         }
       }
     ]
   },
   {
     type: 'action',
-    id: 'blanketQ',
+    id: 'dg2reminder',
     stimuli: [
       {
-        type: 'picture',
+        type: 'movie',
         parameters: {
-          filename: '../../../assets/picture/persistence/blanket.jpeg',
+          filename: '../../../assets/movie/dg2reminder.mp4',
+        }
+      }
+    ]
+  },
+]
+
+var dg_greatjob = [
+  {
+    name: "dg_greatjob"
+  },
+  {
+    type: 'action',
+    id: 'greatjob1',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/greatjob1.mp4',
+        }
+      }
+    ]
+  },
+]
+
+// stimuli for reciprocity game
+var re_intro = [
+  {
+    name: "re_intro"
+  },
+  {
+    type: 'action',
+    id: 'regive',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/regive.mp4',
           coordinates: [
-            { value: 'one', shape: "rect", coordinates: "161, 646, 250, 740" },
-            { value: 'two', shape: "rect", coordinates: "282, 646, 370, 740" },
-            { value: 'three', shape: "rect", coordinates: "400, 646, 490, 740" },
-            { value: 'four', shape: "rect", coordinates: "518, 646, 608, 740" },
-            { value: 'five', shape: "rect", coordinates: "634, 646, 726, 740" },
-            { value: 'six', shape: "rect", coordinates: "756, 646, 844, 740" },
+            { value: 'left', shape: "rect", coordinates: "0, 56, 370, 728" },
           ],
         }
       }
@@ -1173,71 +384,26 @@ var blanket = [
   },
   {
     type: 'action',
-    id: 'persistenceTransition3',
+    id: 'regive_feedback',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/persistence/transition_choice.mp4',
+          filename: '../../../assets/movie/regivefeedback.mp4',
         }
       }
     ]
   },
   {
     type: 'action',
-    id: 'persistenceTransition3Q',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/persistence/transition.jpeg',
-          coordinates: [
-            { value: 'left', shape: "rect", coordinates: "110, 332, 430, 448" },
-            { value: 'right', shape: "rect", coordinates: "642, 244, 912, 518" }],
-        }
-      }
-    ]
-  },
-  {
-    type: 'conditional',
-    id: 'persistence3',
-    items: {
-      'left':
-        foil,
-      'right':
-        end
-    }
-  },
-]
-
-var paperTowel = [
-  {
-    type: 'action',
-    id: 'paperTowel',
+    id: 'rekeep',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/persistence/paper_towel.mp4',
-        }
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'paperTowelQ',
-    stimuli: [
-      {
-        type: 'picture',
-        parameters: {
-          filename: '../../../assets/picture/persistence/paper_towel.jpeg',
+          filename: '../../../assets/movie/rekeep.mp4',
           coordinates: [
-            { value: 'one', shape: "rect", coordinates: "161, 646, 250, 740" },
-            { value: 'two', shape: "rect", coordinates: "282, 646, 370, 740" },
-            { value: 'three', shape: "rect", coordinates: "400, 646, 490, 740" },
-            { value: 'four', shape: "rect", coordinates: "518, 646, 608, 740" },
-            { value: 'five', shape: "rect", coordinates: "634, 646, 726, 740" },
-            { value: 'six', shape: "rect", coordinates: "756, 646, 844, 740" },
+            { value: 'left', shape: "rect", coordinates: "0, 56, 370, 728" },
           ],
         }
       }
@@ -1245,81 +411,512 @@ var paperTowel = [
   },
   {
     type: 'action',
-    id: 'persistenceTransition2',
+    id: 'rekeep_feedback',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/persistence/transition_choice.mp4',
+          filename: '../../../assets/movie/rekeepfeedback.mp4',
         }
       }
     ]
   },
   {
     type: 'action',
-    id: 'persistenceTransition2Q',
+    id: 'rew2bintro',
     stimuli: [
       {
-        type: 'picture',
+        type: 'movie',
         parameters: {
-          filename: '../../../assets/picture/persistence/transition.jpeg',
+          filename: '../../../assets/movie/rew2bintro.mp4',
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'rebelong',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/rebelong.mp4',
           coordinates: [
-            { value: 'left', shape: "rect", coordinates: "110, 332, 430, 448" },
-            { value: 'right', shape: "rect", coordinates: "642, 244, 912, 518" }],
+            { value: 'correct', shape: "rect", coordinates: "0, 56, 370, 728" },
+            { value: 'wrong', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
         }
       }
     ]
   },
   {
     type: 'conditional',
-    id: 'persistence2',
+    id: 'rebelongcond',
     items: {
-      'left':
-        blanket,
-      'right':
-        end
+      'correct': [{
+        type: 'action',
+        id: 'rebelongcorrect',
+        stimuli: [
+          {
+            type: 'movie',
+            parameters: {
+              filename: '../../../assets/movie/rebelongcorrect.mp4',
+            }
+          }
+        ]
+      }],
+      'wrong': [{
+        type: 'action',
+        id: 'rebelongwrong',
+        stimuli: [
+          {
+            type: 'movie',
+            parameters: {
+              filename: '../../../assets/movie/rebelongwrong.mp4',
+            }
+          }
+        ]
+      }],
     }
+  },
+  {
+    type: 'action',
+    id: 're1reminder',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/re1reminder.mp4',
+        }
+      }
+    ]
   },
 ]
 
-var persistence = [
+var re_white = [
+  {
+    name: "re_white"
+  },
   {
     type: 'action',
-    id: 'persistenceTransition1',
+    id: 'rewhiteintro',
     stimuli: [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/persistence/transition_1st.mp4',
+          filename: '../../../assets/movie/rewhiteintro.mp4',
         }
       }
     ]
   },
   {
     type: 'action',
-    id: 'persistenceTransition1Q',
+    id: 'rewhite1',
     stimuli: [
       {
-        type: 'picture',
+        type: 'movie',
         parameters: {
-          filename: '../../../assets/picture/persistence/transition.jpeg',
+          filename: '../../../assets/movie/rewhite1.mp4',
           coordinates: [
-            { value: 'left', shape: "rect", coordinates: "110, 332, 430, 448" },
-            { value: 'right', shape: "rect", coordinates: "642, 244, 912, 518" }],
+            { value: 'left', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
         }
       }
     ]
   },
   {
-    type: 'conditional',
-    id: 'persistence1',
-    items: {
-      'left':
-        paperTowel
-      ,
-      'right':
-        end
-    }
+    type: 'action',
+    id: 'rewhite2',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/rewhite2.mp4',
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
+          delayResponse: "0",
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'rewhite3',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/rewhite3.mp4',
+          coordinates: [
+            { value: 'correct', shape: "rect", coordinates: "0, 56, 370, 728" },
+            { value: 'wrong', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
+          delayResponse: "0",
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'rewhite4',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/rewhite4.mp4',
+          coordinates: [
+            { value: 'correct', shape: "rect", coordinates: "0, 56, 370, 728" },
+            { value: 'wrong', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
+          delayResponse: "0",
+        }
+      }
+    ]
+  },
+]
+
+var re_black = [
+  {
+    name: "re_black"
+  },
+  {
+    type: 'action',
+    id: 'reblackintro',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/reblackintro.mp4',
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'reblack1',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/reblack1.mp4',
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'reblack2',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/reblack2.mp4',
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
+          delayResponse: "0",
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'reblack3',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/reblack3.mp4',
+          coordinates: [
+            { value: 'correct', shape: "rect", coordinates: "0, 56, 370, 728" },
+            { value: 'wrong', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
+          delayResponse: "0",
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'reblack4',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/reblack4.mp4',
+          coordinates: [
+            { value: 'correct', shape: "rect", coordinates: "0, 56, 370, 728" },
+            { value: 'wrong', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
+          delayResponse: "0",
+        }
+      }
+    ]
+  },
+]
+
+var re_transition = [
+  {
+    name: "re_transition"
+  },
+  {
+    type: 'action',
+    id: 'animal3',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/animal3.mp4',
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 're2reminder',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/re2reminder.mp4',
+        }
+      }
+    ]
+  },
+]
+
+var re_greatjob = [
+  {
+    name: "re_greatjob"
+  },
+  {
+    type: 'action',
+    id: 'greatjob2',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/greatjob2.mp4',
+        }
+      }
+    ]
+  },
+]
+
+
+// status task stimuli
+
+var status_intro = [
+  {
+    name: "status_intro"
+  },
+  {
+    type: 'action',
+    id: 'statusintro',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/status1intro.mp4',
+        }
+      }
+    ]
+  },
+]
+
+var status1 = [
+  {
+    name: "status1"
+  },
+  {
+    type: 'action',
+    id: 'status1left',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/status1left.mp4',
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'status1right',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/status1right.mp4',
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
+        }
+      }
+    ]
+  },
+]
+
+var status2 = [
+  {
+    name: "status2"
+  },
+  {
+    type: 'action',
+    id: 'status2left',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/status2left.mp4',
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'status2right',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/status2right.mp4',
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
+        }
+      }
+    ]
+  },
+]
+
+var status_greatjob = [
+  {
+    name: "status_greatjob"
+  },
+  {
+    type: 'action',
+    id: 'greatjob3',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/greatjob3.mp4',
+        }
+      }
+    ]
+  },
+]
+
+// attitudes task stimuli
+
+var attitudes_intro = [
+  {
+    name: "attitudes_intro"
+  },
+  {
+    type: 'action',
+    id: 'attitudesintro',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/attitudesintro.mp4',
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'attitudestraining',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/attitudestraining.mp4',
+        }
+      }
+    ]
+  }
+]
+
+var attitudes = [
+  {
+    name: "attitudes"
+  },
+  {
+    type: 'control',
+    shuffle: true,
+  },
+  {
+    type: 'action',
+    id: 'ftwhite1',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/ftwhite1.mp4',
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'ftwhite2',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/ftwhite2.mp4',
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'ftblack1',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/ftblack1.mp4',
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
+        }
+      }
+    ]
+  },
+  {
+    type: 'action',
+    id: 'ftblack2',
+    stimuli: [
+      {
+        type: 'movie',
+        parameters: {
+          filename: '../../../assets/movie/ftblack2.mp4',
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "0, 56, 370, 728" },
+          ],
+        }
+      }
+    ]
   },
 ]
 
@@ -1335,37 +932,68 @@ var forms = {
   ]
 }
 
-var contentStudy = [
+// conditions: whiteFirst vs blackFirst
+var whiteFirst = [
   forms,
   startGame,
-  friction,
-  sciMethod,
-  interest,
-  prevalence,
+  dg_intro,
+  dg_white,
+  dg_transition,
+  dg_black,
+  dg_greatjob,
+  re_intro,
+  re_white,
+  re_transition,
+  re_black,
+  re_greatjob,
+  status_intro,
   [
-    prevalenceDo,
-    prevalenceBe,
+    status1,
+    status2,
     {
       type: 'control',
-      shuffle: true
+      shuffle: true,
     }
   ],
-  end
+  status_greatjob,
+  attitudes,
+  attitudes_intro
 ];
 
-var persistenceStudy = [
+var blackFirst = [
+  forms,
   startGame,
-  contingentFeedback,
-  persistence
+  dg_intro,
+  dg_black,
+  dg_transition,
+  dg_white,
+  dg_greatjob,
+  re_intro,
+  re_black,
+  re_transition,
+  re_white,
+  re_greatjob,
+  status_intro,
+  [
+    status1,
+    status2,
+    {
+      type: 'control',
+      shuffle: true,
+    }
+  ],
+  status_greatjob,
+  attitudes,
+  attitudes_intro
 ];
 
 
 export const Project = {
   conditions: [
-    contentStudy,
-    // persistenceStudy
+    whiteFirst,
+    blackFirst
   ],
-  name: "interventionStudy",
+  name: "ra2",
   ended: {
     type: 'action',
     id: 'done',
@@ -1373,7 +1001,7 @@ export const Project = {
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/End.mp4',
+          filename: '../../../assets/movie/done.mp4',
         }
       }
     ]
