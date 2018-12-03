@@ -1332,12 +1332,14 @@ var forms = {
       parameters: {
         questions: [
           { name: 'id', type: "text", questionText: "Participant ID" },
-          { name: 'age', type: "text", questionText: "Participant Age" }
+          { name: 'gender', type: "dropdown", options: ["female", "male", "other"], questionText: "Participant Gender" },
+          { name: 'age', type: "text", questionText: "Participant Age" },
+          { name: 'age', type: "dropdown", options: ["4", "5", "6"], questionText: "Participant Age" }
         ],
-        dropdowns: [
-          { name: 'gender', options: ["female", "male", "other"], questionText: "Participant Gender" },
-          { name: 'age', options: ["4", "5", "6"], questionText: "Participant Age" }
-        ],
+        // dropdowns: [
+        //   { name: 'gender', options: ["female", "male", "other"], questionText: "Participant Gender", questionType: "select" },
+        //   { name: 'age', options: ["4", "5", "6"], questionText: "Participant Age", questionType: "select" }
+        // ],
       }
     }
   ]
