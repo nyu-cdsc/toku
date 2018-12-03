@@ -1,14 +1,21 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
   <div *ngFor="let q of parameters?.questions">
     {{q.questionText}}<br>
-    <input ngModel [type]="q.type" [name]="q.name"><br>
+    <div *ngIf="q.type != 'dropdown'">
+      <input ngModel [type]="q.type" [name]="q.name"><br>
+    </div>
+    <div *ngIf="q.type == 'dropdown'">
+    <select ngModel name="q.name">
+      <option *ngFor="let o of q.options" value="o">{{o}}</option>
+    </select><br>
+    </div>
   </div>
-  <div *ngFor="let d of parameters?.dropdowns">
+  <!-- <div *ngFor="let d of parameters?.dropdowns">
     {{d.questionText}}<br>
     <select ngModel name="d.name">
       <option *ngFor="let o of d.options" value="o">{{o}}</option>
     </select><br>
-  </div>
+  </div> -->
   <button type="submit" class="submitButton">Submit</button>
 </form>
 
