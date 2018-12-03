@@ -1330,6 +1330,14 @@ var forms = {
     {
       type: 'form',
       parameters: {
+        questions: [
+          { name: 'id', type: "text", questionText: "Participant ID" },
+          { name: 'age', type: "text", questionText: "Participant Age" }
+        ],
+        dropdowns: [
+          { name: 'gender', options: ["female", "male", "other"], questionText: "Participant Gender" },
+          { name: 'age', options: ["4", "5", "6"], questionText: "Participant Age" }
+        ],
       }
     }
   ]
