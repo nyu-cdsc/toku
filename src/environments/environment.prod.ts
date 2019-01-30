@@ -1,3 +1,6 @@
+import { Project } from '../STUDY-CONFIG.js';
+
 export const environment = {
-  production: true
+  production: true,
+  project: Project
 };

@@ -12,7 +12,7 @@ describe('PictureComponent', () => {
   let component: PictureComponent;
   let fixture: ComponentFixture<PictureComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [PictureComponent, AreaComponent],
       // imports: [AppModule]
@@ -20,12 +20,11 @@ describe('PictureComponent', () => {
       set: {
         entryComponents: [PictureComponent, AreaComponent] // , MovieComponent],
       }
-    }).compileComponents();
-  }));
+    });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(PictureComponent);
     component = fixture.componentInstance;
+    component.parameters = {};
     fixture.detectChanges();
   });
 

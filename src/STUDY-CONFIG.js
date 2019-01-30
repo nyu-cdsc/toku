@@ -1,5 +1,7 @@
 ///////// TEMPLATE /////////
 
+var block1 = [];
+var block2 = [];
 
 ///////// Stimuli /////////
 var exampleStimuli = [
