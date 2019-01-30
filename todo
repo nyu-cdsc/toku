@@ -13,7 +13,10 @@ RESPONSES/DB
 
 - validation (more) and error handling
 - tests
+  - working component tests
+  - export tests/rest covered
 - stricter typing, docblocks, docs
+- error handling more consistent
 
 - let them just give us css? fully formed web components and just run them? interface to store responses (or overlay via config file)
 
