@@ -1,21 +1,29 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  BrowserDynamicTestingModule,
+  platformBrowserDynamicTesting,
+} from '@angular/platform-browser-dynamic/testing';
 
+import { PictureComponent } from '../picture/picture.component';
 import { MovieComponent } from './movie.component';
+import { AreaComponent } from '../../responders/area/area.component';
 
 describe('MovieComponent', () => {
   let component: MovieComponent;
   let fixture: ComponentFixture<MovieComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [MovieComponent]
-    })
-      .compileComponents();
-  }));
-
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [MovieComponent, PictureComponent, AreaComponent],
+    }).overrideModule(BrowserDynamicTestingModule, {
+      set: {
+        entryComponents: [MovieComponent, PictureComponent, AreaComponent] // , MovieComponent],
+      }
+    });
+
     fixture = TestBed.createComponent(MovieComponent);
     component = fixture.componentInstance;
+    component.parameters = {};
     fixture.detectChanges();
   });
 
@@ -23,32 +31,7 @@ describe('MovieComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-// import { AppModule } from '../../../app.module';
 
-// import { MovieComponent } from './movie.component';
-
-// describe('MovieComponent', () => {
-//   let component: MovieComponent;
-//   let fixture: ComponentFixture<MovieComponent>;
-
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       imports: [AppModule]
-//       // declarations: [MovieComponent]
-//     })
-//       .compileComponents();
-//   }));
-
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(MovieComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
-
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
 //   it('should freeze in place/remain on last frame OR first frame after done, if option set', () => {
 //     // expect(component).toBeTruthy();
 //   });

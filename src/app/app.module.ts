@@ -15,6 +15,7 @@ import { StimuliService } from './components/stimuli/stimuli.service';
 import { FormComponent } from './components/stimuli/form/form.component';
 import { FrameComponent } from './components/frame/frame.component';  // TODO extract this out! or find better directory structure
 // todo perhaps this ^ is a signal that stimuli should become a module with its components, services AND directive bundled together
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,13 @@ import { FrameComponent } from './components/frame/frame.component';  // TODO ex
     BrowserModule,
     FormsModule
   ],
-  providers: [ResponseService, RunnerService, StimuliService],
+  providers: [
+    ResponseService,
+    RunnerService,
+    StimuliService,
+    { provide: 'environment', useValue: environment }
+    // { provide: Project, useValue: loadYAML(environment.project) }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
