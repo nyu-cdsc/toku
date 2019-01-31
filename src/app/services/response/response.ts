@@ -1,42 +1,37 @@
 export class Response {
-  // constructor(input) {
-  //   this.data = input;
-  // }
+  data: Map<string, any>;
+  // keys = [
+  //   ['id', Date.now()],
+  //   ['datestamp', new Date().toISOString()],
+  //   ['participant', -1],
+  //   ['block', ''],
+  //   ['action', ''],
+  //   ['response', '']
+  // ];
 
-  data: {
-    id: number;
-    datestamp: string;
-    participant: number;
-    study: string; // TODO this is already set as DB name and there's only one study per project -- redundant
-    block: string;
-    action: string;
-    response: number;
-  } = {
-      id: Date.now(),
-      datestamp: new Date().toISOString(),
-      participant: -1,
-      study: '',
-      block: '',
-      action: '',
-      response: -1
-    };
-  // TODO ^ clean up
+  constructor(input?) {
+    this.data = new Map();
+    this.data.set('id', input ? input.id : Date.now()); // todo make better
+    this.data.set('datestamp', input ? input.datestamp : new Date().toISOString());
+    this.data.set('participant', input ? input.participant : -1);
+    this.data.set('block', input ? input.block : '');
+    this.data.set('action', input ? input.action : '');
+    this.data.set('response', input ? input.response : '');
 
-  getKeys() {
-    return [
-      'id',
-      'datestamp',
-      'participant',
-      'study',
-      'block',
-      'action',
-      'response'
-    ];
+    // const remainder = [];
+    for ( const key in input ) {
+      if( !this.data.get(key) ) {
+        this.data.set(key, input[key]);
+      }
+    }
   }
+  // could also validate -
+
+  // TODO by initializing from objects in indexeddb vs arrays, order is not guaranteed
 
   // returns header string - call this first
   getCSVHeader() {
-    const keys = this.getKeys();
+    const keys = Array.from(this.data.keys());
     let output = keys.reduce((accum, current, idx) => {
       if (idx === 1) {
         accum = accum + ',';
@@ -48,9 +43,11 @@ export class Response {
     return output;
   }
 
+  // why is header/toCSV separate? -- tocsv being run on each response obj and header only once
+
   // returns csv formatted version of the object (excluding header)
   toCSV() {
-    const keys = this.getKeys();
+    const keys = Array.from(this.data.keys());
     const output = keys.reduce((accum, cur, idx) => {
       if (idx === 1) {
         accum = this.data[accum].toString() + ',';
@@ -67,7 +64,6 @@ export class Response {
       }
       // for values that are lists - todo move thhis to their toString()
 
-
       return (accum += temp + ',');
     });
 
@@ -75,7 +71,9 @@ export class Response {
   }
 
   toJSON() {
-    const keys = this.getKeys();
+      // this.data.forEach((v,k) => { z[k] = v; });
+
+    const keys = Array.from(this.data.keys());
     const out = {};
 
     keys.map((cur, idx) => {
@@ -87,7 +85,7 @@ export class Response {
 
   fromJSON(json) {
     const res = JSON.parse(json);
-    const keys = this.getKeys();
+    const keys = Array.from(this.data.keys());
 
     keys.map((cur, idx) => {
       this.data[cur] = res[cur];

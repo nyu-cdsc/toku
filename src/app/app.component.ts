@@ -1,7 +1,8 @@
-import { Component, ComponentFactoryResolver, ViewChild, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { ResponseService } from './services/response/response.service';
-import { RunnerService } from './services/runner/runner.service';
+import { RunnerService } from './services/runner/runner.service'; // TODO could use interfaces at base of each service,
+// we are only importing the interface and can swap easily. such as services/runner/runner.service.interface
 
 @Component({
   selector: 'toku-root',
@@ -21,13 +22,9 @@ export class AppComponent implements OnInit {
   };
 
   constructor(
-    private componentFactoryResolver: ComponentFactoryResolver,
     private runner: RunnerService,
     private responseService: ResponseService
   ) {
-    const title = runner.getProjectName();
-    responseService.getDBConnection(title); // todo - do at module level?
-    this.study = title;
     this.iterator = runner.cycle();
     const firstBlock = runner.getBlockName(runner.list); // todo ick api
     this.cur.condition = firstBlock;
@@ -46,7 +43,7 @@ export class AppComponent implements OnInit {
   studyEnded() {
     console.log('studyEnded() has been called');
     this.done = true;
-    this.cur.action = this.runner.getProject().ended;
+    this.cur.action = this.runner.getBlockByName('ended');
 
     // TODO implement end of study logic here
     // note that the config can put what it wants the end of study Frame to be -- so this could just be running cleanup, etc.
@@ -67,13 +64,12 @@ export class AppComponent implements OnInit {
   }
 
   // TODO use Message type? everywhere - in response, in services, in generator..
-  buildResponse(message, study, block, action) {
-    const response = this.responseService.newResponse();
-    response.data.participant = this.participant;
-    response.data.response = message.value;
-    response.data.study = study; // TODO should be unnecessary
-    response.data.block = block;
-    response.data.action = action;
+  buildResponse(message, block, action) {
+    const response = this.responseService.newResponse(); // TODO all key values sent into here -- don't create actual response obj here!
+    response.data.set('participant', this.participant);
+    response.data.set('response', message.value);
+    response.data.set('block', block);
+    response.data.set('action', action);
     return response; // todo return Message?
   }
 
@@ -83,7 +79,7 @@ export class AppComponent implements OnInit {
 
   frameResponse(message) {
     this.responseCache.push(message);
-    this.responseService.setResponse(this.buildResponse(message, this.study, this.cur.block, this.cur.action['id']));
+    this.responseService.setResponse(this.buildResponse(message, this.cur.block, this.cur.action['id']));
     // todo ^ move this to generator, just pass cached messages along to it (already doing it anyway)
   }
 

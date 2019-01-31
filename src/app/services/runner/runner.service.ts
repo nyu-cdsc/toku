@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Project } from '../../../STUDY-CONFIG.js';
+import { Injectable, Inject } from '@angular/core';
+// import { Project } from '../../../STUDY-CONFIG.js'; // TODO this should be passed in/injected!
 import { Action, Control } from './configuration';
 import { StimuliService } from '../../components/stimuli/stimuli.service';
 
@@ -9,25 +9,23 @@ import { StimuliService } from '../../components/stimuli/stimuli.service';
 export class RunnerService {
   list = [];
   stimService = new StimuliService();
+  environment: any;
 
-  // TODO can also throw in a loop _for development_ that validates the entire config
+  // TODO can also throw in a loop _for development_ (use env) that validates the entire config
   // beforehand rather than on iteration. (call stimuliservice.validateAll() in loop)
   // can also have e2e test by running through start to finish
-  constructor() {
+  constructor(@Inject('environment') env) {
+    this.environment = env;
     // TODO to make testing easier, optionally accept list[] here in param, or setter,
     // or it doesn't matter if the testing classes enable me to just st a class property..
-    this.list = this.pickOne(Project.conditions, new Control({ pickOne: true }));
+    this.list = this.pickOne(env.project.conditions, new Control({ pickOne: true }));
 
     // TODO ^^ store this as the condition! we need its name - store the name of the first list name, and we've got our condition
     // what about switching between conditions?
   }
 
-  getProjectName() {
-    return Project.name;
-  }
-
-  getProject() {
-    return Project;
+  getBlockByName(blockName) {
+    return this.environment.project[blockName];
   }
 
   getBlockName(list): string {
@@ -40,6 +38,7 @@ export class RunnerService {
     return res || '';
   }
 
+  // currently unused
   getControlMap(list): Control {
     const res = list.get('control');
     let cont = new Control();
@@ -72,6 +71,10 @@ export class RunnerService {
   // actually would not need getControl, as the list would handle all that internally
   // list.repeat, list.pickOne..
   // what is better - having the list run itself or passing it through things? is there a combination of both?
+  // ^ or a third - the list is a type and we can have classes of functions that can be loaded in and it sent through those
+  // -- such as observable.pipe()
+  //   -- at some point there needs to be an atomic piece, and that's the communication value passed between smart objs
+  //      the plain/passable obj vs smart -
 
   // two-way; receives data for conditional decisions
   // TODO also document generator - here and in readme
@@ -100,7 +103,7 @@ export class RunnerService {
         // TODO handle multiple inputs - e.g. multiple responses
         input = yield* this.cycle(item.items[input[0].value], input);
       } else if (item.type === 'action') {
-        input = yield { projectName: Project.name, blockName: blockName, action: item };
+        input = yield { projectName: this.environment.project.name, blockName: blockName, action: item };
       } else {
         continue;
       }

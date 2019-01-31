@@ -1,27 +1,33 @@
-** are we storing the trial this time round? **
-
-
-- scaling
-
+RESPONSES/DB
 - export/working responses
 - working block names, in responses
 - form at beginning/end of study, data stored (not as response) -- form specified in config file
   - AND THEN USE THIS for responses! e.g. collecting the particpants' age, etc.
+  should be easy to insert a form before or afterward, and store the data properly (different table than responses)
+
 - yaml
+- scaling
 - might need to bring back deepshuffle - to hit all blocks and they don't need to say it each time
-  - might be an antipattern though
+  - might be an antipattern though -- or at least, may require explicit "shuffle: none" on lower levels that shouldn't be
+- sequences
 
 - validation (more) and error handling
 - tests
+  - working component tests
+  - export tests/rest covered
 - stricter typing, docblocks, docs
+- error handling more consistent
 
 - let them just give us css? fully formed web components and just run them? interface to store responses (or overlay via config file)
 
 
+THINGS TO MAKE MY LIFE EASIER:
+- separate assets/runlist for testing
+- tests set up on services
 
 
   for sequence:
-    - just create additional object, like 'usedResponses' and pass it inside or alongside params  
+    - just create additional object, like 'usedResponses' and pass it inside or alongside params
       - generator doesn't need to know anything about any of it
   - responses now passed along as list to generator (though it may end up storing them itself in the future)
 
@@ -100,7 +106,3 @@ later:
       - so it checks and runs init etc. first before actually calling those internally
 
 
-
-FUTURE:
-  should be easy to insert a form before or afterward, and store the data properly (different table than responses)
- 
