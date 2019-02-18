@@ -1,8 +1,5 @@
 ///////// TEMPLATE /////////
 
-var block1 = [];
-var block2 = [];
-
 ///////// Stimuli /////////
 var exampleStimuli = [
   // movie where no response is recorded
@@ -13,7 +10,10 @@ var exampleStimuli = [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/movie/content/intro_to_content_study.mp4' // type the location of the movie
+          filename: '../../../assets/movie/1 Study Intro.m4v', // type the location of the movie
+          coordinates: [
+            { value: 'left', shape: "rect", coordinates: "120, 56, 370, 728" },
+            { value: 'right', shape: "rect", coordinates: "672, 48, 926, 732" }],
         }
       }
     ]
@@ -289,22 +289,22 @@ var forms = {
 // Generally, the blocks within a condition will be displayed in linear order
 
 var Condition1 = [
-  forms,
+  // forms,
   exampleRandom,
-  exampleStimuli,
+  // exampleStimuli,
   // For blocks to be randomly displayed, use the "shuffle" control
   // E.g., the next 2 blocks are displayed in random order
   // the [] specify which blocks I want to be randomized
   // and the control within the {} specifies it be shuffled randomly
-  [
-    block1,
-    block2,
-    {
-      type: 'control',
-      shuffle: true
-    }
-  ],
-  conditionalExample
+  //   [
+  //     block1,
+  //     block2,
+  //     {
+  //       type: 'control',
+  //       shuffle: true
+  //     }
+  //   ],
+  //   conditionalExample
 ];
 
 var Condition2 = [
@@ -322,7 +322,7 @@ var Condition2 = [
 export const Project = {
   conditions: [ // list all of your conditions here. Participants are randomly assigned to one of them
     Condition1,
-    Condition2
+    // Condition2
   ],
   name: "Test Study", // Put the name of your study here
   ended: { // this what happens when your study ends i.e., the last thing that happens before the study restarts
