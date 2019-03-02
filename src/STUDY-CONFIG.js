@@ -81,8 +81,11 @@ var exampleRandom = [
       {
         type: 'movie',
         parameters: {
-          filename: '../../../assets/sample/video1.mp4' // type the location of the movie
-        }
+          filename: '../../../assets/sample/video1.mp4', // type the location of the movie
+          coordinates: [
+            { value: '1', shape: "rect", coordinates: "0, 0, 1000, 500" },
+          ]
+        },
       }
     ]
   },

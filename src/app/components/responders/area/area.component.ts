@@ -32,7 +32,7 @@ export class AreaComponent implements OnChanges {
 
   }
 
-  getCoordinates(scalingFactor = 1) {
+  getCoordinates(scalingFactor = this.params.scalingFactor || 1) {
     const coords = this.areas.map(area => {
       if (!area.used) {
         const scaledCoords = area.coordinates.map(v => {
@@ -46,7 +46,7 @@ export class AreaComponent implements OnChanges {
         };
       }
     });
-
+    console.log(coords, 'these are the scaled coords');
     return coords;
   }
 }

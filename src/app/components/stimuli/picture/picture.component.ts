@@ -15,6 +15,7 @@ export class PictureComponent implements Stimuli, Responsive, OnInit, AfterViewC
   @Input() responseEnabled = true; // this can be disabled by parent via [responseEnabled]
   @ViewChild(AreaComponent) areamap: AreaComponent;
   @ViewChild('theimage') theimage: ElementRef;
+  value: null;
 
   constructor() { }
   ngOnInit() { }
@@ -30,7 +31,16 @@ export class PictureComponent implements Stimuli, Responsive, OnInit, AfterViewC
     if (this.parameters.width) {
       this.theimage.nativeElement.width = this.parameters.width;
     }
-    // this.areamap.scalingFactor = this.getScalingFactor();
+
+    // todo right now .parameters.nativeHeight starts out as 0 for a round
+    // of the lifecycle and then populates after a second round
+    // confirm that this is wired correctly
+    if ((this.value == null || this.value === 0) && this.parameters.nativeWidth > innerWidth) {
+      this.parameters.scalingFactor = this.getScalingFactor();
+      console.log('im inside and setting scalling factor', this.parameters.scalingFactor);
+      console.log(this.parameters, 'these are the paramters');
+      this.value = this.parameters.nativeHeight;
+    }
   }
 
   sendMessage(message: Message) {
@@ -51,16 +61,8 @@ export class PictureComponent implements Stimuli, Responsive, OnInit, AfterViewC
   }
 
   getScalingFactor() {
-    const width = this.theimage.nativeElement.width;
-    const nwidth = this.theimage.nativeElement.naturalWidth;
-    const height = this.theimage.nativeElement.height;
-    const nheight = this.theimage.nativeElement.naturalHeight;
-    console.log(width, height, nwidth, nheight);
-
-    // TODO ^ make sure I didn't get width/nwidth flipped!
-    // const scalingFactor = Math.min(width / nwidth, height / nheight);
-    const scalingFactor = width / nwidth;
-    console.log('factor ', scalingFactor);
+    // scale coordinates based on scaled image width relative to native image width
+    const scalingFactor = this.parameters.width / this.parameters.nativeWidth;
     return scalingFactor;
   }
 }

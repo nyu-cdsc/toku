@@ -25,6 +25,17 @@ export class MovieComponent implements Stimuli, Responsive, OnInit {
       this.pictureParameters = {};
       this.pictureParameters.coordinates = this.parameters.coordinates;
       this.pictureParameters.filename = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+      if (this.thevideo.nativeElement.videoWidth > innerWidth) {
+        this.pictureParameters.width = innerWidth * .80;
+        this.pictureParameters.nativeWidth = this.thevideo.nativeElement.videoWidth;
+        this.pictureParameters.nativeHeight = this.thevideo.nativeElement.videoHeight;
+        this.pictureParameters.height = innerHeight * .80 * ((innerWidth / innerHeight) /
+          (this.pictureParameters.nativeWidth / this.pictureParameters.nativeHeight));
+        console.log(this.pictureParameters, 'the picture paramters');
+      } else {
+        this.pictureParameters.width = this.thevideo.nativeElement.videoWidth;
+        this.pictureParameters.height = this.thevideo.nativeElement.videoHeight;
+      }
     }
   }
 
@@ -39,8 +50,16 @@ export class MovieComponent implements Stimuli, Responsive, OnInit {
   videoStarted() {
     // setting width and height for "invisible picture"
     if (this.parameters.coordinates) {
-      this.pictureParameters.width = this.thevideo.nativeElement.videoWidth;
-      this.pictureParameters.height = this.thevideo.nativeElement.videoHeight;
+      if (this.thevideo.nativeElement.videoWidth > innerWidth) {
+        this.pictureParameters.width = innerWidth * .80;
+        this.pictureParameters.nativeWidth = this.thevideo.nativeElement.videoWidth;
+        this.pictureParameters.nativeHeight = this.thevideo.nativeElement.videoHeight;
+        this.pictureParameters.height = innerHeight * .80 * ((innerWidth / innerHeight) /
+          (this.pictureParameters.nativeWidth / this.pictureParameters.nativeHeight));
+      } else {
+        this.pictureParameters.width = this.thevideo.nativeElement.videoWidth;
+        this.pictureParameters.height = this.thevideo.nativeElement.videoHeight;
+      }
     }
   }
 
