@@ -1,4 +1,4 @@
-<video (playing)="videoStarted()" (ended)="videoEnded()" autoplay="autoplay" preload="auto"
+<video [ngClass]="cssClass()" (playing)="videoStarted()" (ended)="videoEnded()" autoplay="autoplay" preload="auto"
   style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);" (timeupdate)="enableResponse()"  #thevideo>
   <source [src]="parameters?.filename" type='video/mp4' />
 </video>
@@ -13,4 +13,5 @@
 </ng-template>
 
 
-<!-- todo make the type property dynamic as well -->
+<!-- TODO make the type property dynamic as well -->
+

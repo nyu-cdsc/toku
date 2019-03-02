@@ -28,6 +28,14 @@ export class MovieComponent implements Stimuli, Responsive, OnInit {
     }
   }
 
+  cssClass() {
+    if (this.thevideo.nativeElement.videoWidth > innerWidth) {
+      return 'largeVideo';
+    } else {
+      return 'smallVideo';
+    }
+  }
+
   videoStarted() {
     // setting width and height for "invisible picture"
     if (this.parameters.coordinates) {
