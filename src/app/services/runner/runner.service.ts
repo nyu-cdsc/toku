@@ -155,7 +155,7 @@ export class RunnerService {
   // can also be used as means to swap between shuffle algorithms
   shuffleFunctional(list, control) {
     if (control.shuffle) {
-      console.log('SHUFFLIN');
+      // console.log('SHUFFLIN');
       list = this.shuffle(list);
     }
     return list;

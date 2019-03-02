@@ -16,6 +16,7 @@
 //         parameters: {
 //           disable: false,
 //           // filename: '../../..../../../assets/picture/PiDi_2a_Moment.jpg'
+// TODO - files here and in studyconfig are three levels up because that is where Runner is in relation to assets..
 //           filename: '../../../assets/picture/PiDi_2a_Moment.jpg'
 //         }
 //       }

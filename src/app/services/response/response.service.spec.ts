@@ -15,14 +15,11 @@ describe('ResponseService', () => {
     const service = TestBed.get(ResponseService);
     const response = new Response();
     const res = service.setResponse(response);
-    // const res2 = service.setResponse(response);
     // r.then((res) => { console.log('RIGHT HERE!', res) ; expect(res.length).toBeGreaterThan(0); done(); });
-    function sleep (time) {
+    function sleep(time) {
       return new Promise((resolve) => setTimeout(resolve, time));
     }
-    sleep(5000).then(() => {
-      // service.closeDB();
-      // service.getDBConnection();
+    sleep(1000).then(() => {
       const r = service.getResponses();
       r.then((rr) => {
         expect(rr.length).toBeGreaterThan(0);
@@ -31,5 +28,8 @@ describe('ResponseService', () => {
     });
   }, 30000);
 
-  // it('should give csv', (done) => { });
+  // it('should give csv', (done) => {
+  // const service = TestBed.get(ResponseService);
+  // service.getCSV();
+  // });
 });

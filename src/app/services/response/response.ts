@@ -10,6 +10,9 @@ export class Response {
   // ];
 
   constructor(input?) {
+    if (input && Object.keys(input).length < 6) {
+      throw new Error('input to response constructor invalid');
+    }
     this.data = new Map();
     this.data.set('id', input ? input.id : Date.now()); // todo make better
     this.data.set('datestamp', input ? input.datestamp : new Date().toISOString());
@@ -19,8 +22,8 @@ export class Response {
     this.data.set('response', input ? input.response : '');
 
     // const remainder = [];
-    for ( const key in input ) {
-      if( !this.data.get(key) ) {
+    for (const key in input) {
+      if (!this.data.get(key)) {
         this.data.set(key, input[key]);
       }
     }
@@ -50,14 +53,14 @@ export class Response {
     const keys = Array.from(this.data.keys());
     const output = keys.reduce((accum, cur, idx) => {
       if (idx === 1) {
-        accum = this.data[accum].toString() + ',';
+        accum = this.data.get(accum).toString() + ',';
       }
 
       let temp = '';
-      if (this.data[cur] === Object(this.data[cur])) {
-        temp = JSON.stringify(this.data[cur]);
+      if (this.data.get(cur) === Object(this.data.get(cur))) {
+        temp = JSON.stringify(this.data.get(cur));
       } else {
-        temp = this.data[cur].toString();
+        temp = this.data.get(cur).toString();
         if (temp.indexOf(',') !== -1) {
           temp = '"' + temp + '"';
         }
@@ -71,7 +74,7 @@ export class Response {
   }
 
   toJSON() {
-      // this.data.forEach((v,k) => { z[k] = v; });
+    // this.data.forEach((v,k) => { z[k] = v; });
 
     const keys = Array.from(this.data.keys());
     const out = {};

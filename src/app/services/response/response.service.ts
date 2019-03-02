@@ -18,11 +18,11 @@ export class ResponseService {
     this.DBNAME = name;
     const request = indexedDB.open(this.DBNAME);
 
-    this.db = new Promise(function(resolve, reject) {
-      request.onsuccess = function() {
+    this.db = new Promise(function (resolve, reject) {
+      request.onsuccess = function () {
         resolve(request.result);
       };
-      request.onerror = function() {
+      request.onerror = function () {
         reject(request.error);
       };
     });
@@ -75,12 +75,12 @@ export class ResponseService {
           const datas = resp.result;
 
           if (!datas) {
-            console.log('!!! DO NOT HAVE DATA');
+            // console.log('!!! DO NOT HAVE DATA');
             resolve(<Response[]>[]);
           } else {
-            console.log('HAVE DATA');
+            // console.log('HAVE DATA');
             datas.map(d => {
-              console.log(d);
+              // console.log(d);
               const r = new Response(d);
               responses.push(r);
             });
@@ -101,10 +101,10 @@ export class ResponseService {
   setResponse(response: Response) {
     const store = this.startTransaction().then(transaction => {
       transaction.onsuccess = function () {
-        console.log('transaction success');
+        // console.log('transaction success');
       };
       transaction.oncomplete = function () {
-        console.log('transaction complete');
+        // console.log('transaction complete');
       };
       transaction.onabort = function (err) {
         console.log(err.target.result);
@@ -124,10 +124,10 @@ export class ResponseService {
         const resp = s.add(payload);
 
         resp.onsuccess = function (e) {
-          console.log('response queued successfully', e.target.result);
+          // console.log('response queued successfully', e.target.result);
         };
         resp.oncomplete = function (e) {
-          console.log('response completed successfully', e.target.result);
+          // console.log('response completed successfully', e.target.result);
         };
         resp.onerror = function (e) {
           console.log('response ERROR', e.target.result, e);
@@ -141,6 +141,7 @@ export class ResponseService {
   getCSV() {
     const responsePromise = this.getResponses();
     let output = new Response().getCSVHeader();
+    const that = this;
 
     responsePromise.then(function (responses) {
       responses.map((cur, idx) => {
@@ -151,7 +152,7 @@ export class ResponseService {
       console.log(output);
       const file = new Blob([output], { type: 'text/csv' });
       const stamp = new Date().toISOString();
-      FileSaver.saveAs(file, this.DBNAME + 'export-' + stamp + '.csv');
+      FileSaver.saveAs(file, that.DBNAME + 'export-' + stamp + '.csv');
     });
   }
 }
