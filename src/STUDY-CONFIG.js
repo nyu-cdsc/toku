@@ -101,6 +101,22 @@ var exampleRandom = [
       }
     ]
   },
+  {
+    type: 'action',
+    id: 'item2',
+    stimuli: [
+      {
+        type: 'picture',
+        parameters: {
+          filename: '../../../assets/sample/image1.png', // image
+          coordinates: [
+            { value: '1', shape: "rect", coordinates: "0, 0, 200, 200" },
+            { value: '2', shape: "rect", coordinates: "800, 800, 1200, 1200" },
+          ]
+        }
+      }
+    ]
+  },
   // next add the shuffle control
   {
     type: 'control',
