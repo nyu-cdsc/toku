@@ -1,7 +1,7 @@
 This application (currently under development) is used to design and run psychological experiments. 
 
 ## Using the app for the first time on your computer: 
-1) Download and install node.js onto your computer: https://nodejs.org/en/download/ 
+1) Download and install node.js onto your computer: https://nodejs.org/en/download/  
 Either the Windows 64-bit Installer or the macOS installer, depending on your computer.
 
 2) Download the app onto your computer. 
@@ -10,7 +10,7 @@ Either the Windows 64-bit Installer or the macOS installer, depending on your co
 
 4) Open the command prompt/terminal, and get inside the folder containing the app. E.g., if the app is located on your desktop, type `cd Desktop/yourgame`
 
-5) Once inside the folder, type these commands into the terminal one at a time:
+5) Once inside the folder, enter these commands into the terminal one at a time:
 
 Windows: 
 ```
