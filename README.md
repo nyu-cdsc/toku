@@ -15,14 +15,14 @@ Either the Windows 64-bit Installer or the macOS installer, depending on your co
 Windows: 
 ```
 npm install -g @angular/cli
-npm install typescript@3.2.4
 npm install
+npm install typescript@3.2.4
 ```
 macOS 
 ```
 sudo npm install -g @angular/cli     (you will be asked to enter your password in)
-npm install typescript@3.2.4
 npm install
+npm install typescript@3.2.4
 ```
 
 ## Running the app on your computer:
