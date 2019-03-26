@@ -140,7 +140,7 @@ export class RunnerService {
   pickOne(list, control) {
     if (control.pickOne) {
       const shuffled = this.shuffle(list);
-      if(shuffled[0].type == 'control'){
+      if (shuffled[0].type === 'control') {
         return [shuffled[1]];
       } else {
         return [shuffled[0]];
