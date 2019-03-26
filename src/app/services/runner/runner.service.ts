@@ -139,7 +139,12 @@ export class RunnerService {
   // TODO is default behavior at random?
   pickOne(list, control) {
     if (control.pickOne) {
-      return [this.shuffle(list)[0]];
+      const shuffled = this.shuffle(list);
+      if(shuffled[0].type == 'control'){
+        return [shuffled[1]];
+      } else {
+        return [shuffled[0]];
+      }
     }
 
     return list;
