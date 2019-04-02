@@ -83,7 +83,11 @@ var exampleRandom = [
         parameters: {
           filename: '../../../assets/sample/video1.mp4', // type the location of the movie
           coordinates: [
+<<<<<<< HEAD
             { value: '1', shape: "rect", coordinates: "0, 0, 5000, 5000" },
+=======
+            { value: '1', shape: "rect", coordinates: "0, 0, 2000, 2000" },
+>>>>>>> 2d465194223cd3e96bb2bc89158fbd35f2c6e2c5
           ]
         },
       }
@@ -98,7 +102,7 @@ var exampleRandom = [
         parameters: {
           filename: '../../../assets/sample/image1.png', // image
           coordinates: [
-            { value: '1', shape: "rect", coordinates: "0, 0, 200, 200" },
+            { value: '1', shape: "rect", coordinates: "0, 0, 2000, 2000" },
             { value: '2', shape: "rect", coordinates: "800, 800, 1200, 1200" },
           ]
         }
