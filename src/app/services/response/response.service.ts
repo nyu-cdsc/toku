@@ -11,18 +11,18 @@ export class ResponseService {
   db;
 
   constructor(@Inject('environment') env) {
-    this.getDBConnection(env.project.name);
+    this.getDBConnection(env.project.study);
   }
 
   getDBConnection(name) {
     this.DBNAME = name;
     const request = indexedDB.open(this.DBNAME);
 
-    this.db = new Promise(function(resolve, reject) {
-      request.onsuccess = function() {
+    this.db = new Promise(function (resolve, reject) {
+      request.onsuccess = function () {
         resolve(request.result);
       };
-      request.onerror = function() {
+      request.onerror = function () {
         reject(request.error);
       };
     });

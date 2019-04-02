@@ -1,26 +1,26 @@
 import { Stimuli } from '../../components/stimuli/stimuli';
 // TODO Action -> Frame (represents step in study + positioning of stimuli)
 
-export class Action {
-  id: string;
-  stimuli: Stimuli[]; // should be able to display several images side by side, above/below, buttons, etc.
-  // parameters: Parameters;
+// export class Action {
+//   id: string;
+//   stimuli: Stimuli[]; // should be able to display several images side by side, above/below, buttons, etc.
+//   // parameters: Parameters;
 
-  constructor(item) {
-    this.validate(item);
+//   constructor(item) {
+//     this.validate(item);
 
-    this.id = item.id;
-    this.stimuli = item.stimuli;
-    // this.parameters = item.parameters; // todo Action has multiple stimuli, so we need to control those
-    // // todo do we really? they're all going to have to run simultaneously anyway.
-    // new Parameters(item.params); // -- parameters can vary by Stimuli, so it needs to be an interface that each implementation validates
-  }
+//     this.id = item.id;
+//     this.stimuli = item.stimuli;
+//     // this.parameters = item.parameters; // todo Action has multiple stimuli, so we need to control those
+//     // // todo do we really? they're all going to have to run simultaneously anyway.
+//     // new Parameters(item.params); // -- parameters can vary by Stimuli, so it needs to be an interface that each implementation validates
+//   }
 
-  // todo
-  validate(item) {
-    return true;
-  }
-}
+//   // todo
+//   validate(item) {
+//     return true;
+//   }
+// }
 
 export class Control {
   pickOne = false;

@@ -1,11 +1,13 @@
-import { Project } from '../STUDY-CONFIG.js';
+// import { Project } from '../STUDY-CONFIG.js';
+import { run } from 'toku-parser'; // todo rename to parse
+import * as configFile from '../study.yaml';
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
   production: false,
-  project: Project
+  project: run(configFile)
 };
 
 /*

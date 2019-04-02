@@ -1,6 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-// import { Project } from '../../../STUDY-CONFIG.js'; // TODO this should be passed in/injected!
-import { Action, Control } from './configuration';
+import { Control } from './configuration';
 import { StimuliService } from '../../components/stimuli/stimuli.service';
 
 @Injectable({
@@ -16,6 +15,7 @@ export class RunnerService {
   // can also have e2e test by running through start to finish
   constructor(@Inject('environment') env) {
     this.environment = env;
+    console.log('this is the project', JSON.stringify(env.projection, null, 2));
     // TODO to make testing easier, optionally accept list[] here in param, or setter,
     // or it doesn't matter if the testing classes enable me to just st a class property..
     this.list = this.pickOne(env.project.conditions, new Control({ pickOne: true }));
@@ -103,7 +103,7 @@ export class RunnerService {
         // TODO handle multiple inputs - e.g. multiple responses
         input = yield* this.cycle(item.items[input[0].value], input);
       } else if (item.type === 'action') {
-        input = yield { projectName: this.environment.project.name, blockName: blockName, action: item };
+        input = yield { projectName: this.environment.project.study, blockName: blockName, action: item };
       } else {
         continue;
       }

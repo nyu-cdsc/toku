@@ -83,21 +83,9 @@ var exampleRandom = [
         parameters: {
           filename: '../../../assets/sample/video1.mp4', // type the location of the movie
           coordinates: [
-            { value: '1', shape: "rect", coordinates: "0, 0, 1000, 500" },
+            { value: '1', shape: "rect", coordinates: "0, 0, 5000, 5000" },
           ]
         },
-      }
-    ]
-  },
-  {
-    type: 'action',
-    id: 'item2',
-    stimuli: [
-      {
-        type: 'movie',
-        parameters: {
-          filename: '../../../assets/sample/video2.mp4', // movie
-        }
       }
     ]
   },
