@@ -15,7 +15,7 @@ export class RunnerService {
   // can also have e2e test by running through start to finish
   constructor(@Inject('environment') env) {
     this.environment = env;
-    console.log('this is the project', JSON.stringify(env.projection, null, 2));
+    console.log('this is the project', JSON.stringify(env.project, null, 2));
     // TODO to make testing easier, optionally accept list[] here in param, or setter,
     // or it doesn't matter if the testing classes enable me to just st a class property..
     this.list = this.pickOne(env.project.conditions, new Control({ pickOne: true }));
