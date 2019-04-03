@@ -7,16 +7,20 @@ import * as FileSaver from 'file-saver'; // TODO clean up or replace
 })
 export class ResponseService {
   DBNAME: string;
+  DBSTUDY: string;
   STORE = 'responses';
   db;
 
   constructor(@Inject('environment') env) {
-    this.getDBConnection(env.project.study);
+    this.getDBConnection(env.project.study, env.project.name);
   }
 
-  getDBConnection(name) {
+  // env.project.study isn't the study name so DBNAME was coming up empty for the name
+  // so I created to separate variables to import
+  getDBConnection(study, name) {
+    this.DBSTUDY = study;
     this.DBNAME = name;
-    const request = indexedDB.open(this.DBNAME);
+    const request = indexedDB.open(this.DBSTUDY);
 
     this.db = new Promise(function (resolve, reject) {
       request.onsuccess = function () {
@@ -142,6 +146,10 @@ export class ResponseService {
     const responsePromise = this.getResponses();
     let output = new Response().getCSVHeader();
 
+    // responsePromise or something after this line seems to reset DBNAME?
+    // so storing above in csvName for the export
+    const csvName = this.DBNAME;
+
     responsePromise.then(function (responses) {
       responses.map((cur, idx) => {
         output += cur.toCSV() + '\n';
@@ -150,8 +158,8 @@ export class ResponseService {
       console.log('getCSV OUTPUT');
       console.log(output);
       const file = new Blob([output], { type: 'text/csv' });
-      const stamp = new Date().toISOString();
-      FileSaver.saveAs(file, this.DBNAME + 'export-' + stamp + '.csv');
+      const stamp = new Date().toISOString().split('T')[0];
+      FileSaver.saveAs(file, csvName + '_data_exported' + stamp + '.csv');
     });
   }
 }

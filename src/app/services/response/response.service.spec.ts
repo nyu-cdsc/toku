@@ -17,7 +17,7 @@ describe('ResponseService', () => {
     const res = service.setResponse(response);
     // const res2 = service.setResponse(response);
     // r.then((res) => { console.log('RIGHT HERE!', res) ; expect(res.length).toBeGreaterThan(0); done(); });
-    function sleep (time) {
+    function sleep(time) {
       return new Promise((resolve) => setTimeout(resolve, time));
     }
     sleep(5000).then(() => {
