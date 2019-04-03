@@ -5,8 +5,8 @@
       <input ngModel [type]="q.type" [name]="q.name"><br>
     </div>
     <div *ngIf="q.type == 'dropdown'">
-    <select ngModel name="q.name">
-      <option *ngFor="let o of q.options" value="o">{{o}}</option>
+    <select ngModel [name]="q.name">
+      <option *ngFor="let o of q.options" [value]="o">{{o}}</option>
     </select><br>
     </div>
   </div>
