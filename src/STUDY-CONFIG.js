@@ -98,8 +98,9 @@ var exampleRandom = [
         parameters: {
           filename: '../../../assets/sample/image1.png', // image
           coordinates: [
-            { value: '1', shape: "rect", coordinates: "0, 0, 2000, 2000" },
+            { value: '1', shape: "rect", coordinates: "0, 0, 0, 0" }, // coords: "x, y (top left), x, y (bottom right)"
             { value: '2', shape: "rect", coordinates: "800, 800, 1200, 1200" },
+            { value: '3', shape: "circle", coordinates: "10, 10, 25" }, // coordinates: "x, y, radius"
           ]
         }
       }
