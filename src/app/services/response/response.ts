@@ -34,7 +34,7 @@ export class Response {
     const keys = Array.from(this.data.keys());
     let output = keys.reduce((accum, current, idx) => {
       if (current === 'block') {
-        return '';
+        return accum;
       }
 
       if (idx === 1) {
@@ -61,7 +61,7 @@ export class Response {
       }
 
       if (keys[idx] === 'block') {
-        return '';
+        return accum;
       }
 
       let temp = '';
