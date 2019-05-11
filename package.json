@@ -25,9 +25,11 @@
     "core-js": "^2",
     "file-saver": "^2",
     "rxjs": "^6",
+    "toku-parser": "^0.1.2",
     "tslib": "^1",
     "zone.js": "^0",
-    "pouchdb": "^7"
+    "pouchdb": "^7",
+    "typescript": "3.2.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0",
@@ -47,7 +49,6 @@
     "karma-jasmine-html-reporter": "^1",
     "protractor": "^5",
     "ts-node": "^8",
-    "tslint": "^5",
-    "typescript": "3.2.4"
+    "tslint": "^5"
   }
 }

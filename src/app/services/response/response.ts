@@ -19,8 +19,8 @@ export class Response {
     this.data.set('response', input ? input.response : '');
 
     // const remainder = [];
-    for ( const key in input ) {
-      if( !this.data.get(key) ) {
+    for (const key in input) {
+      if (!this.data.get(key)) {
         this.data.set(key, input[key]);
       }
     }
@@ -33,6 +33,10 @@ export class Response {
   getCSVHeader() {
     const keys = Array.from(this.data.keys());
     let output = keys.reduce((accum, current, idx) => {
+      if (current === 'block') {
+        return accum;
+      }
+
       if (idx === 1) {
         accum = accum + ',';
       }
@@ -48,17 +52,25 @@ export class Response {
   // returns csv formatted version of the object (excluding header)
   toCSV() {
     const keys = Array.from(this.data.keys());
+    const values = Array.from(this.data.values());
+
     const output = keys.reduce((accum, cur, idx) => {
       let temp = '';
       try {
+        console.log(accum, cur, idx, 'inside to CSV');
         if (idx === 1) {
-          accum = this.data[accum].toString() + ',';
+          accum = values[idx].toString() + ',';
         }
 
-        if (this.data[cur] === Object(this.data[cur])) {
-          temp = JSON.stringify(this.data[cur]);
+        if (keys[idx] === 'block') {
+          return accum;
+        }
+
+        let temp = '';
+        if (values[idx] === Object(values[idx])) {
+          temp = JSON.stringify(values[idx]);
         } else {
-          temp = this.data[cur].toString();
+          temp = values[idx].toString();
           if (temp.indexOf(',') !== -1) {
             temp = '"' + temp + '"';
           }
@@ -81,7 +93,7 @@ export class Response {
   }
 
   toJSON() {
-      // this.data.forEach((v,k) => { z[k] = v; });
+    // this.data.forEach((v,k) => { z[k] = v; });
 
     const keys = Array.from(this.data.keys());
     const out = {};

@@ -83,7 +83,7 @@ var exampleRandom = [
         parameters: {
           filename: '../../../assets/sample/video1.mp4', // type the location of the movie
           coordinates: [
-            { value: '1', shape: "rect", coordinates: "0, 0, 1000, 500" },
+            { value: '1', shape: "rect", coordinates: "0, 0, 5000, 5000" },
           ]
         },
       }
@@ -94,9 +94,14 @@ var exampleRandom = [
     id: 'item2',
     stimuli: [
       {
-        type: 'movie',
+        type: 'picture',
         parameters: {
-          filename: '../../../assets/sample/video2.mp4', // movie
+          filename: '../../../assets/sample/image1.png', // image
+          coordinates: [
+            { value: '1', shape: "rect", coordinates: "0, 0, 0, 0" }, // coords: "x, y (top left), x, y (bottom right)"
+            { value: '2', shape: "rect", coordinates: "800, 800, 1200, 1200" },
+            { value: '3', shape: "circle", coordinates: "10, 10, 25" }, // coordinates: "x, y, radius"
+          ]
         }
       }
     ]
@@ -275,9 +280,12 @@ var forms = {
           // 'questionText:' specifies the question that will be displayed on the screen
           // 'options:' specifies the options for the dropdown question; you do not use 'options' for text questions
           { name: 'id', type: "text", questionText: "Participant ID" },
-          { name: 'gender', type: "dropdown", options: ["female", "male", "other"], questionText: "Participant Gender" },
           { name: 'age', type: "dropdown", options: ["4", "5", "6"], questionText: "Participant Age" },
-          { name: 'color', type: "text", questionText: "What's your favorite color?" }
+          { name: 'color', type: "text", questionText: "What's your favorite color?" },
+          {
+            name: 'range', type: "range", questionText: "Rate how much you like this game",
+            min: "0", max: "100", value: "50", class: "slider", step: "10"
+          }
         ],
       }
     }
@@ -292,7 +300,7 @@ var forms = {
 // Generally, the blocks within a condition will be displayed in linear order
 
 var Condition1 = [
-  // forms,
+  forms,
   startGame,
   exampleRandom,
   // exampleStimuli,
@@ -328,7 +336,7 @@ export const Project = {
     Condition1,
     // Condition2
   ],
-  name: "testStudy", // Put the name of your study here
+  name: "sampleStudy", // Put the name of your study here
   ended: { // this what happens when your study ends i.e., the last thing that happens before the study restarts
     // right now, I have it set to play a movie that says "Great job!"
     type: 'action',
