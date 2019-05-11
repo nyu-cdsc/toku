@@ -4,20 +4,14 @@ RESPONSES/DB
 - form at beginning/end of study, data stored (not as response) -- form specified in config file
   - AND THEN USE THIS for responses! e.g. collecting the particpants' age, etc.
   should be easy to insert a form before or afterward, and store the data properly (different table than responses)
+    - this would mean aggregating data for export, rather than designing data around export
 
 - yaml
 - scaling
 - might need to bring back deepshuffle - to hit all blocks and they don't need to say it each time
   - might be an antipattern though -- or at least, may require explicit "shuffle: none" on lower levels that shouldn't be
 - sequences
-
-- validation (more) and error handling
-- tests
-  - working component tests
-  - export tests/rest covered
-- stricter typing, docblocks, docs
-- error handling more consistent
-
+- validation/error handling. FP
 - let them just give us css? fully formed web components and just run them? interface to store responses (or overlay via config file)
 
 
@@ -54,7 +48,7 @@ response sent stimuli->parent, it decides what to let through based on Control s
 TODO - move all of this into specific sections rather than global
 
 
-DEPLOY:
+DEPLOY (all implemented in main repo, called from end-user repo):
   - query/store GKE/EKS account credentials
   - direct api to GKE/EKS to spin up nodes -- and create buckets - no TF?
     - make new resource, store reference to resource

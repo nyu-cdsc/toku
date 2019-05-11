@@ -8,9 +8,9 @@ study: testStudy
 conditions:
   - Condition1:
     type: condition
-    - startGame
-    - block1
-    - block2
+      - startGame
+      - block1
+      - block2
   - Condition1:
     - startGame
     - block1
@@ -23,7 +23,7 @@ conditions:
 blocks:
   - adifferentvariable:
     type: block
-    - startGameVideo
+      - startGameVideo
   - newblock:
     - block1
     - block2
