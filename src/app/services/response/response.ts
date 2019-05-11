@@ -14,7 +14,7 @@ export class Response {
     this.data.set('id', input ? input.id : Date.now()); // todo make better
     this.data.set('datestamp', input ? input.datestamp : new Date().toISOString());
     this.data.set('participant', input ? input.participant : -1);
-    this.data.set('block', input ? input.block : '');
+    // this.data.set('block', input ? input.block : '');
     this.data.set('action', input ? input.action : '');
     this.data.set('response', input ? input.response : '');
 
@@ -49,18 +49,28 @@ export class Response {
   toCSV() {
     const keys = Array.from(this.data.keys());
     const output = keys.reduce((accum, cur, idx) => {
-      if (idx === 1) {
-        accum = this.data[accum].toString() + ',';
-      }
-
       let temp = '';
-      if (this.data[cur] === Object(this.data[cur])) {
-        temp = JSON.stringify(this.data[cur]);
-      } else {
-        temp = this.data[cur].toString();
-        if (temp.indexOf(',') !== -1) {
-          temp = '"' + temp + '"';
+      try {
+        if (idx === 1) {
+          accum = this.data[accum].toString() + ',';
         }
+
+        if (this.data[cur] === Object(this.data[cur])) {
+          temp = JSON.stringify(this.data[cur]);
+        } else {
+          temp = this.data[cur].toString();
+          if (temp.indexOf(',') !== -1) {
+            temp = '"' + temp + '"';
+          }
+        }
+      } catch (e) {
+        if (e instanceof TypeError) {
+          if (e.message.indexOf('Cannot read property') !== -1) {
+            console.error('Oops, looks like we are missing some data: '+cur+' is empty or malformed in the row: '+this.data);
+          }
+        }
+        console.error('re-throwing exception for further diagnosis');
+        throw e;
       }
       // for values that are lists - todo move thhis to their toString()
 
