@@ -15,7 +15,7 @@ export class MovieComponent implements Stimuli, Responsive, OnInit {
   @Output() responseEvent = new EventEmitter<Message>();
   responseEnabled = false;
   pictureParameters = null;
-  @ViewChild('thevideo') thevideo: ElementRef;
+  @ViewChild('thevideo', { static: true }) thevideo: ElementRef;
 
   constructor() { }
 

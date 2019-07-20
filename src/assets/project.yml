@@ -1,0 +1,84 @@
+---
+study: testStudy
+
+conditions:
+  Condition1:
+    startGameBlock:
+    exampleRandom:
+  Condition2:
+    startGameBlock:
+    exampleStimuli:
+
+blocks:
+  startGameBlock:
+    startGameVideo:
+  exampleRandom:
+    item1:
+    item2:
+    startGameBlock:
+    shuffle: true
+  exampleStimuli:
+    item3:
+    item4:
+    pickOne: true
+
+stimuli:
+  startGameVideo:
+    type: picture
+    parameters:
+      # todo make assets lookup more intuitive. no ../
+      filename: '../../../assets/sample/startGame.mp4'
+      responses:
+        one:
+          shape: rect
+          position: "161, 646, 250, 740"
+  item1:
+    type: movie
+    parameters:
+      filename: '../../../assets/sample/video1.mp4'
+      responses:
+        one:
+          shape: rect
+          position: "161, 646, 250, 740"
+  item2:
+    type: movie
+    parameters:
+      filename: '../../../assets/sample/video2.mp4'
+      responses:
+        one:
+          shape: rect
+          position: "161, 646, 250, 740"
+          action: item3
+        two:
+          shape: rect
+          position: "282, 646, 370, 740"
+          action: startGameBlock
+  item3:
+    type: movie
+    parameters:
+      filename: '../../../assets/sample/video3.mp4'
+      responses:
+        one:
+          shape: rect
+          position: "161, 646, 250, 740"
+  item4:
+    type: movie
+    parameters:
+      filename: '../../../assets/sample/video4.mp4'
+      responses:
+        one:
+          shape: rect
+          position: "161, 646, 250, 740"
+
+forms:
+  startForm:
+    type: form
+    parameters:
+      questions:
+        id:
+          type: text
+          title: "Participant ID"
+        gender:
+          type: dropdown
+          options: "female, male, other"
+          title: "Participant Gender"

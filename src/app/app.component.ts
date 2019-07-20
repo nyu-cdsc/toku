@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { ResponseService } from './services/response/response.service';
-import { RunnerService } from './services/runner/runner.service'; // TODO could use interfaces at base of each service,
-// we are only importing the interface and can swap easily. such as services/runner/runner.service.interface
+import { RunnerService } from './services/runner/runner.service';
+import { ParserService } from './services/parser/parser.service';
 
 @Component({
   selector: 'toku-root',
@@ -14,7 +15,8 @@ export class AppComponent implements OnInit {
   iterator: any;
   responseCache = [];
   done = false;
-  participant = Date.now(); // todo
+  participant = Date.now(); // todo - combination of machine/instance identifier + participant count
+  project = {};
   cur = {
     condition: '',
     block: '',
@@ -22,18 +24,21 @@ export class AppComponent implements OnInit {
   };
 
   constructor(
+    private http: HttpClient,
     private runner: RunnerService,
-    private responseService: ResponseService
+    private responseService: ResponseService,
+    private parser: ParserService
   ) {
+    let proj = this.http.get('assets/project.yml'); // TODO it will be hitting a url + projectID to get this config, passed in by query param
+    proj = parser.load(proj, console.log);
+
+    this.project = parser.preBuild2(proj);
+    runner.setProject(this.project);
     this.iterator = runner.cycle();
     const firstBlock = runner.getBlockName(runner.list); // todo ick api
     this.cur.condition = firstBlock;
     this.cur.block = firstBlock;
   }
-  // TODO this could use better design. Project is the config file, and it has organized structure - not just a list
-  // or at least, is a list with specific elements in it. it should serve these to us on request, or this should be
-  // kept somewhere and simply passed into a runner and processed (rather than harcoded in runner), or be centralized
-  // for a runner, or just serve itself..
 
   ngOnInit() {
     // begin iteration
@@ -63,14 +68,14 @@ export class AppComponent implements OnInit {
     console.log('nextaction called, currentAction is: ', this.cur.action);
   }
 
-  // TODO use Message type? everywhere - in response, in services, in generator..
+  // todo remove
   buildResponse(message, block, action) {
-    const response = this.responseService.newResponse(); // TODO all key values sent into here -- don't create actual response obj here!
+    const response = this.responseService.newResponse();
     response.data.set('participant', this.participant);
     response.data.set('response', message.value);
     response.data.set('block', block);
     response.data.set('action', action);
-    return response; // todo return Message?
+    return response;
   }
 
   resetGame() {
@@ -79,6 +84,7 @@ export class AppComponent implements OnInit {
 
   frameResponse(message) {
     this.responseCache.push(message);
+    // TODO - no newResponse, no buildResponse, just do it all as params/obj in setResponse()
     this.responseService.setResponse(this.buildResponse(message, this.cur.block, this.cur.action['id']));
     // todo ^ move this to generator, just pass cached messages along to it (already doing it anyway)
   }
@@ -97,4 +103,3 @@ export class AppComponent implements OnInit {
     return this.responseService.getCSV();
   }
 }
-
