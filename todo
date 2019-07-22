@@ -1,54 +1,28 @@
-RESPONSES/DB
-- export/working responses
-- working block names, in responses
 - form at beginning/end of study, data stored (not as response) -- form specified in config file
   - AND THEN USE THIS for responses! e.g. collecting the particpants' age, etc.
   should be easy to insert a form before or afterward, and store the data properly (different table than responses)
     - this would mean aggregating data for export, rather than designing data around export
 
-- yaml
-- scaling
+- scaling?
 - might need to bring back deepshuffle - to hit all blocks and they don't need to say it each time
   - might be an antipattern though -- or at least, may require explicit "shuffle: none" on lower levels that shouldn't be
 - sequences
+  - just create additional object, like 'usedResponses' and pass it inside or alongside params
+    - generator doesn't need to know anything about any of it
+  - responses now passed along as list to generator (though it may end up storing them itself in the future)
 - validation/error handling. FP
 - let them just give us css? fully formed web components and just run them? interface to store responses (or overlay via config file)
 
-
-THINGS TO MAKE MY LIFE EASIER:
-- separate assets/runlist for testing
-- tests set up on services
-
-
-  for sequence:
-    - just create additional object, like 'usedResponses' and pass it inside or alongside params
-      - generator doesn't need to know anything about any of it
-  - responses now passed along as list to generator (though it may end up storing them itself in the future)
-
-- working config/runner
-    - params give us response object
-    - at the end of it, could just have a marker of 'responder'
-- get conditional choices working through generator and back
-
-RESPONDERS:
-  pulled into the stimuli components if they have anything that is a StimuliResponse type in their parameters (scan? label?)
-    else, just fire the doneEvent() when finished, after a parameter-set delay, etc - or the action/frame itself can receive the click..
-      or it just defaults to a conditional of layering its entire self with a clickable div that fires done()
 
 FRAME:
   its own component, which handles multiple responses/done events from multiple stimuli, and then passes this up to the parent that handles
     the frame/action itself, and iterates to the next one
   parameters to the frame would be the placement of the stimuli, or it would get this from the stimuli config itself - think on it
 
-
-flow is as events --
-  stimuli -> appComponent/response aggregator/Frame -> <- service (in reverse)
-response sent stimuli->parent, it decides what to let through based on Control settings/param/whatever the child tells it
-
 TODO - move all of this into specific sections rather than global
 
-
-DEPLOY (all implemented in main repo, called from end-user repo):
+DEPLOY (all implemented in main repo, called from end-user repo): -- or just in separate app for deploy.. upload config file and done
+  -- ^ app/screen that takes file, sends call to server that spins up new study
   - query/store GKE/EKS account credentials
   - direct api to GKE/EKS to spin up nodes -- and create buckets - no TF?
     - make new resource, store reference to resource
@@ -98,5 +72,3 @@ later:
       - init, test/serve/develop, deploy, pull, destroy, etc.
       - deploy/pull/destroy just forward to the actual toku package.json call, none of that is in this scaffold repo
       - so it checks and runs init etc. first before actually calling those internally
-
-

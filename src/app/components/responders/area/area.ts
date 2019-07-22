@@ -4,29 +4,29 @@ export class ClickArea {
     value: string;
     used: false;
 
-    constructor(obj) {
-        const coordinates = obj.coordinates.split(',').map(coord => {
+    constructor(response) {
+        const coordinates = response.location.split(",").map(coord => {
             return Number(coord);
         });
-        const shape = obj.shape || 'rect';
+        const shape = response.shape || "rect";
         this.validate(shape, coordinates);
 
-        this.coordinates = coordinates, this.shape = shape, this.value = obj.value;
+        this.coordinates = coordinates, this.shape = shape, this.value = response.name;
     }
 
     validate(shape, coordinates: Array<number>) {
         switch (shape) {
-            case 'rect':
+            case "rect":
                 if (coordinates.length !== 4) {
                     // throw error with length mismatch - be specific (rather than just returning false)
                 }
                 break;
-            case 'circle':
+            case "circle":
                 if (coordinates.length !== 2) {
                     // throw error
                 }
                 break;
-            case 'poly':
+            case "poly":
                 if (coordinates.length < 4) {
                     // throw error
                 }

@@ -1,79 +1,77 @@
-import { Injectable, Inject } from '@angular/core';
-import { Control } from './configuration';
-import { StimuliService } from '../../components/stimuli/stimuli.service';
+import { Injectable, Inject } from "@angular/core";
+import { Control } from "./configuration";
+import { StimuliService } from "../../components/stimuli/stimuli.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class RunnerService {
-  list = [];
+  block = {};
   stimService = new StimuliService();
   environment: any;
 
-  constructor(@Inject('environment') env) {
-    // TODO to make testing easier, optionally accept Project here in param -- or just manage env for testing
-    // this.environment = env;
-    // console.log('this is the project', JSON.stringify(env.project, null, 2));
-    // this.list = this.pickRandom(env.project.conditions, new Control({ pickOne: true }));
-  }
+  constructor(@Inject("environment") env) { }
 
-  setProject(project) {
-    console.log('this is the project', JSON.stringify(project, null, 2));
-    this.list = this.pickRandom(project.conditions);
+  init(project) {
+    this.environment = {};
+    console.log("this is the project", JSON.stringify(project, null, 2));
+    this.block = this.pickRandom(project.conditions);
     this.environment.project = project;
   }
 
+  // TODO this is a workaround for "ended" functionality, and won't currently work!
   getBlockByName(blockName) {
     return this.environment.project[blockName];
   }
 
-  getBlockName(list): string {
-    const res = list.filter(item => {
-      if (item.name && (Object.keys(item).length === 1)) {
-        return item;
-      }
-    })[0]; // TODO validation for +1 name elements, or just handle
-
-    return res || '';
-  }
-
   // two-way; receives data for conditional decisions
-  // TODO also document generator - here and in readme
-  // TODO return Message here and in response service
-  *cycle(list?, passedInput?) {
-    console.log('NEWCYCLE******************************');
-    let input = yield 'start';
+  *cycle(block?, passedInput?) {
+    console.log("NEWCYCLE******************************");
+    let input = yield "start";
 
     if (passedInput) {
       input = passedInput;
       passedInput = null;
     }
-    list = list ? list : this.list;
+    block = block ? block : this.block;
+    console.log("block", block)
 
-    const control: Control = this.getControl(list);
-    const blockName = this.getBlockName(list);
-    console.log('in cycle, ', control, blockName);
-    list = this.processList(list, control);
+    // const control: Control = this.getControl(block);
+    // const blockName = Object.keys(block)[0];
+    // block[blockName]["name"] = blockName;
+    console.log("in cycle, ", block.name, block);
+    block = this.processBlock(block);
 
-    for (const item of list) {
-      if (Array.isArray(item)) {
-        input = yield* this.cycle(item, input);
+    for (const [key, val] of Object.entries(block)) {
+      console.log("in loop, k v", key, val, "second val", block[key], "block is", block)
+      if (this.isControl(key)) {
+        console.log("is control")
+        continue;
       }
 
-      if (item.type === 'conditional') {
-        // TODO handle multiple inputs - e.g. multiple responses
-        input = yield* this.cycle(item.items[input[0].value], input);
-      } else if (item.type === 'action') {
-        input = yield { projectName: this.environment.project.study, blockName: blockName, action: item };
+      if (this.isBlock(val)) {
+        console.log("is block")
+        input = yield* this.cycle(val, input);
+      // } else if (val["type"] && val["parameters"]["responses"] && input && input[0] && val["parameters"]["responses"][input[0].value]) {
+      //   console.log("CALLING CONDITIONAL")
+      //   input = yield* this.cycle(val["parameters"]["responses"][input[0].value], input); // TODO handle multiple inputs - e.g. multiple responses
+      } else if (val["type"]) {
+        console.log("is action")
+        input = yield { projectName: this.environment.project.study, blockName: block.name, action: val };
       } else {
         continue;
       }
     }
   }
 
+  isBlock(item) {
+    console.log("checkingg if block", item)
+    return item && typeof item === "object" && !item.type && Object.keys(item).length && !this.isControl(item);
+  }
+
   getControl(list): Control {
     let res = list.filter(item => {
-      if (item.type === 'control') {
+      if (item.type === "control") {
         return item; // Object.assign(new Control(), item);
       }
     });
@@ -89,52 +87,65 @@ export class RunnerService {
     return cont;
   }
 
-  // TODO - can get rid of the concept of Control{} by looking at block for each of these items, as it is
-  // TODO - now by key. e.g. if(block.repeat) -- much simpler
-
-  processList(list, control) {
-    console.log('entered processList, we have: ', list, control);
-    list = control.shuffle ? this.shuffle(list) : list;
-    list = control.repeat ? this.repeat(list, control.repeat) : list;
-    list = control.pickFirst ? this.pickFirst(list) : list;
-    list = control.pickRandom ? this.pickRandom(list) : list;
-    console.log('exiting processList, we have: ', list);
-
-    return list;
+  // TODO dupe from parser..
+  isControl(item) {
+    const controls = ["pickFirst", "pickRandom", "shuffle", "repeat", "runStyle", "name"];
+    return controls.includes(item);
   }
 
-  repeat(list, count) {
+  processBlock(block) {
+    console.log("entered processList, we have: ", block);
+    block = block.shuffle ? this.shuffle(block) : block;
+    block = block.repeat ? this.repeat(block, block.repeat) : block;
+    block = block.pickFirst ? this.pickFirst(block) : block;
+    block = block.pickRandom ? this.pickRandom(block) : block;
+    console.log("exiting processList, we have: ", block);
+
+    return block;
+  }
+
+  repeat(block, count) {
+    const list = Object.keys(block);
     let dupe = this.clone(list);
     for (let i = 0; i < count; i++) {  // start at 0, count up to repeat amount
       dupe = dupe.concat(list);
     }
 
-    return dupe;
+    return this.fromEntries(dupe);
   }
 
-  pickFirst(list) {
-    if (list[0].type === 'control') {
-      return list[1]; // skip it
-    }
+  pickFirst(block) {
+    const first = Object.entries(block).reduce( (acc, [key, val]) => {
+      if (!Object.keys(acc).length && !this.isControl(key)) {
+        acc = this.fromEntries([[key, val]]);
+      }
 
-    return list[0];
+      return acc;
+    }, {});
+
+    return first;
   }
 
-  pickRandom(list) {
-    const shuffled = this.shuffle(list);
-    if (shuffled[0].type === 'control') { // skip it
-      return [shuffled[1]];
-    }
-
-    return [shuffled[0]];
+  pickRandom(block) {
+    return this.pickFirst(this.shuffle(block));
   }
 
   clone(list) {
+    console.log("IN CLONE, LIST IS", list);
     return list.slice(0);
   }
 
-  shuffle(list) {
-    list = this.clone(list);
+  // Object.fromEntries not implemented in edge, so this
+  fromEntries(list) {
+    return list.reduce( (acc, [key, val]) => {
+      acc[key] = val;
+      return acc;
+      }, {});
+  }
+
+  shuffle(block) {
+    // list = this.clone(list);
+    const list = Object.entries(block);
     let counter = list.length;
     let temp, index;
 
@@ -148,7 +159,7 @@ export class RunnerService {
       list[index] = temp;
     }
 
-    return list;
+    return this.fromEntries(list);
   }
 
 }

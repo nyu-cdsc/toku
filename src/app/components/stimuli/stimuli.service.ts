@@ -1,31 +1,31 @@
-import { Injectable, Type, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
-import { Stimuli } from './stimuli';
-import { PictureComponent } from './picture/picture.component';
-import { MovieComponent } from './movie/movie.component';
-import { FormComponent } from './form/form.component';
+import { Injectable, Type, ViewContainerRef, ComponentFactoryResolver } from "@angular/core";
+import { Stimuli } from "./stimuli";
+import { PictureComponent } from "./picture/picture.component";
+import { MovieComponent } from "./movie/movie.component";
+import { FormComponent } from "./form/form.component";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class StimuliService {
   constructor() { }
 
   componentResolver(stimuli: any) {
-    console.log('INPUT STIM IS', stimuli);
+    console.log("INPUT STIM IS", stimuli);
     let res: Type<any>;
 
     switch (stimuli.type) {
-      case 'picture':
+      case "picture":
         res = PictureComponent;
         break;
-      case 'movie':
+      case "movie":
         res = MovieComponent;
         break;
-      case 'form':
+      case "form":
         res = FormComponent;
         break;
       default:
-        console.error('type not found');
+        console.error("type not found");
         break;
     }
 

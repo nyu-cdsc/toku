@@ -1,10 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Stimuli } from '../stimuli';
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Stimuli } from "../stimuli";
 
 @Component({
-  selector: 'toku-sound',
-  templateUrl: './sound.component.html',
-  styleUrls: ['./sound.component.css']
+  selector: "toku-sound",
+  templateUrl: "./sound.component.html",
+  styleUrls: ["./sound.component.css"]
 })
 export class SoundComponent implements Stimuli, OnInit {
   @Input() parameters: any;

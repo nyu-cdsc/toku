@@ -11,12 +11,12 @@ export class Response {
 
   constructor(input?) {
     this.data = new Map();
-    this.data.set('id', input ? input.id : Date.now()); // todo make better
-    this.data.set('datestamp', input ? input.datestamp : new Date().toISOString());
-    this.data.set('participant', input ? input.participant : -1);
+    this.data.set("id", input ? input.id : Date.now()); // todo make better
+    this.data.set("datestamp", input ? input.datestamp : new Date().toISOString());
+    this.data.set("participant", input ? input.participant : -1);
     // this.data.set('block', input ? input.block : '');
-    this.data.set('action', input ? input.action : '');
-    this.data.set('response', input ? input.response : '');
+    this.data.set("action", input ? input.action : "");
+    this.data.set("response", input ? input.response : "");
 
     // const remainder = [];
     for (const key in input) {
@@ -33,16 +33,16 @@ export class Response {
   getCSVHeader() {
     const keys = Array.from(this.data.keys());
     let output = keys.reduce((accum, current, idx) => {
-      if (current === 'block') {
+      if (current === "block") {
         return accum;
       }
 
       if (idx === 1) {
-        accum = accum + ',';
+        accum = accum + ",";
       }
-      return accum + current + ',';
+      return accum + current + ",";
     });
-    output += '\n';
+    output += "\n";
 
     return output;
   }
@@ -55,38 +55,37 @@ export class Response {
     const values = Array.from(this.data.values());
 
     const output = keys.reduce((accum, cur, idx) => {
-      let temp = '';
+      let temp = "";
       try {
-        console.log(accum, cur, idx, 'inside to CSV');
+        console.log(accum, cur, idx, "inside to CSV");
         if (idx === 1) {
-          accum = values[idx].toString() + ',';
+          accum = values[idx].toString() + ",";
         }
 
-        if (keys[idx] === 'block') {
+        if (keys[idx] === "block") {
           return accum;
         }
 
-        let temp = '';
         if (values[idx] === Object(values[idx])) {
           temp = JSON.stringify(values[idx]);
         } else {
           temp = values[idx].toString();
-          if (temp.indexOf(',') !== -1) {
-            temp = '"' + temp + '"';
+          if (temp.indexOf(",") !== -1) {
+            temp = "\"" + temp + "\"";
           }
         }
       } catch (e) {
         if (e instanceof TypeError) {
-          if (e.message.indexOf('Cannot read property') !== -1) {
-            console.error('Oops, looks like we are missing some data: '+cur+' is empty or malformed in the row: '+this.data);
+          if (e.message.indexOf("Cannot read property") !== -1) {
+            console.error("Oops, looks like we are missing some data: " + cur + " is empty or malformed in the row: " + this.data);
           }
         }
-        console.error('re-throwing exception for further diagnosis');
+        console.error("re-throwing exception for further diagnosis");
         throw e;
       }
       // for values that are lists - todo move thhis to their toString()
 
-      return (accum += temp + ',');
+      return (accum += temp + ",");
     });
 
     return output;

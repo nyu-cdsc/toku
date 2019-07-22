@@ -1,7 +1,7 @@
 // import { Project } from '../STUDY-CONFIG.js';
-import { run } from 'toku-parser'; // todo rename to parse
+import { run } from "toku-parser"; // todo rename to parse
 
 export const environment = {
   production: true,
-  project: run('../study.yaml')
+  project: run("../study.yaml")
 };

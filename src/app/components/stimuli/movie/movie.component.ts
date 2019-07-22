@@ -1,37 +1,36 @@
-import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild } from "@angular/core";
 
-import { Stimuli, Responsive } from '../stimuli';
-import { Message } from '../../../message';
+import { Stimuli, Responsive } from "../stimuli";
+import { Message } from "../../../message";
 
 @Component({
-  selector: 'toku-movie',
-  templateUrl: './movie.component.html',
-  styleUrls: ['./movie.component.css']
+  selector: "toku-movie",
+  templateUrl: "./movie.component.html",
+  styleUrls: ["./movie.component.css"]
 })
 export class MovieComponent implements Stimuli, Responsive, OnInit {
-  @Input() parameters: any; // todo the one other option here is to use a setter and _cast_
-  // the param type to one we create for this component.
+  @Input() parameters: any;
   @Output() doneEvent = new EventEmitter<any>();
   @Output() responseEvent = new EventEmitter<Message>();
   responseEnabled = false;
   pictureParameters = null;
-  @ViewChild('thevideo', { static: true }) thevideo: ElementRef;
+  @ViewChild("thevideo", { static: true }) thevideo: ElementRef;
 
   constructor() { }
 
   ngOnInit() {
     // setting up parameters for the "invisible picture" that hosts responses coordinates
-    if (this.parameters.coordinates) {
+    if (this.parameters.responses) {
       this.pictureParameters = {};
-      this.pictureParameters.coordinates = this.parameters.coordinates;
-      this.pictureParameters.filename = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+      this.pictureParameters.responses = this.parameters.responses;
+      this.pictureParameters.filename = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
       if (this.thevideo.nativeElement.videoWidth > innerWidth) {
         this.pictureParameters.width = innerWidth * .80;
         this.pictureParameters.nativeWidth = this.thevideo.nativeElement.videoWidth;
         this.pictureParameters.nativeHeight = this.thevideo.nativeElement.videoHeight;
         this.pictureParameters.height = innerHeight * .80 * ((innerWidth / innerHeight) /
           (this.pictureParameters.nativeWidth / this.pictureParameters.nativeHeight));
-        console.log(this.pictureParameters, 'the picture paramters');
+        console.log(this.pictureParameters, "the picture paramters");
       } else {
         this.pictureParameters.width = this.thevideo.nativeElement.videoWidth;
         this.pictureParameters.height = this.thevideo.nativeElement.videoHeight;
@@ -41,15 +40,15 @@ export class MovieComponent implements Stimuli, Responsive, OnInit {
 
   cssClass() {
     if (this.thevideo.nativeElement.videoWidth > innerWidth) {
-      return 'largeVideo';
+      return "largeVideo";
     } else {
-      return 'smallVideo';
+      return "smallVideo";
     }
   }
 
   videoStarted() {
     // setting width and height for "invisible picture"
-    if (this.parameters.coordinates) {
+    if (this.parameters.responses) {
       if (this.thevideo.nativeElement.videoWidth > innerWidth) {
         this.pictureParameters.width = innerWidth * .80;
         this.pictureParameters.nativeWidth = this.thevideo.nativeElement.videoWidth;
@@ -65,7 +64,7 @@ export class MovieComponent implements Stimuli, Responsive, OnInit {
 
   videoEnded() {
     // allows for response (if coordinates for response are set); otherwise, moves on to next stimuli
-    if (this.parameters.coordinates) {
+    if (this.parameters.responses) {
       this.responseEnabled = true;
     } else {
       this.done();
@@ -89,7 +88,7 @@ export class MovieComponent implements Stimuli, Responsive, OnInit {
     if (!this.responseEnabled) {
       return null;
     } else {
-      console.log('message received in movie! is', message);
+      console.log("message received in movie! is", message);
       // todo Response val as in the one inside Params and choice made (perhaps change Response to Choice to make
       // it clear the level it's from)
       this.responseEvent.emit(message);

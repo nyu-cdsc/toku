@@ -1,15 +1,15 @@
 import {
-  Component, ComponentFactoryResolver, EventEmitter, Input, Output, ɵNgOnChangesFeature, ViewChildren, ViewContainerRef, OnChanges
-} from '@angular/core';
+  Component, ComponentFactoryResolver, EventEmitter, Input, Output, ɵɵNgOnChangesFeature, ViewChildren, ViewContainerRef, OnChanges
+} from "@angular/core";
 
-import { Stimuli, Responsive } from '../stimuli/stimuli';
-import { StimuliService } from '../stimuli/stimuli.service';
-import { Message } from '../../message';
+import { Stimuli, Responsive } from "../stimuli/stimuli";
+import { StimuliService } from "../stimuli/stimuli.service";
+import { Message } from "../../message";
 
 @Component({
-  selector: 'toku-frame',
-  templateUrl: './frame.component.html',
-  styleUrls: ['./frame.component.css']
+  selector: "toku-frame",
+  templateUrl: "./frame.component.html",
+  styleUrls: ["./frame.component.css"]
 })
 export class FrameComponent implements OnChanges {
   @Output() doneEvent = new EventEmitter<any>();
@@ -27,15 +27,16 @@ export class FrameComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    console.log('ngchanges called, action is ', this.action);
+    console.log("ngchanges called, action is ", this.action);
     this.vRef.clear();
 
-    if (this.action.stimuli) {
-      for (const stimuli of this.action.stimuli) {
-        this.buildStimuli(stimuli, this.vRef, this.componentFactoryResolver);
-      }
-    }
-    console.log('viewcontainer length is ', this.vRef.length);
+    // if (this.action.stimuli) {
+    //   for (const stimuli of this.action.stimuli) {
+    //     this.buildStimuli(stimuli, this.vRef, this.componentFactoryResolver);
+    //   }
+    // }
+    this.buildStimuli(this.action, this.vRef, this.componentFactoryResolver);
+    console.log("viewcontainer length is ", this.vRef.length);
   }
 
   done() {
@@ -46,7 +47,7 @@ export class FrameComponent implements OnChanges {
 
   // buildStimuliDirective(stimuli: Stimuli);
   buildStimuli(stimuli: Stimuli, view: ViewContainerRef, resolver: ComponentFactoryResolver) {
-    console.log('buildstimuli called');
+    console.log("buildstimuli called");
     const componentFactory = resolver.resolveComponentFactory(this.stimService.componentResolver(stimuli));
     view.clear();
 
@@ -58,19 +59,19 @@ export class FrameComponent implements OnChanges {
 
     const inst = <Stimuli | Stimuli & Responsive>componentRef.instance;
     inst.parameters = stimuli.parameters;
-    console.log('inst is ', inst);
+    console.log("inst is ", inst);
 
     const instR = <Responsive>inst; // TODO gah fix - should be a better way in TS
     if (instR) {
       // instR.responseEnabled = false;
       instR.responseEvent.subscribe(message => {
-        console.log('responseevent fired');
+        console.log("responseevent fired");
         this.responseEvent.emit(message);
       });
     }
 
     inst.doneEvent.subscribe(data => {
-      console.log('doneevent fired');
+      console.log("doneevent fired");
       componentRef.destroy();
       this.done();
     });

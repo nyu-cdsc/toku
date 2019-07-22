@@ -1,12 +1,12 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Stimuli, Responsive } from '../stimuli';
-import { Message } from '../../../message';
+import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { Stimuli, Responsive } from "../stimuli";
+import { Message } from "../../../message";
 
 @Component({
-  selector: 'toku-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  selector: "toku-form",
+  templateUrl: "./form.component.html",
+  styleUrls: ["./form.component.css"]
 })
 export class FormComponent implements Responsive, Stimuli {
   @Input() parameters: any;
@@ -15,7 +15,7 @@ export class FormComponent implements Responsive, Stimuli {
   @Output() responseEvent = new EventEmitter<Message>();
 
   sendMessage(message: Message) {
-    console.log('message received in form is', message);
+    console.log("message received in form is", message);
     this.responseEvent.emit(message);
     this.done();
   }

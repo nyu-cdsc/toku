@@ -1,17 +1,17 @@
-import { Injectable, Inject } from '@angular/core';
-import { Response } from './response';
-import * as FileSaver from 'file-saver'; // TODO clean up or replace
+import { Injectable, Inject } from "@angular/core";
+import { Response } from "./response";
+import * as FileSaver from "file-saver"; // TODO clean up or replace
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class ResponseService {
   DBNAME: string;
   DBSTUDY: string;
-  STORE = 'responses';
+  STORE = "responses";
   db;
 
-  constructor(@Inject('environment') env) {
+  constructor(@Inject("environment") env) {
     this.getDBConnection(env.project.study, env.project.name);
   }
 
@@ -33,17 +33,17 @@ export class ResponseService {
 
     const that = this;
     request.onupgradeneeded = function () {
-      console.log('db being created or upgraded');
+      console.log("db being created or upgraded");
       // request.result instead of that.db, as it isn't yet populated at this point (async)
       const responseStore = request.result.createObjectStore(that.STORE, {
-        keyPath: 'id'
+        keyPath: "id"
       });
-      responseStore.createIndex('by_id', 'id', { unique: true });
-      responseStore.createIndex('by_participant', 'participant', {
+      responseStore.createIndex("by_id", "id", { unique: true });
+      responseStore.createIndex("by_participant", "participant", {
         unique: false
       });
       // todo error checking?
-      console.log('db creation/upgrade completed');
+      console.log("db creation/upgrade completed");
     };
   }
 
@@ -53,15 +53,15 @@ export class ResponseService {
 
   // returns transaction promise - how to define this in typescript? :Promise<IDBTransaction>?
   startTransaction(readonly: boolean = false) {
-    let type = 'readwrite';
+    let type = "readwrite";
     if (readonly) {
-      type = 'readonly';
+      type = "readonly";
     }
     return this.db.then(res => res.transaction(this.STORE, type));
   }
 
-  newResponse(): Response {
-    return new Response();
+  newResponse(input?): Response {
+    return new Response(input);
   }
 
   getResponses(): Promise<Response[]> {
@@ -79,10 +79,10 @@ export class ResponseService {
           const datas = resp.result;
 
           if (!datas) {
-            console.log('!!! DO NOT HAVE DATA');
+            console.log("!!! DO NOT HAVE DATA");
             resolve(<Response[]>[]);
           } else {
-            console.log('HAVE DATA');
+            console.log("HAVE DATA");
             datas.map(d => {
               console.log(d);
               const r = new Response(d);
@@ -105,15 +105,15 @@ export class ResponseService {
   setResponse(response: Response) {
     const store = this.startTransaction().then(transaction => {
       transaction.onsuccess = function () {
-        console.log('transaction success');
+        console.log("transaction success");
       };
       transaction.oncomplete = function () {
-        console.log('transaction complete');
+        console.log("transaction complete");
       };
       transaction.onabort = function (err) {
         console.log(err.target.result);
         console.log(err.type);
-        console.log('transaction failed: ', err);
+        console.log("transaction failed: ", err);
       };
       return transaction.objectStore(this.STORE);
     });
@@ -128,13 +128,13 @@ export class ResponseService {
         const resp = s.add(payload);
 
         resp.onsuccess = function (e) {
-          console.log('response queued successfully', e.target.result);
+          console.log("response queued successfully", e.target.result);
         };
         resp.oncomplete = function (e) {
-          console.log('response completed successfully', e.target.result);
+          console.log("response completed successfully", e.target.result);
         };
         resp.onerror = function (e) {
-          console.log('response ERROR', e.target.result, e);
+          console.log("response ERROR", e.target.result, e);
         };
       });
     });
@@ -152,14 +152,14 @@ export class ResponseService {
 
     responsePromise.then(function (responses) {
       responses.map((cur, idx) => {
-        output += cur.toCSV() + '\n';
+        output += cur.toCSV() + "\n";
       });
 
-      console.log('getCSV OUTPUT');
+      console.log("getCSV OUTPUT");
       console.log(output);
-      const file = new Blob([output], { type: 'text/csv' });
-      const stamp = new Date().toISOString().split('T')[0];
-      FileSaver.saveAs(file, csvName + '_data_exported' + stamp + '.csv');
+      const file = new Blob([output], { type: "text/csv" });
+      const stamp = new Date().toISOString().split("T")[0];
+      FileSaver.saveAs(file, csvName + "_data_exported" + stamp + ".csv");
     });
   }
 }

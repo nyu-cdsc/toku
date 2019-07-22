@@ -1,12 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
-import { Stimuli, Responsive } from '../stimuli';
-import { Message } from '../../../message';
-import { AreaComponent } from '../../responders/area/area.component';
+import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild, AfterViewChecked } from "@angular/core";
+import { Stimuli, Responsive } from "../stimuli";
+import { Message } from "../../../message";
+import { AreaComponent } from "../../responders/area/area.component";
 
 @Component({
-  selector: 'toku-picture',
-  templateUrl: './picture.component.html',
-  styleUrls: ['./picture.component.css']
+  selector: "toku-picture",
+  templateUrl: "./picture.component.html",
+  styleUrls: ["./picture.component.css"]
 })
 export class PictureComponent implements Stimuli, Responsive, OnInit, AfterViewChecked {
   @Input() parameters: any;
@@ -14,7 +14,7 @@ export class PictureComponent implements Stimuli, Responsive, OnInit, AfterViewC
   @Output() responseEvent = new EventEmitter<Message>();
   @Input() responseEnabled = true; // this can be disabled by parent via [responseEnabled]
   @ViewChild(AreaComponent, { static: false }) areamap: AreaComponent;
-  @ViewChild('theimage', { static: false }) theimage: ElementRef;
+  @ViewChild("theimage", { static: false }) theimage: ElementRef;
   value: null;
 
   constructor() { }
@@ -37,14 +37,14 @@ export class PictureComponent implements Stimuli, Responsive, OnInit, AfterViewC
     // confirm that this is wired correctly
     if ((this.value == null || this.value === 0) && this.parameters.nativeWidth > innerWidth) {
       this.parameters.scalingFactor = this.getScalingFactor();
-      console.log('im inside and setting scalling factor', this.parameters.scalingFactor);
-      console.log(this.parameters, 'these are the paramters');
+      console.log("im inside and setting scaling factor", this.parameters.scalingFactor);
+      console.log(this.parameters, "these are the parameters");
       this.value = this.parameters.nativeHeight;
     }
   }
 
   sendMessage(message: Message) {
-    console.log('message received in pic! is', message);
+    console.log("message received in pic! is", message);
     // todo Response val as in the one inside Params and choice made (perhaps change Response to Choice to make
     // it clear the level it's from)
     this.responseEvent.emit(message);

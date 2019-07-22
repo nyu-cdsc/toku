@@ -1,4 +1,4 @@
-import { Project } from '../STUDY-CONFIG.js';
+import { Project } from "../STUDY-CONFIG.js";
 // import { run } from 'toku-parser'; // todo rename to parse
 // import * as configFile from '../study.yaml';
 // This file can be replaced during build by using the `fileReplacements` array.

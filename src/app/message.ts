@@ -1,3 +1,3 @@
-export type Message = {
+export interface Message {
     value: any;
-} 
+}

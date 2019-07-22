@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, OnInit } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { tap } from "rxjs/operators";
 
-import { ResponseService } from './services/response/response.service';
-import { RunnerService } from './services/runner/runner.service';
-import { ParserService } from './services/parser/parser.service';
+import { ResponseService } from "./services/response/response.service";
+import { RunnerService } from "./services/runner/runner.service";
+import { ParserService } from "./services/parser/parser.service";
 
 @Component({
-  selector: 'toku-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "toku-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
   study: string;
@@ -16,10 +17,10 @@ export class AppComponent implements OnInit {
   responseCache = [];
   done = false;
   participant = Date.now(); // todo - combination of machine/instance identifier + participant count
-  project = {};
+  project: Promise<any>;
   cur = {
-    condition: '',
-    block: '',
+    condition: "",
+    block: "",
     action: {} // todo
   };
 
@@ -29,35 +30,45 @@ export class AppComponent implements OnInit {
     private responseService: ResponseService,
     private parser: ParserService
   ) {
-    let proj = this.http.get('assets/project.yml'); // TODO it will be hitting a url + projectID to get this config, passed in by query param
-    proj = parser.load(proj, console.log);
-
-    this.project = parser.preBuild2(proj);
-    runner.setProject(this.project);
-    this.iterator = runner.cycle();
-    const firstBlock = runner.getBlockName(runner.list); // todo ick api
-    this.cur.condition = firstBlock;
-    this.cur.block = firstBlock;
+    this.project = this.doThings();
+    this.project.then(x => {
+      this.runner.init(x);
+      this.iterator = this.runner.cycle();
+      const firstBlock = Object.keys(this.runner.block)[0];
+      this.cur.condition = firstBlock;
+      this.cur.block = firstBlock;
+      this.nextAction(null);
+    });
   }
 
   ngOnInit() {
+    console.log("NGINIT CALLED");
     // begin iteration
-    this.nextAction(null);
+  }
+
+  doThings() {
+    const proj = this.http.get("assets/project.yml", {responseType: "text"})
+    .toPromise().then( x => {
+        console.log("got VALUEEE " + x);
+        const p = this.parser.load(x, console.log);
+        console.log("THIS IS PROJECT PARSED", p);
+        return this.parser.preBuild2(p);
+     });
+
+     return proj;
   }
 
   studyEnded() {
-    console.log('studyEnded() has been called');
+    console.log("studyEnded() has been called");
     this.done = true;
-    this.cur.action = this.runner.getBlockByName('ended');
-
-    // TODO implement end of study logic here
-    // note that the config can put what it wants the end of study Frame to be -- so this could just be running cleanup, etc.
+    const block = this.runner.getBlockByName("ended");
+    this.cur.action = block[Object.keys(block)[0]];
   }
 
   nextAction(data) {
     // todo put in assertions/logs when running in DEV mode
     const cur = this.iterator.next(data);
-    if (cur.value === 'start') {
+    if (cur.value === "start") {
       return this.nextAction(data);
     }
     if (cur.done) {
@@ -65,16 +76,16 @@ export class AppComponent implements OnInit {
     }
     this.cur.block = cur.value.block;
     this.cur.action = cur.value.action;
-    console.log('nextaction called, currentAction is: ', this.cur.action);
+    console.log("nextaction called, currentAction is: ", this.cur.action);
   }
 
   // todo remove
   buildResponse(message, block, action) {
     const response = this.responseService.newResponse();
-    response.data.set('participant', this.participant);
-    response.data.set('response', message.value);
-    response.data.set('block', block);
-    response.data.set('action', action);
+    response.data.set("participant", this.participant);
+    response.data.set("response", message.value);
+    response.data.set("block", block);
+    response.data.set("action", action);
     return response;
   }
 
@@ -84,8 +95,8 @@ export class AppComponent implements OnInit {
 
   frameResponse(message) {
     this.responseCache.push(message);
-    // TODO - no newResponse, no buildResponse, just do it all as params/obj in setResponse()
-    this.responseService.setResponse(this.buildResponse(message, this.cur.block, this.cur.action['id']));
+    // TODO - no newResponse, no buildResponse, just do it all as params/obj in setResponse() // TODO already partially implemented in constructor
+    this.responseService.setResponse(this.buildResponse(message, this.cur.block, this.cur.action["id"]));
     // todo ^ move this to generator, just pass cached messages along to it (already doing it anyway)
   }
 

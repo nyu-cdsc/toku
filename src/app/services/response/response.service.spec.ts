@@ -1,17 +1,17 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed, inject } from "@angular/core/testing";
 
-import { environment } from '../../../environments/environment';
-import { ResponseService } from './response.service';
-import { Response } from './response';
+import { environment } from "../../../environments/environment";
+import { ResponseService } from "./response.service";
+import { Response } from "./response";
 
-describe('ResponseService', () => {
+describe("ResponseService", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ResponseService, { provide: 'environment', useValue: environment }]
+      providers: [ResponseService, { provide: "environment", useValue: environment }]
     });
   });
 
-  it('should have responses', (done) => {
+  it("should have responses", (done) => {
     const service = TestBed.get(ResponseService);
     const response = new Response();
     const res = service.setResponse(response);

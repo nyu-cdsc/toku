@@ -1,37 +1,42 @@
 ---
 study: testStudy
 
+ended:
+  startGamePicture:
+
 conditions:
   Condition1:
+    item2:
     startGameBlock:
     exampleRandom:
   Condition2:
+    item2:
     startGameBlock:
     exampleStimuli:
 
 blocks:
   startGameBlock:
+    startGamePicture:
     startGameVideo:
   exampleRandom:
     item1:
     item2:
-    startGameBlock:
     shuffle: true
   exampleStimuli:
     item3:
-    item4:
-    pickOne: true
+    item1:
+    pickRandom: true
 
 stimuli:
   startGameVideo:
-    type: picture
+    type: movie
     parameters:
-      # todo make assets lookup more intuitive. no ../
-      filename: '../../../assets/sample/startGame.mp4'
+      # todo make assets lookup more intuitive. no ../ - this will be hosted remotely so should be simple, then loaded locally into db
+      filename: '../../../assets/sample/video1.mp4'
       responses:
         one:
           shape: rect
-          position: "161, 646, 250, 740"
+          location: "161, 646, 250, 740"
   item1:
     type: movie
     parameters:
@@ -39,7 +44,7 @@ stimuli:
       responses:
         one:
           shape: rect
-          position: "161, 646, 250, 740"
+          location: "161, 646, 250, 740"
   item2:
     type: movie
     parameters:
@@ -47,28 +52,28 @@ stimuli:
       responses:
         one:
           shape: rect
-          position: "161, 646, 250, 740"
+          location: "161, 646, 250, 740"
           action: item3
         two:
           shape: rect
-          position: "282, 646, 370, 740"
-          action: startGameBlock
+          location: "282, 646, 370, 740"
+          action: item3
   item3:
-    type: movie
+    type: picture
     parameters:
-      filename: '../../../assets/sample/video3.mp4'
+      filename: '../../../assets/sample/image1.png'
       responses:
         one:
           shape: rect
-          position: "161, 646, 250, 740"
-  item4:
-    type: movie
+          location: "0, 0, 100, 100"
+  startGamePicture:
+    type: picture
     parameters:
-      filename: '../../../assets/sample/video4.mp4'
+      filename: '../../../assets/sample/start.jpeg'
       responses:
-        one:
+        start:
           shape: rect
-          position: "161, 646, 250, 740"
+          location: "0, 0, 5000, 5000"
 
 forms:
   startForm:
@@ -82,3 +87,8 @@ forms:
           type: dropdown
           options: "female, male, other"
           title: "Participant Gender"
+
+# TODO
+# slider scales
+# reaction times
+# circular buttons

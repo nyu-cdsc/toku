@@ -1,14 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import {
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting,
-} from '@angular/platform-browser-dynamic/testing';
+} from "@angular/platform-browser-dynamic/testing";
 
-import { PictureComponent } from '../picture/picture.component';
-import { MovieComponent } from './movie.component';
-import { AreaComponent } from '../../responders/area/area.component';
+import { PictureComponent } from "../picture/picture.component";
+import { MovieComponent } from "./movie.component";
+import { AreaComponent } from "../../responders/area/area.component";
 
-describe('MovieComponent', () => {
+describe("MovieComponent", () => {
   let component: MovieComponent;
   let fixture: ComponentFixture<MovieComponent>;
 
@@ -27,7 +27,7 @@ describe('MovieComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,5 +1,5 @@
-import { EventEmitter } from '@angular/core';
-import { Message } from '../../message';
+import { EventEmitter } from "@angular/core";
+import { Message } from "../../message";
 
 export interface Stimuli {
   parameters: any;
