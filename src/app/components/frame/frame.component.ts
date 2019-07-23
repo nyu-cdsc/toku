@@ -36,7 +36,7 @@ export class FrameComponent implements OnChanges {
     //   }
     // }
     this.buildStimuli(this.action, this.vRef, this.componentFactoryResolver);
-    console.log("viewcontainer length is ", this.vRef.length);
+    // console.log("viewcontainer length is ", this.vRef.length);
   }
 
   done() {
@@ -47,7 +47,7 @@ export class FrameComponent implements OnChanges {
 
   // buildStimuliDirective(stimuli: Stimuli);
   buildStimuli(stimuli: Stimuli, view: ViewContainerRef, resolver: ComponentFactoryResolver) {
-    console.log("buildstimuli called");
+    // console.log("buildstimuli called");
     const componentFactory = resolver.resolveComponentFactory(this.stimService.componentResolver(stimuli));
     view.clear();
 
@@ -59,13 +59,13 @@ export class FrameComponent implements OnChanges {
 
     const inst = <Stimuli | Stimuli & Responsive>componentRef.instance;
     inst.parameters = stimuli.parameters;
-    console.log("inst is ", inst);
+    // console.log("inst is ", inst);
 
     const instR = <Responsive>inst; // TODO gah fix - should be a better way in TS
     if (instR) {
       // instR.responseEnabled = false;
       instR.responseEvent.subscribe(message => {
-        console.log("responseevent fired");
+        // console.log("responseevent fired");
         this.responseEvent.emit(message);
       });
     }

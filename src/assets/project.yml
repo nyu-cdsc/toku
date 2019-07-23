@@ -4,28 +4,31 @@ study: testStudy
 ended:
   startGamePicture:
 
+# conditions:
+#   Condition1:
+#     item1:
+#     exampleStimuli:
+#     exampleRandom:
+#   Condition2:
+#     item1:
+#     exampleStimuli:
 conditions:
   Condition1:
-    item2:
-    startGameBlock:
     exampleRandom:
-  Condition2:
-    item2:
-    startGameBlock:
-    exampleStimuli:
 
 blocks:
   startGameBlock:
     startGamePicture:
     startGameVideo:
   exampleRandom:
-    item1:
     item2:
-    shuffle: true
+    # shuffle: true
   exampleStimuli:
     item3:
     item1:
-    pickRandom: true
+    pickOne: true
+  anotherBlock:
+    item6:
 
 stimuli:
   startGameVideo:
@@ -53,7 +56,7 @@ stimuli:
         one:
           shape: rect
           location: "161, 646, 250, 740"
-          action: item3
+          action: anotherBlock
         two:
           shape: rect
           location: "282, 646, 370, 740"
@@ -63,7 +66,16 @@ stimuli:
     parameters:
       filename: '../../../assets/sample/image1.png'
       responses:
-        one:
+        four:
+          shape: rect
+          location: "0, 0, 100, 100"
+          action: startGameVideo
+  item6:
+    type: picture
+    parameters:
+      filename: '../../../assets/sample/image1.png'
+      responses:
+        five:
           shape: rect
           location: "0, 0, 100, 100"
   startGamePicture:

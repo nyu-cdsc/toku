@@ -1,6 +1,6 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
   <div *ngFor="let q of parameters?.questions">
-    {{q.questionText}}<br>
+    {{q.title}}<br>
     <div *ngIf="q.type == 'text'">
       <input ngModel [type]="q.type" [name]="q.name"><br>
     </div>

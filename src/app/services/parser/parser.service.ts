@@ -15,7 +15,6 @@ export class ParserService {
 
     try {
       const errors = [];
-      console.log("IN PARSER, this is input", input);
       const doc = yaml.safeLoad(input);
       console.log("IN PARSER, this is DOC", JSON.stringify(doc, null, 2));
       // todo winston? - log debug vals
@@ -74,9 +73,10 @@ export class ParserService {
       } else if (val["type"]) { // is stimuli
         console.log("is stimuli!");
         val = that.populateActions(val, doc);
+        console.log("********************AFTER POPULATE", val);
         val["name"] = key;
         acc[key] = val;
-      } else if (that.isControl(key)) { // TODO why does this never get called?
+      } else if (that.isControl(key)) {
         console.log("IS CONTROL!")
         acc[key] = val;
         // process.exit();
@@ -116,10 +116,15 @@ export class ParserService {
           // want to do a recursive lookup for any item that is a var
           console.log("calling build3 on block");
           const built = that.build3(val[item], doc);
+          console.log("BEFORE SET")
+          built["name"] = item;
+          console.log("AFTER SET")
           if (!built) { throw new Error(`build failed for ${val[item]} from ${item} on ${doc}`); }
           return built;
         } else if (val[item]["type"]) {
+          console.log("LOOKUP, CALLING POPULATE");
           val[item] = that.populateActions(val[item], doc);
+          console.log("LOOKUP, CALLING POPULATEAFTER", val[item]);
         }
         // return {[item]: val[item]};
         val[item]["name"] = item;
@@ -135,7 +140,7 @@ export class ParserService {
 
   isControl(item) {
     console.log("in cONTROl, item is ", item)
-    const controls = ["pickFirst", "pickRandom", "shuffle", "repeat", "runStyle"];
+    const controls = ["pickFirst", "pickOne", "shuffle", "repeat", "runStyle", "name"]; // todo fix name hack
     return controls.includes(item);
   }
 
@@ -149,10 +154,14 @@ export class ParserService {
 
     console.log("POPULATE, BEFORE", item.parameters.responses);
     item.parameters.responses = Object.entries(item.parameters.responses).reduce( (acc, [key, val], idx) => {
+      if(typeof key !== "string") throw new Error(`key not string! ${key}`)
       console.log(key, val);
 
-      if (val["action"] ) {
+      if (val["action"] && typeof val["action"] === "string") {
         acc[key]["action"] = {[val["action"]]: this.lookup(val["action"], doc)};
+        if(item.parameters.responses["four"]) {
+          console.log("IS FOUR - 3", val["action"])
+        }
       }
 
       acc[key]["name"] = key;

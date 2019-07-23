@@ -9,13 +9,15 @@ export class RunnerService {
   block = {};
   stimService = new StimuliService();
   environment: any;
+  second = false;
+  third = false;
 
   constructor(@Inject("environment") env) { }
 
   init(project) {
     this.environment = {};
     console.log("this is the project", JSON.stringify(project, null, 2));
-    this.block = this.pickRandom(project.conditions);
+    this.block = this.pickOne(project.conditions);
     this.environment.project = project;
   }
 
@@ -25,14 +27,14 @@ export class RunnerService {
   }
 
   // two-way; receives data for conditional decisions
-  *cycle(block?, passedInput?) {
-    console.log("NEWCYCLE******************************");
-    let input = yield "start";
+  *cycle(block?, input = [{value: null}]) {
+    console.log("NEWCYCLE******************************, input", input);
+    // input = yield "start";
+    yield "start";
+    console.log("INPUT AFTER START", input)
 
-    if (passedInput) {
-      input = passedInput;
-      passedInput = null;
-    }
+    // input = yield this.logAndReturn(input);
+
     block = block ? block : this.block;
     console.log("block", block)
 
@@ -43,25 +45,105 @@ export class RunnerService {
     block = this.processBlock(block);
 
     for (const [key, val] of Object.entries(block)) {
-      console.log("in loop, k v", key, val, "second val", block[key], "block is", block)
+      console.log("in loop, k v", key, val, "block is", block)
       if (this.isControl(key)) {
         console.log("is control")
         continue;
       }
 
-      if (this.isBlock(val)) {
-        console.log("is block")
-        input = yield* this.cycle(val, input);
-      // } else if (val["type"] && val["parameters"]["responses"] && input && input[0] && val["parameters"]["responses"][input[0].value]) {
-      //   console.log("CALLING CONDITIONAL")
-      //   input = yield* this.cycle(val["parameters"]["responses"][input[0].value], input); // TODO handle multiple inputs - e.g. multiple responses
-      } else if (val["type"]) {
-        console.log("is action")
-        input = yield { projectName: this.environment.project.study, blockName: block.name, action: val };
-      } else {
-        continue;
+      console.log("INPUT IN LOOP - 1", input)
+      input = yield* this.callNext(val, block, input);
+      console.log("INPUT IN LOOP - 2", input)
+
+      // if (this.isBlock(val)) {
+      //   console.log("is block")
+      //   input = yield* this.cycle(val, input);
+      // } else if (this.isConditional(val)) { // TODO support more than one round?
+      //   console.log("CONDITIONAL!!!")
+      //     input = yield { projectName: this.environment.project.study, blockName: parent.name, action: val };
+      //     // second time
+      //     console.log("second time, input is? ", input, "item is", val)
+      //     let action = val["parameters"]["responses"][input[0].value]["action"];
+      //     action = action[Object.keys(action)[0]];
+
+      //     if (this.isBlock(action)) {
+      //       input = yield* this.cycle(action, input);
+      //     } else {
+      //       input = yield { projectName: this.environment.project.study, blockName: block.name, action: action };
+      //     }
+      // } else if (val["type"]) {
+      //   console.log("is action")
+      // //   input = yield
+      //   input = yield { projectName: this.environment.project.study, blockName: block.name, action: val };
+      // } else {
+      //   continue;
+      // }
+    }
+  }
+
+  *callNext(item, parent, input) {
+    console.log("CALLNEXT, input", input)
+    if (!input) input = [{value: null}];
+    if (input[0]["action"]) {
+      console.log("is CONDITIONAL, REPLACING ACTION")
+      item = input[0]["action"];
+      input = [{value: null}];
+      // if (!this.isBlock(item)) {
+      item = item[Object.keys(item)[0]];
+      // }
+    }
+    if (this.second) {
+      console.log("second!", item);
+    }
+    if (this.third) {
+      console.log("third!", item);
+      // process.exit(0)
+    }
+    if (this.isBlock(item)) {
+      console.log("is BLOCK")
+      if (this.third) {
+        console.log("third! - 2", item);
+        process.exit(0)
+      }
+      if (this.second) {
+        console.log("second! - 2", item);
+        this.third = true;
+        // process.exit(0)
+      }
+      console.log("CALLING CYCLE")
+      input = yield* this.cycle(item, input);
+    } else if (item["type"]) {
+      console.log("is ITEM")
+      if (this.second) {
+        console.log("second! - 3", item);
+        // process.exit(0)
+      }
+      input = yield { projectName: this.environment.project.study, blockName: parent.name, action: item };
+      if (input && input[0]["action"]) {
+        this.second = true;
+        item = input[0]["action"];
+        item = item[Object.keys(item)[0]];
+        console.log("GOT RESULT! CALLNEXT", input, item);
+        input = yield* this.callNext(item, parent, [{value: null}]);
       }
     }
+  }
+
+  logAndReturn(input) {
+    console.log("current input is", input);
+    return "eh";
+  }
+
+  isConditional(item) {
+    if (!item.parameters.responses) return false;
+
+    for (const [key, val] of Object.entries(item.parameters.responses)) {
+      if (val["action"]) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   isBlock(item) {
@@ -89,7 +171,7 @@ export class RunnerService {
 
   // TODO dupe from parser..
   isControl(item) {
-    const controls = ["pickFirst", "pickRandom", "shuffle", "repeat", "runStyle", "name"];
+    const controls = ["pickFirst", "pickOne", "shuffle", "repeat", "runStyle", "name"];
     return controls.includes(item);
   }
 
@@ -98,7 +180,7 @@ export class RunnerService {
     block = block.shuffle ? this.shuffle(block) : block;
     block = block.repeat ? this.repeat(block, block.repeat) : block;
     block = block.pickFirst ? this.pickFirst(block) : block;
-    block = block.pickRandom ? this.pickRandom(block) : block;
+    block = block.pickOne ? this.pickOne(block) : block;
     console.log("exiting processList, we have: ", block);
 
     return block;
@@ -126,7 +208,7 @@ export class RunnerService {
     return first;
   }
 
-  pickRandom(block) {
+  pickOne(block) {
     return this.pickFirst(this.shuffle(block));
   }
 

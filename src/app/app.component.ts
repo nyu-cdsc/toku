@@ -38,6 +38,8 @@ export class AppComponent implements OnInit {
       this.cur.condition = firstBlock;
       this.cur.block = firstBlock;
       this.nextAction(null);
+      // this.nextAction({value: "initial"});
+      // this.nextAction({value: "initial2"});
     });
   }
 
@@ -49,9 +51,7 @@ export class AppComponent implements OnInit {
   doThings() {
     const proj = this.http.get("assets/project.yml", {responseType: "text"})
     .toPromise().then( x => {
-        console.log("got VALUEEE " + x);
         const p = this.parser.load(x, console.log);
-        console.log("THIS IS PROJECT PARSED", p);
         return this.parser.preBuild2(p);
      });
 
