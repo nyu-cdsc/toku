@@ -102,22 +102,17 @@ export class RunnerService {
     if (this.isBlock(item)) {
       console.log("is BLOCK");
       if (this.third) {
-        console.log("third! - 2", item);
-        // process.exit(0);
+        throw new Error(`we might be caught in a cycle! ${JSON.stringify(item, null, 2)}`);
       }
       if (this.second) {
         console.log("second! - 2", item);
         this.third = true;
-        // process.exit(0)
       }
       console.log("CALLING CYCLE");
       input = yield* this.cycle(item, input);
     } else if (item["type"]) {
       console.log("is ITEM");
       if (this.second) {
-        console.log("second! - 3", item);
-        // process.exit(0)
-        throw new Error("we might be stuck in a cycle!");
       }
       input = yield { projectName: this.environment.project.study, blockName: parent.name, action: item };
       if (input && input[0]["action"]) {
