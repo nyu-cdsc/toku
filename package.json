@@ -1,9 +1,10 @@
 {
   "name": "toku",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:prod": "ng serve --prod --aot --optimization --watch=false",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -27,7 +28,6 @@
     "js-yaml": "^3",
     "pouchdb": "^7",
     "rxjs": "^6",
-    "toku-parser": "^0.1.2",
     "tslib": "^1",
     "typescript": "^3.4.5",
     "zone.js": "~0.9.1"

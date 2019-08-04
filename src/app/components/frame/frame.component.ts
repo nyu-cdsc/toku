@@ -48,7 +48,7 @@ export class FrameComponent implements OnChanges {
   // buildStimuliDirective(stimuli: Stimuli);
   buildStimuli(stimuli: Stimuli, view: ViewContainerRef, resolver: ComponentFactoryResolver) {
     console.log("buildstimuli called");
-    if (!Object.keys(stimuli).length) return;
+    if (!Object.keys(stimuli).length) { return; }
 
     const componentFactory = resolver.resolveComponentFactory(this.stimService.componentResolver(stimuli));
     view.clear();
