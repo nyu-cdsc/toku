@@ -55,10 +55,10 @@ export class ParserService {
 
   // todo overload to take string or obj?
   build3(item, doc) {
-    console.log("BUILD3 init", "item", item);
+    // console.log("BUILD3 init", "item", item);
     const that = this;
     const res = Object.entries(item).reduce( function loop(acc, [key, val], idx) {
-      console.log("build3 reduce", "acc", acc, "key", key, "val", val, "idx", idx);
+      // console.log("build3 reduce", "acc", acc, "key", key, "val", val, "idx", idx);
 
       if (val === null) { // is var
         const found = that.lookup(key, doc);
@@ -66,36 +66,36 @@ export class ParserService {
           throw new Error(`could not find ${key} in document`);
         }
         // found.name = key;
-        console.log("found! name  is ", key);
+        // console.log("found! name  is ", key);
         // found["name"] = key;
         acc[key] = found;
         // acc[key]["name"] = key;
       } else if (val["type"]) { // is stimuli
-        console.log("is stimuli!");
+        // console.log("is stimuli!");
         val = that.populateActions(val, doc);
-        console.log("********************AFTER POPULATE", val);
+        // console.log("********************AFTER POPULATE", val);
         val["name"] = key;
         acc[key] = val;
       } else if (that.isControl(key)) {
-        console.log("IS CONTROL!");
+        // console.log("IS CONTROL!");
         acc[key] = val;
         // process.exit();
         // is control element -- this should be done in buildblock?
         // addToControl(val);
       } else if (Object.keys(val).length) { // is block
-        console.log("calling build3 on children");
+        // console.log("calling build3 on children");
         const children = that.build3(val, doc);
         children.name = key;
         acc[key] = children;
       } else {
-        console.log(key, val);
+        // console.log(key, val);
         throw new Error("what");
       }
 
       return acc;
     }, item);
 
-    console.log("build3 RESULT IS", res);
+    // console.log("build3 RESULT IS", res);
     return res;
   }
 
@@ -104,7 +104,7 @@ export class ParserService {
   *
   */
   lookup(item, doc) {
-    console.log("looking up item", item);
+    // console.log("looking up item", item);
     const that = this;
     const res = Object.entries(doc).reduce( function(acc, [key, val], idx) {
       if (key === "study" || key === "conditions") {
@@ -112,19 +112,19 @@ export class ParserService {
       }
       if (val[item]) {
         if (that.isBlock(val[item])) {
-          console.log("IS BLOCK");
+          // console.log("IS BLOCK");
           // want to do a recursive lookup for any item that is a var
-          console.log("calling build3 on block");
+          // console.log("calling build3 on block");
           const built = that.build3(val[item], doc);
-          console.log("BEFORE SET");
+          // console.log("BEFORE SET");
           built["name"] = item;
-          console.log("AFTER SET");
+          // console.log("AFTER SET");
           if (!built) { throw new Error(`build failed for ${val[item]} from ${item} on ${doc}`); }
           return built;
         } else if (val[item]["type"]) {
-          console.log("LOOKUP, CALLING POPULATE");
+          // console.log("LOOKUP, CALLING POPULATE");
           val[item] = that.populateActions(val[item], doc);
-          console.log("LOOKUP, CALLING POPULATEAFTER", val[item]);
+          // console.log("LOOKUP, CALLING POPULATEAFTER", val[item]);
         }
         // return {[item]: val[item]};
         val[item]["name"] = item;
@@ -133,13 +133,13 @@ export class ParserService {
       return acc;
     }, []);
 
-    console.log("lookup res", res);
+    // console.log("lookup res", res);
 
     return res || false;
   }
 
   isControl(item) {
-    console.log("in cONTROl, item is ", item);
+    // console.log("in cONTROl, item is ", item);
     const controls = ["pickFirst", "pickOne", "shuffle", "repeat", "runStyle", "name"]; // todo fix name hack
     return controls.includes(item);
   }
@@ -152,22 +152,22 @@ export class ParserService {
     if (!item.parameters.responses) { return item; }
     // TODO ^ make item constructor, and this one of its components - that would ensure parameters exists, validation, etc
 
-    console.log("POPULATE, BEFORE", item.parameters.responses);
+    // console.log("POPULATE, BEFORE", item.parameters.responses);
     item.parameters.responses = Object.entries(item.parameters.responses).reduce( (acc, [key, val], idx) => {
       if (typeof key !== "string") { throw new Error(`key not string! ${key}`); }
-      console.log(key, val);
+      // console.log(key, val);
 
       if (val["action"] && typeof val["action"] === "string") {
         acc[key]["action"] = {[val["action"]]: this.lookup(val["action"], doc)};
         if (item.parameters.responses["four"]) {
-          console.log("IS FOUR - 3", val["action"]);
+          // console.log("IS FOUR - 3", val["action"]);
         }
       }
 
       acc[key]["name"] = key;
       return acc;
     }, item.parameters.responses);
-    console.log("POPULATE, AFTER", item.parameters.responses);
+    // console.log("POPULATE, AFTER", item.parameters.responses);
 
     return item;
   }

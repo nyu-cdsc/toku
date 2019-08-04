@@ -95,9 +95,6 @@ export class ResponseService {
       });
     });
 
-    // return promise here, and above give the code to resolve it
-    // still need to come up with link, and make sure csv still works
-
     return responsePromise;
   }
 

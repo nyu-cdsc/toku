@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("NGINIT CALLED");
+    // console.log("NGINIT CALLED");
     // begin iteration
   }
 

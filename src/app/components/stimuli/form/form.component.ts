@@ -15,10 +15,10 @@ export class FormComponent implements Responsive, Stimuli, OnInit {
   @Output() responseEvent = new EventEmitter<Message>();
 
   ngOnInit() {
-    console.log("NGINIT CALLED IN FORM");
+    // console.log("NGINIT CALLED IN FORM");
     const quest = [];
     for (const [key, val] of Object.entries(this.parameters.questions)) {
-      console.log("key val", key, val);
+      // console.log("key val", key, val);
 
       val["name"] = key;
       if (val["options"]) {

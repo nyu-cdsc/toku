@@ -9,6 +9,8 @@ export class RunnerService {
   block = {};
   stimService = new StimuliService();
   environment: any;
+
+  // for diagnosis of infinite looping
   second = false;
   third = false;
 
@@ -28,106 +30,57 @@ export class RunnerService {
 
   // two-way; receives data for conditional decisions
   *cycle(block?, input = [{value: null}]) {
-    console.log("NEWCYCLE******************************, input", input);
-    // input = yield "start";
+    // console.log("NEWCYCLE******************************, input", input);
     yield "start";
-    console.log("INPUT AFTER START", input);
-
-    // input = yield this.logAndReturn(input);
+    // console.log("INPUT AFTER START", input);
 
     block = block ? block : this.block;
-    console.log("block", block);
-
-    // const control: Control = this.getControl(block);
-    // const blockName = Object.keys(block)[0];
-    // block[blockName]["name"] = blockName;
-    console.log("in cycle, ", block.name, block);
     block = this.processBlock(block);
 
     for (const [key, val] of Object.entries(block)) {
-      console.log("in loop, k v", key, val, "block is", block);
       if (this.isControl(key)) {
-        console.log("is control");
         continue;
       }
 
-      console.log("INPUT IN LOOP - 1", input);
       input = yield* this.callNext(val, block, input);
-      console.log("INPUT IN LOOP - 2", input);
-
-      // if (this.isBlock(val)) {
-      //   console.log("is block")
-      //   input = yield* this.cycle(val, input);
-      // } else if (this.isConditional(val)) { // TODO support more than one round?
-      //   console.log("CONDITIONAL!!!")
-      //     input = yield { projectName: this.environment.project.study, blockName: parent.name, action: val };
-      //     // second time
-      //     console.log("second time, input is? ", input, "item is", val)
-      //     let action = val["parameters"]["responses"][input[0].value]["action"];
-      //     action = action[Object.keys(action)[0]];
-
-      //     if (this.isBlock(action)) {
-      //       input = yield* this.cycle(action, input);
-      //     } else {
-      //       input = yield { projectName: this.environment.project.study, blockName: block.name, action: action };
-      //     }
-      // } else if (val["type"]) {
-      //   console.log("is action")
-      // //   input = yield
-      //   input = yield { projectName: this.environment.project.study, blockName: block.name, action: val };
-      // } else {
-      //   continue;
-      // }
     }
   }
 
   *callNext(item, parent, input) {
-    console.log("CALLNEXT, input", input);
     if (!input) { input = [{value: null}]; }
     if (input[0]["action"]) {
-      console.log("is CONDITIONAL, REPLACING ACTION");
+      // console.log("is CONDITIONAL, REPLACING ACTION");
       item = input[0]["action"];
       input = [{value: null}];
-      // if (!this.isBlock(item)) {
       item = item[Object.keys(item)[0]];
-      // }
     }
     if (this.second) {
-      console.log("second!", item);
+      // console.log("second!", item);
     }
     if (this.third) {
-      console.log("third!", item);
-      // process.exit(0)
+      // console.log("third!", item);
     }
     if (this.isBlock(item)) {
-      console.log("is BLOCK");
+      // console.log("is BLOCK");
       if (this.third) {
-        throw new Error(`we might be caught in a cycle! ${JSON.stringify(item, null, 2)}`);
+        throw new Error(`we are caught in a repeating cycle! ${JSON.stringify(item, null, 2)}`);
       }
       if (this.second) {
-        console.log("second! - 2", item);
         this.third = true;
       }
-      console.log("CALLING CYCLE");
+      // console.log("CALLING CYCLE");
       input = yield* this.cycle(item, input);
     } else if (item["type"]) {
-      console.log("is ITEM");
-      if (this.second) {
-      }
+      // console.log("is ITEM");
       input = yield { projectName: this.environment.project.study, blockName: parent.name, action: item };
       if (input && input[0]["action"]) {
         this.second = true;
         item = input[0]["action"];
         item = item[Object.keys(item)[0]];
-        console.log("GOT RESULT! CALLNEXT", input, item);
+        // console.log("GOT RESULT! CALLNEXT", input, item);
         input = yield* this.callNext(item, parent, [{value: null}]);
       }
     }
-  }
-
-  logAndReturn(input) {
-    console.log("current input is", input);
-    return "eh";
   }
 
   isConditional(item) {
@@ -143,7 +96,7 @@ export class RunnerService {
   }
 
   isBlock(item) {
-    console.log("checkingg if block", item);
+    // console.log("checkingg if block", item);
     return item && typeof item === "object" && !item.type && Object.keys(item).length && !this.isControl(item);
   }
 
@@ -172,12 +125,12 @@ export class RunnerService {
   }
 
   processBlock(block) {
-    console.log("entered processList, we have: ", block);
+    // console.log("entered processList, we have: ", block);
     block = block.shuffle ? this.shuffle(block) : block;
     block = block.repeat ? this.repeat(block, block.repeat) : block;
     block = block.pickFirst ? this.pickFirst(block) : block;
     block = block.pickOne ? this.pickOne(block) : block;
-    console.log("exiting processList, we have: ", block);
+    // console.log("exiting processList, we have: ", block);
 
     return block;
   }
@@ -209,11 +162,11 @@ export class RunnerService {
   }
 
   clone(list) {
-    console.log("IN CLONE, LIST IS", list);
+    // console.log("IN CLONE, LIST IS", list);
     return list.slice(0);
   }
 
-  // Object.fromEntries not implemented in edge, so this
+  // Object.fromEntries not implemented in Edge, so this
   fromEntries(list) {
     return list.reduce( (acc, [key, val]) => {
       acc[key] = val;
@@ -222,7 +175,6 @@ export class RunnerService {
   }
 
   shuffle(block) {
-    // list = this.clone(list);
     const list = Object.entries(block);
     let counter = list.length;
     let temp, index;
@@ -239,5 +191,4 @@ export class RunnerService {
 
     return this.fromEntries(list);
   }
-
 }
