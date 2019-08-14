@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   iterator: any;
   responseCache = [];
   done = false;
-  participant = Date.now(); // todo - combination of machine/instance identifier + participant count
+  participant = Date.now().toString().concat("K"); // todo - combination of machine/instance identifier + participant count
   project: Promise<any>;
   cur = {
     condition: "",
@@ -49,13 +49,13 @@ export class AppComponent implements OnInit {
   }
 
   doThings() {
-    const proj = this.http.get("assets/project.yml", {responseType: "text"})
-    .toPromise().then( x => {
+    const proj = this.http.get("assets/project.yml", { responseType: "text" })
+      .toPromise().then(x => {
         const p = this.parser.load(x, console.log);
         return this.parser.preBuild2(p);
-     });
+      });
 
-     return proj;
+    return proj;
   }
 
   studyEnded() {

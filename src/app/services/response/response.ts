@@ -11,8 +11,8 @@ export class Response {
 
   constructor(input?) {
     this.data = new Map();
-    this.data.set("id", input ? input.id : Date.now()); // todo make better
-    this.data.set("datestamp", input ? input.datestamp : new Date().toISOString());
+    this.data.set("id", input ? input.id : Date.now().toString().concat("J")); // todo make better
+    this.data.set("datestamp", input ? input.datestamp : new Date().toLocaleString("en-US", { year: "numeric", month: "numeric", day: "numeric" }));
     this.data.set("participant", input ? input.participant : -1);
     // this.data.set('block', input ? input.block : '');
     this.data.set("action", input ? input.action : "");
