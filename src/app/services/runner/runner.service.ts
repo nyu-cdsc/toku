@@ -31,12 +31,12 @@ export class RunnerService {
     console.log("NEWCYCLE******************************, input", input);
     // input = yield "start";
     yield "start";
-    console.log("INPUT AFTER START", input)
+    console.log("INPUT AFTER START", input);
 
     // input = yield this.logAndReturn(input);
 
     block = block ? block : this.block;
-    console.log("block", block)
+    console.log("block", block);
 
     // const control: Control = this.getControl(block);
     // const blockName = Object.keys(block)[0];
@@ -45,15 +45,15 @@ export class RunnerService {
     block = this.processBlock(block);
 
     for (const [key, val] of Object.entries(block)) {
-      console.log("in loop, k v", key, val, "block is", block)
+      console.log("in loop, k v", key, val, "block is", block);
       if (this.isControl(key)) {
-        console.log("is control")
+        console.log("is control");
         continue;
       }
 
-      console.log("INPUT IN LOOP - 1", input)
+      console.log("INPUT IN LOOP - 1", input);
       input = yield* this.callNext(val, block, input);
-      console.log("INPUT IN LOOP - 2", input)
+      console.log("INPUT IN LOOP - 2", input);
 
       // if (this.isBlock(val)) {
       //   console.log("is block")
@@ -82,10 +82,10 @@ export class RunnerService {
   }
 
   *callNext(item, parent, input) {
-    console.log("CALLNEXT, input", input)
-    if (!input) input = [{value: null}];
+    console.log("CALLNEXT, input", input);
+    if (!input) { input = [{value: null}]; }
     if (input[0]["action"]) {
-      console.log("is CONDITIONAL, REPLACING ACTION")
+      console.log("is CONDITIONAL, REPLACING ACTION");
       item = input[0]["action"];
       input = [{value: null}];
       // if (!this.isBlock(item)) {
@@ -100,23 +100,19 @@ export class RunnerService {
       // process.exit(0)
     }
     if (this.isBlock(item)) {
-      console.log("is BLOCK")
+      console.log("is BLOCK");
       if (this.third) {
-        console.log("third! - 2", item);
-        process.exit(0)
+        throw new Error(`we might be caught in a cycle! ${JSON.stringify(item, null, 2)}`);
       }
       if (this.second) {
         console.log("second! - 2", item);
         this.third = true;
-        // process.exit(0)
       }
-      console.log("CALLING CYCLE")
+      console.log("CALLING CYCLE");
       input = yield* this.cycle(item, input);
     } else if (item["type"]) {
-      console.log("is ITEM")
+      console.log("is ITEM");
       if (this.second) {
-        console.log("second! - 3", item);
-        // process.exit(0)
       }
       input = yield { projectName: this.environment.project.study, blockName: parent.name, action: item };
       if (input && input[0]["action"]) {
@@ -135,7 +131,7 @@ export class RunnerService {
   }
 
   isConditional(item) {
-    if (!item.parameters.responses) return false;
+    if (!item.parameters.responses) { return false; }
 
     for (const [key, val] of Object.entries(item.parameters.responses)) {
       if (val["action"]) {
@@ -147,7 +143,7 @@ export class RunnerService {
   }
 
   isBlock(item) {
-    console.log("checkingg if block", item)
+    console.log("checkingg if block", item);
     return item && typeof item === "object" && !item.type && Object.keys(item).length && !this.isControl(item);
   }
 

@@ -2,6 +2,7 @@ This application (currently under development) is used to design and run psychol
 
 ## Using the app for the first time on your computer: 
 1) Download and install node.js onto your computer: https://nodejs.org/en/download/  
+(As of 7/25/19, the app uses version 10.16.0 of node js)  
 Either the Windows 64-bit Installer or the macOS installer, depending on your computer.
 
 2) Download the app onto your computer. 
@@ -10,19 +11,18 @@ Either the Windows 64-bit Installer or the macOS installer, depending on your co
 
 4) Open the command prompt/terminal, and get inside the folder containing the app. E.g., if the app is located on your desktop, type `cd Desktop/yourgame`
 
-5) Once inside the folder, enter these commands into the terminal one at a time:
+5) Once inside the folder, enter these commands into the terminal one at a time to install Angular:  
+(As of 7/25/19, the app uses Angular 8. Please make sure you have the latest version of Angular installed on your computer)
 
 Windows: 
 ```
 npm install -g @angular/cli
 npm install
-npm install typescript@3.2.4
 ```
 macOS 
 ```
 sudo npm install -g @angular/cli     (you will be asked to enter your password in)
 npm install
-npm install typescript@3.2.4
 ```
 
 ## Running the app on your computer:

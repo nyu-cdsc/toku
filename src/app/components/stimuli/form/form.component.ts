@@ -8,7 +8,7 @@ import { Message } from "../../../message";
   templateUrl: "./form.component.html",
   styleUrls: ["./form.component.css"]
 })
-export class FormComponent implements Responsive, Stimuli {
+export class FormComponent implements Responsive, Stimuli, OnInit {
   @Input() parameters: any;
   @Input() responseEnabled = true;
   @Output() doneEvent = new EventEmitter<any>();
@@ -18,7 +18,7 @@ export class FormComponent implements Responsive, Stimuli {
     console.log("NGINIT CALLED IN FORM");
     const quest = [];
     for (const [key, val] of Object.entries(this.parameters.questions)) {
-      console.log("key val", key, val)
+      console.log("key val", key, val);
 
       val["name"] = key;
       if (val["options"]) {

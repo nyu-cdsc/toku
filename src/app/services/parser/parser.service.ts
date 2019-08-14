@@ -56,7 +56,7 @@ export class ParserService {
   // todo overload to take string or obj?
   build3(item, doc) {
     console.log("BUILD3 init", "item", item);
-    var that = this;
+    const that = this;
     const res = Object.entries(item).reduce( function loop(acc, [key, val], idx) {
       console.log("build3 reduce", "acc", acc, "key", key, "val", val, "idx", idx);
 
@@ -66,7 +66,7 @@ export class ParserService {
           throw new Error(`could not find ${key} in document`);
         }
         // found.name = key;
-        console.log("found! name  is ", key)
+        console.log("found! name  is ", key);
         // found["name"] = key;
         acc[key] = found;
         // acc[key]["name"] = key;
@@ -77,7 +77,7 @@ export class ParserService {
         val["name"] = key;
         acc[key] = val;
       } else if (that.isControl(key)) {
-        console.log("IS CONTROL!")
+        console.log("IS CONTROL!");
         acc[key] = val;
         // process.exit();
         // is control element -- this should be done in buildblock?
@@ -88,8 +88,8 @@ export class ParserService {
         children.name = key;
         acc[key] = children;
       } else {
-        console.log(key, val)
-        throw new Error('what')
+        console.log(key, val);
+        throw new Error("what");
       }
 
       return acc;
@@ -105,7 +105,7 @@ export class ParserService {
   */
   lookup(item, doc) {
     console.log("looking up item", item);
-    var that = this;
+    const that = this;
     const res = Object.entries(doc).reduce( function(acc, [key, val], idx) {
       if (key === "study" || key === "conditions") {
         return acc;
@@ -116,9 +116,9 @@ export class ParserService {
           // want to do a recursive lookup for any item that is a var
           console.log("calling build3 on block");
           const built = that.build3(val[item], doc);
-          console.log("BEFORE SET")
+          console.log("BEFORE SET");
           built["name"] = item;
-          console.log("AFTER SET")
+          console.log("AFTER SET");
           if (!built) { throw new Error(`build failed for ${val[item]} from ${item} on ${doc}`); }
           return built;
         } else if (val[item]["type"]) {
@@ -139,7 +139,7 @@ export class ParserService {
   }
 
   isControl(item) {
-    console.log("in cONTROl, item is ", item)
+    console.log("in cONTROl, item is ", item);
     const controls = ["pickFirst", "pickOne", "shuffle", "repeat", "runStyle", "name"]; // todo fix name hack
     return controls.includes(item);
   }
@@ -154,13 +154,13 @@ export class ParserService {
 
     console.log("POPULATE, BEFORE", item.parameters.responses);
     item.parameters.responses = Object.entries(item.parameters.responses).reduce( (acc, [key, val], idx) => {
-      if(typeof key !== "string") throw new Error(`key not string! ${key}`)
+      if (typeof key !== "string") { throw new Error(`key not string! ${key}`); }
       console.log(key, val);
 
       if (val["action"] && typeof val["action"] === "string") {
         acc[key]["action"] = {[val["action"]]: this.lookup(val["action"], doc)};
-        if(item.parameters.responses["four"]) {
-          console.log("IS FOUR - 3", val["action"])
+        if (item.parameters.responses["four"]) {
+          console.log("IS FOUR - 3", val["action"]);
         }
       }
 
