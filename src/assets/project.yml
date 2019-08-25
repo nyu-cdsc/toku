@@ -102,10 +102,6 @@ stimuli:
     type: picture
     parameters:
       filename: '../../../assets/sample/image2.png'
-      responses:
-        five:
-          shape: rect
-          location: "0, 0, 500, 500"
   item8:
     type: picture
     parameters:
