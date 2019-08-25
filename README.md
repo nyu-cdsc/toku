@@ -28,7 +28,7 @@ npm install
 ## Running the app on your computer:
 1) Get inside the folder containing the app. E.g., if the app is located on your desktop, type `cd Desktop/yourgame`
 
-2) Once inside the folder, type: `ng serve`. Wait for the terminal to tell you that the app has been "compiled successfully."
+2) Once inside the folder, type: `npm start`. Wait for the terminal to tell you that the app has been "compiled successfully."
 
 3) Open up an internet browser (Firefox or Chrome tend to work best), and type `localhost:4200` into the URL. 
 
