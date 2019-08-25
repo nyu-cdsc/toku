@@ -126,10 +126,6 @@ stimuli:
     type: picture
     parameters:
       filename: '../../../assets/sample/start.jpeg'
-      responses:
-        start:
-          shape: rect
-          location: "0, 0, 5000, 5000"
 
 # TODO
 # slider scales

@@ -73,7 +73,7 @@ export class RunnerService {
     } else if (item["type"]) {
       // console.log("is ITEM");
       input = yield { projectName: this.environment.project.study, blockName: parent.name, action: item };
-      if (input && input[0]["action"]) {
+      if (input && input[0] && input[0]["action"]) {
         this.second = true;
         item = input[0]["action"];
         item = item[Object.keys(item)[0]];

@@ -2,7 +2,7 @@
 
 <ng-template #withoutMap>
   <!-- populate image -->
-  <img [src]="parameters?.filename" #theimage />
+  <img [src]="parameters?.filename" (click)="done()" #theimage />
 </ng-template>
 
 <ng-template #withMap>
