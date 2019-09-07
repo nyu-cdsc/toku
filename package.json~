@@ -29,7 +29,7 @@
     "pouchdb": "^7",
     "rxjs": "^6.5.3",
     "tslib": "^1",
-    "typescript": "^3.5.3",
+    "typescript": "^3.6.2",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
