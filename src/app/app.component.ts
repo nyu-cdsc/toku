@@ -74,9 +74,9 @@ export class AppComponent implements OnInit {
     if (cur.done) {
       return this.studyEnded();
     }
-    this.cur.block = cur.value.block;
+    this.cur.block = cur.value.blockName;
     this.cur.action = cur.value.action;
-    console.log("nextaction called, currentAction is: ", this.cur.action);
+    console.log("nextaction called, current is: ", cur);
   }
 
   // todo remove
@@ -96,7 +96,7 @@ export class AppComponent implements OnInit {
   frameResponse(message) {
     this.responseCache.push(message);
     // TODO - no newResponse, no buildResponse, just do it all as params/obj in setResponse() // TODO already partially implemented in constructor
-    this.responseService.setResponse(this.buildResponse(message, this.cur.block, this.cur.action["id"]));
+    this.responseService.setResponse(this.buildResponse(message, this.cur.block, this.cur.action["name"]));
     // todo ^ move this to generator, just pass cached messages along to it (already doing it anyway)
   }
 
