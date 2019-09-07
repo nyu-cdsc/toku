@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   responseCache = [];
   done = false;
   participant = Date.now().toString().concat("K"); // todo - combination of machine/instance identifier + participant count
-  project: Promise<any>;
+  project: any;
   cur = {
     condition: "",
     block: "",
@@ -30,16 +30,16 @@ export class AppComponent implements OnInit {
     private responseService: ResponseService,
     private parser: ParserService
   ) {
-    this.project = this.doThings();
-    this.project.then(x => {
-      this.runner.init(x);
+    const projectPromise = this.getProject();
+    projectPromise.then(p => {
+      this.project = p;
+      this.responseService.getDBConnection(p["study"]);
+      this.runner.init(p);
       this.iterator = this.runner.cycle();
       const firstBlock = Object.keys(this.runner.block)[0];
       this.cur.condition = firstBlock;
       this.cur.block = firstBlock;
       this.nextAction(null);
-      // this.nextAction({value: "initial"});
-      // this.nextAction({value: "initial2"});
     });
   }
 
@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
     // begin iteration
   }
 
-  doThings() {
+  getProject() {
     const proj = this.http.get("assets/project.yml", { responseType: "text" })
       .toPromise().then(x => {
         const p = this.parser.load(x, console.log);

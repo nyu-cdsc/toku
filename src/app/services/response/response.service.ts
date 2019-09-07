@@ -6,20 +6,18 @@ import * as FileSaver from "file-saver"; // TODO clean up or replace
   providedIn: "root"
 })
 export class ResponseService {
-  DBNAME: string;
   DBSTUDY: string;
   STORE = "responses";
   db;
 
   constructor(@Inject("environment") env) {
-    this.getDBConnection(env.project.study, env.project.name);
+    // this.getDBConnection(env.project.study, env.project.name);
   }
 
   // env.project.study isn't the study name so DBNAME was coming up empty for the name
   // so I created to separate variables to import
-  getDBConnection(study, name) {
+  getDBConnection(study) {
     this.DBSTUDY = study;
-    this.DBNAME = name;
     const request = indexedDB.open(this.DBSTUDY);
 
     this.db = new Promise(function (resolve, reject) {
@@ -145,7 +143,7 @@ export class ResponseService {
 
     // responsePromise or something after this line seems to reset DBNAME?
     // so storing above in csvName for the export
-    const csvName = this.DBNAME;
+    const csvName = this.DBSTUDY;
 
     responsePromise.then(function (responses) {
       responses.map((cur, idx) => {

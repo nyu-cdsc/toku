@@ -45,8 +45,6 @@ export class PictureComponent implements Stimuli, Responsive, OnInit, AfterViewC
 
   sendMessage(message: Message) {
     console.log("message received in pic! is", message);
-    // todo Response val as in the one inside Params and choice made (perhaps change Response to Choice to make
-    // it clear the level it's from)
     if (this.parameters.responses[message.value]["action"]) {
       message["action"] = this.parameters.responses[message.value]["action"];
     }
