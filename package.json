@@ -27,6 +27,7 @@
     "file-saver": "^2",
     "js-yaml": "^3",
     "pouchdb": "^7",
+    "rxdb": "^8.4.0",
     "rxjs": "^6.5.3",
     "tslib": "^1",
     "typescript": "^3.5.3",

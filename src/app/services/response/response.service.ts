@@ -32,11 +32,12 @@ export class ResponseService {
     const that = this;
     request.onupgradeneeded = function () {
       console.log("db being created or upgraded");
-      // request.result instead of that.db, as it isn't yet populated at this point (async)
-      const responseStore = request.result.createObjectStore(that.STORE, {
-        keyPath: "id"
-      });
-      responseStore.createIndex("by_id", "id", { unique: true });
+
+      // TODO -- the reason for the unique id in the past was so merging all the databases from each user wouldn't result in ID clashes
+      /// but a simple append should fix this on export!! would be better anyway. also there's participantid
+
+      // request.result used instead of that.db, as it isn't yet populated at this point (async)
+      const responseStore = request.result.createObjectStore(that.STORE, { keyPath: "id", autoIncrement: true });
       responseStore.createIndex("by_participant", "participant", {
         unique: false
       });
@@ -58,8 +59,8 @@ export class ResponseService {
     return this.db.then(res => res.transaction(this.STORE, type));
   }
 
-  newResponse(input?): Response {
-    return new Response(input);
+  newResponse(participant, block, action, response): Response {
+    return new Response({participant, block, action, response});
   }
 
   getResponses(): Promise<Response[]> {
@@ -117,18 +118,21 @@ export class ResponseService {
       resolve,
       reject
     ) {
-      const req = store.then(s => {
+      store.then(s => {
         const payload = {};
         response.data.forEach((v, k) => { payload[k] = v; });
         const resp = s.add(payload);
 
         resp.onsuccess = function (e) {
+          resolve(e.target.result);
           console.log("response queued successfully", e.target.result);
         };
         resp.oncomplete = function (e) {
+          reject(e.target.result);
           console.log("response completed successfully", e.target.result);
         };
         resp.onerror = function (e) {
+          reject(e.target.result);
           console.log("response ERROR", e.target.result, e);
         };
       });
@@ -139,19 +143,22 @@ export class ResponseService {
 
   getCSV() {
     const responsePromise = this.getResponses();
-    let output = new Response().getCSVHeader();
+    let output = "";
 
     // responsePromise or something after this line seems to reset DBNAME?
     // so storing above in csvName for the export
+    // (explanation - 'this' would not have been in scope within the map) - andrew
     const csvName = this.DBSTUDY;
 
     responsePromise.then(function (responses) {
       responses.map((cur, idx) => {
+        if (idx === 0) {
+          output += cur.getCSVHeader();
+        }
         output += cur.toCSV() + "\n";
       });
 
-      console.log("getCSV OUTPUT");
-      console.log(output);
+      console.log("getCSV OUTPUT", output);
       const file = new Blob([output], { type: "text/csv" });
       const stamp = new Date().toISOString().split("T")[0];
       FileSaver.saveAs(file, csvName + "_data_exported" + stamp + ".csv");

@@ -1,42 +1,28 @@
 export class Response {
   data: Map<string, any>;
-  // keys = [
-  //   ['id', Date.now()],
-  //   ['datestamp', new Date().toISOString()],
-  //   ['participant', -1],
-  //   ['block', ''],
-  //   ['action', ''],
-  //   ['response', '']
-  // ];
 
   constructor(input?) {
     this.data = new Map();
-    this.data.set("id", input ? input.id : Date.now().toString().concat("J")); // todo make better
-    this.data.set("datestamp", input ? input.datestamp : new Date().toLocaleString("en-US", { year: "numeric", month: "numeric", day: "numeric" }));
+    // this.data.set("id", input ? input.id : Date.now().toString().concat("J")); // todo have machine name be in here?
     this.data.set("participant", input ? input.participant : -1);
-    // this.data.set('block', input ? input.block : '');
+    this.data.set("block", input ? input.block : "");
     this.data.set("action", input ? input.action : "");
     this.data.set("response", input ? input.response : "");
 
+    console.log("BUILT NEW RESPONSE ***", this.data);
     // const remainder = [];
-    for (const key in input) {
-      if (!this.data.get(key)) {
-        this.data.set(key, input[key]);
-      }
-    }
+    // for (const key in input) {
+    //   if (!this.data.get(key)) {
+    //     this.data.set(key, input[key]);
+    //   }
+    // }
   }
   // could also validate -
-
-  // TODO by initializing from objects in indexeddb vs arrays, order is not guaranteed
 
   // returns header string - call this first
   getCSVHeader() {
     const keys = Array.from(this.data.keys());
     let output = keys.reduce((accum, current, idx) => {
-      if (current === "block") {
-        return accum;
-      }
-
       if (idx === 1) {
         accum = accum + ",";
       }
@@ -44,10 +30,9 @@ export class Response {
     });
     output += "\n";
 
+    console.log("CSV HEADER OUTPUT", output);
     return output;
   }
-
-  // why is header/toCSV separate? -- tocsv being run on each response obj and header only once
 
   // returns csv formatted version of the object (excluding header)
   toCSV() {
@@ -57,23 +42,8 @@ export class Response {
     const output = keys.reduce((accum, cur, idx) => {
       let temp = "";
       try {
-        console.log(accum, cur, idx, "inside to CSV");
-        if (idx === 1) {
-          accum = values[idx].toString() + ",";
-        }
-
-        if (keys[idx] === "block") {
-          return accum;
-        }
-
-        if (values[idx] === Object(values[idx])) {
-          temp = JSON.stringify(values[idx]);
-        } else {
-          temp = values[idx].toString();
-          if (temp.indexOf(",") !== -1) {
-            temp = "\"" + temp + "\"";
-          }
-        }
+        console.log("inside toCsv", {accum, cur, idx});
+        temp += this.csvString(values[idx]);
       } catch (e) {
         if (e instanceof TypeError) {
           if (e.message.indexOf("Cannot read property") !== -1) {
@@ -83,12 +53,57 @@ export class Response {
         console.error("re-throwing exception for further diagnosis");
         throw e;
       }
-      // for values that are lists - todo move thhis to their toString()
 
-      return (accum += temp + ",");
-    });
+      console.log("in iteration, TEMP IS", temp);
+      return accum += temp;
+      // return (accum += temp + ",");
+    }, "");
 
     return output;
+  }
+
+  // todo toString()?
+
+  csvString(input) {
+    let temp = "";
+    if (input === Object(input)) {
+      let res = Object.entries(input).reduce( (acc, [key, val], idx) => {
+        val = val.toString();
+        let cur = `${key}:${val}`;
+
+        acc += cur + ",";
+        return acc;
+      }, "");
+      if (res[res.length -1] === ",") { // remove trailing commas
+        res = res.substring(0, res.length - 1);
+      }
+      res = res.replace(/"/g, "'");
+      // res = res.replace(/"/g, `\\"`);
+      // res = res.replace(/,/g, `\\,`);
+
+      temp = `"${res}"`;
+    } else if (Array.isArray(input)) { // todo separate functions
+      let res = input.reduce( (acc, cur, idx) => {
+        acc += cur.toString() + ",";
+        return acc;
+      }, "");
+      if (res[res.length -1] === ",") { // remove trailing commas
+        res.substring(0, res.length - 1);
+      }
+      res = res.replace(/"/g, "'");
+      // res = res.replace(/"/g, `\"`);
+      // res = res.replace(/,/g, `\,`);
+
+      temp = `"${res}"`;
+    } else { // TODO DRY this up
+      let res = input.toString();
+      res = res.replace(/"/g, "'");
+      input = `"${res}"`;
+
+      temp += input;
+    }
+
+    return temp + ",";
   }
 
   toJSON() {

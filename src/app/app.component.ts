@@ -14,9 +14,11 @@ import { ParserService } from "./services/parser/parser.service";
 export class AppComponent implements OnInit {
   study: string;
   iterator: any;
-  responseCache = [];
+  messageCache = [];
   done = false;
-  participant = Date.now().toString().concat("K"); // todo - combination of machine/instance identifier + participant count
+  participant = Date.now()
+    .toString()
+    .concat("K"); // todo - combination of machine/instance identifier + participant count
   project: any;
   cur = {
     condition: "",
@@ -43,14 +45,13 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    // console.log("NGINIT CALLED");
-    // begin iteration
-  }
+  ngOnInit() { }
 
   getProject() {
-    const proj = this.http.get("assets/project.yml", { responseType: "text" })
-      .toPromise().then(x => {
+    const proj = this.http
+      .get("assets/project.yml", { responseType: "text" })
+      .toPromise()
+      .then(x => {
         const p = this.parser.load(x, console.log);
         return this.parser.preBuild2(p);
       });
@@ -79,24 +80,20 @@ export class AppComponent implements OnInit {
     console.log("nextaction called, current is: ", cur);
   }
 
-  // todo remove
-  buildResponse(message, block, action) {
-    const response = this.responseService.newResponse();
-    response.data.set("participant", this.participant);
-    response.data.set("response", message.value);
-    response.data.set("block", block);
-    response.data.set("action", action);
-    return response;
-  }
-
   resetGame() {
     window.location.reload();
   }
 
   frameResponse(message) {
-    this.responseCache.push(message);
-    // TODO - no newResponse, no buildResponse, just do it all as params/obj in setResponse() // TODO already partially implemented in constructor
-    this.responseService.setResponse(this.buildResponse(message, this.cur.block, this.cur.action["name"]));
+    this.messageCache.push(message);
+    this.responseService.setResponse(
+      this.responseService.newResponse(
+        this.participant,
+        this.cur.block,
+        this.cur.action["name"],
+        message.value
+      )
+    );
     // todo ^ move this to generator, just pass cached messages along to it (already doing it anyway)
   }
 
@@ -104,8 +101,8 @@ export class AppComponent implements OnInit {
     if (this.done) {
       this.resetGame();
     }
-    const responses = this.responseCache;
-    this.responseCache = [];
+    const responses = this.messageCache;
+    this.messageCache = [];
     this.nextAction(responses);
     // todo could query the service for every response that took place under the current action, less state in here
   }
