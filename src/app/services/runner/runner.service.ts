@@ -47,18 +47,13 @@ export class RunnerService {
   }
 
   *callNext(item, parent, input) {
+    console.log("callnext PARENT IS", parent, "ITEM IS", item);
     if (!input) { input = [{value: null}]; }
     if (input[0]["action"]) {
-      // console.log("is CONDITIONAL, REPLACING ACTION");
+      console.log("callnext CONDITIONAL, REPLACING ACTION");
       item = input[0]["action"];
       input = [{value: null}];
       item = item[Object.keys(item)[0]];
-    }
-    if (this.second) {
-      // console.log("second!", item);
-    }
-    if (this.third) {
-      // console.log("third!", item);
     }
     if (this.isBlock(item)) {
       // console.log("is BLOCK");
@@ -71,13 +66,12 @@ export class RunnerService {
       // console.log("CALLING CYCLE");
       input = yield* this.cycle(item, input);
     } else if (item["type"]) {
-      // console.log("is ITEM");
       input = yield { projectName: this.environment.project.study, blockName: parent.name, action: item };
       if (input && input[0] && input[0]["action"]) {
         this.second = true;
         item = input[0]["action"];
         item = item[Object.keys(item)[0]];
-        // console.log("GOT RESULT! CALLNEXT", input, item);
+        console.log("GOT RESULT! CALLNEXT", input, item);
         input = yield* this.callNext(item, parent, [{value: null}]);
       }
     }

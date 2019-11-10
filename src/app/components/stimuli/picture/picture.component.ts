@@ -43,6 +43,18 @@ export class PictureComponent implements Stimuli, Responsive, OnInit, AfterViewC
     }
   }
 
+  getFile() {
+    if (this.parameters) {
+      if (this.parameters["filename"].indexOf("data:") !== -1) {
+        return this.parameters["filename"];
+      }
+      // todo this even necessary? it's just making calls to wherever it's hosted..
+      return "http://localhost:3000/assets/" + this.parameters["filename"];
+      // TODO ^ fix the url, pass in as env variable in npm/whatever, then push up to here
+    }
+    return null;
+  }
+
   sendMessage(message: Message) {
     console.log("message received in pic! is", message);
     if (this.parameters.responses[message.value]["action"]) {

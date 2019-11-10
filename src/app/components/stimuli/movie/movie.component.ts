@@ -38,6 +38,14 @@ export class MovieComponent implements Stimuli, Responsive, OnInit {
     }
   }
 
+  getFile() {
+    if (this.parameters) {
+      // todo this even necessary? it's just making calls to wherever it's hosted..
+      return "http://localhost:3000/assets/" + this.parameters["filename"]; // TODO fix the hardcoding, baseurl
+    }
+    return null;
+  }
+
   cssClass() {
     if (this.thevideo.nativeElement.videoWidth > innerWidth) {
       return "largeVideo";

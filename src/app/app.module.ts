@@ -17,7 +17,7 @@ import { StimuliService } from "./components/stimuli/stimuli.service";
 
 import { FrameComponent } from "./components/frame/frame.component";
 
-import { ResponseService } from "./services/response/response.service";
+import { ResponseService } from "./services/response/response2.service";
 import { RunnerService } from "./services/runner/runner.service";
 import { ParserService } from "./services/parser/parser.service";
 

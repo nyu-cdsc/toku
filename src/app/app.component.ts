@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { tap } from "rxjs/operators";
 
-import { ResponseService } from "./services/response/response.service";
+import { ResponseService } from "./services/response/response2.service";
 import { RunnerService } from "./services/runner/runner.service";
 import { ParserService } from "./services/parser/parser.service";
 
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
     const projectPromise = this.getProject();
     projectPromise.then(p => {
       this.project = p;
-      this.responseService.getDBConnection(p["study"]);
+      this.responseService.getDBConnection(p["study"], id);
       this.runner.init(p);
       this.iterator = this.runner.cycle();
       const firstBlock = Object.keys(this.runner.block)[0];
