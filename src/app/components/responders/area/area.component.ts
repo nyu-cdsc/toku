@@ -1,12 +1,12 @@
-import { Component, EventEmitter, Input, Output, OnInit, OnChanges } from "@angular/core";
-import { ClickArea } from "./area";
-import { Message } from "../../../message";
+import { Component, EventEmitter, Input, Output, OnInit, OnChanges } from '@angular/core';
+import { ClickArea } from './area';
+import { Message } from '../../../message';
 
 
 @Component({
-  selector: "toku-map",
-  templateUrl: "./area.component.html",
-  styleUrls: ["./area.component.css"]
+  selector: 'toku-map',
+  templateUrl: './area.component.html',
+  styleUrls: ['./area.component.css']
 })
 export class AreaComponent implements OnChanges {
   // @Input() coords: any;
@@ -25,7 +25,7 @@ export class AreaComponent implements OnChanges {
   }
 
   click(val) {
-    console.log("AREA SELECTED!", val);
+    console.log('AREA SELECTED!', val);
     this.selectionEvent.emit(<Message>{ value: val });
     // todo used should be set here, but it needs to be passed back to Stimuli so it can be sent up in Message
     // todo or is used set by parent based on if responses going yet, and they send new set of params back to us and we reload?
@@ -40,13 +40,13 @@ export class AreaComponent implements OnChanges {
         });
 
         return {
-          coordinates: scaledCoords.join(","),
+          coordinates: scaledCoords.join(','),
           shape: area.shape,
           value: area.value
         };
       }
     });
-    console.log(coords, "these are the scaled coords");
+    console.log(coords, 'these are the scaled coords');
     return coords;
   }
 }

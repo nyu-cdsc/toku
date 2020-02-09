@@ -1,15 +1,15 @@
 import {
   Component, ComponentFactoryResolver, EventEmitter, Input, Output, ɵɵNgOnChangesFeature, ViewChildren, ViewContainerRef, OnChanges
-} from "@angular/core";
+} from '@angular/core';
 
-import { Stimuli, Responsive } from "../stimuli/stimuli";
-import { StimuliService } from "../stimuli/stimuli.service";
-import { Message } from "../../message";
+import { Stimuli, Responsive } from '../stimuli/stimuli';
+import { StimuliService } from '../stimuli/stimuli.service';
+import { Message } from '../../message';
 
 @Component({
-  selector: "toku-frame",
-  templateUrl: "./frame.component.html",
-  styleUrls: ["./frame.component.css"]
+  selector: 'toku-frame',
+  templateUrl: './frame.component.html',
+  styleUrls: ['./frame.component.css']
 })
 export class FrameComponent implements OnChanges {
   @Output() doneEvent = new EventEmitter<any>();
@@ -27,7 +27,7 @@ export class FrameComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    console.log("ngchanges called, action is ", this.action);
+    console.log('ngchanges called, action is ', this.action);
     this.vRef.clear();
 
     // if (this.action.stimuli) {
@@ -36,7 +36,7 @@ export class FrameComponent implements OnChanges {
     //   }
     // }
     this.buildStimuli(this.action, this.vRef, this.componentFactoryResolver);
-    console.log("viewcontainer length is ", this.vRef.length);
+    console.log('viewcontainer length is ', this.vRef.length);
   }
 
   done() {
@@ -47,7 +47,7 @@ export class FrameComponent implements OnChanges {
 
   // buildStimuliDirective(stimuli: Stimuli);
   buildStimuli(stimuli: Stimuli, view: ViewContainerRef, resolver: ComponentFactoryResolver) {
-    console.log("buildstimuli called");
+    console.log('buildstimuli called');
     if (!Object.keys(stimuli).length) { return; }
 
     const componentFactory = resolver.resolveComponentFactory(this.stimService.componentResolver(stimuli));
@@ -61,7 +61,7 @@ export class FrameComponent implements OnChanges {
 
     const inst = <Stimuli | Stimuli & Responsive>componentRef.instance;
     inst.parameters = stimuli.parameters;
-    console.log("inst is ", inst);
+    console.log('inst is ', inst);
 
     const instR = <Responsive>inst; // TODO gah fix - should be a better way in TS
     if (instR) {
@@ -73,7 +73,7 @@ export class FrameComponent implements OnChanges {
     }
 
     inst.doneEvent.subscribe(data => {
-      console.log("doneevent fired");
+      console.log('doneevent fired');
       componentRef.destroy();
       this.done();
     });

@@ -1,43 +1,43 @@
-import { Injectable, Inject } from "@angular/core";
-import { Response2 } from "./response2";
-import * as FileSaver from "file-saver"; // TODO clean up or replace
-import RxDB from "rxdb";
-import * as pouchIdb from "pouchdb-adapter-idb";
-import * as pouchHttp from "pouchdb-adapter-http";
+import { Injectable, Inject } from '@angular/core';
+import { Response2 } from './response2';
+import * as FileSaver from 'file-saver'; // TODO clean up or replace
+import RxDB from 'rxdb';
+import * as pouchIdb from 'pouchdb-adapter-idb';
+import * as pouchHttp from 'pouchdb-adapter-http';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class ResponseService {
   DBSTUDY: string;
-  STORE = "responses";
+  STORE = 'responses';
   db;
   collection;
   replicationState;
   responseSchema = {
-    title: "response",
-    description: "schema for a study response",
+    title: 'response',
+    description: 'schema for a study response',
     version: 0,
-    type: "object",
+    type: 'object',
     properties: {
       participant: {
-        type: "string"
+        type: 'string'
         // pattern: ""
       },
       datestamp: {
-        type: "string" // todo date-time
+        type: 'string' // todo date-time
       },
       block: {
-        type: "string"
+        type: 'string'
       },
       item: {
-        type: "string"
+        type: 'string'
       },
       response: {
-        type: ["string", "object", "array"]
+        type: ['string', 'object', 'array']
       }
     },
-    required: ["participant", "block", "item", "response"]
+    required: ['participant', 'block', 'item', 'response']
   };
 
   constructor() { }
@@ -50,19 +50,19 @@ export class ResponseService {
 
     this.db = RxDB.create({
       name: study.toLowerCase(),
-      adapter: "idb"
+      adapter: 'idb'
     });
 
     // todo can get by this.db['collection']
     this.collection = this.db.then(db => db.collection({
-      name: "responses",
+      name: 'responses',
       schema: this.responseSchema, // TODO -> https!!
       sync: true
     }));
 
     this.collection.then(col => console.dir(col));
     this.replicationState = this.collection.then(col => col.sync({
-      remote: "http://localhost:3000/db/responses", // + study + id, // remote database. This can be the serverURL, another RxCollection or a PouchDB-instance
+      remote: 'http://localhost:3000/db/responses', // + study + id, // remote database. This can be the serverURL, another RxCollection or a PouchDB-instance
       // TODO!!! just set 'responses' to var name with responses + hashed uuid and bam db per user/machine :D
       // TODO ^ the server needs to initialize the db and pass the name to the user, rather than allowing any connection
       // to spawn new dbs
@@ -91,7 +91,7 @@ export class ResponseService {
   setResponse(response: Response2) {
     const payload = {};
     response.data.forEach((v, k) => { payload[k] = v; });
-    this.db.then(d => d["responses"].insert(payload).then(
+    this.db.then(d => d['responses'].insert(payload).then(
       res => console.log(res),
       rej => console.error(rej)
     ));
@@ -111,8 +111,8 @@ export class ResponseService {
 
   getJSON() {
     this.export().then(data => {
-      const stamp = new Date().toISOString().split("T")[0];
-      const filename = this.DBSTUDY + "_export_" + stamp + ".json"; // todo machine name
+      const stamp = new Date().toISOString().split('T')[0];
+      const filename = this.DBSTUDY + '_export_' + stamp + '.json'; // todo machine name
 
       // console.log("getCSV OUTPUT", output);
       // const file = new Blob([output], { type: "text/csv" });

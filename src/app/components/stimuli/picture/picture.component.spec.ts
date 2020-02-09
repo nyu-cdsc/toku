@@ -1,14 +1,14 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { AppModule } from "../../../app.module";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { AppModule } from '../../../app.module';
 import {
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting,
-} from "@angular/platform-browser-dynamic/testing";
+} from '@angular/platform-browser-dynamic/testing';
 
-import { PictureComponent } from "./picture.component";
-import { AreaComponent } from "../../responders/area/area.component";
+import { PictureComponent } from './picture.component';
+import { AreaComponent } from '../../responders/area/area.component';
 
-describe("PictureComponent", () => {
+describe('PictureComponent', () => {
   let component: PictureComponent;
   let fixture: ComponentFixture<PictureComponent>;
 
@@ -28,20 +28,20 @@ describe("PictureComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it("should take an optional button component/stimuli for response - composite component", () => {
+  it('should take an optional button component/stimuli for response - composite component', () => {
     // expect(true).toBe(true);
   });
-  it("should click supplied coordinate for \"yes\"", () => {
+  it('should click supplied coordinate for "yes"', () => {
     // todo web test with click
     // expect(true).toBe(true);
   });
-  it("should scale image to defined size", () => {
+  it('should scale image to defined size', () => {
     // expect(true).toBe(true);
   });
-  it("should send done event on finish", () => {
+  it('should send done event on finish', () => {
     // todo rather than event directly to parent, just hit a shared store
     // expect(true).toBe(true);
   });

@@ -1,36 +1,36 @@
-import { Injectable } from "@angular/core";
-import * as yaml from "js-yaml";
+import { Injectable } from '@angular/core';
+import * as yaml from 'js-yaml';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class ParserService {
 
   constructor() { }
 
   load(input, cb) {
-    if (!input || input === "undefined" || input === null)  {
-      throw new Error("empty input given");
+    if (!input || input === 'undefined' || input === null)  {
+      throw new Error('empty input given');
     }
 
     try {
       const errors = [];
       const doc = yaml.safeLoad(input);
-      console.log("IN PARSER, this is DOC", JSON.stringify(doc, null, 2));
+      console.log('IN PARSER, this is DOC', JSON.stringify(doc, null, 2));
       // todo winston? - log debug vals
 
       if (!doc.study) {
-        errors.push("study missing");
+        errors.push('study missing');
       }
       if (!doc.conditions) {
-        errors.push("conditions missing");
+        errors.push('conditions missing');
       }
       if (!doc.ended) {
-        errors.push("ended missing");
+        errors.push('ended missing');
       }
 
       if (errors.length) {
-        throw new Error(errors.join(","));
+        throw new Error(errors.join(','));
       }
 
       return doc;
@@ -45,10 +45,10 @@ export class ParserService {
 
   preBuild2(doc) {
     const final = {};
-    final["study"] = doc["study"];
-    final["conditions"] = this.build3(doc["conditions"], doc);
-    final["ended"] = this.build3(doc["ended"], doc);
-    final["forms"] = doc["forms"]; // todo ^
+    final['study'] = doc['study'];
+    final['conditions'] = this.build3(doc['conditions'], doc);
+    final['ended'] = this.build3(doc['ended'], doc);
+    final['forms'] = doc['forms']; // todo ^
 
     return final;
   }
@@ -70,11 +70,11 @@ export class ParserService {
         // found["name"] = key;
         acc[key] = found;
         // acc[key]["name"] = key;
-      } else if (val["type"]) { // is stimuli
+      } else if (val['type']) { // is stimuli
         // console.log("is stimuli!");
         val = that.populateActions(val, doc);
         // console.log("********************AFTER POPULATE", val);
-        val["name"] = key;
+        val['name'] = key;
         acc[key] = val;
       } else if (that.isControl(key)) {
         // console.log("IS CONTROL!");
@@ -89,7 +89,7 @@ export class ParserService {
         acc[key] = children;
       } else {
         // console.log(key, val);
-        throw new Error("what");
+        throw new Error('what');
       }
 
       return acc;
@@ -107,7 +107,7 @@ export class ParserService {
     // console.log("looking up item", item);
     const that = this;
     const res = Object.entries(doc).reduce( function(acc, [key, val], idx) {
-      if (key === "study" || key === "conditions") {
+      if (key === 'study' || key === 'conditions') {
         return acc;
       }
       if (val[item]) {
@@ -117,17 +117,17 @@ export class ParserService {
           // console.log("calling build3 on block");
           const built = that.build3(val[item], doc);
           // console.log("BEFORE SET");
-          built["name"] = item;
+          built['name'] = item;
           // console.log("AFTER SET");
           if (!built) { throw new Error(`build failed for ${val[item]} from ${item} on ${doc}`); }
           return built;
-        } else if (val[item]["type"]) {
+        } else if (val[item]['type']) {
           // console.log("LOOKUP, CALLING POPULATE");
           val[item] = that.populateActions(val[item], doc);
           // console.log("LOOKUP, CALLING POPULATEAFTER", val[item]);
         }
         // return {[item]: val[item]};
-        val[item]["name"] = item;
+        val[item]['name'] = item;
         return val[item];
       }
       return acc;
@@ -140,12 +140,12 @@ export class ParserService {
 
   isControl(item) {
     // console.log("in cONTROl, item is ", item);
-    const controls = ["pickFirst", "pickOne", "shuffle", "repeat", "runStyle", "name"]; // todo fix name hack
+    const controls = ['pickFirst', 'pickOne', 'shuffle', 'repeat', 'runStyle', 'name']; // todo fix name hack
     return controls.includes(item);
   }
 
   isBlock(item) {
-    return item && typeof item === "object" && !item.type && Object.keys(item).length && !this.isControl(item);
+    return item && typeof item === 'object' && !item.type && Object.keys(item).length && !this.isControl(item);
   }
 
   populateActions(item, doc) {
@@ -154,17 +154,17 @@ export class ParserService {
 
     // console.log("POPULATE, BEFORE", item.parameters.responses);
     item.parameters.responses = Object.entries(item.parameters.responses).reduce( (acc, [key, val], idx) => {
-      if (typeof key !== "string") { throw new Error(`key not string! ${key}`); }
+      if (typeof key !== 'string') { throw new Error(`key not string! ${key}`); }
       // console.log(key, val);
 
-      if (val["action"] && typeof val["action"] === "string") {
-        acc[key]["action"] = {[val["action"]]: this.lookup(val["action"], doc)};
-        if (item.parameters.responses["four"]) {
+      if (val['action'] && typeof val['action'] === 'string') {
+        acc[key]['action'] = {[val['action']]: this.lookup(val['action'], doc)};
+        if (item.parameters.responses['four']) {
           // console.log("IS FOUR - 3", val["action"]);
         }
       }
 
-      acc[key]["name"] = key;
+      acc[key]['name'] = key;
       return acc;
     }, item.parameters.responses);
     // console.log("POPULATE, AFTER", item.parameters.responses);

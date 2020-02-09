@@ -1,15 +1,15 @@
-import { Component, OnInit } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { tap } from "rxjs/operators";
+import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 
-import { ResponseService } from "./services/response/response2.service";
-import { RunnerService } from "./services/runner/runner.service";
-import { ParserService } from "./services/parser/parser.service";
+import { ResponseService } from './services/response/response2.service';
+import { RunnerService } from './services/runner/runner.service';
+import { ParserService } from './services/parser/parser.service';
 
 @Component({
-  selector: "toku-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  selector: 'toku-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   study: string;
@@ -18,11 +18,11 @@ export class AppComponent implements OnInit {
   done = false;
   participant = Date.now()
     .toString()
-    .concat("K"); // todo - combination of machine/instance identifier + participant count
+    .concat('K'); // todo - combination of machine/instance identifier + participant count
   project: any;
   cur = {
-    condition: "",
-    block: "",
+    condition: '',
+    block: '',
     action: {} // todo
   };
 
@@ -35,7 +35,8 @@ export class AppComponent implements OnInit {
     const projectPromise = this.getProject();
     projectPromise.then(p => {
       this.project = p;
-      this.responseService.getDBConnection(p["study"], id);
+      // this.responseService.getDBConnection(p["study"], id);
+      this.responseService.getDBConnection(p['study'], 'firstStudy');
       this.runner.init(p);
       this.iterator = this.runner.cycle();
       const firstBlock = Object.keys(this.runner.block)[0];
@@ -49,7 +50,7 @@ export class AppComponent implements OnInit {
 
   getProject() {
     const proj = this.http
-      .get("assets/project.yml", { responseType: "text" })
+      .get('assets/project.yml', { responseType: 'text' })
       .toPromise()
       .then(x => {
         const p = this.parser.load(x, console.log);
@@ -60,16 +61,16 @@ export class AppComponent implements OnInit {
   }
 
   studyEnded() {
-    console.log("studyEnded() has been called");
+    console.log('studyEnded() has been called');
     this.done = true;
-    const block = this.runner.getBlockByName("ended");
+    const block = this.runner.getBlockByName('ended');
     this.cur.action = block[Object.keys(block)[0]];
   }
 
   nextAction(data) {
     // todo put in assertions/logs when running in DEV mode
     const cur = this.iterator.next(data);
-    if (cur.value === "start") {
+    if (cur.value === 'start') {
       return this.nextAction(data);
     }
     if (cur.done) {
@@ -77,7 +78,7 @@ export class AppComponent implements OnInit {
     }
     this.cur.block = cur.value.blockName;
     this.cur.action = cur.value.action;
-    console.log("nextaction called, current is: ", cur);
+    console.log('nextaction called, current is: ', cur);
   }
 
   resetGame() {
@@ -90,7 +91,7 @@ export class AppComponent implements OnInit {
       this.responseService.newResponse(
         this.participant,
         this.cur.block,
-        this.cur.action["name"],
+        this.cur.action['name'],
         message.value
       )
     );

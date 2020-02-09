@@ -5,10 +5,10 @@ export class ClickArea {
     used: false;
 
     constructor(response) {
-        const coordinates = response.location.split(",").map(coord => {
+        const coordinates = response.location.split(',').map(coord => {
             return Number(coord);
         });
-        const shape = response.shape || "rect";
+        const shape = response.shape || 'rect';
         this.validate(shape, coordinates);
 
         this.coordinates = coordinates, this.shape = shape, this.value = response.name;
@@ -16,17 +16,17 @@ export class ClickArea {
 
     validate(shape, coordinates: Array<number>) {
         switch (shape) {
-            case "rect":
+            case 'rect':
                 if (coordinates.length !== 4) {
                     // throw error with length mismatch - be specific (rather than just returning false)
                 }
                 break;
-            case "circle":
+            case 'circle':
                 if (coordinates.length !== 2) {
                     // throw error
                 }
                 break;
-            case "poly":
+            case 'poly':
                 if (coordinates.length < 4) {
                     // throw error
                 }

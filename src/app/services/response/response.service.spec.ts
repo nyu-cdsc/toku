@@ -1,6 +1,6 @@
-import { TestBed, inject } from "@angular/core/testing";
+import { TestBed, inject } from '@angular/core/testing';
 
-import { environment } from "../../../environments/environment";
+import { environment } from '../../../environments/environment';
 // import { ResponseService } from "./response.service";
 // import { Response } from "./response";
 

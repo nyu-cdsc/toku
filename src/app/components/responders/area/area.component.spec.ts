@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AreaComponent } from "./area.component";
+import { AreaComponent } from './area.component';
 
-describe("AreaComponent", () => {
+describe('AreaComponent', () => {
   let component: AreaComponent;
   let fixture: ComponentFixture<AreaComponent>;
 
@@ -19,7 +19,7 @@ describe("AreaComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
