@@ -44,7 +44,7 @@ export class ResponseService {
   // TODO separate DB connection RO for Project + assets
 
   // TODO figure out how to work out the class state/avoidance of. this is encouraging await, preferably avoided..
-  getDBConnection(study) {
+  getDBConnection(study, id) {
     RxDB.plugin(pouchIdb);
     RxDB.plugin(pouchHttp);
 
@@ -62,7 +62,7 @@ export class ResponseService {
 
     this.collection.then(col => console.dir(col));
     this.replicationState = this.collection.then(col => col.sync({
-      remote: "http://localhost:3000/db/responses", // + , // remote database. This can be the serverURL, another RxCollection or a PouchDB-instance
+      remote: "http://localhost:3000/db/responses", // + study + id, // remote database. This can be the serverURL, another RxCollection or a PouchDB-instance
       // TODO!!! just set 'responses' to var name with responses + hashed uuid and bam db per user/machine :D
       // TODO ^ the server needs to initialize the db and pass the name to the user, rather than allowing any connection
       // to spawn new dbs
