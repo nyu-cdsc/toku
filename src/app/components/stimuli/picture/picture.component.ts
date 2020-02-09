@@ -13,8 +13,8 @@ export class PictureComponent implements Stimuli, Responsive, OnInit, AfterViewC
   @Output() doneEvent = new EventEmitter<any>();
   @Output() responseEvent = new EventEmitter<Message>();
   @Input() responseEnabled = true; // this can be disabled by parent via [responseEnabled]
-  @ViewChild(AreaComponent, { static: false }) areamap: AreaComponent;
-  @ViewChild("theimage", { static: false }) theimage: ElementRef;
+  @ViewChild(AreaComponent) areamap: AreaComponent;
+  @ViewChild("theimage") theimage: ElementRef;
   value: null;
 
   constructor() { }
