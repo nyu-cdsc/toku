@@ -36,7 +36,9 @@ export class AppComponent implements OnInit {
     projectPromise.then(p => {
       this.project = p;
       // this.responseService.getDBConnection(p["study"], id);
-      this.responseService.getDBConnection(p['study'], 'firstStudy');
+      this.responseService.getDBConnection(p['study'], 'tokenID');
+      // TODO now that I have a handle on this -- get the tokenID from a header served from express
+      // although a token in a cookie that this app can't even see would also be perfectly fine
       this.runner.init(p);
       this.iterator = this.runner.cycle();
       const firstBlock = Object.keys(this.runner.block)[0];
