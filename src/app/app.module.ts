@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -48,15 +48,6 @@ import { environment } from '../environments/environment';
     HttpClientModule
   ],
   providers: [
-    {
-        provide: APP_INITIALIZER,
-        useFactory: async () => {
-            console.log('initDatabase()');
-            // DB_INSTANCE = await _create();
-        },
-        multi: true,
-        deps: [/* your dependencies */]
-    },
     ResponseService,
     RunnerService,
     StimuliService,

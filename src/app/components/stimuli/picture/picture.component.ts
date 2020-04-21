@@ -48,9 +48,7 @@ export class PictureComponent implements Stimuli, Responsive, OnInit, AfterViewC
       if (this.parameters['filename'].indexOf('data:') !== -1) {
         return this.parameters['filename'];
       }
-      // todo this even necessary? it's just making calls to wherever it's hosted..
-      return 'http://localhost:3000/assets/' + this.parameters['filename'];
-      // TODO ^ fix the url, pass in as env variable in npm/whatever, then push up to here
+      return location.origin + '/assets/' + this.parameters['filename'];
     }
     return null;
   }
