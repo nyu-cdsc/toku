@@ -62,7 +62,7 @@ stimuli:
   item1:
     type: movie
     parameters:
-      filename: '../../../assets/sample/video1.mp4'
+      filename: 'sample/video1.mp4'
       responses:
         one:
           shape: rect
@@ -70,7 +70,7 @@ stimuli:
   item2:
     type: movie
     parameters:
-      filename: '../../../assets/sample/video2.mp4'
+      filename: 'sample/video2.mp4'
       responses:
         one:
           shape: rect
@@ -83,7 +83,7 @@ stimuli:
   item3:
     type: picture
     parameters:
-      filename: '../../../assets/sample/image1.png'
+      filename: 'sample/image1.png'
       responses:
         four:
           shape: rect
@@ -92,7 +92,7 @@ stimuli:
   item6:
     type: picture
     parameters:
-      filename: '../../../assets/sample/image1.png'
+      filename: 'sample/image1.png'
       responses:
         five:
           shape: rect
@@ -101,7 +101,7 @@ stimuli:
   item7:
     type: picture
     parameters:
-      filename: '../../../assets/sample/image2.png'
+      filename: 'sample/image2.png'
       responses:
         five:
           shape: rect
@@ -109,7 +109,7 @@ stimuli:
   item8:
     type: picture
     parameters:
-      filename: '../../../assets/sample/image3.png'
+      filename: 'sample/image3.png'
       responses:
         five:
           shape: rect
@@ -117,7 +117,7 @@ stimuli:
   item9:
     type: picture
     parameters:
-      filename: '../../../assets/sample/image4.png'
+      filename: 'sample/image4.png'
       responses:
         five:
           shape: rect
@@ -125,7 +125,7 @@ stimuli:
   startGamePicture:
     type: picture
     parameters:
-      filename: '../../../assets/sample/start.jpeg'
+      filename: 'sample/start.jpeg'
 
 # TODO
 # slider scales

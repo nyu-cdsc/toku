@@ -72,7 +72,7 @@
     "no-switch-case-fall-through": true,
     "no-trailing-whitespace": true,
     "no-unnecessary-initializer": true,
-    "no-unused-expression": true,
+    "no-unused-expreson": true,
     "no-var-keyword": true,
     "object-literal-sort-keys": false,
     "one-line": [
@@ -85,7 +85,7 @@
     "prefer-const": true,
     "quotemark": [
       true,
-      "double"
+      "single"
     ],
     "radix": true,
     "semicolon": [

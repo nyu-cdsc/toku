@@ -1,20 +1,20 @@
-import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild, AfterViewChecked } from "@angular/core";
-import { Stimuli, Responsive } from "../stimuli";
-import { Message } from "../../../message";
-import { AreaComponent } from "../../responders/area/area.component";
+import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
+import { Stimuli, Responsive } from '../stimuli';
+import { Message } from '../../../message';
+import { AreaComponent } from '../../responders/area/area.component';
 
 @Component({
-  selector: "toku-picture",
-  templateUrl: "./picture.component.html",
-  styleUrls: ["./picture.component.css"]
+  selector: 'toku-picture',
+  templateUrl: './picture.component.html',
+  styleUrls: ['./picture.component.css']
 })
 export class PictureComponent implements Stimuli, Responsive, OnInit, AfterViewChecked {
   @Input() parameters: any;
   @Output() doneEvent = new EventEmitter<any>();
   @Output() responseEvent = new EventEmitter<Message>();
   @Input() responseEnabled = true; // this can be disabled by parent via [responseEnabled]
-  @ViewChild(AreaComponent, { static: false }) areamap: AreaComponent;
-  @ViewChild("theimage", { static: false }) theimage: ElementRef;
+  @ViewChild(AreaComponent) areamap: AreaComponent;
+  @ViewChild('theimage') theimage: ElementRef;
   value: null;
 
   constructor() { }
@@ -37,16 +37,26 @@ export class PictureComponent implements Stimuli, Responsive, OnInit, AfterViewC
     // confirm that this is wired correctly
     if ((this.value == null || this.value === 0) && this.parameters.nativeWidth > innerWidth) {
       this.parameters.scalingFactor = this.getScalingFactor();
-      console.log("im inside and setting scaling factor", this.parameters.scalingFactor);
-      console.log(this.parameters, "these are the parameters");
+      console.log('im inside and setting scaling factor', this.parameters.scalingFactor);
+      console.log(this.parameters, 'these are the parameters');
       this.value = this.parameters.nativeHeight;
     }
   }
 
+  getFile() {
+    if (this.parameters) {
+      if (this.parameters['filename'].indexOf('data:') !== -1) {
+        return this.parameters['filename'];
+      }
+      return location.origin + '/assets/' + this.parameters['filename'];
+    }
+    return null;
+  }
+
   sendMessage(message: Message) {
-    console.log("message received in pic! is", message);
-    if (this.parameters.responses[message.value]["action"]) {
-      message["action"] = this.parameters.responses[message.value]["action"];
+    console.log('message received in pic! is', message);
+    if (this.parameters.responses[message.value]['action']) {
+      message['action'] = this.parameters.responses[message.value]['action'];
     }
     this.responseEvent.emit(message);
     // todo support multiple reponses in future

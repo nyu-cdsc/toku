@@ -1,9 +1,9 @@
-import { Injectable, Inject } from "@angular/core";
-import { Control } from "./configuration";
-import { StimuliService } from "../../components/stimuli/stimuli.service";
+import { Injectable, Inject } from '@angular/core';
+import { Control } from './configuration';
+import { StimuliService } from '../../components/stimuli/stimuli.service';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class RunnerService {
   block = {};
@@ -14,11 +14,11 @@ export class RunnerService {
   second = false;
   third = false;
 
-  constructor(@Inject("environment") env) { }
+  constructor(@Inject('environment') env) { }
 
   init(project) {
     this.environment = {};
-    console.log("this is the project", JSON.stringify(project, null, 2));
+    console.log('this is the project', JSON.stringify(project, null, 2));
     this.block = this.pickOne(project.conditions);
     this.environment.project = project;
   }
@@ -31,7 +31,7 @@ export class RunnerService {
   // two-way; receives data for conditional decisions
   *cycle(block?, input = [{value: null}]) {
     // console.log("NEWCYCLE******************************, input", input);
-    yield "start";
+    yield 'start';
     // console.log("INPUT AFTER START", input);
 
     block = block ? block : this.block;
@@ -47,18 +47,13 @@ export class RunnerService {
   }
 
   *callNext(item, parent, input) {
+    console.log('callnext PARENT IS', parent, 'ITEM IS', item);
     if (!input) { input = [{value: null}]; }
-    if (input[0]["action"]) {
-      // console.log("is CONDITIONAL, REPLACING ACTION");
-      item = input[0]["action"];
+    if (input[0]['action']) {
+      console.log('callnext CONDITIONAL, REPLACING ACTION');
+      item = input[0]['action'];
       input = [{value: null}];
       item = item[Object.keys(item)[0]];
-    }
-    if (this.second) {
-      // console.log("second!", item);
-    }
-    if (this.third) {
-      // console.log("third!", item);
     }
     if (this.isBlock(item)) {
       // console.log("is BLOCK");
@@ -70,14 +65,13 @@ export class RunnerService {
       }
       // console.log("CALLING CYCLE");
       input = yield* this.cycle(item, input);
-    } else if (item["type"]) {
-      // console.log("is ITEM");
+    } else if (item['type']) {
       input = yield { projectName: this.environment.project.study, blockName: parent.name, action: item };
-      if (input && input[0] && input[0]["action"]) {
+      if (input && input[0] && input[0]['action']) {
         this.second = true;
-        item = input[0]["action"];
+        item = input[0]['action'];
         item = item[Object.keys(item)[0]];
-        // console.log("GOT RESULT! CALLNEXT", input, item);
+        console.log('GOT RESULT! CALLNEXT', input, item);
         input = yield* this.callNext(item, parent, [{value: null}]);
       }
     }
@@ -87,7 +81,7 @@ export class RunnerService {
     if (!item.parameters.responses) { return false; }
 
     for (const [key, val] of Object.entries(item.parameters.responses)) {
-      if (val["action"]) {
+      if (val['action']) {
         return true;
       }
     }
@@ -97,12 +91,12 @@ export class RunnerService {
 
   isBlock(item) {
     // console.log("checkingg if block", item);
-    return item && typeof item === "object" && !item.type && Object.keys(item).length && !this.isControl(item);
+    return item && typeof item === 'object' && !item.type && Object.keys(item).length && !this.isControl(item);
   }
 
   getControl(list): Control {
     let res = list.filter(item => {
-      if (item.type === "control") {
+      if (item.type === 'control') {
         return item; // Object.assign(new Control(), item);
       }
     });
@@ -120,7 +114,7 @@ export class RunnerService {
 
   // TODO dupe from parser..
   isControl(item) {
-    const controls = ["pickFirst", "pickOne", "shuffle", "repeat", "runStyle", "name"];
+    const controls = ['pickFirst', 'pickOne', 'shuffle', 'repeat', 'runStyle', 'name'];
     return controls.includes(item);
   }
 

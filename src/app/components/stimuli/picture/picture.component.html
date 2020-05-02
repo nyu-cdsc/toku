@@ -2,13 +2,13 @@
 
 <ng-template #withoutMap>
   <!-- populate image -->
-  <img [src]="parameters?.filename" (click)="done()" #theimage />
+  <img [src]="getFile()" (click)="done()" #theimage />
 </ng-template>
 
 <ng-template #withMap>
   <!-- populate image -->
   <!-- TODO better way to populate img ID than from coordinate values. Works for present project but need something better -->
-  <img [class]="clickable" [src]="parameters?.filename" usemap="#picturemap" #theimage />
+  <img [class]="clickable" [src]="getFile()" usemap="#picturemap" #theimage />
   <toku-map #areamap *ngIf="responseEnabled" (selectionEvent)="sendMessage($event)" [params]="parameters"></toku-map>
 </ng-template>
 

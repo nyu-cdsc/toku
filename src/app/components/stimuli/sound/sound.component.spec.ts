@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SoundComponent } from "./sound.component";
+import { SoundComponent } from './sound.component';
 
-describe("SoundComponent", () => {
+describe('SoundComponent', () => {
   let component: SoundComponent;
   let fixture: ComponentFixture<SoundComponent>;
 
@@ -19,10 +19,10 @@ describe("SoundComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it("should take an optional button component/stimuli for response - composite component", () => {
+  it('should take an optional button component/stimuli for response - composite component', () => {
     // expect(component).toBeTruthy();
   });
 });

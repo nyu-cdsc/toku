@@ -1,12 +1,12 @@
-import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
-import { NgForm } from "@angular/forms";
-import { Stimuli, Responsive } from "../stimuli";
-import { Message } from "../../../message";
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Stimuli, Responsive } from '../stimuli';
+import { Message } from '../../../message';
 
 @Component({
-  selector: "toku-form",
-  templateUrl: "./form.component.html",
-  styleUrls: ["./form.component.css"]
+  selector: 'toku-form',
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.css']
 })
 export class FormComponent implements Responsive, Stimuli, OnInit {
   @Input() parameters: any;
@@ -20,9 +20,9 @@ export class FormComponent implements Responsive, Stimuli, OnInit {
     for (const [key, val] of Object.entries(this.parameters.questions)) {
       // console.log("key val", key, val);
 
-      val["name"] = key;
-      if (val["options"]) {
-        val["options"] = val["options"].split(",");
+      val['name'] = key;
+      if (val['options']) {
+        val['options'] = val['options'].split(',');
       }
       quest.push(val);
     }
@@ -31,7 +31,7 @@ export class FormComponent implements Responsive, Stimuli, OnInit {
   }
 
   sendMessage(message: Message) {
-    console.log("message received in form is", message);
+    console.log('message received in form is', message);
     this.responseEvent.emit(message);
     this.done();
   }

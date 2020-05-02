@@ -1,10 +1,10 @@
-import { Response } from "./response";
+import { Response } from './response';
 
-describe("Response", () => {
+describe('Response', () => {
   beforeEach(() => {
   });
 
-  it("should be created", () => {
+  it('should be created', () => {
     expect(true).toBeTruthy();
   });
 });
